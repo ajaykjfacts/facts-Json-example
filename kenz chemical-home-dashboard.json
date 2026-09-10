@@ -1,0 +1,824 @@
+{
+  "title": "[pagemenuinfo.caption(joinstr)raw]",
+  "whenload": [
+    {
+      "exec": "filldataset",
+      "args": {
+        "proc": "PWA.GetDashBoardMenus",
+        "dset": "DashBoardMenus",
+        "args": {}
+      }
+    },
+    {
+      "exec": "filldataset",
+      "args": {
+        "proc": "PWA.LoadDashCards",
+        "dset": "dsCard1"
+      }
+    },
+    {
+      "exec": "fillmultidataset",
+      "args": {
+        "proc": "PWA.LoadDashLayout",
+        "dsets": [
+          {
+            "name": "dsTblEmpLvLayout",
+            "table": "Table"
+          },
+          {
+            "name": "dsTblEmpLvData",
+            "table": "Table1"
+          }
+        ],
+        "args": {
+          "doctype": "dblr",
+          "docno": "113"
+        }
+      }
+    },
+    {
+      "exec": "filldataset",
+      "args": {
+        "proc": "PWA.GetAnnouncement",
+        "row": 0,
+        "dset": "DsAnnouncement"
+      }
+    },
+    {
+      "exec": "filldataset",
+      "args": {
+        "proc": "PWA.getTeamMembers",
+        "dset": "dsTeamMembers"
+      }
+    }
+  ],
+  "appbar": {
+    "title": "[pagemenuinfo.caption(joinstr)raw]",
+    "whenbackclick": [],
+    "chld": "[_pageparts.appbar-icons]"
+  },
+  "layout": [
+    {
+      "type": "sect",
+      "props": {
+        "container": true,
+        "resolvestyles": true,
+        "style": {
+          "marginBottom": "60px",
+          "pointerEvents": "[DsFrmHeaderEntry.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+          "padding": "10px"
+        }
+      },
+      "chld": [
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "xs": 12,
+            "style": {
+              "padding": "10px"
+            }
+          },
+          "chld": [
+            {
+              "type": "list",
+              "props": {
+                "filterto": {
+                  "[this.module(eq)raw.HOME]": true
+                },
+                "className": "MuiGrid-root MuiGrid-container",
+                "style": {},
+                "datasets": [
+                  "_usermenu"
+                ],
+                "content": {
+                  "template": "custom",
+                  "props": {
+                    "className": "fcm50 fcx100",
+                    "style": {
+                      "display": "inline-block"
+                    },
+                    "includerefdata": true,
+                    "whenclick": [
+                      {
+                        "exec": "filldataset",
+                        "args": {
+                          "proc": "",
+                          "args": {
+                            "this": "[this]"
+                          }
+                        }
+                      },
+                      {
+                        "exec": "navigate",
+                        "args": "[this]"
+                      }
+                    ]
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "resolvestyles": true,
+                        "style": {
+                          "boxShadow": "1px 1px 2px silver",
+                          "backgroundColor": "white",
+                          "borderRadius": "5px",
+                          "margin": "10px",
+                          "overflow": "hidden",
+                          "padding": "15px",
+                          "display": "flex",
+                          "alignItems": "center"
+                        }
+                      },
+                      "chld": [
+                        {
+                          "type": "div",
+                          "props": {
+                            "resolvestyles": true,
+                            "style": {
+                              "color": "#0072b9",
+                              "textAlign": "center",
+                              "fontFamily": "Roboto Light",
+                              "float": "left"
+                            }
+                          },
+                          "chld": [
+                            {
+                              "type": "icon",
+                              "props": {
+                                "style": {
+                                  "fontSize": "3rem"
+                                }
+                              },
+                              "chld": "[this.icon]"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "span",
+                          "props": {
+                            "style": {
+                              "fontSize": "1.5rem",
+                              "textTransform": "uppercase",
+                              "color": "#636363",
+                              "display": "block",
+                              "fontWeight": "bold",
+                              "paddingLeft": "15px"
+                            }
+                          },
+                          "chld": "[this.caption]"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "xs": 12,
+            "md": 12,
+            "style": {
+              "overflowX": "auto",
+              "whiteSpace": "nowrap"
+            }
+          },
+          "chld": [
+            {
+              "type": "list",
+              "props": {
+                "datasets": [
+                  "dsCard1"
+                ],
+                "className": "xs-shrink",
+                "content": {
+                  "template": "custom",
+                  "props": {
+                    "className": "fcm25 fcx25",
+                    "style": {
+                      "display": "inline-block"
+                    },
+                    "whenclick": []
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "style": {
+                          "boxShadow": "1px 1px 2px silver",
+                          "backgroundColor": "white",
+                          "borderRadius": "5px",
+                          "margin": "10px",
+                          "overflow": "hidden",
+                          "padding": "15px"
+                        }
+                      },
+                      "chld": [
+                        {
+                          "type": "div",
+                          "props": {
+                            "resolvestyles": true,
+                            "style": {
+                              "color": "[this.CARD_COLOR]",
+                              "textAlign": "center",
+                              "fontFamily": "Roboto Light",
+                              "float": "left"
+                            }
+                          },
+                          "chld": [
+                            {
+                              "type": "icon",
+                              "props": {
+                                "style": {
+                                  "fontSize": "3rem"
+                                }
+                              },
+                              "chld": "[this.CARD_ICON]"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "div",
+                          "props": {
+                            "resolvestyles": true,
+                            "style": {
+                              "float": "left",
+                              "fontSize": "3rem",
+                              "padding": "0px 11px",
+                              "lineHeight": "3rem",
+                              "fontWeight": "bold",
+                              "color": "[this.CARD_COLOR]"
+                            }
+                          },
+                          "chld": "[this.CARD_VALUE]"
+                        },
+                        {
+                          "type": "div",
+                          "props": {
+                            "style": {
+                              "float": "left"
+                            }
+                          },
+                          "chld": [
+                            {
+                              "type": "span",
+                              "props": {
+                                "style": {
+                                  "fontSize": "1.5rem",
+                                  "textTransform": "uppercase",
+                                  "color": "#636363",
+                                  "display": "block",
+                                  "fontWeight": "bold"
+                                }
+                              },
+                              "chld": "[this.CARD_TITLE]"
+                            },
+                            {
+                              "type": "span",
+                              "props": {
+                                "resolvestyles": true,
+                                "style": {
+                                  "fontSize": "0.95rem",
+                                  "textTransform": "uppercase",
+                                  "color": "[this.CARD_COLOR]",
+                                  "display": "block",
+                                  "fontWeight": "bold"
+                                }
+                              },
+                              "chld": "[this.CARD_SUBTITLE]"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "includerefdata": true,
+            "item": true,
+            "xs": 12,
+            "md": 8,
+            "style": {
+              "padding": "10px"
+            }
+          },
+          "chld": [
+            {
+              "type": "sect",
+              "props": {
+                "xs": 12,
+                "item": true,
+                "style": {
+                  "padding": "0px 10px"
+                }
+              },
+              "chld": [
+                {
+                  "type": "expanel",
+                  "props": {
+                    "title": "Employee(s) on leave",
+                    "expanded": true
+                  },
+                  "chld": [
+                    {
+                      "type": "ftbl",
+                      "props": {
+                        "includerefdata": true,
+                        "layout": "[dsTblEmpLvLayout]",
+                        "data": "[dsTblEmpLvData]",
+                        "tableStyle": {
+                          "minWidth": "600px"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "xs": 12,
+            "md": 4,
+            "style": {
+              "display": "grid",
+              "padding": "5px 0px"
+            }
+          },
+          "chld": [
+            {
+              "type": "div",
+              "props": {
+                "style": {
+                  "textAlign": "center",
+                  "padding": "5px",
+                  "backgroundColor": "white",
+                  "boxShadow": "1px 1px 2px silver",
+                  "borderRadius": "10px",
+                  "margin": "5px 10px",
+                  "display": "flex"
+                }
+              },
+              "chld": [
+                {
+                  "type": "sect",
+                  "props": {
+                    "container": true
+                  },
+                  "chld": [
+                    {
+                      "type": "sect",
+                      "props": {
+                        "item": true,
+                        "md": 6,
+                        "xs": 12,
+                        "style": {
+                          "alignSelf": "center"
+                        }
+                      },
+                      "chld": [
+                        {
+                          "type": "imgr",
+                          "props": {
+                            "staticimage": true,
+                            "src": "[raw.data:image/png;base64,(joinstr)_userinfo.userimage]",
+                            "alt": "User Image",
+                            "style": {
+                              "width": "120px",
+                              "border": "1px solid gainsboro",
+                              "borderRadius": "50%"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "sect",
+                      "props": {
+                        "item": true,
+                        "md": 6,
+                        "xs": 12,
+                        "style": {
+                          "alignSelf": "center"
+                        }
+                      },
+                      "chld": [
+                        {
+                          "type": "div",
+                          "props": {
+                            "style": {
+                              "paddingTop": "15px"
+                            }
+                          },
+                          "chld": [
+                            {
+                              "type": "span",
+                              "props": {
+                                "resolvestyles": true,
+                                "style": {
+                                  "fontWeight": "bold",
+                                  "color": "[dsAppTheme.primary_color]"
+                                }
+                              },
+                              "chld": "[_userinfo.username]"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "div",
+                          "props": {
+                            "style": {}
+                          },
+                          "chld": [
+                            {
+                              "type": "span",
+                              "props": {
+                                "style": {}
+                              },
+                              "chld": "[_userinfo.userdesig]"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "div",
+                          "props": {
+                            "style": {}
+                          },
+                          "chld": [
+                            {
+                              "type": "span",
+                              "props": {
+                                "style": {}
+                              },
+                              "chld": "[_userinfo.userdept]"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "includerefdata": true,
+            "item": true,
+            "xs": 12,
+            "md": 4,
+            "style": {
+              "display": "grid",
+              "padding": "5px 0px"
+            }
+          },
+          "chld": [
+            {
+              "type": "sect",
+              "props": {
+                "xs": 12,
+                "item": true,
+                "style": {
+                  "padding": "0px 10px"
+                }
+              },
+              "chld": [
+                {
+                  "type": "expanel",
+                  "props": {
+                    "title": "My Team",
+                    "expanded": true
+                  },
+                  "chld": [
+                    {
+                      "type": "sect",
+                      "props": {
+                        "container": true,
+                        "xs": 12,
+                        "style": {
+                          "padding": "0px 10px"
+                        }
+                      },
+                      "chld": [
+                        {
+                          "type": "sect",
+                          "props": {
+                            "container": true,
+                            "xs": 12,
+                            "style": {}
+                          },
+                          "chld": [
+                            {
+                              "type": "btngroup",
+                              "props": {
+                                "style": {
+                                  "display": "grid !important"
+                                },
+                                "fullWidth": true,
+                                "color": "primary"
+                              },
+                              "chld": [
+                                {
+                                  "type": "sect",
+                                  "props": {
+                                    "item": true,
+                                    "xs": 6
+                                  },
+                                  "chld": [
+                                    {
+                                      "type": "btn",
+                                      "props": {
+                                        "fullWidth": true,
+                                        "appendprops": "[wfFilterButtonProps.btnRT]",
+                                        "whenclick": [
+                                          {
+                                            "exec": "setdataset",
+                                            "args": {
+                                              "dset": "wfFilterButtonProps",
+                                              "data": {
+                                                "btnRT": {
+                                                  "variant": "contained"
+                                                },
+                                                "APPR_STATUS": "RT"
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "chld": "Reporting To"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "sect",
+                                  "props": {
+                                    "item": true,
+                                    "xs": 6
+                                  },
+                                  "chld": [
+                                    {
+                                      "type": "btn",
+                                      "props": {
+                                        "fullWidth": true,
+                                        "appendprops": "[wfFilterButtonProps.btnMT]",
+                                        "whenclick": [
+                                          {
+                                            "exec": "setdataset",
+                                            "args": {
+                                              "dset": "wfFilterButtonProps",
+                                              "data": {
+                                                "btnMT": {
+                                                  "variant": "contained"
+                                                },
+                                                "APPR_STATUS": ""
+                                              }
+                                            }
+                                          }
+                                        ]
+                                      },
+                                      "chld": "My team"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "sect",
+                              "props": {
+                                "item": true,
+                                "xs": 12,
+                                "style": {
+                                  "height": "200px",
+                                  "overflow": "overlay"
+                                }
+                              },
+                              "chld": [
+                                {
+                                  "type": "list",
+                                  "props": {
+                                    "filtermode": "contains",
+                                    "filterignorecase": true,
+                                    "satisfy": "every",
+                                    "watch": [
+                                      "dsTeamMembers",
+                                      "wfFilterButtonProps"
+                                    ],
+                                    "filterto": {
+                                      "[this.Group_Head(ifnull)raw.]": "[wfFilterButtonProps.APPR_STATUS(ifnull)raw.]"
+                                    },
+                                    "datasets": [
+                                      "dsTeamMembers"
+                                    ],
+                                    "content": {
+                                      "template": "custom",
+                                      "props": {
+                                        "style": {
+                                          "border": "1px solid gainsboro",
+                                          "padding": "10px"
+                                        }
+                                      },
+                                      "chld": [
+                                        {
+                                          "type": "sect",
+                                          "props": {
+                                            "container": true
+                                          },
+                                          "chld": [
+                                            {
+                                              "type": "sect",
+                                              "props": {
+                                                "container": true,
+                                                "style": {
+                                                  "padding": "5px",
+                                                  "display": "flex",
+                                                  "justifyContent": "center"
+                                                },
+                                                "xs": 2
+                                              },
+                                              "chld": [
+                                                {
+                                                  "type": "sect",
+                                                  "props": {
+                                                    "item": true,
+                                                    "resolvestyles": true,
+                                                    "style": {
+                                                      "marginTop": "5px",
+                                                      "alignItems": "center",
+                                                      "display": "flex",
+                                                      "border": "[this.Group_Head(eq)raw.Reporting To (iftrue)raw.2px solid]",
+                                                      "borderColor": "[dsAppTheme.primary_color]",
+                                                      "borderRadius": "50%"
+                                                    }
+                                                  },
+                                                  "chld": [
+                                                    {
+                                                      "type": "favatar",
+                                                      "props": {
+                                                        "includerefdata": true,
+                                                        "image": "[this.PHOTO]",
+                                                        "style": {
+                                                          "backgroundColor": "#c0d6e4",
+                                                          "width": "40px",
+                                                          "height": "40px"
+                                                        }
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            },
+                                            {
+                                              "type": "sect",
+                                              "props": {
+                                                "container": true,
+                                                "style": {
+                                                  "paddingLeft": "10px"
+                                                },
+                                                "xs": 10
+                                              },
+                                              "chld": [
+                                                {
+                                                  "type": "sect",
+                                                  "props": {
+                                                    "item": true,
+                                                    "style": {
+                                                      "display": "flex"
+                                                    },
+                                                    "xs": 10
+                                                  },
+                                                  "chld": [
+                                                    {
+                                                      "type": "div",
+                                                      "props": {
+                                                        "resolvestyles": true,
+                                                        "style": {
+                                                          "color": "[dsAppTheme.primary_color]",
+                                                          "textAlign": "left",
+                                                          "display": "flex",
+                                                          "alignItems": "center",
+                                                          "width": "100%"
+                                                        }
+                                                      },
+                                                      "chld": [
+                                                        {
+                                                          "type": "lbl",
+                                                          "props": {
+                                                            "resolveprops": true,
+                                                            "style": {
+                                                              "paddingRight": "10px",
+                                                              "fontWeight": "bold",
+                                                              "fontSize": "medium"
+                                                            },
+                                                            "text": "[this.NAMES]"
+                                                          }
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "xs": 12,
+            "md": 4,
+            "style": {
+              "display": "grid",
+              "padding": "5px 0px"
+            }
+          },
+          "chld": [
+            {
+              "type": "sect",
+              "props": {
+                "xs": 12,
+                "item": true,
+                "style": {
+                  "padding": "0px 10px"
+                }
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "style": {
+                      "boxShadow": "1px 1px 2px silver",
+                      "backgroundColor": "white",
+                      "borderRadius": "5px",
+                      "overflow": "hidden"
+                    }
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {},
+                      "chld": [
+                        {
+                          "type": "expanel",
+                          "props": {
+                            "title": "Announcements",
+                            "expanded": true
+                          },
+                          "chld": [
+                            {
+                              "type": "view",
+                              "props": {
+                                "includerefdata": true,
+                                "style": {
+                                  "height": "200px"
+                                },
+                                "contenttype": "html",
+                                "binding": true,
+                                "content": "[DsAnnouncement.HTMLDATA]"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,583 @@
+{
+    "title": "[pagemenuinfo.caption(joinstr)raw. Entry]",
+    "wheninit": [
+        "$$wheninitevents$$"
+    ],
+    "whenload": [
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsForm",
+                "data": {
+                    "formType": "ENTRY"
+                }
+            }
+        },
+        {
+            "exec": "invalidate",
+            "args": {
+                "datasets": [
+                    "DsNew_ENTRY_BTN",
+                    "DsEdit_ENTRY_BTN",
+                    "DsDelete_ENTRY_BTN",
+                    "DsPrint_ENTRY_BTN",
+                    "DsAttach_ENTRY_BTN",
+                    "DsProc_ENTRY_BTN",
+                    "DsResult_ENTRY_BTN",
+                    "DsApprove_ENTRY_BTN",
+                    "DsWFOptions_ENTRY_BTN",
+                    "DsUserDefinedTab"
+                ]
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.USP_LIST_OPTIONS",
+                "dsets": [
+                    {
+                        "name": "DsPrint_ENTRY_BTN",
+                        "table": "Table3",
+                        "row": 0
+                    },
+                    {
+                        "name": "DsAttach_ENTRY_BTN",
+                        "table": "Table4",
+                        "row": 0
+                    },
+                    {
+                        "name": "DsResult_ENTRY_BTN",
+                        "table": "Table6",
+                        "row": 0
+                    }
+                ],
+                "args": {
+                    "strdoctype": "[dsSelected.doctype]",
+                    "dsForm": "[dsForm]",
+                    "dsSelected": "[dsSelected]",
+                    "pagemode": "[DsFrmHeaderEntry.pagemode]",
+                    "moduleId": "ESS"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.LoadLayout",
+                "dset": "dsPageHeaderButtonsEntry",
+                "column": "layoutinfo",
+                "args": {
+                    "doctype": "part",
+                    "docno": "entry-top-nav-buttons-ess"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.EMP_Data_OnLoad",
+                "row": 0,
+                "dset": "EMPDataOnLoad",
+                "args": {
+                    "strXmlHeader": "[DsFrmHeaderEntry]",
+                    "empCode": "[DsFrmHeaderEntry.[DsFrmHeaderEntry.headerclmnprefix]_EMP_DOCNO]"
+                }
+            }
+        },
+        {
+            "exec": "mergedataset",
+            "args": {
+                "dset": "DsFrmHeaderEntry",
+                "data": "[EMPDataOnLoad]"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.GetSessionId",
+                "row": 0,
+                "dset": "dsSectionID",
+                "args": {
+                    "strXmlHeader": "[DsFrmHeaderEntry]"
+                }
+            }
+        },
+        {
+            "exec": "mergedataset",
+            "args": {
+                "dset": "DsFrmHeaderEntry",
+                "data": "[dsSectionID]"
+            }
+        },
+        "$$whenloadevents$$"
+    ],
+    "pageheader": [
+        {
+            "type": "hide",
+            "props": {
+                "appendprops": {
+                    "xsUp": "[dsPagemode.pagemode(eq)raw.New]"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "container": true,
+                        "className": "factsentry-header-sec",
+                        "resolvestyles": true,
+                        "xs": 12,
+                        "style": {
+                            "padding": "0px"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "view",
+                            "props": {
+                                "includerefdata": true,
+                                "contenttype": "json",
+                                "binding": true,
+                                "content": "[dsPageHeaderButtonsEntry]",
+                                "style": {}
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "appbar": {
+        "title": "[pagemenuinfo.caption]",
+        "whenbackclick": [
+            {
+                "exec": "setdataset",
+                "args": {
+                    "dset": "dialoginfo",
+                    "data": {
+                        "open": true,
+                        "title": "Exit",
+                        "description": "Close this Window?",
+                        "btn1": {
+                            "chld": "YES",
+                            "props": {
+                                "whenclick": [
+                                    {
+                                        "exec": "setdatasetfield",
+                                        "args": {
+                                            "dset": "popupinfo",
+                                            "fieldname": "documentlistsection",
+                                            "data": null
+                                        }
+                                    },
+                                    "[pageinfo.loadlistdata]"
+                                ]
+                            }
+                        },
+                        "btn2": {
+                            "chld": "No"
+                        }
+                    }
+                }
+            }
+        ],
+        "chld": [
+            {
+                "type": "hide",
+                "props": {
+                    "appendprops": {
+                        "xsUp": "[dsPagemode.pagemode(neq)raw.view]"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryDocNoLabel"
+                        },
+                        "chld": [
+                            {
+                                "type": "lbl",
+                                "props": {
+                                    "text": "[raw.#[dsSelected.docno]]"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "style": {
+        "display": "block"
+    },
+    "layout": [
+        {
+            "type": "form",
+            "props": {
+                "onSubmit": [
+                    {
+                        "exec": "validatedataset",
+                        "verify": {
+                            "satisfy": "any",
+                            "halton": "match",
+                            "ref": {
+                                "[dsDocumentMaster.askSaveConfirmation(neq)raw.1]": true
+                            },
+                            "whenmatch": [
+                                {
+                                    "exec": "setdataset",
+                                    "args": {
+                                        "nodeepprocess": true,
+                                        "dset": "dialoginfo",
+                                        "data": {
+                                            "open": true,
+                                            "title": "Exit",
+                                            "description": "Are you sure you want to submit your request?",
+                                            "btn1": {
+                                                "chld": "YES",
+                                                "props": {
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "beforevalidation",
+                                                                "args": {
+                                                                    "strXmlData": "[DsFrmHeaderEntry]"
+                                                                }
+                                                            }
+                                                        },
+                                                        "$$validationsBeforeSave$$",
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "aftervalidation",
+                                                                "args": {
+                                                                    "strXmlData": "[DsFrmHeaderEntry]"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "fillmultidataset",
+                                                            "args": {
+                                                                "proc": "PWA.DefaultSave_ESS",
+                                                                "dsets": [
+                                                                    {
+                                                                        "name": "dsFrmSaveDocDetails",
+                                                                        "table": "Table",
+                                                                        "row": 0
+                                                                    },
+                                                                    {
+                                                                        "name": "dsFrmSaveAfterActions",
+                                                                        "table": "Table1",
+                                                                        "row": 0
+                                                                    }
+                                                                ],
+                                                                "args": {
+                                                                    "pagemode": "[dsPagemode.pagemode]",
+                                                                    "sessionid": "[DsFrmHeaderEntry.SessionID]",
+                                                                    "doctype": "[pagemenuinfo.doctype]",
+                                                                    "docno": "[pagemenuinfo.docno]",
+                                                                    "strXmlHeader": "[DsFrmHeaderEntry]",
+                                                                    "strXmlDetails1": "[DsFrmDetails1]",
+                                                                    "strXmlDetails2": "[DsFrmDetails2]",
+                                                                    "attachments": "[dsAttachments]",
+                                                                    "moduleid": "[pagemenuinfo.module]"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dsSelected",
+                                                                "data": {
+                                                                    "doctype": "[dsFrmSaveDocDetails.doctype]",
+                                                                    "docno": "[dsFrmSaveDocDetails.docno]"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdatasetfield",
+                                                            "args": {
+                                                                "dset": "dsPagemode",
+                                                                "fieldname": "pagemode",
+                                                                "data": "view"
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "snackinfo",
+                                                                "data": {
+                                                                    "open": true,
+                                                                    "type": "success",
+                                                                    "message": "Submitted !"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "syncevents",
+                                                            "args": {
+                                                                "data": "[dsFrmSaveAfterActions.afterSaveEvents]"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            },
+                                            "btn2": {
+                                                "chld": "NO"
+                                            }
+                                        }
+                                    }
+                                }
+                            ],
+                            "whenunmatch": [
+                                {
+                                    "exec": "filldataset",
+                                    "args": {
+                                        "proc": "beforevalidation",
+                                        "args": {
+                                            "strXmlData": "[DsFrmHeaderEntry]"
+                                        }
+                                    }
+                                },
+                                "$$validationsBeforeSave$$",
+                                {
+                                    "exec": "filldataset",
+                                    "args": {
+                                        "proc": "aftervalidation",
+                                        "args": {
+                                            "strXmlData": "[DsFrmHeaderEntry]"
+                                        }
+                                    }
+                                },
+                                {
+                                    "exec": "fillmultidataset",
+                                    "args": {
+                                        "proc": "PWA.DefaultSave_ESS",
+                                        "dsets": [
+                                            {
+                                                "name": "dsFrmSaveDocDetails",
+                                                "table": "Table",
+                                                "row": 0
+                                            },
+                                            {
+                                                "name": "dsFrmSaveAfterActions",
+                                                "table": "Table1",
+                                                "row": 0
+                                            }
+                                        ],
+                                        "args": {
+                                            "pagemode": "[dsPagemode.pagemode]",
+                                            "sessionid": "[DsFrmHeaderEntry.SessionID]",
+                                            "doctype": "[pagemenuinfo.doctype]",
+                                            "docno": "[pagemenuinfo.docno]",
+                                            "strXmlHeader": "[DsFrmHeaderEntry]",
+                                            "strXmlDetails1": "[DsFrmDetails1]",
+                                            "strXmlDetails2": "[DsFrmDetails2]",
+                                            "attachments": "[dsAttachments]",
+                                            "moduleid": "[pagemenuinfo.module]"
+                                        }
+                                    }
+                                },
+                                {
+                                    "exec": "setdataset",
+                                    "args": {
+                                        "dset": "dsSelected",
+                                        "data": {
+                                            "doctype": "[dsFrmSaveDocDetails.doctype]",
+                                            "docno": "[dsFrmSaveDocDetails.docno]"
+                                        }
+                                    }
+                                },
+                                {
+                                    "exec": "setdatasetfield",
+                                    "args": {
+                                        "dset": "dsPagemode",
+                                        "fieldname": "pagemode",
+                                        "data": "view"
+                                    }
+                                },
+                                {
+                                    "exec": "setdataset",
+                                    "args": {
+                                        "dset": "snackinfo",
+                                        "data": {
+                                            "open": true,
+                                            "type": "success",
+                                            "message": "Submitted !"
+                                        }
+                                    }
+                                },
+                                {
+                                    "exec": "syncevents",
+                                    "args": {
+                                        "data": "[dsFrmSaveAfterActions.afterSaveEvents]"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                ]
+            },
+            "chld": [
+                {
+                    "type": "hide",
+                    "props": {
+                        "appendprops": {
+                            "xsUp": "[dsPagemode.pagemode(eq)raw.view]"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "btn",
+                            "props": {
+                                "className": "submitBtn",
+                                "color": "inherit",
+                                "type": "submit",
+                                "style": {
+                                    "position": "fixed",
+                                    "top": "8px",
+                                    "right": "10px"
+                                },
+                                "whenclick": []
+                            },
+                            "chld": "SUBMIT"
+                        }
+                    ]
+                },
+                {
+                    "type": "hide",
+                    "props": {
+                        "appendprops": {
+                            "xsUp": "[DsFrmHeaderEntry.showDetails(eq)raw.no]"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "className": "factsFullWidth",
+                                "style": {
+                                    "display": "flex",
+                                    "justifyContent": "space-between",
+                                    "padding": "10px"
+                                },
+                                "xs": 12
+                            },
+                            "chld": [
+                                {
+                                    "type": "view",
+                                    "props": {
+                                        "includerefdata": true,
+                                        "contenttype": "html",
+                                        "binding": true,
+                                        "content": "[DsFrmHeaderEntry.EMP_DATA]",
+                                        "style": {}
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "hide",
+                    "props": {
+                        "appendprops": {
+                            "xsUp": "[dsPagemode.pagemode(eq)raw.New]"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "fab",
+                            "props": {
+                                "color": "secondary",
+                                "style": {
+                                    "height": "40px",
+                                    "width": "40px"
+                                },
+                                "whenclick": [
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "PWA.GetTaskStatus",
+                                            "dset": "currenttaskstat",
+                                            "row": 0,
+                                            "args": {
+                                                "Doctype": "[DsFrmHeaderEntry.[DsFrmHeaderEntry.headerclmnprefix]_DOCTYPE]",
+                                                "Docno": "[DsFrmHeaderEntry.[DsFrmHeaderEntry.headerclmnprefix]_DOCNO]"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "taskdset",
+                                            "data": {
+                                                "Doctype": "[DsFrmHeaderEntry.[DsFrmHeaderEntry.headerclmnprefix]_DOCTYPE]",
+                                                "Docno": "[DsFrmHeaderEntry.[DsFrmHeaderEntry.headerclmnprefix]_DOCNO]"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "column": "layoutinfo",
+                                            "dset": "popupinfo",
+                                            "section": "taskstat",
+                                            "args": {
+                                                "doctype": "popup",
+                                                "docno": "attach-task-ess"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "chld": [
+                                {
+                                    "type": "icon",
+                                    "chld": "attachments"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "container": true,
+                        "resolvestyles": true,
+                        "className": "factsFullWidth",
+                        "style": {
+                            "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+                            "padding": "10px"
+                        }
+                    },
+                    "chld": "$$$GeneralInfosection$$$"
+                },
+                {
+                    "type": "hide",
+                    "props": {
+                        "appendprops": {
+                            "xsUp": true
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "btn",
+                            "props": {
+                                "className": "submitBtn",
+                                "type": "submit",
+                                "color": "inherit"
+                            },
+                            "chld": "Test SUBMIT"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

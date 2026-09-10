@@ -1,0 +1,61 @@
+{
+    "type": "sect",
+    "props": {
+        "item": true,
+        "className": "factsFullWidth",
+        "xs": 12,
+        "md": 4,
+        "lg": 4,
+        "style": {
+            "padding": "5px"
+        }
+    },
+    "chld": [
+        {
+            "type": "div",
+            "props": {
+                "className": "entryLabelOuterDiv"
+            },
+            "chld": [
+                {
+                    "type": "div",
+                    "props": {
+                        "className": "entryLabelDiv"
+                    },
+                    "chld": [
+                        {
+                            "type": "lbl",
+                            "props": {
+                                "text": "Number Label",
+                                "className": "entryLabel"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "div",
+                    "props": {
+                        "className": "entryValueDiv"
+                    },
+                    "chld": [
+                        {
+                            "type": "dxnumberbox",
+                            "props": {
+                                "dset": "DsFrmHeaderEntry",
+                                "label": "",
+                                "fullWidth": true,
+                                "style": {
+                                },
+                                "className": "small-ctr",
+                                "variant": "outlined",
+                                "includerefdata": true,
+                                "format": "###,##0",
+                                "bind": "DOCTYPE_DOCNO"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

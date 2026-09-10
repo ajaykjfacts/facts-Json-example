@@ -1,0 +1,153 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "item": true,
+            "md": 12,
+            "style": {
+                "padding": "5px"
+            }
+        },
+        "chld": [
+            {
+                "type": "div",
+                "props": {
+                    "className": "entryLabelOuterDiv"
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "lbl",
+                                "props": {
+                                    "text": "Country *",
+                                    "className": "entryLabel"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryValueDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "lkup",
+                                "props": {
+                                    "dset": "DsFrmHeaderEntry",
+                                    "required": true,
+                                    "validation": {
+                                                                "for": "text",
+                                                                "msg": "Please select the Country",
+                                                                "validationParams": {
+                                                                    "minLength": 1
+                                                                }
+                                                            },
+                                    "bind": "$$COUNTRY_DESC$$",
+                                    "variant": "outlined",
+                                    "className": "small-ctr",
+                                    "label": "",
+                                    "fullWidth": true,
+                                    "icon": "search",
+                                    "icons": {
+                                        "notempty": {
+                                            "icon": "close",
+                                            "whenclick": [
+                                                {
+                                                    "exec": "mergedataset",
+                                                    "args": {
+                                                        "dset": "DsFrmHeaderEntry",
+                                                        "data": {
+                                                            "$$COUNTRY_DOCNO$$": "",
+                                                            "$$COUNTRY_DESC$$": ""
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    },
+                                    "whenclick": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "nodeepprocess": true,
+                                                "dset": "customevents",
+                                                "data": [
+                                                    {
+                                                        "exec": "filldataset",
+                                                        "args": {
+                                                            "proc": "PWA.countrySubView",
+                                                            "dset": "dsCountryMasterSubview",
+                                                            "row": 0,
+                                                            "args": {
+                                                                "layout_docno": "country-subview-default"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "dslist",
+                                                "data": {
+                                                    "listtype": "CM",
+                                                    "commontype": "manual",
+                                                    "title": "Country Master",
+                                                    "dataset": "DsFrmHeaderEntry",
+                                                    "section": "Alltype",
+                                                    "doctypefield": "$$COUNTRY_DOCTYPE$$",
+                                                    "codefield": "$$COUNTRY_DOCNO$$",
+                                                    "descfield": "$$COUNTRY_DESC$$"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "PWA.LoadLayout",
+                                                "column": "layoutinfo",
+                                                "dset": "popupinfo",
+                                                "section": "Alltype",
+                                                "args": {
+                                                    "doctype": "popup",
+                                                    "docno": "lookup"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "type": "sect",
+        "props": {
+            "item": true,
+            "style": {},
+            "xs": 12
+        },
+        "chld": [
+            {
+                "type": "view",
+                "props": {
+                    "includerefdata": true,
+                    "contenttype": "json",
+                    "binding": true,
+                    "content": "[dsCountryMasterSubview.countrysubview]",
+                    "style": {}
+                }
+            }
+        ]
+    }
+]

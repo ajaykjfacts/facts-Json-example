@@ -1,0 +1,1486 @@
+{
+    "title": "Document Properties",
+    "fullscreen": false,
+    "style": {
+        "height": "500px"
+    },
+    "whenload": [
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "wqFilterOptions",
+                "data": {
+                    "CurrentForm": "GENERALINFO",
+                    "btnGeneral": {
+                        "variant": "contained"
+                    },
+                    "showFilterPanel": {
+                        "xlDown": false
+                    },
+                    "DISABLE_LEFT": false,
+                    "DISABLE_RIGHT": false
+                }
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "DsActionList",
+                "data": []
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "DsPrintList",
+                "data": []
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsGenralinfo",
+                "data": null
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsActionTaken",
+                "data": null
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsPrintTaken",
+                "data": null
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.DocumentProperties",
+                "dsets": [
+                    {
+                        "name": "dsGenralinfo",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsActionTaken",
+                        "table": "Table1"
+                    },
+                    {
+                        "name": "dsPrintTaken",
+                        "table": "Table2"
+                    }
+                ],
+                "args": {
+                    "dsSelected": "[dsSelected]"
+                }
+            }
+        }
+    ],
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true,
+                "xs": 12,
+                "style": {
+                    "width": "100%",
+                    "height": "100%"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "className": "factsPopupTitleSect",
+                        "style": {
+                            "display": "flex",
+                            "justifyContent": "space-between"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "lbl",
+                            "props": {
+                                "resolvestyles": true,
+                                "text": "Document Properties"
+                            }
+                        },
+                        {
+                            "type": "icbtn",
+                            "props": {
+                                "includerefdata": true,
+                                "size": "small",
+                                "color": "primary",
+                                "whenclick": [
+                                    {
+                                        "exec": "setdatasetfield",
+                                        "args": {
+                                            "dset": "popupinfo",
+                                            "fieldname": "documentprops",
+                                            "data": null
+                                        }
+                                    }
+                                ]
+                            },
+                            "chld": "close"
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "xs": 12,
+                        "style": {
+                            "padding": "5px 20px",
+                            "pointerEvents": "all",
+                            "height": "calc( 100% - 110px)",
+                            "overflow": "auto"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "tab",
+                            "style": {
+                                "padding": "1px"
+                            },
+                            "props": {
+                                "whenchange": [
+                                    {
+                                        "exec": "validatedataset",
+                                        "verify": {
+                                            "satisfy": "any",
+                                            "ref": {
+                                                "[this.value(neq)func.null]": true
+                                            },
+                                            "whenmatch": [
+                                                "[dsTab[this.value]Events]"
+                                            ]
+                                        }
+                                    }
+                                ],
+                                "data": [
+                                    {
+                                        "buttonProps": {
+                                            "label": "General Info",
+                                            "style": {
+                                                "minHeight": "20px",
+                                                "padding": "15px 10px"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "hide",
+                                                "props": {
+                                                    "mdDown": true
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "container": true,
+                                                            "resolvestyles": true,
+                                                            "appendprops": {
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "justifyContent": "center",
+                                                                    "alignItems": "center",
+                                                                    "height": "300px",
+                                                                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                                }
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "item": true,
+                                                                    "xs": 12,
+                                                                    "appendprops": {},
+                                                                    "style": {
+                                                                        "display": "flex",
+                                                                        "justifyContent": "center"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 4,
+                                                                            "style": {
+                                                                                "display": "flex",
+                                                                                "justifyContent": "flex-end"
+                                                                            },
+                                                                            "appendprops": {}
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "hide",
+                                                                                "props": {
+                                                                                    "appendprops": {
+                                                                                        "xsUp": "[dsGenralinfo.0.userimage(eq)func.null]"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "imgr",
+                                                                                        "props": {
+                                                                                            "src": "[dsGenralinfo.0.userimage]",
+                                                                                            "alt": "User Image",
+                                                                                            "style": {
+                                                                                                "width": "120px",
+                                                                                                "border": "2px solid white",
+                                                                                                "borderRadius": "50%",
+                                                                                                "outline": "3px solid #d0d8e8"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "hide",
+                                                                                "props": {
+                                                                                    "appendprops": {
+                                                                                        "xsUp": "[dsGenralinfo.0.userimage(neq)func.null]"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "icon",
+                                                                                        "props": {
+                                                                                            "style": {
+                                                                                                "backgroundColor": "ghostwhite",
+                                                                                                "objectFit": "cover",
+                                                                                                "margin": "0px",
+                                                                                                "fontSize": "120px",
+                                                                                                "border": "2px solid white",
+                                                                                                "borderRadius": "50%",
+                                                                                                "outline": "3px solid #d0d8e8"
+                                                                                            }
+                                                                                        },
+                                                                                        "chld": "no_photography"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 8,
+                                                                            "style": {
+                                                                                "display": "flex",
+                                                                                "flexDirection": "column",
+                                                                                "padding": "10px"
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "lbl",
+                                                                                "props": {
+                                                                                    "excerpt": {},
+                                                                                    "text": "This document is created by",
+                                                                                    "style": {
+                                                                                        "font-size": "0.8rem",
+                                                                                        "text-transform": "uppercase",
+                                                                                        "color": "#aaa",
+                                                                                        "padding": "3px"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "type": "lbl",
+                                                                                "props": {
+                                                                                    "excerpt": {},
+                                                                                    "text": "[dsGenralinfo.0.USER_NAME]",
+                                                                                    "style": {
+                                                                                        "padding": "3px",
+                                                                                        "fontWeight": "bold",
+                                                                                        "font-size": "1.6rem",
+                                                                                        "color": "var(--Primary)"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "display": "flex",
+                                                                                        "alignItems": "center"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "icon",
+                                                                                        "chld": "access_time"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "lbl",
+                                                                                        "props": {
+                                                                                            "excerpt": {},
+                                                                                            "text": "[dsGenralinfo.0.CREATED_TS(dtformat)raw.EEEE, MMM dd yyyy, HH:mm:ss aa]",
+                                                                                            "style": {
+                                                                                                "padding": "5px"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "hide",
+                                                "props": {
+                                                    "mdUp": true
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "",
+                                                            "resolvestyles": true,
+                                                            "appendprops": {
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "flex-wrap": "wrap",
+                                                                    "max-width": "calc(100vw - 65px)",
+                                                                    "gap": "10px",
+                                                                    "flex-direction": "row",
+                                                                    "padding": "10px",
+                                                                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                                }
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6",
+                                                                    "style": {
+                                                                        "flex": "1 1 calc(50% - 10px)"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "className": "DocProp-card",
+                                                                            "style": {}
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "className": "DocProp-label"
+                                                                                },
+                                                                                "chld": "Document Type"
+                                                                            },
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "className": "DocProp-val"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "lbl",
+                                                                                        "props": {
+                                                                                            "text": "[dsGenralinfo.0.docdesc]",
+                                                                                            "style": {}
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6",
+                                                                    "style": {
+                                                                        "flex": "1 1 calc(50% - 10px)"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "className": "DocProp-card",
+                                                                            "style": {}
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "className": "DocProp-label"
+                                                                                },
+                                                                                "chld": "Reference No."
+                                                                            },
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "className": "DocProp-val"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "lbl",
+                                                                                        "props": {
+                                                                                            "text": "[dsGenralinfo.0.refno]",
+                                                                                            "style": {}
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12",
+                                                                    "style": {
+                                                                        "flex": "1 1 calc(1000% - 10px)"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 12,
+                                                                            "className": "DocProp-card",
+                                                                            "style": {
+                                                                                "display": "flex",
+                                                                                "gap": "10px"
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "display": "flex",
+                                                                                        "alignItems": "center",
+                                                                                        "justifyContent": "center"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "icon",
+                                                                                        "props": {},
+                                                                                        "chld": "calendar_today"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "display": "block",
+                                                                                        "alignItems": "center",
+                                                                                        "justifyContent": "center"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "div",
+                                                                                        "props": {
+                                                                                            "className": "DocProp-label"
+                                                                                        },
+                                                                                        "chld": "Created On"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "div",
+                                                                                        "props": {
+                                                                                            "className": "DocProp-val"
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "lbl",
+                                                                                                "props": {
+                                                                                                    "text": "[dsGenralinfo.0.CREATED_TS(dtformat)raw.EEEE, MMM dd yyyy, HH:mm:ss aa]",
+                                                                                                    "style": {}
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12",
+                                                                    "style": {
+                                                                        "flex": "1 1 calc(100% - 10px)"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 12,
+                                                                            "className": "DocProp-card",
+                                                                            "style": {
+                                                                                "display": "flex",
+                                                                                "gap": "10px"
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "display": "flex",
+                                                                                        "alignItems": "center",
+                                                                                        "justifyContent": "center"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "hide",
+                                                                                        "props": {
+                                                                                            "appendprops": {
+                                                                                                "xsUp": "[dsGenralinfo.0.userimage(eq)func.null]"
+                                                                                            }
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "imgr",
+                                                                                                "props": {
+                                                                                                    "src": "[dsGenralinfo.0.userimage]",
+                                                                                                    "alt": "User Image",
+                                                                                                    "className": "HRDB-doc-avatar",
+                                                                                                    "style": {
+                                                                                                        "marginLeft": "0px",
+                                                                                                        "marginTop": "0px",
+                                                                                                        "marginBottom": "0px",
+                                                                                                        "objectFit": "cover",
+                                                                                                        "cursor": "auto",
+                                                                                                        "border": "2px solid white",
+                                                                                                        "borderRadius": "50%",
+                                                                                                        "outline": "3px solid #d0d8e8"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "hide",
+                                                                                        "props": {
+                                                                                            "appendprops": {
+                                                                                                "xsUp": "[dsGenralinfo.0.userimage(neq)func.null]"
+                                                                                            }
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "icon",
+                                                                                                "props": {
+                                                                                                    "style": {
+                                                                                                        "backgroundColor": "ghostwhite",
+                                                                                                        "height": "50px",
+                                                                                                        "width": "50px",
+                                                                                                        "fontSize": "40px",
+                                                                                                        "border": "2px solid white",
+                                                                                                        "borderRadius": "50%",
+                                                                                                        "outline": "3px solid #d0d8e8"
+                                                                                                    }
+                                                                                                },
+                                                                                                "chld": "no_photography"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "div",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "display": "block",
+                                                                                        "alignItems": "center",
+                                                                                        "justifyContent": "center"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "div",
+                                                                                        "props": {
+                                                                                            "className": "DocProp-label"
+                                                                                        },
+                                                                                        "chld": "Created By"
+                                                                                    },
+                                                                                    {
+                                                                                        "type": "div",
+                                                                                        "props": {
+                                                                                            "className": "DocProp-val"
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "lbl",
+                                                                                                "props": {
+                                                                                                    "text": "[dsGenralinfo.0.USER_NAME]",
+                                                                                                    "style": {}
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "buttonProps": {
+                                            "label": "Actions Taken",
+                                            "style": {
+                                                "minHeight": "20px",
+                                                "padding": "15px 10px"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "resolvestyles": true,
+                                                    "style": {},
+                                                    "item": true,
+                                                    "container": true,
+                                                    "xs": 12
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "container": true,
+                                                            "className": "TableParentSect",
+                                                            "style": {
+                                                                "width": "1000px",
+                                                                "display": "block",
+                                                                "padding": "5px 7px",
+                                                                "height": "300px",
+                                                                "pointerEvents": "all"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "className": "TableHeaderSect",
+                                                                    "item": true,
+                                                                    "container": true,
+                                                                    "xs": 12
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 1,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Sr#"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 3,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "User Name"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 2,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Machine ID"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 2,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Date Time"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 2,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Status"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 2,
+                                                                            "className": "TableHeaderLastChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Reason"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "hide",
+                                                                        "props": {
+                                                                            "appendprops": {
+                                                                                "xsUp": true
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "sect",
+                                                                                "props": {
+                                                                                    "item": true,
+                                                                                    "xs": 1,
+                                                                                    "className": "TableHeaderChildSect"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "span",
+                                                                                        "props": {},
+                                                                                        "chld": "Details"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "sect",
+                                                                                "props": {
+                                                                                    "item": true,
+                                                                                    "xs": 0.5,
+                                                                                    "className": "TableHeaderChildSect"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "span",
+                                                                                        "props": {},
+                                                                                        "chld": "Ref1"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "sect",
+                                                                                "props": {
+                                                                                    "item": true,
+                                                                                    "xs": 0.5,
+                                                                                    "className": "TableHeaderChildSect"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "span",
+                                                                                        "props": {},
+                                                                                        "chld": "Ref2"
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            {
+                                                                                "type": "sect",
+                                                                                "props": {
+                                                                                    "item": true,
+                                                                                    "xs": 3,
+                                                                                    "className": "TableHeaderLastChildSect"
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "span",
+                                                                                        "props": {},
+                                                                                        "chld": "Unique ID"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "item": true,
+                                                                    "xs": 12,
+                                                                    "resolvestyles": true,
+                                                                    "appendprops": {
+                                                                        "style": {
+                                                                            "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "list",
+                                                                        "props": {
+                                                                            "datasets": [
+                                                                                "dsActionTaken"
+                                                                            ],
+                                                                            "className": "TableListSect facts-input-list",
+                                                                            "content": {
+                                                                                "template": "custom",
+                                                                                "props": {},
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "sect",
+                                                                                        "props": {
+                                                                                            "container": true
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 1,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {},
+                                                                                                        "chld": "[this.Sl]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 3,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.User Name]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 2,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Machine Id(ifwhitespace)func.null(ifnull)raw.—]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 2,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Date Time(dtformat)raw.dd MMM yyyy HH:mm:ss aa]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 2,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Status]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 2,
+                                                                                                    "className": "TableContentLastChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Reason(ifwhitespace)func.null(ifnull)raw.—]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "hide",
+                                                                                                "props": {
+                                                                                                    "appendprops": {
+                                                                                                        "xsUp": true
+                                                                                                    }
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "sect",
+                                                                                                        "props": {
+                                                                                                            "item": true,
+                                                                                                            "xs": 1,
+                                                                                                            "className": "TableContentChildSect"
+                                                                                                        },
+                                                                                                        "chld": [
+                                                                                                            {
+                                                                                                                "type": "span",
+                                                                                                                "props": {
+                                                                                                                    "style": {}
+                                                                                                                },
+                                                                                                                "chld": "[this.Details]"
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "type": "sect",
+                                                                                                        "props": {
+                                                                                                            "item": true,
+                                                                                                            "xs": 0.5,
+                                                                                                            "className": "TableContentChildSect"
+                                                                                                        },
+                                                                                                        "chld": [
+                                                                                                            {
+                                                                                                                "type": "span",
+                                                                                                                "props": {
+                                                                                                                    "style": {}
+                                                                                                                },
+                                                                                                                "chld": "[this.Ref1]"
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "type": "sect",
+                                                                                                        "props": {
+                                                                                                            "item": true,
+                                                                                                            "xs": 0.5,
+                                                                                                            "className": "TableContentChildSect"
+                                                                                                        },
+                                                                                                        "chld": [
+                                                                                                            {
+                                                                                                                "type": "span",
+                                                                                                                "props": {
+                                                                                                                    "style": {
+                                                                                                                        "paddingRight": "10px",
+                                                                                                                        "fontSize": "0.875rem"
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "chld": "[this.Ref2]"
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    {
+                                                                                                        "type": "sect",
+                                                                                                        "props": {
+                                                                                                            "item": true,
+                                                                                                            "xs": 3,
+                                                                                                            "className": "TableContentLastChildSect"
+                                                                                                        },
+                                                                                                        "chld": [
+                                                                                                            {
+                                                                                                                "type": "span",
+                                                                                                                "props": {
+                                                                                                                    "style": {
+                                                                                                                        "paddingRight": "10px",
+                                                                                                                        "fontSize": "0.875rem"
+                                                                                                                    }
+                                                                                                                },
+                                                                                                                "chld": "[this.Unique ID]"
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "buttonProps": {
+                                            "label": "Printouts Taken",
+                                            "style": {
+                                                "minHeight": "20px",
+                                                "padding": "15px 10px"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "resolvestyles": true,
+                                                    "style": {},
+                                                    "item": true,
+                                                    "container": true,
+                                                    "xs": 12
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "container": true,
+                                                            "className": "TableParentSect",
+                                                            "style": {
+                                                                "minWidth": "600px",
+                                                                "display": "block",
+                                                                "padding": "5px 7px",
+                                                                "pointerEvents": "all"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "className": "TableHeaderSect",
+                                                                    "item": true,
+                                                                    "container": true,
+                                                                    "xs": 12
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 1,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "SI"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 3,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "User Name"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 3,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Machine ID"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 3,
+                                                                            "className": "TableHeaderChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Date Time"
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    {
+                                                                        "type": "sect",
+                                                                        "props": {
+                                                                            "item": true,
+                                                                            "xs": 2,
+                                                                            "className": "TableHeaderLastChildSect"
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "Ref"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "item": true,
+                                                                    "xs": 12,
+                                                                    "resolvestyles": true,
+                                                                    "appendprops": {
+                                                                        "style": {
+                                                                            "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "list",
+                                                                        "props": {
+                                                                            "datasets": [
+                                                                                "dsPrintTaken"
+                                                                            ],
+                                                                            "className": "TableListSect facts-input-list",
+                                                                            "content": {
+                                                                                "template": "custom",
+                                                                                "props": {
+                                                                                    "style": {
+                                                                                        "border": "1px solid gainsboro",
+                                                                                        "padding": "10px"
+                                                                                    }
+                                                                                },
+                                                                                "chld": [
+                                                                                    {
+                                                                                        "type": "sect",
+                                                                                        "props": {
+                                                                                            "container": true
+                                                                                        },
+                                                                                        "chld": [
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 1,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.SI]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 3,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {
+                                                                                                                "paddingRight": "10px",
+                                                                                                                "fontSize": "0.875rem"
+                                                                                                            }
+                                                                                                        },
+                                                                                                        "chld": "[this.User Name]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 3,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Machine Id]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 3,
+                                                                                                    "className": "TableContentChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.Date Time(dtformat)raw.dd MMM yyyy HH:mm:ss aa]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            },
+                                                                                            {
+                                                                                                "type": "sect",
+                                                                                                "props": {
+                                                                                                    "item": true,
+                                                                                                    "xs": 2,
+                                                                                                    "className": "TableContentLastChildSect"
+                                                                                                },
+                                                                                                "chld": [
+                                                                                                    {
+                                                                                                        "type": "span",
+                                                                                                        "props": {
+                                                                                                            "style": {}
+                                                                                                        },
+                                                                                                        "chld": "[this.ref]"
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "container": true,
+                        "appendprops": {},
+                        "style": {
+                            "display": "flex",
+                            "flex-direction": "row",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "height": "60px"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "xs": 12,
+                                "appendprops": {},
+                                "style": {
+                                    "display": "flex",
+                                    "padding": "10px 20px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "xs": 12,
+                                        "style": {
+                                            "display": "flex",
+                                            "justifyContent": "flex-end",
+                                            "gap": "15px"
+                                        },
+                                        "appendprops": {}
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "hide",
+                                            "props": {
+                                                "appendprops": {
+                                                    "xsUp": "[wqFilterOptions.CurrentForm(eq)raw.ACTIONSTAKEN]"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "btn",
+                                                    "props": {
+                                                        "className": "factsButtonGroupPopup",
+                                                        "style": {
+                                                            "border-radius": "10px"
+                                                        },
+                                                        "variant": "outlined",
+                                                        "whenclick": [
+                                                            {
+                                                                "exec": "setdataset",
+                                                                "args": {
+                                                                    "dset": "wqFilterOptions",
+                                                                    "data": {
+                                                                        "CurrentForm": "ACTIONSTAKEN",
+                                                                        "btnAction": {
+                                                                            "variant": "contained"
+                                                                        },
+                                                                        "showFilterPanel": {
+                                                                            "xlDown": false
+                                                                        },
+                                                                        "DISABLE_LEFT": false,
+                                                                        "DISABLE_RIGHT": false
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lbl",
+                                                            "props": {
+                                                                "text": "View Logs",
+                                                                "style": {
+                                                                    "fontSize": "13px",
+                                                                    "width": "100%",
+                                                                    "textTransform": "none"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "btn",
+                                            "props": {
+                                                "variant": "contained",
+                                                "className": "factsButtonGroupPopup",
+                                                "style": {
+                                                    "border-radius": "10px"
+                                                },
+                                                "whenclick": [
+                                                    {
+                                                        "exec": "setdatasetfield",
+                                                        "args": {
+                                                            "dset": "popupinfo",
+                                                            "fieldname": "documentprops",
+                                                            "data": null
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "lbl",
+                                                    "props": {
+                                                        "text": "Close Details",
+                                                        "style": {
+                                                            "fontSize": "13px",
+                                                            "width": "100%",
+                                                            "textTransform": "none"
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

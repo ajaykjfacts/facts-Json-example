@@ -1,0 +1,67 @@
+{
+    "type": "sect",
+    "props": {
+        "item": true,
+        "container": true,
+        "xs": 12,
+        "style": {
+            "padding": "5px"
+        }
+    },
+    "chld": [
+        {
+            "type": "sect",
+            "props": {
+                "item": true,
+                "xs": 3,
+                "style": {
+                    "padding": "5px",
+                    "display": "flex",
+                    "alignItems": "center"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true
+                    },
+                    "chld": "$$caption$$"
+                }
+            ]
+        },
+        {
+            "type": "sect",
+            "props": {
+                "item": true,
+                "xs": 9,
+                "style": {
+                    "padding": "5px"
+                }
+            },
+            "chld": [
+                {
+                    "type": "dtpick",
+                    "props": {
+                        "format": "dd-MMM-yyyy",
+                        "views": [
+                            "$$dateview$$"
+                        ],
+                        "label": "",
+                        "fullWidth": true,
+                        "inputVariant": "outlined",
+                        "inputProps": {
+                            "style": {
+                                "paddingTop": "7px",
+                                "paddingBottom": "7px",
+                                "fontSize": "0.8rem"
+                            }
+                        },
+                        "dset": "DsFrmHeaderEntry",
+                        "bind": "$$parameterField$$"
+                    }
+                }
+            ]
+        }
+    ]
+}

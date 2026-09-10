@@ -1,0 +1,428 @@
+{
+  "title": "Add Allowance",
+  "fullscreen": false,
+  "whenload": [],
+  "layout": [
+    {
+      "type": "sect",
+      "props": {
+        "container": true,
+        "xs": 12,
+        "style": {
+          "width": "100%"
+        }
+      },
+      "chld": [
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "xs": 12,
+            "className": "factsPopupTitleSect",
+            "style": {
+              "display": "flex",
+              "justifyContent": "space-between"
+            }
+          },
+          "chld": [
+            {
+              "type": "lbl",
+              "props": {
+                "resolveprops": true,
+                "style": {},
+                "text": "Add Allowance"
+              }
+            },
+            {
+              "type": "icbtn",
+              "props": {
+                "includerefdata": true,
+                "size": "small",
+                "color": "primary",
+                "whenclick": [
+                  {
+                    "exec": "setdatasetfield",
+                    "args": {
+                      "dset": "popupinfo",
+                      "fieldname": "allowance",
+                      "data": null
+                    }
+                  }
+                ]
+              },
+              "chld": "close"
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "item": true,
+            "container": true,
+            "xs": 12,
+            "style": {
+              "padding": "15px"
+            }
+          },
+          "chld": [
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "xs": 12,
+                "style": {
+                  "padding": "5px"
+                }
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "Type",
+                            "className": "entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lkup",
+                          "props": {
+                            "dset": "DsFrmDetailsEntry",
+                            "bind": "ALLDED_DESC",
+                            "variant": "outlined",
+                            "className": "small-ctr",
+                            "label": "",
+                            "fullWidth": true,
+                            "icon": "search",
+                            "icons": {
+                              "notempty": {
+                                "icon": "close",
+                                "whenclick": [
+                                  {
+                                    "exec": "mergedataset",
+                                    "args": {
+                                      "dset": "DsFrmDetailsEntry",
+                                      "data": {
+                                        "SLDET_ALLOWDED_DOCNO": "",
+                                        "ALLDED_DESC": ""
+                                      }
+                                    }
+                                  }
+                                ]
+                              }
+                            },
+                            "whenclick": [
+                              {
+                                "exec": "setdataset",
+                                "args": {
+                                  "dset": "dslist",
+                                  "data": {
+                                    "listtype": "ALLTYPE",
+                                    "commontype": "manual",
+                                    "title": "Allowance Type",
+                                    "dataset": "DsFrmDetailsEntry",
+                                    "section": "Alltype",
+                                    "codefield": "SLDET_ALLOWDED_DOCNO",
+                                    "descfield": "ALLDED_DESC"
+                                  }
+                                }
+                              },
+                              {
+                                "exec": "filldataset",
+                                "args": {
+                                  "proc": "PWA.LoadLayout",
+                                  "column": "layoutinfo",
+                                  "dset": "popupinfo",
+                                  "section": "Alltype",
+                                  "args": {
+                                    "doctype": "popup",
+                                    "docno": "lookup"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "style": {
+                  "padding": "5px"
+                },
+                "xs": 12
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "Percentage %",
+                            "className": "entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "dxnumberbox",
+                          "props": {
+                            "dset": "DsFrmDetailsEntry",
+                            "label": "",
+                            "fullWidth": true,
+                            "style": {},
+                            "inputProps": {
+                              "maxLength": 20,
+                              "style": {}
+                            },
+                            "className": "small-ctr",
+                            "variant": "outlined",
+                            "includerefdata": true,
+                            "bind": "SLDET_ALLOWDED_PERCENTAGE",
+                            "onFocusOut": [],
+                            "whenchange": "[calcformula2]"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "style": {
+                  "padding": "5px"
+                },
+                "xs": 12
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "Amount",
+                            "className": "entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "dxnumberbox",
+                          "props": {
+                            "dset": "DsFrmDetailsEntry",
+                            "label": "",
+                            "fullWidth": true,
+                            "format": "##,###.00",
+                            "style": {},
+                            "inputProps": {
+                              "maxLength": 20,
+                              "style": {
+                                "fontWeight": "bold",
+                                "textAlign": "right",
+                                "height": "11px"
+                              }
+                            },
+                            "className": "small-ctr",
+                            "variant": "outlined",
+                            "includerefdata": true,
+                            "bind": "SLDET_ALLOWDED_AMOUNT",
+                            "onFocusOut": [
+                              "[calcformula1]"
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "xs": 12,
+                "style": {
+                  "padding": "5px"
+                }
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "Consider for leave salary",
+                            "className": "entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "chbox",
+                          "props": {
+                            "includerefdata": true,
+                            "dset": "DsFrmDetailsEntry",
+                            "className": "small-ctr",
+                            "bind": "SLDET_CONSIDER_FOR_LEAVE_SALARY",
+                            "color": "primary",
+                            "inputProps": {
+                              "name": "considerlvsalary"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "style": {
+                  "padding": "5px",
+                  "display": "flex",
+                  "justifyContent": "flex-end"
+                },
+                "xs": 12
+              },
+              "chld": [
+                {
+                  "type": "hide",
+                  "props": {
+                    "appendprops": {
+                      "xsUp": "[DsFrmDetailsEntry.pagemode(eq)raw.view]"
+                    }
+                  },
+                  "chld": [
+                    {
+                      "type": "btn",
+                      "props": {
+                        "variant": "contained",
+                        "color": "primary",
+                        "whenclick": [
+                          {
+                            "exec": "mergedatasetarray",
+                            "args": {
+                              "dset": "DsFrmDetails1",
+                              "index": "[DsFrmDetailsEntry.rowIndex]",
+                              "data": {
+                                "SLDET_ALLOWDED_DOCNO": "[DsFrmDetailsEntry.SLDET_ALLOWDED_DOCNO]",
+                                "SLDET_ALLOWDED_DOCTYPE": "ALM",
+                                "ALLDED_DESC": "[DsFrmDetailsEntry.ALLDED_DESC]",
+                                "SLDET_ALLOWDED_PERCENTAGE": "[DsFrmDetailsEntry.SLDET_ALLOWDED_PERCENTAGE]",
+                                "SLDET_ALLOWDED_AMOUNT": "[DsFrmDetailsEntry.SLDET_ALLOWDED_AMOUNT]",
+                                "SLDET_CONSIDER_FOR_LEAVE_SALARY": "[DsFrmDetailsEntry.SLDET_CONSIDER_FOR_LEAVE_SALARY]"
+                              }
+                            }
+                          },
+                          "[calcformula5]",
+                          "[calcformula7]",
+                          "[calcformula8]",
+                          {
+                            "exec": "setdataset",
+                            "args": {
+                              "dset": "DsFrmDetailsEntry",
+                              "data": null
+                            }
+                          },
+                          {
+                            "exec": "setdatasetfield",
+                            "args": {
+                              "dset": "popupinfo",
+                              "fieldname": "allowance",
+                              "data": null
+                            }
+                          }
+                        ]
+                      },
+                      "chld": "SAVE"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

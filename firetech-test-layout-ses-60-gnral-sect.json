@@ -1,0 +1,1732 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "xs": 12,
+                    "container": true,
+                    "style": {
+                        "padding": "5px",
+                        "display": "block"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "hide",
+                        "props": {
+                            "appendprops": {
+                                "xsUp": "[dsDocumentMaster.showDocno(neq)raw.1]"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 4,
+                                    "style": {
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "SE#",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "className": "small-ctr",
+                                                            "required": true,
+                                                            "diabled": true,
+                                                            "inputProps": {
+                                                                "maxLength": 20,
+                                                                "style": {
+                                                                    "width": "200px"
+                                                                }
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "SAL_DOCNO"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "hide",
+                        "props": {
+                            "appendprops": {
+                                "xsUp": "[dsDocumentMaster.showDocno(neq)raw.1]"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 3,
+                                    "style": {
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Date of Enquiry",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "dtpick",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "inputProps": {
+                                                                "style": {
+                                                                    "paddingTop": "7px",
+                                                                    "paddingBottom": "7px",
+                                                                    "fontSize": "0.8rem"
+                                                                }
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "SAL_DOCDATE",
+                                                            "whenchange": []
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },{
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "SEL60 No",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_PREV_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_PREV_DOCNO": "",
+                                                                            "SAL_PREV_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PVJOB",
+                                                                    "commontype": "manual",
+                                                                    "title": "Job Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_PREV_DOCTYPE",
+                                                                    "codefield": "SAL_PREV_DOCNO",
+                                                                    "descfield": "SAL_PREV_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Project No *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_JOB_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_JOB_DOCNO": "",
+                                                                            "SAL_JOB_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PVJOB",
+                                                                    "commontype": "manual",
+                                                                    "title": "Job Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_JOB_DOCTYPE",
+                                                                    "codefield": "SAL_JOB_DOCNO",
+                                                                    "descfield": "SAL_JOB_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Division",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_DIV_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_DIV_DOCNO": "",
+                                                                            "SAL_DIV_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PVJOB",
+                                                                    "commontype": "manual",
+                                                                    "title": "Division",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_DIV_DOCTYPE",
+                                                                    "codefield": "SAL_DIV_DOCNO",
+                                                                    "descfield": "SAL_DIV_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Staff *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_SMAN_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_SMAN_DOCNO": "",
+                                                                            "SAL_SMAN_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PVJOB",
+                                                                    "commontype": "manual",
+                                                                    "title": "Job Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_SMAN_DOCTYPE",
+                                                                    "codefield": "SAL_SMAN_DOCNO",
+                                                                    "descfield": "SAL_SMAN_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Customer Code",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_SUBLEDGER_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_SUBLEDGER_DOCNO": "",
+                                                                            "SAL_SUBLEDGER_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PVJOB",
+                                                                    "commontype": "manual",
+                                                                    "title": "Job Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_SUBLEDGER_DOCTYPE",
+                                                                    "codefield": "SAL_SUBLEDGER_DOCNO",
+                                                                    "descfield": "SAL_SUBLEDGER_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Customer Name ",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_CUSTOMER_NAME"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Contact",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_CONTACT_DESC",
+                                                    "variant": "outlined",
+                                                    "label": "",
+                                                    "className": "small-ctr",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_CONTACT_DOCNO": "",
+                                                                            "SAL_CONTACT_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "ACCONDET",
+                                                                    "commontype": "manual",
+                                                                    "title": "Cost Code",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_CONTACT_DOCTYPE",
+                                                                    "codefield": "SAL_CONTACT_DOCNO",
+                                                                    "descfield": "SAL_CONTACT_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Contact Person Name",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_CONTACT_NAME"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Phone Number",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_TEL1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Mobile Number",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_TEL2"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Email ID",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_EMAIL"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Fax Number",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_FAX"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Website",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {
+                                                            "width": "200px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_WEBSITE"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 6,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Building Location",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_BILL_MAP"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Address",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "multiline": true,
+                                                    "rows": 3,
+                                                    "fullWidth": true,
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "SAL_ADDRESS"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Remarks",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "multiline": true,
+                                                    "fullWidth": true,
+                                                    "rows": 3,
+                                                    "inputProps": {
+                                                        "maxLength": 500
+                                                    },
+                                                    "className": "small-ctr",
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "LH_REMARKS"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 6,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Project No",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SAL_DOCUMENT_STATUS_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "SAL_DOCUMENT_STATUS_DOCNO": "",
+                                                                            "SAL_DOCUMENT_STATUS_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "nodeepprocess": true,
+                                                                "dset": "customevents",
+                                                                "data": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "customevents",
+                                                                            "data": null
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "TASKENQSTA",
+                                                                    "commontype": "manual",
+                                                                    "title": "Job Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "SAL_DOCUMENT_STATUS_DOCTYPE",
+                                                                    "codefield": "SAL_DOCUMENT_STATUS_DOCNO",
+                                                                    "descfield": "SAL_DOCUMENT_STATUS_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "className": "factsFullWidth",
+                    "xs": 6,
+                    "md": 4,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Check In Time",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "dxdtpick",
+                                        "props": {
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "SAL_STAFF_CHECKIN",
+                                            "type": "date",
+                                            "labelMode": "floating",
+                                            "includerefdata": true,
+                                            "closeOnSelect": true,
+                                            "showClearButton": false,
+                                            "label": "",
+                                            "required": true,
+                                            "inputProps": {},
+                                            "whenchange": []
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "className": "factsFullWidth",
+                    "xs": 6,
+                    "md": 4,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Check Out Time",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "dxdtpick",
+                                        "props": {
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "SAL_STAFF_CHECKOUT",
+                                            "type": "date",
+                                            "labelMode": "floating",
+                                            "includerefdata": true,
+                                            "closeOnSelect": true,
+                                            "showClearButton": false,
+                                            "label": "",
+                                            "required": true,
+                                            "inputProps": {},
+                                            "whenchange": []
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+                ]
+            }
+        ]
+    }
+]

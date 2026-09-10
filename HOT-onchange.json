@@ -1,0 +1,63 @@
+[
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[dsPagemode.pagemode(eq)raw.New]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "mergedataset",
+                    "args": {
+                        "dset": "DsFrmHeaderEntry",
+                        "data": {
+                            "JMAT_DOCUMENT_MODE_DOCNO": "MP",
+                            "ModeDesc": "Mobilization/ demobilization for projects"
+                        }
+                    }
+                },
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "proc": "PWA.HOT_ModeOnchange",
+                        "dset": "dsHOTModeOnchange",
+                        "row": 0,
+                        "args": {
+                            "strXmlHeader": "[DsFrmHeaderEntry]"
+                        }
+                    }
+                },
+                {
+                    "exec": "mergedataset",
+                    "args": {
+                        "dset": "DsFrmHeaderEntry",
+                        "data": "[dsHOTModeOnchange]"
+                    }
+                },
+                {
+                    "exec": "mergedatasetarray",
+                    "args": {
+                        "dset": "DsFrmDetails1",
+                        "data": {
+                            "JMATDET_DOCSRNO": "[DsFrmDetails1(listcount)(+)raw.1(numformat)raw.0]",
+                            "JMATDET_LIT_DOCNO": "[dsDocumentMaster.lineItemType]",
+                            "JMATDET_LIT_DESC": "[dsDocumentMaster.lineItemType]"
+                        }
+                    }
+                },
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "proc": "",
+                        "args": {
+                            "DsFrmDetails1": "[DsFrmDetails1]",
+                            "DsFrmHeaderEntry": "[DsFrmHeaderEntry]"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

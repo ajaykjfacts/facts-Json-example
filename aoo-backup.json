@@ -1,0 +1,364 @@
+{
+    "title": "Family Details",
+    "fullscreen": false,
+    "whenload": [],
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true,
+                "xs": 12,
+                "style": {
+                    "width": "60vw"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "className": "factsPopupTitleSect",
+                        "style": {
+                            "display": "flex",
+                            "justifyContent": "space-between"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "lbl",
+                            "props": {
+                                "resolvestyles": true,
+                                "style": {
+                                    "color": "[dsAppTheme.primary_color]",
+                                    "fontSize": "1rem",
+                                    "fontWeight": "bold"
+                                },
+                                "text": "Family Details"
+                            }
+                        },
+                        {
+                            "type": "icbtn",
+                            "props": {
+                                "includerefdata": true,
+                                "size": "small",
+                                "color": "primary",
+                                "whenclick": [
+                                    {
+                                        "exec": "setdatasetfield",
+                                        "args": {
+                                            "dset": "popupinfo",
+                                            "fieldname": "Family",
+                                            "data": null
+                                        }
+                                    }
+                                ]
+                            },
+                            "chld": "close"
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "container": true,
+                        "xs": 12,
+                        "appendprops": {},
+                        "style": {
+                            "padding": "10px",
+                            "width": "70vw"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "container": true,
+                                "item": true,
+                                "xs": 12,
+                                "style": {}
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "md": 6,
+                                        "xs": 12,
+                                        "style": {
+                                            "padding": "10px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "lkup",
+                                            "props": {
+                                                "dset": "DsFrmHeader",
+                                                "bind": "PAYER_DESC",
+                                                "variant": "outlined",
+                                                "className": "small-ctr",
+                                                "label": "Relation Type",
+                                                "fullWidth": true,
+                                                "icon": "search",
+                                                "whenclick": [
+                                                    {
+                                                        "exec": "setdataset",
+                                                        "args": {
+                                                            "dset": "dslist",
+                                                            "data": {
+                                                                "listtype": "RTM",
+                                                                "commontype": "manual",
+                                                                "title": "Relation Type",
+                                                                "dataset": "DsFrmHeader",
+                                                                "section": "relationtype",
+                                                                "codefield": "PFD_RELATION_DOCNO",
+                                                                "descfield": "PAYER_DESC"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "filldataset",
+                                                        "args": {
+                                                            "proc": "PWA.LoadLayout",
+                                                            "column": "layoutinfo",
+                                                            "dset": "popupinfo",
+                                                            "section": "relationtype",
+                                                            "args": {
+                                                                "doctype": "popup",
+                                                                "docno": "lookup"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "10px"
+                                        },
+                                        "xs": 12,
+                                        "md": 6
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "entry",
+                                            "props": {
+                                                "dset": "DsFrmHeader",
+                                                "label": "Relative Name",
+                                                "className": "small-ctr",
+                                                "inputProps": {
+                                                    "maxLength": 100
+                                                },
+                                                "fullWidth": true,
+                                                "variant": "outlined",
+                                                "bind": "PFD_RELATIVE_NAME"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "10px"
+                                        },
+                                        "xs": 12,
+                                        "md": 6
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "dtpick",
+                                            "props": {
+                                                "format": "dd-MMM-yyyy",
+                                                "label": "Relative Date of Birth",
+                                                "fullWidth": true,
+                                                "inputVariant": "outlined",
+                                                "inputProps": {
+                                                    "maxDate": "[func.today]",
+                                                    "style": {
+                                                        "paddingTop": "7px",
+                                                        "paddingBottom": "7px",
+                                                        "fontSize": "0.8rem"
+                                                    }
+                                                },
+                                                "dset": "DsFrmHeader",
+                                                "bind": "PFD_RELATIVE_DOB"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "10px"
+                                        },
+                                        "xs": 12,
+                                        "md": 6
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "entry",
+                                            "props": {
+                                                "dset": "DsFrmHeader",
+                                                "label": "Mobile Number",
+                                                "className": "small-ctr",
+                                                "inputProps": {
+                                                    "maxLength": 100
+                                                },
+                                                "fullWidth": true,
+                                                "variant": "outlined",
+                                                "bind": "PFD_MOBILE"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "10px"
+                                        },
+                                        "xs": 12,
+                                        "md": 6
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "chbox",
+                                            "props": {
+                                                "includerefdata": true,
+                                                "dset": "DsFrmHeader",
+                                                "bind": "PFD_INSIDE_UAE",
+                                                "color": "primary",
+                                                "inputProps": {
+                                                    "name": "sunday"
+                                                }
+                                            }
+                                        },
+                                        {
+                                            "type": "span",
+                                            "chld": "Inside UAE?"
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "10px"
+                                        },
+                                        "xs": 12
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "entry",
+                                            "props": {
+                                                "dset": "DsFrmHeader",
+                                                "label": "Remarks",
+                                                "className": "small-ctr",
+                                                "inputProps": {
+                                                    "maxLength": 100
+                                                },
+                                                "fullWidth": true,
+                                                "variant": "outlined",
+                                                "bind": "PFD_NARRATION"
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "size": "small",
+                                        "style": {
+                                            "padding": "10px",
+                                            "display": "flex",
+                                            "justifyContent": "flex-end"
+                                        },
+                                        "xs": 12
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "btn",
+                                            "props": {
+                                                "variant": "contained",
+                                                "className": "factsPopupSaveButton",
+                                                "whenclick": [
+                                                    {
+                                                        "exec": "mergedatasetarray",
+                                                        "args": {
+                                                            "dset": "DsFamilyList",
+                                                            "index": "[DsFrmHeader.rowIndex]",
+                                                            "data": {
+                                                                "PFD_RELATION_DOCNO": "[DsFrmHeader.PFD_RELATION_DOCNO]",
+                                                                "PFD_RELATIVE_NAME": "[DsFrmHeader.PFD_RELATIVE_NAME]",
+                                                                "PFD_RELATIVE_DOB": "[DsFrmHeader.PFD_RELATIVE_DOB]",
+                                                                "PFD_NARRATION": "[DsFrmHeader.PFD_NARRATION]",
+                                                                "PFD_INSIDE_UAE": "[DsFrmHeader.PFD_INSIDE_UAE]",
+                                                                "PFD_MOBILE": "[DsFrmHeader.PFD_MOBILE]"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "filldataset",
+                                                        "args": {
+                                                            "proc": "PWA.EMP_SAVE",
+                                                            "args": {
+                                                                "mode": "family",
+                                                                "doctype": "[pagemenuinfo.doctype]",
+                                                                "strXmlHeader": "[DsFrmHeaderEntry]",
+                                                                "strXmlDetails": "[DsFamilyList]"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "filldataset",
+                                                        "args": {
+                                                            "proc": "PWA.EMP_AdditionalInfo_Load",
+                                                            "dset": "DsFamilyList",
+                                                            "args": {
+                                                                "section": "family",
+                                                                "doctype": "[pagemenuinfo.doctype]",
+                                                                "docno": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "setdataset",
+                                                        "args": {
+                                                            "dset": "DsFrmHeader",
+                                                            "data": null
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "setdatasetfield",
+                                                        "args": {
+                                                            "dset": "popupinfo",
+                                                            "fieldname": "Family",
+                                                            "data": null
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "chld": "Save"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

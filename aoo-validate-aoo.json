@@ -1,0 +1,85 @@
+[
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.ACOPN_AC_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the GL Code"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the SL Code"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "all",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the SL Code."
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "ACOPNDET_AC_DOCNO": "[DsFrmHeaderEntry.ACOPN_AC_DOCNO]",
+                "ACOPNDET_SUBLEDGER_DOCNO": "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_DOCNO]",
+                "ACOPNDET_DEPT_DOCNO": "[DsFrmHeaderEntry.ACOPN_DEPT_DOCNO]",
+                "ACOPNDET_DIVN_DOCNO": "[DsFrmHeaderEntry.ACOPN_DIVN_DOCNO]"
+            }
+        }
+    }
+]

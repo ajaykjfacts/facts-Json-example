@@ -1,0 +1,832 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "container": true
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "container": true,
+                            "xs": 12,
+                            "style": {
+                                "display": "block"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 4,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Doc#",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 20,
+                                                                "style": {}
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_DOCNO"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Description *",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "required": true,
+                                                            "validation": {
+                                                                "for": "text",
+                                                                "msg": "Please enter the Description",
+                                                                "validationParams": {
+                                                                    "minLength": 1
+                                                                }
+                                                            },
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 200
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_DESC"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "MOL Establishment Code",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "required": true,
+                                                            "validation": {
+                                                                "for": "text",
+                                                                "msg": "Please enter the MOL Establishment Code",
+                                                                "validationParams": {
+                                                                    "minLength": 1
+                                                                }
+                                                            },
+                                                            "inputProps": {
+                                                                "maxLength": 25
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_MOL_CODE"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Telephone",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 50
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_TELEPHONE"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Fax",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 50
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_FAX"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Mobile",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 50
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_MOBILE"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Email",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "className": "small-ctr",
+                                                            "inputVariant": "outlined",
+                                                            "inputProps": {
+                                                                "maxLength": 50
+                                                            },
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PCOMPANYMST_EMAIL"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "padding": "0px 5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "xs": 12,
+                                            "md": 6,
+                                            "className": "subHeadingLbl",
+                                            "style": {
+                                                "textAlignLast": "left"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Address",
+                                                    "fullWidth": true
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "md": 6,
+                                    "style": {
+                                        "textAlignLast": "left",
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "view",
+                                        "props": {
+                                            "includerefdata": true,
+                                            "contenttype": "json",
+                                            "binding": true,
+                                            "content": "[dsCountryMaster.settingsView]",
+                                            "style": {}
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "textAlignLast": "left"
+                                    }
+                                },
+                                "chld": []
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "container": true,
+                                    "xs": 12,
+                                    "md": 4
+                                },
+                                "chld": [
+                                    {
+                                        "type": "hide",
+                                        "props": {
+                                            "container": true,
+                                            "appendprops": {
+                                                "xsUp": true
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "style": {
+                                                        "padding": "5px"
+                                                    },
+                                                    "xs": 6
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryLabelOuterDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "entryLabelDiv"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "lbl",
+                                                                        "props": {
+                                                                            "text": "GRP1",
+                                                                            "className": "entryLabel"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "entryValueDiv"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "lkup",
+                                                                        "props": {
+                                                                            "dset": "DsFrmHeaderEntry",
+                                                                            "bind": "PCOMPANYMST_GRP1_DESC",
+                                                                            "variant": "outlined",
+                                                                            "label": "",
+                                                                            "fullWidth": true,
+                                                                            "icon": "search",
+                                                                            "icons": {
+                                                                                "notempty": {
+                                                                                    "icon": "close",
+                                                                                    "whenclick": [
+                                                                                        {
+                                                                                            "exec": "mergedataset",
+                                                                                            "args": {
+                                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                                "data": {
+                                                                                                    "PCOMPANYMST_GRP1": "",
+                                                                                                    "PCOMPANYMST_GRP1_DESC": ""
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dslist",
+                                                                                        "data": {
+                                                                                            "listtype": "PCMPPCGRP1",
+                                                                                            "commontype": "manual",
+                                                                                            "title": "GRP1",
+                                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                                            "section": "Alltype",
+                                                                                            "doctypefield": "PCOMPANYMST_GRP1_DOCTYPE",
+                                                                                            "codefield": "PCOMPANYMST_GRP1",
+                                                                                            "descfield": "PCOMPANYMST_GRP1_DESC"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "exec": "filldataset",
+                                                                                    "args": {
+                                                                                        "proc": "PWA.LoadLayout",
+                                                                                        "column": "layoutinfo",
+                                                                                        "dset": "popupinfo",
+                                                                                        "section": "Alltype",
+                                                                                        "args": {
+                                                                                            "doctype": "popup",
+                                                                                            "docno": "lookup"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "style": {
+                                                        "padding": "5px"
+                                                    },
+                                                    "xs": 6
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryLabelOuterDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "entryLabelDiv"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "lbl",
+                                                                        "props": {
+                                                                            "text": "GRP2",
+                                                                            "className": "entryLabel"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "className": "entryValueDiv"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "lkup",
+                                                                        "props": {
+                                                                            "dset": "DsFrmHeaderEntry",
+                                                                            "bind": "PCOMPANYMST_GRP2_DESC",
+                                                                            "variant": "outlined",
+                                                                            "label": "",
+                                                                            "fullWidth": true,
+                                                                            "icon": "search",
+                                                                            "icons": {
+                                                                                "notempty": {
+                                                                                    "icon": "close",
+                                                                                    "whenclick": [
+                                                                                        {
+                                                                                            "exec": "mergedataset",
+                                                                                            "args": {
+                                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                                "data": {
+                                                                                                    "PCOMPANYMST_GRP2": "",
+                                                                                                    "PCOMPANYMST_GRP2_DESC": ""
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dslist",
+                                                                                        "data": {
+                                                                                            "listtype": "PCGR",
+                                                                                            "commontype": "manual",
+                                                                                            "title": "PCMPPCGRP2",
+                                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                                            "section": "Alltype",
+                                                                                            "doctypefield": "PCOMPANYMST_GRP2_DOCTYPE",
+                                                                                            "codefield": "PCOMPANYMST_GRP2",
+                                                                                            "descfield": "PCOMPANYMST_GRP2_DESC"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "exec": "filldataset",
+                                                                                    "args": {
+                                                                                        "proc": "PWA.LoadLayout",
+                                                                                        "column": "layoutinfo",
+                                                                                        "dset": "popupinfo",
+                                                                                        "section": "Alltype",
+                                                                                        "args": {
+                                                                                            "doctype": "popup",
+                                                                                            "docno": "lookup"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

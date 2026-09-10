@@ -1,0 +1,24 @@
+[
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsPDCListQuickFilter",
+            "data": {
+                "PROCKEY": "usp_ALLOC_PopulateGrid"
+            }
+        }
+    },
+    {
+        "exec": "filldataset",
+        "args": {
+            "proc": "PWA.dsloadlistview",
+            "dset": "DsFrmDetails1View",
+            "row": 0,
+            "args": {
+                "doctype": "[pagemenuinfo.doctype]",
+                "filterCondition": "[DsPDCListQuickFilter]",
+                "listype": "flxFrom"
+            }
+        }
+    }
+]

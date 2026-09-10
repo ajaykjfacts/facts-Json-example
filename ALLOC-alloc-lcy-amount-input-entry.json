@@ -1,0 +1,154 @@
+{
+                          "type": "div",
+                          "props": {
+                            "className": "entryValueDiv"
+                          },
+                          "chld": [
+
+                            {
+                                "type": "entry",
+                                "props": {
+                                    "dset": "DsFrmDetails2",
+                                    "className": "small-ctr",
+                                    "fullWidth": true,
+                                    "variant": "outlined",
+                                    "includerefdata": true,
+                                    "rowindex": "[this.data.propkey]",
+                                    "bind": "ALLOCATION_FCAMOUNT",
+                                    "onChange": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test2": "onChange"
+                                                }
+                                            }
+                                        }
+                                        
+                                    ],
+                                    "onFocusOut": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "whenchange": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test": "whenchange"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "whenitemclick": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test": "whenitemclick"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "whenblur": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test": "whenblur"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "whenkeyup": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test": "whenkeyup"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "whenclick": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test": "whenkeyup"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                          ]
+                        }

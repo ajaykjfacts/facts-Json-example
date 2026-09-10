@@ -1,0 +1,50 @@
+{
+                          "type": "div",
+                          "props": {
+                            "className": "entryValueDiv"
+                          },
+                          "chld": [
+
+                            {
+                                "type": "entry",
+                                "props": {
+                                    "dset": "DsFrmDetails2",
+                                    "className": "small-ctr",
+                                    "fullWidth": true,
+                                    "variant": "outlined",
+                                    "includerefdata": true,
+                                    "rowindex": "[this.data.propkey]",
+                                    "bind": "ALLOCATION_FCAMOUNT"
+                                }
+                            }
+                          ]
+                        }
+
+
+
+
+
+
+
+{
+                          "type": "div",
+                          "props": {
+                            "className": "entryValueDiv"
+                          },
+                          "chld": [
+
+                            {
+                                "type": "dxnumberbox",
+                                "props": {
+                                    "dset": "DsFrmDetails2",
+                                    "className": "small-ctr",
+                                    "fullWidth": true,
+                                    "format": "##,###.00",
+                                    "variant": "outlined",
+                                    "includerefdata": true,
+                                    "rowindex": "[this.data.propkey]",
+                                    "bind": "ALLOCATION_AMOUNT"
+                                }
+                            }
+                          ]
+                        }

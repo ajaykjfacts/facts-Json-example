@@ -1,0 +1,51 @@
+{
+                          "type": "div",
+                          "props": {
+                            "className": "entryValueDiv"
+                          },
+                          "chld": [
+
+                            {
+                                "type": "dxnumberbox",
+                                "props": {
+                                    "dset": "DsFrmDetails2",
+                                    "className": "small-ctr",
+                                    "fullWidth": true,
+                                    "format": "##,###.00",
+                                    "variant": "outlined",
+                                    "includerefdata": true,
+                                    "rowindex": "[this.data.propkey]",
+                                    "bind": "ALLOCATION_AMOUNT",
+                                    "onChange": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        },
+                                        {
+                                            "exec": "filldataset",
+                                            "args": {
+                                                "proc": "",
+                                                "args": {
+                                                    "test1": "[DsFrmDetails2]",
+                                                    "test2": "onChange"
+                                                }
+                                            }
+                                        }
+                                        
+                                    ],
+                                    "onFocusOut": [
+                                        {
+                                            "exec": "setdataset",
+                                            "args": {
+                                                "dset": "DsSelectedDocumentsInput",
+                                                "data": "checking working"
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                          ]
+                        }

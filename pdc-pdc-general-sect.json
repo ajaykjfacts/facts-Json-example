@@ -1,0 +1,1999 @@
+{
+    "title": "PDC  maturity posting ",
+    "wheninit": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.LoadDocumentMasterSettings",
+                "dset": "dsDocumentMaster",
+                "row": 0,
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]"
+                }
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "DsPDCListQuickFilter",
+                "data": {
+                    "PROCKEY": "usp_AcToAcTransfer_LoadData"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.dsloadlistview",
+                "dset": "DsListPDCDataView",
+                "row": 0,
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]",
+                    "filterCondition": "[DsPDCListQuickFilter]",
+                    "listype": "PostingList"
+                }
+            }
+        }
+    ],
+    "whenload": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.GetSessionId",
+                "row": 0,
+                "dset": "DsSessionId"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.getEmpDetails",
+                "row": 0,
+                "dset": "DsFrmHeaderEntry"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.MonthEnd_Date",
+                "row": 0,
+                "dset": "DsFrmMonthEnd",
+                "args": {
+                    "fromdate": "[DsFrmHeaderEntry.ALP_FROMDATE(dtformat)raw.yyyy-MM-dd]"
+                }
+            }
+        },
+        {
+            "exec": "mergedataset",
+            "args": {
+                "dset": "DsFrmHeaderEntry",
+                "data": {
+                    "ALP_FROMDATE": "[DsFrmMonthEnd.fromdate]"
+                }
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dslistalloutstandingradiobtn",
+                "data": [
+                    {
+                        "code": "1",
+                        "description": "All"
+                    },
+                    {
+                        "code": "0",
+                        "description": "Out Standing"
+                    }
+                ]
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsListDateType",
+                "data": [
+                    {
+                        "description": "Due Date",
+                        "code": "-1"
+                    },
+                    {
+                        "description": "Doc Date",
+                        "code": "1"
+                    }
+                ]
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "DsFrmDetailsEntry",
+                "data": {
+                    "CSM_CREDIT_ONLY": true,
+                    "CSM_DEBIT_ONLY": true,
+                    "CSM_ALL_OS": "1",
+                    "CSM_DATE_TYPE": "-1"
+                }
+            }
+        }
+    ],
+    "style": {},
+    "globalsearchfield": {},
+    "appbar": {
+        "titlepart": "[_titleparts.title-desc]",
+        "props": {
+            "className": "factsAppBarTitle",
+            "style": {
+                "width": "100%"
+            }
+        },
+        "chld": "[_pageparts.appbar-icons]"
+    },
+    "subappbar": {
+        "title": "[pagemenuinfo.caption]",
+        "style": {
+            "opacity": ".7"
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "size": "small",
+                    "style": {
+                        "padding": "10px",
+                        "display": "flex",
+                        "justifyContent": "flex-end"
+                    },
+                    "xs": 12
+                },
+                "chld": [
+                    {
+                        "type": "btn",
+                        "props": {
+                            "variant": "contained",
+                            "className": "factsPopupSaveButton",
+                            "whenclick": [
+                                {
+                                    "exec": "validatedataset",
+                                    "verify": {
+                                        "satisfy": "any",
+                                        "halton": "match",
+                                        "ref": {
+                                            "[DsFrmHeaderEntry.CSM_PARAM_TO_AC_DOCNO(<)raw.1]": true,
+                                            "[DsFrmHeaderEntry.CSM_PARAM_TO_AC_DOCNO(ifnull)raw.]": "",
+                                            "[DsFrmDetailsEntry.CSM_PARAM_FM_AC_DOCNO(<)raw.1]": true,
+                                            "[DsFrmDetailsEntry.CSM_PARAM_FM_AC_DOCNO(ifnull)raw.]": ""
+                                        },
+                                        "whenmatch": [
+                                            {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                    "dset": "snackinfo",
+                                                    "data": {
+                                                        "open": true,
+                                                        "type": "error",
+                                                        "message": "Please enter GL Code"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "exec": "validatedataset",
+                                    "verify": {
+                                        "satisfy": "all",
+                                        "halton": "match",
+                                        "ref": {
+                                            "[DsFrmDetailsEntry.FRM_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                                            "[DsFrmDetailsEntry.CSM_PARAM_FM_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+                                        },
+                                        "whenmatch": [
+                                            {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                    "dset": "snackinfo",
+                                                    "data": {
+                                                        "open": true,
+                                                        "type": "error",
+                                                        "message": "SL Code is required in the From Account Details section."
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "exec": "validatedataset",
+                                    "verify": {
+                                        "satisfy": "all",
+                                        "halton": "match",
+                                        "ref": {
+                                            "[DsFrmHeaderEntry.TO_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                                            "[DsFrmHeaderEntry.CSM_PARAM_TO_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+                                        },
+                                        "whenmatch": [
+                                            {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                    "dset": "snackinfo",
+                                                    "data": {
+                                                        "open": true,
+                                                        "type": "error",
+                                                        "message": "Please select an SL Code in the To Account Details section."
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "exec": "validatedataset",
+                                    "verify": {
+                                        "satisfy": "any",
+                                        "halton": "match",
+                                        "ref": {
+                                            "[DsSelectedDocuments(listcount)(eq)raw.0]": true
+                                        },
+                                        "whenmatch": [
+                                            {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                    "dset": "snackinfo",
+                                                    "data": {
+                                                        "open": true,
+                                                        "type": "error",
+                                                        "message": "Please Select a document."
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    }
+                                },
+                                {
+                                    "exec": "filldataset",
+                                    "args": {
+                                        "proc": "PWA.LoadLayout",
+                                        "column": "layoutinfo",
+                                        "dset": "popupinfo",
+                                        "section": "allowance",
+                                        "args": {
+                                            "doctype": "popup",
+                                            "docno": "pdc-maturity-post-pop"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "chld": "Save"
+                    }
+                ]
+            }
+        ]
+    },
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true,
+                "resolvestyles": true,
+                "xs": 12,
+                "style": {
+                    "padding": "15px"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "container": true,
+                        "xs": 12
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "container": true,
+                                "md": 6,
+                                "xs": 12,
+                                "style": {
+                                    "display": "block",
+                                    "padding": "5px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "container": true,
+                                        "className": "boxCard",
+                                        "style": {
+                                            "display": "block"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "subHeadingLbl",
+                                                "style": {
+                                                    "width": "auto"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "lbl",
+                                                    "props": {
+                                                        "text": "From Account"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "item": true,
+                                                "md": 12,
+                                                "xs": 12,
+                                                "style": {}
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "GL Code",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                "bind": "CSM_PARAM_FM_AC_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmDetailsEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_PARAM_FM_AC_DOCNO": "",
+                                                                                                        "CSM_PARAM_FM_AC_DESC": "",
+                                                                                                        "CSM_PARAM_FM_SUBLEDGER_DOCNO": "",
+                                                                                                        "CSM_PARAM_FM_SUBLEDGER_DESC": "",
+                                                                                                        "FRM_SUBLEDGER_REQUIRED": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "customevents",
+                                                                                            "nodeepprocess": true,
+                                                                                            "data": [
+                                                                                                {
+                                                                                                    "exec": "mergedataset",
+                                                                                                    "args": {
+                                                                                                        "dset": "DsFrmDetailsEntry",
+                                                                                                        "data": {
+                                                                                                            "FRM_SUBLEDGER_REQUIRED": "[this.ACMST_SUBLEDGER_EXISTS]"
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVGL",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "GL Code",
+                                                                                                "dataset": "DsFrmDetailsEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_PARAM_FM_AC_DOCTYPE",
+                                                                                                "codefield": "CSM_PARAM_FM_AC_DOCNO",
+                                                                                                "descfield": "CSM_PARAM_FM_AC_DESC",
+                                                                                                "CSM_PARAM_FM_SUBLEDGER_DOCNO": "",
+                                                                                                "CSM_PARAM_FM_SUBLEDGER_DESC": ""
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "SL Code",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                "bind": "CSM_PARAM_FM_SUBLEDGER_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_PARAM_FM_SUBLEDGER_DOCNO": "",
+                                                                                                        "CSM_PARAM_FM_SUBLEDGER_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVAP",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Doc Type",
+                                                                                                "dataset": "DsFrmDetailsEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_PARAM_FM_SUBLEDGER_DOCTYPE",
+                                                                                                "codefield": "CSM_PARAM_FM_SUBLEDGER_DOCNO",
+                                                                                                "descfield": "CSM_PARAM_FM_SUBLEDGER_DESC",
+                                                                                                "filtercondition": {
+                                                                                                    "CSM_PARAM_FM_AC_DOCNO": "[DsFrmDetailsEntry.CSM_PARAM_FM_AC_DOCNO]"
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Division",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                "bind": "CSM_DIVN_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmDetailsEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_DIVN_DOCNO": "",
+                                                                                                        "CSM_DIVN_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVDIV",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Division",
+                                                                                                "dataset": "DsFrmDetailsEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_DIVN_DOCTYPE",
+                                                                                                "codefield": "CSM_DIVN_DOCNO",
+                                                                                                "descfield": "CSM_DIVN_DESC"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Department",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                "bind": "CSM_DEPT_DOCNO",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmDetailsEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_DEPT_DOCNO": "",
+                                                                                                        "CSM_DEPT_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVDEPT",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Department",
+                                                                                                "dataset": "DsFrmDetailsEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_DEPT_DOCTYPE",
+                                                                                                "codefield": "CSM_DEPT_DOCNO",
+                                                                                                "descfield": "CSM_DEPT_DESC"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Date Type",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "ddl",
+                                                                            "props": {
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                "bind": "CSM_DATE_TYPE",
+                                                                                "includerefdata": true,
+                                                                                "InputLabelProps": {
+                                                                                    "shrink": true
+                                                                                },
+                                                                                "listdset": "dsListDateType",
+                                                                                "valuefield": "code",
+                                                                                "textfield": "description",
+                                                                                "fullWidth": true
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 7,
+                                                                "xs": 12
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 12,
+                                                                        "style": {
+                                                                            "padding": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelOuterDiv",
+                                                                                "item": true
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryLabelDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "lbl",
+                                                                                            "props": {
+                                                                                                "text": "From Date",
+                                                                                                "className": "entryLabel"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryValueDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "dxdtpick",
+                                                                                            "props": {
+                                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                                "bind": "CSM_PARAM_FM_DATE",
+                                                                                                "className": "small-ctr",
+                                                                                                "type": "date",
+                                                                                                "labelMode": "floating",
+                                                                                                "includerefdata": true,
+                                                                                                "closeOnSelect": true,
+                                                                                                "showClearButton": false,
+                                                                                                "label": "",
+                                                                                                "required": true,
+                                                                                                "inputProps": {},
+                                                                                                "whenchange": []
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 12,
+                                                                        "style": {
+                                                                            "padding": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelOuterDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryLabelDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "lbl",
+                                                                                            "props": {
+                                                                                                "text": "To Date",
+                                                                                                "className": "entryLabel"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryValueDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "dxdtpick",
+                                                                                            "props": {
+                                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                                "bind": "CSM_PARAM_TO_DATE",
+                                                                                                "className": "small-ctr",
+                                                                                                "type": "date",
+                                                                                                "labelMode": "floating",
+                                                                                                "includerefdata": true,
+                                                                                                "closeOnSelect": true,
+                                                                                                "showClearButton": false,
+                                                                                                "label": "",
+                                                                                                "required": true,
+                                                                                                "inputProps": {},
+                                                                                                "whenchange": []
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "container": true,
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 12,
+                                                                        "style": {
+                                                                            "padding": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelOuterDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryValueDiv",
+                                                                                        "style": {
+                                                                                            "display": "flex"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "radio",
+                                                                                            "props": {
+                                                                                                "row": "row",
+                                                                                                "className": "small-ctr",
+                                                                                                "style": {},
+                                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                                "variant": "outlined",
+                                                                                                "bind": "CSM_ALL_OS",
+                                                                                                "defaultValue": "0",
+                                                                                                "listdset": "dslistalloutstandingradiobtn",
+                                                                                                "valuefield": "code",
+                                                                                                "textfield": "description",
+                                                                                                "label": "",
+                                                                                                "fullWidth": true
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "md": 6,
+                                                                        "xs": 12,
+                                                                        "className": "checkBoxSection",
+                                                                        "style": {
+                                                                            "padding": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelOuterDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryLabelDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "lbl",
+                                                                                            "props": {
+                                                                                                "text": "Credit Only",
+                                                                                                "className": "entryLabel"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryValueDiv",
+                                                                                        "style": {
+                                                                                            "display": "flex"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "chbox",
+                                                                                            "props": {
+                                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                                "bind": "CSM_CREDIT_ONLY",
+                                                                                                "color": "primary"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "md": 6,
+                                                                        "xs": 12,
+                                                                        "className": "checkBoxSection",
+                                                                        "style": {
+                                                                            "padding": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelOuterDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryLabelDiv"
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "lbl",
+                                                                                            "props": {
+                                                                                                "text": "Debit Only",
+                                                                                                "className": "entryLabel"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "className": "entryValueDiv",
+                                                                                        "style": {
+                                                                                            "display": "flex"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "chbox",
+                                                                                            "props": {
+                                                                                                "dset": "DsFrmDetailsEntry",
+                                                                                                "bind": "CSM_DEBIT_ONLY",
+                                                                                                "color": "primary"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "xs": 12,
+                                                        "item": true,
+                                                        "container": true,
+                                                        "style": {
+                                                            "padding": "5px 7px",
+                                                            "display": "flex",
+                                                            "justifyContent": "flex-end"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "hide",
+                                                            "props": {
+                                                                "appendprops": {
+                                                                    "xsUp": "[dsPagemode.pagemode(eq)raw.view]"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "btn",
+                                                                    "props": {
+                                                                        "variant": "contained",
+                                                                        "color": "primary",
+                                                                        "whenclick": [
+                                                                            {
+                                                                                "exec": "validatedataset",
+                                                                                "verify": {
+                                                                                    "satisfy": "any",
+                                                                                    "halton": "match",
+                                                                                    "ref": {
+                                                                                        "[DsFrmDetailsEntry.CSM_PARAM_FM_AC_DOCNO(<)raw.1]": true,
+                                                                                        "[DsFrmDetailsEntry.CSM_PARAM_FM_AC_DESC(ifnull)raw.]": ""
+                                                                                    },
+                                                                                    "whenmatch": [
+                                                                                        {
+                                                                                            "exec": "setdataset",
+                                                                                            "args": {
+                                                                                                "dset": "snackinfo",
+                                                                                                "data": {
+                                                                                                    "open": true,
+                                                                                                    "type": "error",
+                                                                                                    "message": "Please enter GL Code"
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "validatedataset",
+                                                                                "verify": {
+                                                                                    "satisfy": "all",
+                                                                                    "halton": "match",
+                                                                                    "ref": {
+                                                                                        "[DsFrmDetailsEntry.FRM_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                                                                                        "[DsFrmDetailsEntry.CSM_PARAM_FM_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+                                                                                    },
+                                                                                    "whenmatch": [
+                                                                                        {
+                                                                                            "exec": "setdataset",
+                                                                                            "args": {
+                                                                                                "dset": "snackinfo",
+                                                                                                "data": {
+                                                                                                    "open": true,
+                                                                                                    "type": "error",
+                                                                                                    "message": "Please enter the SL Code in the From Details section."
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "filldataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.PDC_GET_LIST",
+                                                                                    "dset": "DsListPDCData",
+                                                                                    "args": {
+                                                                                        "doctype": "[pagemenuinfo.doctype]",
+                                                                                        "filterCondition": "[DsPDCListQuickFilter]",
+                                                                                        "params": "[DsFrmDetailsEntry]",
+                                                                                        "listype": "PostingList",
+                                                                                        "test": "[DsFrmDetailsEntry]"
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "chld": "Refresh"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "container": true,
+                                "md": 6,
+                                "xs": 12,
+                                "style": {
+                                    "display": "block",
+                                    "padding": "5px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "container": true,
+                                        "className": "boxCard",
+                                        "style": {
+                                            "display": "block"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "subHeadingLbl",
+                                                "style": {
+                                                    "width": "auto"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "lbl",
+                                                    "props": {
+                                                        "text": "To Account"
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "item": true,
+                                                "md": 12,
+                                                "xs": 12,
+                                                "style": {}
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "GL Code",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "CSM_PARAM_TO_AC_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_PARAM_TO_SUBLEDGER_DOCNO": "",
+                                                                                                        "CSM_PARAM_TO_SUBLEDGER_DESC": "",
+                                                                                                        "CSM_PARAM_TO_AC_DOCNO": "",
+                                                                                                        "CSM_PARAM_TO_AC_DESC": "",
+                                                                                                        "TO_SUBLEDGER_REQUIRED": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "customevents",
+                                                                                            "nodeepprocess": true,
+                                                                                            "data": [
+                                                                                                {
+                                                                                                    "exec": "mergedataset",
+                                                                                                    "args": {
+                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                        "data": {
+                                                                                                            "TO_SUBLEDGER_REQUIRED": "[this.ACMST_SUBLEDGER_EXISTS]"
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVGL",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "GL Code",
+                                                                                                "dataset": "DsFrmHeaderEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_PARAM_TO_AC_DOCTYPE",
+                                                                                                "codefield": "CSM_PARAM_TO_AC_DOCNO",
+                                                                                                "descfield": "CSM_PARAM_TO_AC_DESC",
+                                                                                                "CSM_PARAM_TO_SUBLEDGER_DOCNO": "",
+                                                                                                "CSM_PARAM_TO_SUBLEDGER_DESC": ""
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "SL Code",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "CSM_PARAM_TO_SUBLEDGER_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_PARAM_TO_SUBLEDGER_DOCNO": "",
+                                                                                                        "CSM_PARAM_TO_SUBLEDGER_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVAP2",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "SL Code",
+                                                                                                "dataset": "DsFrmHeaderEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_PARAM_TO_SUBLEDGER_DOCTYPE",
+                                                                                                "codefield": "CSM_PARAM_TO_SUBLEDGER_DOCNO",
+                                                                                                "descfield": "CSM_PARAM_TO_SUBLEDGER_DESC",
+                                                                                                "filtercondition": {
+                                                                                                    "CSM_PARAM_TO_AC_DOCNO": "[DsFrmHeaderEntry.CSM_PARAM_TO_AC_DOCNO]"
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Division",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "CSM_DIVN_DESC",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_DIVN_DOCNO": "",
+                                                                                                        "CSM_DIVN_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVDIV",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Division",
+                                                                                                "dataset": "DsFrmHeaderEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_DIVN_DOCTYPE",
+                                                                                                "codefield": "CSM_DIVN_DOCNO",
+                                                                                                "descfield": "CSM_DIVN_DESC"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Department",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "CSM_DEPT_DOCNO",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "CSM_DEPT_DOCNO": "",
+                                                                                                        "CSM_DEPT_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVDEPT",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Department",
+                                                                                                "dataset": "DsFrmHeaderEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "CSM_DEPT_DOCTYPE",
+                                                                                                "codefield": "CSM_DEPT_DOCNO",
+                                                                                                "descfield": "CSM_DEPT_DESC"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Job Code",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lkup",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "JOBMST_DOCNO",
+                                                                                "variant": "outlined",
+                                                                                "className": "small-ctr",
+                                                                                "resolveprops": true,
+                                                                                "label": "",
+                                                                                "fullWidth": true,
+                                                                                "icon": "search",
+                                                                                "includerefdata": true,
+                                                                                "icons": {
+                                                                                    "notempty": {
+                                                                                        "icon": "close",
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "mergedataset",
+                                                                                                "args": {
+                                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                                    "data": {
+                                                                                                        "JOBMST_DOCNO": "",
+                                                                                                        "JOBMST_DESC": ""
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "dslist",
+                                                                                            "data": {
+                                                                                                "listtype": "MJVJOBMST",
+                                                                                                "commontype": "manual",
+                                                                                                "title": "Job Code",
+                                                                                                "dataset": "DsFrmHeaderEntry",
+                                                                                                "section": "Alltype",
+                                                                                                "doctypefield": "JOBMST_DOCTYPE",
+                                                                                                "codefield": "JOBMST_DOCNO",
+                                                                                                "descfield": "JOBMST_DESC"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "PWA.LoadLayout",
+                                                                                            "column": "layoutinfo",
+                                                                                            "dset": "popupinfo",
+                                                                                            "section": "Alltype",
+                                                                                            "args": {
+                                                                                                "doctype": "popup",
+                                                                                                "docno": "lookup"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "className": "checkBoxSection",
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "entryLabelOuterDiv"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "lbl",
+                                                                            "props": {
+                                                                                "text": "Tranfer to \"Expected to account\" if it is empty consider the above to account",
+                                                                                "className": "entryLabel"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryValueDiv",
+                                                                        "style": {
+                                                                            "display": "flex"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "chbox",
+                                                                            "props": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "bind": "transferToExcept",
+                                                                                "color": "primary"
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "container": true,
+                        "xs": 12
+                    },
+                    "chld": [
+                        {
+                            "type": "hide",
+                            "props": {
+                                "appendprops": {
+                                    "xsUp": "[func.[DsListPDCData(listcount)(eq)raw.0](and)func.[DsListPDCDataView.emptylayoutjson(neq)func.null]]"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "className": "DocumentList",
+                                        "style": {},
+                                        "xs": 12
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "view",
+                                            "props": {
+                                                "includerefdata": true,
+                                                "contenttype": "json",
+                                                "binding": true,
+                                                "content": "[DsListPDCDataView.gridlayoutjson]",
+                                                "style": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "hide",
+                            "props": {
+                                "appendprops": {
+                                    "xsUp": "[func.[DsListPDCData(listcount)(neq)raw.0](and)func.[DsListPDCDataView.emptylayoutjson(neq)func.null]]"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "xs": 12
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "view",
+                                            "props": {
+                                                "includerefdata": true,
+                                                "contenttype": "json",
+                                                "binding": true,
+                                                "content": "[DsListPDCDataView.emptylayoutjson]",
+                                                "style": {}
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

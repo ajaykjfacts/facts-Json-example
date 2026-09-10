@@ -1,0 +1,46 @@
+"whenrowclick": [
+    {
+        "exec": "filldataset",
+        "args": {
+            "proc": "PWA.LoadDocumenAllocData",
+            "args": {
+                "tableSelectedDocuments": "[DsSelectedDocuments]",
+                "firstGrid": "[DsFrmDetails1]",
+                "firstGridSelectedItem": "[dsALLOCSelected]",
+                "indexing": "[dsALLOCSelected.index(-)raw.1]",
+                "secondgridSelectedItem": "[DsSelectedDocumentsInput]",
+                "secondGridData": "[DsFrmDetails2]",
+                "secondGridDataTemp": "[DsALLOCListGridListTwoOriginal]"
+            }
+        }
+    },
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails2",
+            "index": "[this.propkey]",
+            "data": {
+                "ALLOCATION_AMOUNT": "[DsSelectedDocuments(listsum)raw.ALLOCATION_AMOUNT]"
+            }
+        }
+    },
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "index": "[dsALLOCSelected.index(-)raw.1]",
+            "data": {
+                "ALLOCATION_AMOUNT": "[DsSelectedDocuments(listsum)raw.ALLOCATION_AMOUNT]"
+            }
+        }
+    }
+],
+"whenselectionchange": [
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsSelectedDocuments",
+            "data": "[this]"
+        }
+    }
+]

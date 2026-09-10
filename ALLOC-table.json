@@ -1,0 +1,645 @@
+{
+    "typeConf": {
+        "edit": "none",
+        "show": "block"
+    },
+    "propsConf": {
+        "edit": "none",
+        "show": "block"
+    },
+    "props": {
+        "heightConf": {
+            "show": "block",
+            "valueType": "text"
+        },
+        "showGMOConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "showGMO": {
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "showExportConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "showFilterConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "showGridSettingsConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "searchPanelConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "searchPanel": {
+            "placeholderConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "datasetsConf": {
+            "show": "block",
+            "valueType": "list"
+        },
+        "keyExprConf": {
+            "show": "block",
+            "valueType": "list"
+        },
+        "watchConf": {
+            "show": "block",
+            "valueType": "list"
+        },
+        "autoNavigateToFocusedRowConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "focusedRowEnabledConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "widthConf": {
+            "show": "block",
+            "valueType": "text"
+        },
+        "selectionConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "selection": {
+            "allowSelectAllConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "deferredConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "modeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "selectAllModeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "showCheckBoxesModeConf": {
+                "show": "block",
+                "valueType": "text"
+            }
+        },
+        "columnChooserConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "columnChooser": {
+            "allowSearchConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "emptyPanelTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "enabledConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "heightConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "modeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "searchTimeoutConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "sortOrderConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "titleConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "widthConf": {
+                "show": "block",
+                "valueType": "text"
+            }
+        },
+        "columnHidingEnabledConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "filterRowConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "filterRow": {
+            "applyFilterConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "applyFilterTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "betweenEndTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "betweenStartTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "resetOperationTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "showAllTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "showOperationChooserConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "filterPanelConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "filterPanel": {
+            "customizeTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "filterEnabledConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "textsConf": {
+                "show": "block",
+                "edit": "none"
+            },
+            "texts": {
+                "clearFilterConf": {
+                    "show": "block",
+                    "valueType": "text"
+                },
+                "createFilterConf": {
+                    "show": "block",
+                    "valueType": "text"
+                },
+                "filterEnabledHintConf": {
+                    "show": "block",
+                    "valueType": "text"
+                }
+            },
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "headerFilterConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "headerFilter": {
+            "allowSearchConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "heightConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "searchTimeoutConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "textsConf": {
+                "show": "block",
+                "edit": "none"
+            },
+            "texts": {},
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "widthConf": {
+                "show": "block",
+                "valueType": "text"
+            }
+        },
+        "groupingConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "grouping": {
+            "allowCollapsingConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "autoExpandAllConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "contextMenuEnabledConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "expandModeConf": {
+                "show": "block",
+                "valueType": "ddl",
+                "listType": "EXPMOD",
+                "method": "selection"
+            }
+        },
+        "groupPanelConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "groupPanel": {
+            "allowColumnDraggingConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "emptyPanelTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "visibleConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "exportConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "export": {
+            "allowExportSelectedDataConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "enabledConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "formatsConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "fileNameConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "textsConf": {
+                "show": "block",
+                "edit": "none"
+            },
+            "texts": {
+                "exportAllConf": {
+                    "show": "block",
+                    "valueType": "text"
+                },
+                "exportSelectedRowsConf": {
+                    "show": "block",
+                    "valueType": "text"
+                },
+                "exportToConf": {
+                    "show": "block",
+                    "valueType": "text"
+                }
+            }
+        },
+        "pagerConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "pager": {
+            "allowedPageSizesConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "displayModeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "infoTextConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "showInfo": {
+                "exportAllConf": {
+                    "show": "block",
+                    "valueType": "chbox"
+                },
+                "labelConf": {
+                    "show": "block",
+                    "valueType": "text"
+                },
+                "showNavigationButtonsConf": {
+                    "show": "block",
+                    "valueType": "chbox"
+                },
+                "showPageSizeSelectorConf": {
+                    "show": "block",
+                    "valueType": "chbox"
+                },
+                "visibleConf": {
+                    "show": "block",
+                    "valueType": "text"
+                }
+            }
+        },
+        "stateStoringConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "stateStoring": {
+            "enabledConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "typeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "storageKeyConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "savingTimeoutConf": {
+                "show": "block",
+                "valueType": "number"
+            }
+        },
+        "allowColumnReorderingConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "allowColumnResizingConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "columnResizingModeConf": {
+            "show": "block",
+            "valueType": "text"
+        },
+        "showColumnLinesConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "showRowLinesConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "showBordersConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "allowSortingConf": {
+            "show": "block",
+            "valueType": "chbox"
+        },
+        "eventsConf": {
+            "edit": "none",
+            "show": "block"
+        },
+        "events": {
+            "onRowClickConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onRowDblClickConf": {
+                "show": "block",
+                "valueType": "event"
+            }
+        },
+        "editableConf": {
+            "edit": "none",
+            "show": "block"
+        },
+        "focusedRowIndex": null,
+        "editable": {
+            "canupdateConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "candeleteConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "canaddConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        },
+        "summaryConf": {
+            "edit": "none",
+            "show": "block"
+        },
+        "summary": {
+            "calculateCustomSummaryConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "groupItemsConf": {
+                "show": "block",
+                "valueType": "groupitemsprops",
+                "section": "groupitems"
+            },
+            "recalculateWhileEditingConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "skipEmptyValuesConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "textsConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "totalItemsConf": {
+                "show": "block",
+                "valueType": "totalitemprops",
+                "section": "groupitems"
+            }
+        },
+        "headerStylesConf": {
+            "show": "block",
+            "valueType": "event"
+        },
+        "columnspecsConf": {
+            "show": "block",
+            "valueType": "columnprops",
+            "section": "columnspecs"
+        },
+        "columninfoConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "columninfo": {
+            "dsetConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "captionfieldConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "datafieldConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "widthfieldConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "editpropsConf": {
+                "show": "block",
+                "edit": "none"
+            },
+            "editprops": {
+                "chldfieldConf": {
+                    "show": "block",
+                    "valueType": "text"
+                }
+            }
+        },
+        "conditionalFormatConf": {
+            "show": "block",
+            "valueType": "conditionalformatprops",
+            "section": "conditionalformat"
+        },
+        "rowDraggingConf": {
+            "show": "block",
+            "edit": "none"
+        },
+        "rowDragging": {
+            "allowDropInsideItemConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "allowReorderingConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "autoScrollConf": {
+                "show": "block",
+                "valueType": "chbox"
+            },
+            "boundaryConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "containerConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "cursorOffsetConf": {
+                "show": "block",
+                "edit": "none"
+            },
+            "cursorOffset": {
+                "xConf": {
+                    "show": "block",
+                    "valueType": "number"
+                },
+                "yConf": {
+                    "show": "block",
+                    "valueType": "number"
+                }
+            },
+            "dataConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "dragComponentConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "dragDirectionConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "dragRenderConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "dragTemplateConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "dropFeedbackModeConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "groupConf": {
+                "show": "block",
+                "valueType": "text"
+            },
+            "handleConf": "",
+            "onAddConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onDragChangeConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onDragEndConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onDragMoveConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onDragStartConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onRemoveConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "onReorderConf": {
+                "show": "block",
+                "valueType": "event"
+            },
+            "scrollSensitivityConf": {
+                "show": "block",
+                "valueType": "number"
+            },
+            "scrollSpeedConf": {
+                "show": "block",
+                "valueType": "number"
+            },
+            "showDragIconsConf": {
+                "show": "block",
+                "valueType": "chbox"
+            }
+        }
+    }
+}

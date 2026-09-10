@@ -1,0 +1,273 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "container": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "5px",
+                        "display": "block"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 4,
+                            "md": 4,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Doctype *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "validation": {
+                                              "for": "text",
+                                              "msg": "Please select the Doctype",
+                                              "validationParams": {
+                                                "minLength": 1
+                                              }
+                                            },
+                                                    "bind": "DOCDESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "COMMON_DOCNO": "",
+                                                                            "DOCDESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "CHKLMDM",
+                                                                    "commontype": "manual",
+                                                                    "title": "Document Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "DFDMST_DOC_DOCTYPE",
+                                                                    "codefield": "COMMON_DOCNO",
+                                                                    "descfield": "DOCDESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "container": true,
+                            "xs": 12,
+                            "md": 8,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Checklist Description *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "required": true,
+                                                    "validation": {
+                                              "for": "text",
+                                              "msg": "Please enter the Checklist Description",
+                                              "validationParams": {
+                                                "minLength": 1
+                                              }
+                                            },
+                                                    "inputProps": {
+                                                        "maxLength": 400,
+                                                        "style": {}
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "COMMON_DESC"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "container": true,
+                            "xs": 12,
+                            "md": 8,
+                            "className": "factsFullWidth",
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "UD Label 1",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 400,
+                                                        "style": {}
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "COMMON_UD_LABEL1"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

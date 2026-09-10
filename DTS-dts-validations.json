@@ -1,0 +1,73 @@
+[{
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "row_error": "",
+                "row_error_message": ""
+            }
+        }
+    },
+    {
+        "exec": "forLoop",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "perform": [
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.LABDET_EMP_DOCNO(ifnull)raw.(eq)raw.]": true
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "Please select Employee Name;"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "errorRowCount": "[DsFrmDetails1(listfilter)raw.row_error=>error(listcount)]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.errorRowCount(>)raw.0]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please fill in all required fields"
+                        }
+                    }
+                }
+            ]
+        }
+    }]

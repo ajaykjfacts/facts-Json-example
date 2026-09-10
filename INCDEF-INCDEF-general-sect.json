@@ -1,0 +1,787 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "resolvestyles": true,
+            "style": {
+                "marginBottom": "60px",
+                "pointerEvents": "[DsFrmHeaderEntry.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+                "padding": "10px"
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 12,
+                    "xs": 12,
+                    "style": {
+                        "padding": "10px",
+                        "display": "flex",
+                        "flexWrap": "wrap"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 4,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Effective From Date",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "dtpick",
+                                                "props": {
+                                                    "invalidDateMessage": "Invalid Date Format",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "style": {
+                                                            "paddingTop": "7px",
+                                                            "paddingBottom": "7px",
+                                                            "fontSize": "0.8rem"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "INCDEF_DOCDATE"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 6,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Incentive Category",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "INCDEF_CAT_DESC",
+                                                    "className": "small-ctr",
+                                                    "variant": "outlined",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "INCDEF_CAT_DOCNO": "",
+                                                                            "INCDEF_CAT_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "INCDEFINCD",
+                                                                    "commontype": "manual",
+                                                                    "title": "Categories",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "COMMON_DOCTYPE",
+                                                                    "codefield": "INCDEF_CAT_DOCNO",
+                                                                    "descfield": "INCDEF_CAT_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "container": true,
+                            "xs": 12,
+                            "style": {}
+                        },
+                        "chld": [
+                            {
+                                "type": "lbl",
+                                "props": {
+                                    "resolvestyles": true,
+                                    "style": {
+                                        "fontSize": "0.9rem",
+                                        "margin": "5px",
+                                        "fontWeight": "bold",
+                                        "color": "[dsAppTheme.primary_color]"
+                                    },
+                                    "text": "Branch-Wise  Entitlement Criteria"
+                                }
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "container": true,
+                                    "style": {},
+                                    "xs": 12,
+                                    "className": "TableParentSect"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "container": true,
+                                            "className": "TableHeaderSect",
+                                            "style": {
+                                                "display": "flex"
+                                            },
+                                            "xs": 12
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 2.5,
+                                                    "className": "TableHeaderChildSect",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "Branch(Outlet)"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 2,
+                                                    "className": "TableHeaderChildSect tableHeaderNumLbl",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "Incentive Amount(AED)"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 1.5,
+                                                    "className": "TableHeaderChildSect",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "KPI-1 Description"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 2,
+                                                    "className": "TableHeaderChildSect tableHeaderNumLbl",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "KPI-1%"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 1.5,
+                                                    "className": "TableHeaderChildSect",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "KPI-2 Description"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 2,
+                                                    "className": "TableHeaderChildSect tableHeaderNumLbl",
+                                                    "style": {}
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "span",
+                                                        "chld": "KPI-2%"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "item": true,
+                                                    "xs": 0.5,
+                                                    "className": "TableHeaderLastChildSect",
+                                                    "style": {}
+                                                },
+                                                "chld": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "list",
+                                        "props": {
+                                            "datasets": [
+                                                "DsFrmDetails1"
+                                            ],
+                                            "style": {
+                                                "width": "100%"
+                                            },
+                                            "className": "TableListSect facts-input-list",
+                                            "content": {
+                                                "template": "custom",
+                                                "props": {},
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "container": true,
+                                                            "style": {
+                                                                "display": "flex"
+                                                            },
+                                                            "resolveprops": true,
+                                                    "includerefdata": true,
+                                                    "className": "[raw.facts-row-[this.row_error]]",
+                                                            "xs": 12
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "item": true,
+                                                                    "xs": 2.5,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "lkup",
+                                                                        "props": {
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "bind": "INCDEFDET_BRANCH_DESC",
+                                                                            "className": "small-ctr",
+                                                                            "variant": "outlined",
+                                                                            "label": "Branch(Outlet)",
+                                                                            "fullWidth": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "includerefdata": true,
+                                                                            "icon": "search",
+                                                                            "icons": {
+                                                                                "notempty": {
+                                                                                    "icon": "close",
+                                                                                    "whenclick": [
+                                                                                        {
+                                                                                            "exec": "mergedatasetarray",
+                                                                                            "args": {
+                                                                                                "dset": "DsFrmDetails1",
+                                                                                                "index": "[this.propkey]",
+                                                                                                "data": {
+                                                                                                    "INCDEFDET_BRANCH_DOCNO": "",
+                                                                                                    "INCDEFDET_BRANCH_DESC": ""
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            },
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dslist",
+                                                                                        "data": {
+                                                                                            "listtype": "INCDEFPGRP4",
+                                                                                            "commontype": "manual",
+                                                                                            "title": "Branch(Outlet)",
+                                                                                            "dataset": "DsFrmDetails1",
+                                                                                            "section": "Alltype",
+                                                                                            "rowindex": "[this.propkey]",
+                                                                                            "calledFrom": "list",
+                                                                                            "doctypefield": "PAY_GRP4_DOCTYPE",
+                                                                                            "codefield": "INCDEFDET_BRANCH_DOCNO",
+                                                                                            "descfield": "INCDEFDET_BRANCH_DESC"
+                                                                                        }
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "exec": "filldataset",
+                                                                                    "args": {
+                                                                                        "proc": "PWA.LoadLayout",
+                                                                                        "column": "layoutinfo",
+                                                                                        "dset": "popupinfo",
+                                                                                        "section": "Alltype",
+                                                                                        "args": {
+                                                                                            "doctype": "popup",
+                                                                                            "docno": "lookup"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "xs": 2,
+                                                                    "item": true,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "dxnumberbox",
+                                                                        "props": {
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "className": "small-ctr",
+                                                                            "fullWidth": true,
+                                                                            "format": "##,###.00",
+                                                                            "inputProps": {
+                                                                                "maxLength": 20,
+                                                                                "style": {
+                                                                                    "fontWeight": "bold",
+                                                                                    "textAlign": "right",
+                                                                                    "height": "11px"
+                                                                                }
+                                                                            },
+                                                                            "variant": "outlined",
+                                                                            "includerefdata": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "bind": "INCDEFDET_INC_AMOUNT",
+                                                                            "onFocusOut": [],
+                                                                            "onChange": []
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "xs": 1.5,
+                                                                    "item": true,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "entry",
+                                                                        "props": {
+                                                                            "label": "",
+                                                                            "fullWidth": true,
+                                                                            "includerefdata": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "variant": "outlined",
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "disabled": true,
+                                                                            "value": "sales",
+                                                                            "bind": "INCDEFDET_KPI1_DESC"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "xs": 2,
+                                                                    "item": true,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px",
+                                                                        "display": "flex"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "dxnumberbox",
+                                                                        "props": {
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "className": "small-ctr",
+                                                                            "fullWidth": true,
+                                                                            "format": "##,###.00",
+                                                                            "inputProps": {
+                                                                                "maxLength": 20,
+                                                                                "style": {
+                                                                                    "fontWeight": "bold",
+                                                                                    "textAlign": "right",
+                                                                                    "height": "11px"
+                                                                                }
+                                                                            },
+                                                                            "variant": "outlined",
+                                                                            "includerefdata": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "bind": "INCDEFDET_KPI1",
+                                                                            "onFocusOut": [
+                                                                                {
+                                                                                    "exec": "mergedatasetarray",
+                                                                                    "args": {
+                                                                                        "dset": "DsFrmDetails1",
+                                                                                        "index": "[this.propkey]",
+                                                                                        "data": {
+                                                                                            "INCDEFDET_KPI2": "[raw.100(-)raw.[this.INCDEFDET_KPI1]]"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            "onChange": []
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "xs": 1.5,
+                                                                    "item": true,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "entry",
+                                                                        "props": {
+                                                                            "fullWidth": true,
+                                                                            "includerefdata": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "variant": "outlined",
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "bind": "INCDEFDET_KPI2_DESC"
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "xs": 2,
+                                                                    "item": true,
+                                                                    "className": "TableContentChildSect",
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "dxnumberbox",
+                                                                        "props": {
+                                                                            "dset": "DsFrmDetails1",
+                                                                            "className": "small-ctr",
+                                                                            "fullWidth": true,
+                                                                            "format": "##,###.00",
+                                                                            "inputProps": {
+                                                                                "maxLength": 20,
+                                                                                "style": {
+                                                                                    "fontWeight": "bold",
+                                                                                    "textAlign": "right",
+                                                                                    "height": "11px"
+                                                                                }
+                                                                            },
+                                                                            "variant": "outlined",
+                                                                            "includerefdata": true,
+                                                                            "rowindex": "[this.propkey]",
+                                                                            "bind": "INCDEFDET_KPI2",
+                                                                            "onFocusOut": [
+                                                                                {
+                                                                                    "exec": "mergedatasetarray",
+                                                                                    "args": {
+                                                                                        "dset": "DsFrmDetails1",
+                                                                                        "index": "[this.propkey]",
+                                                                                        "data": {
+                                                                                            "INCDEFDET_KPI1": "[raw.100(-)raw.[this.INCDEFDET_KPI2]]"
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ],
+                                                                            "onChange": []
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "type": "sect",
+                                                                "props": {
+                                                                    "item": true,
+                                                                    "xs": 0.5,
+                                                                    "className": "TableContentLastChildSect",
+                                                                    "style": {}
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "icbtn",
+                                                                        "props": {
+                                                                            "color": "primary",
+                                                                            "includerefdata": true,
+                                                                            "variant": "contained",
+                                                                            "resolvestyles": true,
+                                                                            "fullWidth": true,
+                                                                            "className": "facts-icon-color--delete",
+                                                                            "style": {
+                                                                                "fontSize": "1.3rem"
+                                                                            },
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "showloader"
+                                                                                },
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dialoginfo",
+                                                                                        "data": {
+                                                                                            "open": true,
+                                                                                            "title": "Delete",
+                                                                                            "description": "Are you sure you want to delete this Item?",
+                                                                                            "btn1": {
+                                                                                                "chld": "YES",
+                                                                                                "props": {
+                                                                                                    "whenclick": [
+                                                                                                        {
+                                                                                                            "exec": "mergedatasetarray",
+                                                                                                            "args": {
+                                                                                                                "dset": "DsFrmDetails1",
+                                                                                                                "index": "[this.propkey]",
+                                                                                                                "data": null
+                                                                                                            }
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            },
+                                                                                            "btn2": {
+                                                                                                "chld": "NO",
+                                                                                                "props": {
+                                                                                                    "whenclick": []
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "chld": "delete"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                        "type": "hide",
+                                                        "props": {
+                                                            "includerefdata": true,
+                                                            "appendprops": {
+                                                                "xsUp": "[this.row_error(ifnull)raw.(eq)raw.]"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "resolveprops": true,
+                                                                    "className": "[raw.facts-[this.row_error]-message]"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "div",
+                                                                        "props": {
+                                                                            "style": {
+                                                                                "width": "auto"
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "[raw.* [this.row_error_message]]"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "container": true,
+                                    "style": {
+                                        "padding": "5px",
+                                        "display": "flex",
+                                        "justifyContent": "flex-end"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "icbtn",
+                                        "props": {
+                                            "variant": "contained",
+                                            "resolvestyles": true,
+                                            "style": {
+                                                "marginLeft": "5px",
+                                                "height": "30px",
+                                                "width": "45px",
+                                                "borderRadius": "5px"
+                                            },
+                                            "whenclick": [
+                                                {
+                                                    "exec": "mergedatasetarray",
+                                                    "args": {
+                                                        "dset": "DsFrmDetails1",
+                                                        "data": {
+                                                            "INCDEFDET_DESIG_DOCNO": "",
+                                                            "INCDEFDET_DESIG_DESC": "",
+                                                            "INCDEFDET_SUBCAT_DOCNO": "",
+                                                            "INCDEFDET_SUBCAT_DESC": "",
+                                                            "INCDEFDET_BRANCH_DOCNO": "",
+                                                            "INCDEFDET_BRANCH_DESC": "",
+                                                            "INCDEFDET_INC_AMOUNT": "",
+                                                            "INCDEFDET_KPI1_DESC": "Sales",
+                                                            "INCDEFDET_KPI1": "",
+                                                            "INCDEFDET_KPI2_DESC": "",
+                                                            "INCDEFDET_KPI2": ""
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        "chld": "add"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

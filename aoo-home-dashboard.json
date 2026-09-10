@@ -1,0 +1,1436 @@
+{
+    "title": "Dashboard",
+    "newid": "8CE6C965-5E30-4998-A19E-C6E2B1F46287",
+    "whenload": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.LoadDashCards",
+                "dset": "dsCard1"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.GetAnnouncement",
+                "row": 0,
+                "dset": "DsAnnouncement"
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.dailyAttDetails",
+                "dsets": [
+                    {
+                        "name": "dailyAttendanceList",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsFrmHeader",
+                        "row": 0,
+                        "table": "Table1"
+                    }
+                ],
+                "args": {
+                    "StrXmlHeader": "[dsFrmHeader]"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.empLeaveData",
+                "dset": "absentList"
+            }
+        },
+        {
+            "exec": "mergedataset",
+            "args": {
+                "dset": "dsdayevent",
+                "data": "[dsFrmHeader]"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.getTeamMembers",
+                "dset": "dsTeamMembers"
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "wfFilterButtonProps",
+                "data": {
+                    "btnMT": {
+                        "variant": "contained"
+                    },
+                    "APPR_STATUS": ""
+                }
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.LoadDashChart",
+                "dsets": [
+                    {
+                        "name": "dsCh2Layout",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsCh2Data",
+                        "table": "Table1"
+                    },
+                    {
+                        "name": "dsCh2GridLayout",
+                        "table": "Table2"
+                    }
+                ],
+                "args": {
+                    "doctype": "DBLR",
+                    "docno": "151"
+                }
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.LoadDashChart",
+                "dsets": [
+                    {
+                        "name": "dsCh1Layout",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsCh1Data",
+                        "table": "Table1"
+                    },
+                    {
+                        "name": "dsCh1GridLayout",
+                        "table": "Table2"
+                    }
+                ],
+                "args": {
+                    "doctype": "DBLR",
+                    "docno": "119"
+                }
+            }
+        }
+    ],
+    "globalsearchfield": {},
+    "appbar": {
+        "titlepart": "[_titleparts.title-desc]",
+        "props": {
+            "className": "factsAppBarTitle",
+            "style": {
+                "width": "100%"
+            }
+        },
+        "chld": "[_pageparts.appbar-icons]"
+    },
+    "style": {
+        "backgroundColor": "whitesmoke"
+    },
+    "pageheader": [],
+    "pagefooter": {},
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "container": true,
+                        "style": {
+                            "overflow": "overlay"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "xs": 12,
+                                "style": {
+                                    "padding": "10px",
+                                    "display": "flex",
+                                    "justifyContent": "space-between",
+                                    "minWidth": "1040px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "list",
+                                    "props": {
+                                        "datasets": [
+                                            "dsCard1"
+                                        ],
+                                        "style": {
+                                            "display": "contents",
+                                            "justifyContent": "space-between"
+                                        },
+                                        "className": "xs-shrink",
+                                        "content": {
+                                            "template": "custom",
+                                            "props": {
+                                                "className": "fcm23 fcx100",
+                                                "style": {
+                                                    "display": "inline-block"
+                                                },
+                                                "whenclick": "[this.CARD_EVENT]"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "factsHomeCardBG",
+                                                        "style": {
+                                                            "borderRadius": "5px",
+                                                            "overflow": "hidden",
+                                                            "padding": "15px",
+                                                            "width": "217px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "span",
+                                                            "props": {
+                                                                "style": {
+                                                                    "fontSize": "1rem",
+                                                                    "textTransform": "uppercase",
+                                                                    "color": "#636363",
+                                                                    "display": "block",
+                                                                    "fontWeight": "bold"
+                                                                }
+                                                            },
+                                                            "chld": "[this.CARD_TITLE]"
+                                                        },
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "fontSize": "30px",
+                                                                    "padding": "0px 11px",
+                                                                    "lineHeight": "0.5rem",
+                                                                    "fontWeight": "600",
+                                                                    "margin": "21px -12px 0px",
+                                                                    "color": "[this.CARD_COLOR]"
+                                                                }
+                                                            },
+                                                            "chld": "[this.CARD_VALUE]"
+                                                        },
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "style": {
+                                                                    "float": "left"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "span",
+                                                                    "props": {
+                                                                        "resolvestyles": true,
+                                                                        "style": {
+                                                                            "text-decoration": "underline",
+                                                                            "padding": "18px 51px 9px 0px",
+                                                                            "fontSize": "0.7rem",
+                                                                            "textTransform": "uppercase",
+                                                                            "color": "[this.CARD_COLOR]",
+                                                                            "display": "block",
+                                                                            "fontWeight": "bold"
+                                                                        }
+                                                                    },
+                                                                    "chld": "[this.CARD_SUBTITLE]"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "color": "[this.ICON_COLOR]",
+                                                                    "textAlign": "center",
+                                                                    "fontFamily": "Roboto Light",
+                                                                    "float": "Right"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "icon",
+                                                                    "props": {
+                                                                        "resolvestyles": true,
+                                                                        "style": {
+                                                                            "fontSize": "2rem",
+                                                                            "backgroundColor": "[this.ICON_BGCOLOR]",
+                                                                            "padding": "6px",
+                                                                            "borderRadius": "5px"
+                                                                        }
+                                                                    },
+                                                                    "chld": "[this.CARD_ICON]"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "md": 4,
+                        "style": {
+                            "paddingBottom": "10px"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "style": {
+                                    "padding": "0px 10px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "expanel",
+                                    "props": {
+                                        "title": "Attendance",
+                                        "expanded": true
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "item": true,
+                                                "xs": 12,
+                                                "style": {
+                                                    "height": "440px",
+                                                    "overflow": "overlay",
+                                                    "padding": "5px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 2,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "icbtn",
+                                                                    "props": {
+                                                                        "variant": "contained",
+                                                                        "color": "primary",
+                                                                        "size": "small",
+                                                                        "whenclick": [
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.dailyAttDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dailyAttendanceList",
+                                                                                            "table": "Table"
+                                                                                        },
+                                                                                        {
+                                                                                            "name": "dsFrmHeader",
+                                                                                            "row": 0,
+                                                                                            "table": "Table1"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "StrXmlHeader": "[dsFrmHeader]",
+                                                                                        "nMonthAdd": "-1"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "dsdayevent",
+                                                                                    "data": "[dsFrmHeader]"
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "chld": "chevron_left"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "resolvestyles": true,
+                                                                "xs": 8,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center",
+                                                                    "color": "[dsAppTheme.secondary_color]",
+                                                                    "fontWeight": "bold"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "text": "[dsFrmHeader.DISPLAY_DATE]"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 2,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "icbtn",
+                                                                    "props": {
+                                                                        "variant": "contained",
+                                                                        "color": "primary",
+                                                                        "size": "small",
+                                                                        "whenclick": [
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.dailyAttDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dailyAttendanceList",
+                                                                                            "table": "Table"
+                                                                                        },
+                                                                                        {
+                                                                                            "name": "dsFrmHeader",
+                                                                                            "row": 0,
+                                                                                            "table": "Table1"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "StrXmlHeader": "[dsFrmHeader]",
+                                                                                        "nMonthAdd": "1"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "dsdayevent",
+                                                                                    "data": "[dsFrmHeader]"
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "chld": "chevron_right"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "margin": "5px 0px"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.71,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "#e91e63"
+                                                                        },
+                                                                        "text": "Sun"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.71,
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "[dsAppTheme.secondary_color]"
+                                                                        },
+                                                                        "text": "Mon"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.71,
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "[dsAppTheme.secondary_color]"
+                                                                        },
+                                                                        "text": "Tue"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.71,
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "[dsAppTheme.secondary_color]"
+                                                                        },
+                                                                        "text": "Wed"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.8,
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "[dsAppTheme.secondary_color]"
+                                                                        },
+                                                                        "text": "Thu"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.71,
+                                                                "resolvestyles": true,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "color": "[dsAppTheme.secondary_color]"
+                                                                        },
+                                                                        "text": "Fri"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 1.6,
+                                                                "style": {
+                                                                    "display": "flex",
+                                                                    "alignItems": "center",
+                                                                    "justifyContent": "center"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "lbl",
+                                                                    "props": {
+                                                                        "text": "Sat",
+                                                                        "style": {
+                                                                            "color": "#e91e63"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "list",
+                                                    "props": {
+                                                        "datasets": [
+                                                            "dailyAttendanceList"
+                                                        ],
+                                                        "watch": [
+                                                            "dsdayevent",
+                                                            "dailyAttendanceList"
+                                                        ],
+                                                        "style": {
+                                                            "display": "grid",
+                                                            "gridTemplateColumns": "auto auto auto auto auto auto auto",
+                                                            "gap": "5px"
+                                                        },
+                                                        "content": {
+                                                            "template": "custom",
+                                                            "props": {
+                                                                "style": {
+                                                                    "display": "flex"
+                                                                },
+                                                                "whenclick": [
+                                                                    {
+                                                                        "exec": "mergedataset",
+                                                                        "args": {
+                                                                            "dset": "dsdayevent",
+                                                                            "data": {
+                                                                                "htmlEvent": "[this.Event]",
+                                                                                "Selected_date_day": "[this.DAY]"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "container": true,
+                                                                        "resolvestyles": true,
+                                                                        "includerefdata": true,
+                                                                        "appendprops": {
+                                                                            "style": {
+                                                                                "background": "[this.TodayDate_color(eq)raw.1(iftrue)raw.[dsAppTheme.secondary_color]]",
+                                                                                "border": "[this.DAY(ifnull)raw.(eq)dsdayevent.Selected_date_day(iftrue)raw. 1px solid(iffalse)raw. 1px solid]",
+                                                                                "borderColor": "[this.DAY(ifnull)raw.(eq)dsdayevent.Selected_date_day(iftrue)raw.[dsAppTheme.secondary_color](iffalse)raw.white]",
+                                                                                "padding": "5px",
+                                                                                "borderRadius": "5px",
+                                                                                "color": "[this.TodayDate_color(eq)raw.1(iftrue)raw.white(iffalse)raw.[dsAppTheme.secondary_color]]",
+                                                                                "outline": "[this.TodayDate_color(eq)raw.1(iftrue)raw.1px solid #e91e63]"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "container": true,
+                                                                                "item": true
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "xs": 12,
+                                                                                        "style": {
+                                                                                            "marginTop": "5px",
+                                                                                            "display": "flex",
+                                                                                            "justifyContent": "center"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "className": "factscal",
+                                                                                                "style": {
+                                                                                                    "fontWeight": "bold",
+                                                                                                    "fontSize": "smaller"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "[this.DAY]"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "fontWeight": "bold",
+                                                                                                    "fontSize": "smaller"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "[this.DAYSTATUS]"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                },
+                                                {
+                                                    "type": "view",
+                                                    "props": {
+                                                        "includerefdata": true,
+                                                        "style": {
+                                                            "height": "75px",
+                                                            "padding": "5px"
+                                                        },
+                                                        "contenttype": "html",
+                                                        "binding": true,
+                                                        "content": "[dsdayevent.htmlEvent(ifnull)raw.]"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "md": 4,
+                        "style": {
+                            "paddingBottom": "10px"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "style": {
+                                    "padding": " 0px 10px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "expanel",
+                                    "props": {
+                                        "title": "My Team",
+                                        "expanded": true
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "container": true,
+                                                "xs": 12,
+                                                "style": {
+                                                    "padding": "0px 10px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12,
+                                                        "style": {}
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "btngroup",
+                                                            "props": {
+                                                                "style": {
+                                                                    "display": "grid !important"
+                                                                },
+                                                                "fullWidth": true,
+                                                                "color": "primary"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 6
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "btn",
+                                                                            "props": {
+                                                                                "fullWidth": true,
+                                                                                "appendprops": "[wfFilterButtonProps.btnRT]",
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "wfFilterButtonProps",
+                                                                                            "data": {
+                                                                                                "btnRT": {
+                                                                                                    "variant": "contained"
+                                                                                                },
+                                                                                                "APPR_STATUS": "RT"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "chld": "Reporting To"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 6
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "btn",
+                                                                            "props": {
+                                                                                "fullWidth": true,
+                                                                                "appendprops": "[wfFilterButtonProps.btnMT]",
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "wfFilterButtonProps",
+                                                                                            "data": {
+                                                                                                "btnMT": {
+                                                                                                    "variant": "contained"
+                                                                                                },
+                                                                                                "APPR_STATUS": ""
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "chld": "My team"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "height": "160px",
+                                                                    "overflow": "overlay"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "props": {
+                                                                        "filtermode": "contains",
+                                                                        "filterignorecase": true,
+                                                                        "satisfy": "every",
+                                                                        "watch": [
+                                                                            "dsTeamMembers",
+                                                                            "wfFilterButtonProps"
+                                                                        ],
+                                                                        "filterto": {
+                                                                            "[this.Group_Head(ifnull)raw.]": "[wfFilterButtonProps.APPR_STATUS(ifnull)raw.]"
+                                                                        },
+                                                                        "datasets": [
+                                                                            "dsTeamMembers"
+                                                                        ],
+                                                                        "content": {
+                                                                            "template": "custom",
+                                                                            "props": {
+                                                                                "style": {
+                                                                                    "padding": "0px 10px"
+                                                                                }
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "container": true
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "container": true,
+                                                                                                "style": {
+                                                                                                    "padding": "5px",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center"
+                                                                                                },
+                                                                                                "xs": 2
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "resolvestyles": true,
+                                                                                                        "style": {
+                                                                                                            "marginTop": "5px",
+                                                                                                            "alignItems": "center",
+                                                                                                            "display": "flex",
+                                                                                                            "border": "[this.Group_Head(eq)raw.Reporting To (iftrue)raw.2px solid]",
+                                                                                                            "borderColor": "[this.Group_Head(eq)raw.Reporting To (iftrue)raw.[dsAppTheme.secondary_color]]",
+                                                                                                            "borderRadius": "50%"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "favatar",
+                                                                                                            "props": {
+                                                                                                                "includerefdata": true,
+                                                                                                                "image": "[this.PHOTO]",
+                                                                                                                "style": {
+                                                                                                                    "backgroundColor": "#c0d6e4",
+                                                                                                                    "width": "30px",
+                                                                                                                    "height": "30px"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "container": true,
+                                                                                                "style": {
+                                                                                                    "paddingLeft": "10px"
+                                                                                                },
+                                                                                                "xs": 10
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "style": {
+                                                                                                            "display": "flex"
+                                                                                                        },
+                                                                                                        "xs": 10,
+                                                                                                        "resolvestyles": true
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "color": "[dsAppTheme.secondary_color]",
+                                                                                                                    "textAlign": "left",
+                                                                                                                    "display": "flex",
+                                                                                                                    "alignItems": "center",
+                                                                                                                    "width": "100%"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "lbl",
+                                                                                                                    "props": {
+                                                                                                                        "resolveprops": true,
+                                                                                                                        "style": {
+                                                                                                                            "paddingRight": "10px",
+                                                                                                                            "fontWeight": "bold",
+                                                                                                                            "fontSize": "small"
+                                                                                                                        },
+                                                                                                                        "text": "[this.NAMES]"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "style": {
+                                    "padding": "0px 10px",
+                                    "marginTop": "10px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "div",
+                                    "props": {
+                                        "style": {
+                                            "borderRadius": "5px",
+                                            "overflow": "hidden"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {},
+                                            "chld": [
+                                                {
+                                                    "type": "expanel",
+                                                    "props": {
+                                                        "title": "Announcements",
+                                                        "expanded": true
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "view",
+                                                            "props": {
+                                                                "includerefdata": true,
+                                                                "style": {
+                                                                    "height": "168px"
+                                                                },
+                                                                "contenttype": "html",
+                                                                "binding": true,
+                                                                "content": "[DsAnnouncement.HTMLDATA]"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "md": 4
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "style": {
+                                    "padding": "0px 10px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "xs": 12,
+                                        "item": true,
+                                        "style": {
+                                            "padding": "0px 10px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "expanel",
+                                            "props": {
+                                                "title": "Employee(s) on Leave today",
+                                                "expanded": true
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "height": "415px",
+                                                            "overflow": "overlay"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "list",
+                                                            "props": {
+                                                                "datasets": [
+                                                                    "absentList"
+                                                                ],
+                                                                "content": {
+                                                                    "template": "custom",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "border": "1px solid gainsboro",
+                                                                            "padding": "10px"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "container": true
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "container": true,
+                                                                                        "item": true,
+                                                                                        "xs": 2,
+                                                                                        "style": {
+                                                                                            "padding": "5px",
+                                                                                            "display": "flex",
+                                                                                            "justifyContent": "center"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "marginTop": "5px",
+                                                                                                    "alignItems": "center",
+                                                                                                    "display": "flex"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "favatar",
+                                                                                                    "props": {
+                                                                                                        "includerefdata": true,
+                                                                                                        "image": "[this.photourl]",
+                                                                                                        "style": {
+                                                                                                            "backgroundColor": "#c0d6e4",
+                                                                                                            "width": "40px",
+                                                                                                            "height": "40px"
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "container": true,
+                                                                                        "item": true,
+                                                                                        "style": {
+                                                                                            "paddingLeft": "10px"
+                                                                                        },
+                                                                                        "xs": 10
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "display": "flex"
+                                                                                                },
+                                                                                                "xs": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "color": "#3E72C7",
+                                                                                                            "textAlign": "left",
+                                                                                                            "width": "100%"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "color": "#3E72C7",
+                                                                                                                    "paddingRight": "10px",
+                                                                                                                    "fontWeight": "bold",
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[this.emp_name]"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "x-small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "color": "#008000"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[this.leave_days(joinstr)raw. day(s)]"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "xs": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "textAlign": "left"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "paddingRight": "5px",
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[raw.Resuming back in :]"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "color": "#008000"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[this.resumein]"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": " Days"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "paddingLeft": "5px",
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[raw.((joinstr)this.leave_to(joinstr)raw.)]"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "xs": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "textAlign": "left"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "paddingRight": "10px",
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "Leave Reason :"
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "fontSize": "small"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "[this.leave_reason]"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "xs": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "paddingRight": "10px",
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "Leave Days: "
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.leave_from]"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "small",
+                                                                                                            "paddingLeft": "5px",
+                                                                                                            "paddingRight": "5px"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "to"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.leave_to]"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,320 @@
+[
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DocallTabFilterOptions",
+            "data": {
+                "CurrentForm": "GENERAL",
+                "btnGeneral": {
+                    "className": "btnGrpContained"
+                }
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "wqFilterOptions2",
+            "data": {
+                "CurrentForm": "MAIN",
+                "btnMain": {
+                    "variant": "contained"
+                }
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "EmpTabFilterOptions",
+            "data": {
+                "CurrentForm": "DEFAULTS",
+                "btnDefault": {
+                    "className": "btnGrpContained"
+                },
+                "btnSellingPrice": {
+                    "className": "btnGrpInherit"
+                }
+            }
+        }
+    },
+    {
+        "exec": "filldataset",
+        "args": {
+            "dset": "dsRevisionManagement",
+            "proc": "PWA.GetCommonList",
+            "args": {
+                "strdoctype": "DRM",
+                "strcommontype": "manual"
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsDocnoType",
+            "data": [
+                {
+                    "code": "0",
+                    "description": "Automatic"
+                },
+                {
+                    "code": "1",
+                    "description": "Manual"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsToolbarRadio",
+            "data": [
+                {
+                    "code": "0",
+                    "description": ""
+                },
+                {
+                    "code": "1",
+                    "description": ""
+                },
+                {
+                    "code": "2",
+                    "description": ""
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsDMDoctypes",
+            "data": [
+                {
+                    "code": "HP",
+                    "description": "HR & Payroll"
+                },
+                {
+                    "code": "MSTR",
+                    "description": "Masters"
+                },
+                {
+                    "code": "AOC",
+                    "description": "Accounts"
+                },
+                {
+                    "code": "JOC",
+                    "description": "Job Costing"
+                },
+                {
+                    "code": "FA",
+                    "description": "Fixed Assets"
+                },
+                {
+                    "code": "DOC",
+                    "description": "Inventory"
+                },
+                {
+                    "code": "ESS",
+                    "description": "Employee Self Service"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dschecked",
+            "data": {
+                "value": "hidediv"
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsInventoryList",
+            "data": [
+                {
+                    "code": "0",
+                    "description": "Account On Header"
+                },
+                {
+                    "code": "1",
+                    "description": "GPC"
+                },
+                {
+                    "code": "2",
+                    "description": "Fixed"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsRateType",
+            "data": [
+                {
+                    "code": "01",
+                    "description": "DEFAULT PRICE TYPE"
+                },
+                {
+                    "code": "02",
+                    "description": "CUSTOMER PRICE TYPE"
+                },
+                {
+                    "code": "03",
+                    "description": "LAST TRANSACTION RATE"
+                },
+                {
+                    "code": "04",
+                    "description": "MOVING AVERAGE COST"
+                },
+                {
+                    "code": "05",
+                    "description": "UNIT PRICE"
+                },
+                {
+                    "code": "06",
+                    "description": "STANDARD COST"
+                },
+                {
+                    "code": "07",
+                    "description": "QUOTATION RATE"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsInventoryStockUpdation",
+            "data": [
+                {
+                    "code": "1",
+                    "description": "Increase (Inward)"
+                },
+                {
+                    "code": "-1",
+                    "description": "Decrease (Outward)"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsShowMode",
+            "data": [
+                {
+                    "code": "0",
+                    "description": "Both"
+                },
+                {
+                    "code": "1",
+                    "description": "List"
+                },
+                {
+                    "code": "2",
+                    "description": "Entry"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsOutputStatusSettings",
+            "data": [
+                {
+                    "code": "0",
+                    "description": "User Dependent"
+                },
+                {
+                    "code": "1",
+                    "description": "Document Dependent"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "ref": {
+                "[DsFrmHeaderEntry.DM_DET_TABLE_JSON]": null
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "dsObjectsDetails",
+                        "data": []
+                    }
+                }
+            ],
+            "whenunmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "dsObjectsDetails",
+                        "data": "[DsFrmHeaderEntry.DM_DET_TABLE_JSON(jsonparse)]"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "filldataset",
+        "args": {
+            "dset": "dsUspNamesList",
+            "proc": "PWA.GetCommonList",
+            "args": {
+                "strdoctype": "USPKEY",
+                "strcommontype": "manual"
+            }
+        }
+    },
+    {
+        "exec": "filldataset",
+        "args": {
+            "dset": "DsFormatList",
+            "proc": "PWA.GetCommonList",
+            "args": {
+                "strdoctype": "GCFM",
+                "strcommontype": "manual"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "ref": {
+                "[dsPagemode.pagemode(neq)raw.new]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "dset": "dsESSLayoutDetails",
+                        "proc": "PWA.GetESSLayoutDetails",
+                        "args": {
+                            "docno": "[dsSelected.docno]"
+                        }
+                    }
+                }
+            ],
+            "whenunmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "dsESSLayoutDetails",
+                        "data": []
+                    }
+                }
+            ]
+        }
+    }
+]

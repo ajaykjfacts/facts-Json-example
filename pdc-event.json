@@ -1,0 +1,110 @@
+"whenrowdblclick": [
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": null
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsFrmDetails2",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsSelected",
+            "data": {
+                "doctype": "[this.doctype]",
+                "docno": "[this.docno]"
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsPagemode",
+            "data": {
+                "pagemode": "view"
+            }
+        }
+    },
+    {
+        "exec": "filldataset",
+        "args": {
+            "proc": "PWA.GetUserMenuDocument",
+            "dset": "dsSettingsNavigate",
+            "row": 0,
+            "args": {
+                "doctype": "[this.doctype]"
+            }
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "dsSettingsNavigate",
+            "data": {
+                "docno": "[dsSelected.docno]",
+                "mode": "[dsPagemode.pagemode]"
+            }
+        }
+    },
+    {
+        "exec": "setdatasetfield",
+        "args": {
+            "dset": "dsSettingsNavigate",
+            "fieldname": "action",
+            "data": [
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "proc": "PWA.LoadLayout",
+                        "column": "layoutinfo",
+                        "dset": "pageinfo",
+                        "args": {
+                            "doctype": "page",
+                            "docno": "$$EntryFrmName$$",
+                            "refdoctype": "[pagemenuinfo.doctype]"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "navigate",
+        "args": "[dsSettingsNavigate]"
+    }
+],
+"whenfocusedrowchanged": [
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsSelected",
+            "data": {
+                "doctype": "[this.doctype]",
+                "docno": "[this.docno]"
+            }
+        }
+    }
+],
+"whenselectionchange": [
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsSelectedDocuments",
+            "data": "[this]"
+        }
+    }
+]

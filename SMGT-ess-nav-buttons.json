@@ -1,0 +1,230 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "class": "generalNavTabBg",
+            "item": true,
+            "container": true,
+            "xs": 12,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.all(iffalse)raw.none]",
+                    "alignItems": "center"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsNew_ENTRY_BTN.newButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsEdit_ENTRY_BTN.editButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsDelete_ENTRY_BTN.deleteButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsProc_ENTRY_BTN.proclist]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsResult_ENTRY_BTN.resultlist]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsPrint_ENTRY_BTN.printlistItems]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsAttach_ENTRY_BTN.attachlistItems]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsApprove_ENTRY_BTN.approveButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsWFHistory_ENTRY_BTN.wfhistoryButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "div",
+                "props": {
+                    "style": {
+                        "justifyContent": "center",
+                        "display": "flex"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "view",
+                        "props": {
+                            "includerefdata": true,
+                            "contenttype": "json",
+                            "binding": true,
+                            "content": "[DsWFOptions_ENTRY_BTN.approveOptButton]",
+                            "style": {}
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]

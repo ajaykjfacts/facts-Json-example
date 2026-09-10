@@ -1,0 +1,34 @@
+[
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsScrollingOptions",
+            "data": [
+                {
+                    "code": "0",
+                    "description": "All Documents"
+                },
+                {
+                    "code": "3",
+                    "description": "None"
+                },
+                {
+                    "code": "1",
+                    "description": "Users Created only"
+                },
+                {
+                    "code": "2",
+                    "description": "Roles Created only"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdatasetfield",
+        "args": {
+            "dset": "DsFrmPhoto",
+            "fieldname": "filecontent",
+            "data": "[DsFrmHeaderEntry.photo]"
+        }
+    }
+]

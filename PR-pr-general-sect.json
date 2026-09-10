@@ -1,0 +1,1631 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+                    "padding": "5px",
+                    "display": "block"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "container": true,
+                    "xs": 12
+                },
+                "chld": [
+                    {
+                        "type": "hide",
+                        "props": {
+                            "appendprops": {
+                                "xsUp": "[dsDocumentMaster.showDocno(neq)raw.1]"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 4,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Doc#",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "entry",
+                                                        "props": {
+                                                            "label": "",
+                                                            "disabled": true,
+                                                            "className": "small-ctr",
+                                                            "fullWidth": true,
+                                                            "variant": "outlined",
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "PRQ_DOCNO"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 4,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Doc. Date",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "dtpick",
+                                                "props": {
+                                                    "label": "",
+                                                    "format": "dd-MM-yyyy",
+                                                    "disabled": true,
+                                                    "className": "small-ctr",
+                                                    "fullWidth": true,
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "PRQ_DOCDATE"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 4,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Division *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv",
+                                            "style": {
+                                                "flex-direction": "column",
+                                                "align-items": "start"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "DivnDesc",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "validation": {
+                                                        "for": "text",
+                                                        "msg": "Please fill the field",
+                                                        "validationParams": {
+                                                            "minLength": 3
+                                                        }
+                                                    },
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "PRQ_DIVN_DOCNO": "",
+                                                                            "DivnDesc": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PRDIV",
+                                                                    "commontype": "manual",
+                                                                    "title": "Division",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "PRQ_DIVN_DOCTYPE",
+                                                                    "codefield": "PRQ_DIVN_DOCNO",
+                                                                    "descfield": "DivnDesc"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 4,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Location *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv",
+                                            "style": {
+                                                "flex-direction": "column",
+                                                "align-items": "start"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "LocDesc",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "validation": {
+                                                        "for": "text",
+                                                        "msg": "Please fill the field",
+                                                        "validationParams": {
+                                                            "minLength": 3
+                                                        }
+                                                    },
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "PRQ_LOCATION_DOCNO": "",
+                                                                            "LocDesc": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PRUSRLOC",
+                                                                    "commontype": "manual",
+                                                                    "title": "Location",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "PRQ_LOCATION_DOCTYPE",
+                                                                    "codefield": "PRQ_LOCATION_DOCNO",
+                                                                    "descfield": "LocDesc"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 4,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "resolveprops": true,
+                                                    "text": "[raw.[dsCompanyParameters.SMANCAPTION] *]",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv",
+                                            "style": {
+                                                "flex-direction": "column",
+                                                "align-items": "start"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "SmanDesc",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "validation": {
+                                                        "for": "text",
+                                                        "msg": "Please fill the field",
+                                                        "validationParams": {
+                                                            "minLength": 3
+                                                        }
+                                                    },
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "PRQ_REQUESTED_DOCNO": "",
+                                                                            "SmanDesc": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PRSMAN",
+                                                                    "commontype": "manual",
+                                                                    "title": "Staff",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "PRQ_SMAN_DOCTYPE",
+                                                                    "codefield": "PRQ_REQUESTED_DOCNO",
+                                                                    "descfield": "SmanDesc"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 4,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Requisition Type *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "PRQ_REQ_TYPE_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "PRQ_REQUESTED_DOCNO": "",
+                                                                            "PRQ_REQ_TYPE_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PRPRQT",
+                                                                    "commontype": "manual",
+                                                                    "title": "Requisition Type",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "PRQ_REQ_TYPE_DOCTYPE",
+                                                                    "codefield": "PRQ_REQUESTED_DOCNO",
+                                                                    "descfield": "PRQ_REQ_TYPE_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "md": 4,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Priority *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lkup",
+                                                "props": {
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "required": true,
+                                                    "bind": "PRQ_PRIORITY_DESC",
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "icon": "search",
+                                                    "icons": {
+                                                        "notempty": {
+                                                            "icon": "close",
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "PRQ_PRIORITY_DOCNO": "",
+                                                                            "PRQ_PRIORITY_DESC": ""
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    "whenclick": [
+                                                        {
+                                                            "exec": "setdataset",
+                                                            "args": {
+                                                                "dset": "dslist",
+                                                                "data": {
+                                                                    "listtype": "PRPROR",
+                                                                    "commontype": "manual",
+                                                                    "title": "Priority Master",
+                                                                    "dataset": "DsFrmHeaderEntry",
+                                                                    "section": "Alltype",
+                                                                    "doctypefield": "PRQ_PRIORITY_DOCTYPE",
+                                                                    "codefield": "PRQ_PRIORITY_DOCNO",
+                                                                    "descfield": "PRQ_PRIORITY_DESC"
+                                                                }
+                                                            }
+                                                        },
+                                                        {
+                                                            "exec": "filldataset",
+                                                            "args": {
+                                                                "proc": "PWA.LoadLayout",
+                                                                "column": "layoutinfo",
+                                                                "dset": "popupinfo",
+                                                                "section": "Alltype",
+                                                                "args": {
+                                                                    "doctype": "popup",
+                                                                    "docno": "lookup"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "md": 4,
+                            "xs": 12,
+                            "style": {
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Required before",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "dtpick",
+                                                "props": {
+                                                    "label": "",
+                                                    "format": "dd-MM-yyyy",
+                                                    "className": "small-ctr",
+                                                    "fullWidth": true,
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "style": {
+                                                            "padding": "5px"
+                                                        }
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "PRQ_REQ_DATE"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "hide",
+                        "props": {
+                            "appendprops": {
+                                "xsUp": "[dsDocumentMaster.DM_PREVIOUS_DOCTYPE(ifnull)raw.(eq)raw.]"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "container": true,
+                                    "md": 4,
+                                    "xs": 12,
+                                    "style": {
+                                        "padding": "5px",
+                                        "display": "flex"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "view",
+                                        "props": {
+                                            "includerefdata": true,
+                                            "contenttype": "json",
+                                            "binding": true,
+                                            "content": "[_globalLayouts.fetchPreviousDoc]"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "container": true,
+                    "className": "TableParentSect",
+                    "style": {}
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "className": "TableHeaderSect",
+                            "item": true,
+                            "container": true,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 1
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": "Sr#"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 2
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": "Stock Code"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 4
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": "Stock Description"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 2
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": "Unit"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 2
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": "Quantity"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "xs": 1,
+                                    "item": true,
+                                    "className": "TableHeaderLastChildSect",
+                                    "style": {}
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {},
+                                        "chld": ""
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "style": {}
+                        },
+                        "chld": [
+                            {
+                                "type": "list",
+                                "props": {
+                                    "datasets": [
+                                        "DsFrmDetails1"
+                                    ],
+                                    "watch": [
+                                        "DsFrmHeaderEntry",
+                                        "DsFrmDetails1"
+                                    ],
+                                    "filtermode": "contains",
+                                    "filterignorecase": true,
+                                    "satisfy": "any",
+                                    "className": "TableListSect facts-input-list",
+                                    "content": {
+                                        "template": "custom",
+                                        "props": {
+                                            "resolvestyles": true,
+                                            "style": {}
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "container": true,
+                                                    "style": {},
+                                                    "resolveprops": true,
+                                                    "includerefdata": true,
+                                                    "className": "[raw.facts-row-[this.row_error]]"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 1
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.PRQDET_DOCSRNO]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 2
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "lkup",
+                                                                "props": {
+                                                                    "dset": "DsFrmDetails1",
+                                                                    "bind": "PRQDET_STOCK_DOCNO",
+                                                                    "variant": "outlined",
+                                                                    "className": "small-ctr",
+                                                                    "resolveprops": true,
+                                                                    "label": "",
+                                                                    "fullWidth": true,
+                                                                    "rowindex": "[this.propkey]",
+                                                                    "icon": "search",
+                                                                    "includerefdata": true,
+                                                                    "icons": {
+                                                                        "notempty": {
+                                                                            "icon": "close",
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "mergedatasetarray",
+                                                                                    "args": {
+                                                                                        "dset": "DsFrmDetails1",
+                                                                                        "index": "[this.propkey]",
+                                                                                        "data": {
+                                                                                            "PRQDET_STOCK_DOCNO": "",
+                                                                                            "PRQDET_STOCK_DESC": ""
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "setdataset",
+                                                                            "args": {
+                                                                                "nodeepprocess": true,
+                                                                                "dset": "customevents",
+                                                                                "data": [
+                                                                                    {
+                                                                                        "exec": "filldataset",
+                                                                                        "args": {
+                                                                                            "proc": "INV.PR_Onchange",
+                                                                                            "row": 0,
+                                                                                            "dset": "dsPROnchange",
+                                                                                            "args": {
+                                                                                                "strXmlDetails": "[DsFrmDetails1.[dslist.rowindex]]"
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "mergedatasetarray",
+                                                                                        "args": {
+                                                                                            "dset": "DsFrmDetails1",
+                                                                                            "index": "[dslist.rowindex]",
+                                                                                            "data": "[dsPROnchange]"
+                                                                                        }
+                                                                                    },
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "customevents",
+                                                                                            "data": null
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "exec": "setdataset",
+                                                                            "args": {
+                                                                                "dset": "dslist",
+                                                                                "data": {
+                                                                                    "listtype": "PRSMGT",
+                                                                                    "commontype": "manual",
+                                                                                    "title": "Stock Master",
+                                                                                    "rowindex": "[this.propkey]",
+                                                                                    "calledFrom": "list",
+                                                                                    "dataset": "DsFrmDetails1",
+                                                                                    "section": "Alltype",
+                                                                                    "doctypefield": "PRQDET_STOCK_DOCTYPE",
+                                                                                    "codefield": "PRQDET_STOCK_DOCNO",
+                                                                                    "descfield": "PRQDET_STOCK_DESC"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "exec": "filldataset",
+                                                                            "args": {
+                                                                                "proc": "PWA.LoadLayout",
+                                                                                "column": "layoutinfo",
+                                                                                "dset": "popupinfo",
+                                                                                "section": "Alltype",
+                                                                                "args": {
+                                                                                    "doctype": "popup",
+                                                                                    "docno": "lookup"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 4
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.PRQDET_STOCK_DESC]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 2
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.PRQDET_UNIT_DOCNO]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "style": {},
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 2
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxnumberbox",
+                                                                "props": {
+                                                                    "dset": "DsFrmDetails1",
+                                                                    "className": "small-ctr",
+                                                                    "fullWidth": true,
+                                                                    "format": "##,###.00",
+                                                                    "variant": "outlined",
+                                                                    "includerefdata": true,
+                                                                    "rowindex": "[this.propkey]",
+                                                                    "bind": "PRQDET_QTY",
+                                                                    "whenchange": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "PRQ_TOTAL_QTY": "[DsFrmDetails1(listsum)raw.PRQDET_QTY]"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentLastChildSect",
+                                                            "xs": 1,
+                                                            "style": {
+                                                                "display": "flex",
+                                                                "justifyContent": "space-around"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "hide",
+                                                                "props": {
+                                                                    "appendprops": {
+                                                                        "xsUp": "[dsPagemode.pagemode(eq)raw.view]"
+                                                                    }
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "icbtn",
+                                                                        "props": {
+                                                                            "color": "primary",
+                                                                            "includerefdata": true,
+                                                                            "className": "facts-icon-color--delete",
+                                                                            "style": {
+                                                                                "fontSize": "1.3rem"
+                                                                            },
+                                                                            "whenclick": [
+                                                                                {
+                                                                                    "exec": "showloader"
+                                                                                },
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dscurListIndex",
+                                                                                        "data": "[this.propkey]"
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "exec": "setdataset",
+                                                                                    "args": {
+                                                                                        "dset": "dialoginfo",
+                                                                                        "data": {
+                                                                                            "open": true,
+                                                                                            "title": "Delete",
+                                                                                            "description": "Delete this Item?",
+                                                                                            "btn1": {
+                                                                                                "chld": "YES",
+                                                                                                "props": {
+                                                                                                    "whenclick": [
+                                                                                                        {
+                                                                                                            "exec": "validatedataset",
+                                                                                                            "verify": {
+                                                                                                                "satisfy": "any",
+                                                                                                                "halton": "match",
+                                                                                                                "ref": {
+                                                                                                                    "[DsFrmDetails1(listcount)(>)raw.1]": true
+                                                                                                                },
+                                                                                                                "whenunmatch": [
+                                                                                                                    {
+                                                                                                                        "exec": "setdataset",
+                                                                                                                        "args": {
+                                                                                                                            "dset": "snackinfo",
+                                                                                                                            "data": {
+                                                                                                                                "open": true,
+                                                                                                                                "type": "error",
+                                                                                                                                "message": "Atleast one details is required"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                ],
+                                                                                                                "whenmatch": [
+                                                                                                                    {
+                                                                                                                        "exec": "mergedatasetarray",
+                                                                                                                        "args": {
+                                                                                                                            "dset": "DsFrmDetails1",
+                                                                                                                            "index": "[this.propkey]",
+                                                                                                                            "data": null
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            }
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            },
+                                                                                            "btn2": {
+                                                                                                "chld": "NO"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        "chld": "delete"
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "hide",
+                                                        "props": {
+                                                            "includerefdata": true,
+                                                            "appendprops": {
+                                                                "xsUp": "[this.row_error(ifnull)raw.(eq)raw.]"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "div",
+                                                                "props": {
+                                                                    "resolveprops": true,
+                                                                    "className": "[raw.facts-[this.row_error]-message]"
+                                                                },
+                                                                "chld": [
+                                                                    {
+                                                                        "type": "div",
+                                                                        "props": {
+                                                                            "style": {
+                                                                                "width": "auto"
+                                                                            }
+                                                                        },
+                                                                        "chld": [
+                                                                            {
+                                                                                "type": "span",
+                                                                                "props": {},
+                                                                                "chld": "[raw.* [this.row_error_message]]"
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                ]
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "hide",
+                "props": {
+                    "appendprops": {
+                        "xsUp": "[dsPagemode.pagemode(eq)raw.view]"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "item": true,
+                        "props": {
+                            "style": {
+                                "padding": "5px"
+                            },
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "btn",
+                                "props": {
+                                    "variant": "inherit",
+                                    "color": "primary",
+                                    "size": "small",
+                                    "className": "tableAddRowBtn",
+                                    "style": {
+                                        "float": "right"
+                                    },
+                                    "whenclick": [
+                                        {
+                                            "exec": "validatedataset",
+                                            "verify": {
+                                                "satisfy": "any",
+                                                "halton": "match",
+                                                "ref": {
+                                                    "[DsFrmDetails1(listfilter)raw.PRQDET_STOCK_DOCNO=>[func.null](listcount)(>)raw.0]": true,
+                                                    "[DsFrmDetails1(listfilter)raw.PRQDET_STOCK_DOCNO=>raw.(listcount)(>)raw.0]": true
+                                                },
+                                                "whenmatch": [
+                                                    {
+                                                        "exec": "setdataset",
+                                                        "args": {
+                                                            "dset": "snackinfo",
+                                                            "data": {
+                                                                "open": true,
+                                                                "type": "error",
+                                                                "message": "Please select the Stock Code"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "exec": "validatedataset",
+                                            "verify": {
+                                                "satisfy": "any",
+                                                "halton": "match",
+                                                "ref": {
+                                                    "[DsFrmDetails1.[DsFrmDetails1(listcount)(-)raw.1].PRQDET_STOCK_DOCNO(ifnull)raw.(eq)raw.]": true
+                                                },
+                                                "whenmatch": [
+                                                    {
+                                                        "exec": "setdataset",
+                                                        "args": {
+                                                            "dset": "snackinfo",
+                                                            "data": {
+                                                                "open": true,
+                                                                "type": "error",
+                                                                "message": "Please select the Stock Code"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "exec": "validatedataset",
+                                            "verify": {
+                                                "satisfy": "any",
+                                                "halton": "match",
+                                                "ref": {
+                                                    "[DsFrmDetails1.[DsFrmDetails1(listcount)(-)raw.1].PRQDET_QTY(ifnull)raw.0(eq)raw.0]": true
+                                                },
+                                                "whenmatch": [
+                                                    {
+                                                        "exec": "setdataset",
+                                                        "args": {
+                                                            "dset": "snackinfo",
+                                                            "data": {
+                                                                "open": true,
+                                                                "type": "error",
+                                                                "message": "Quantity cannot be zero"
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        },
+                                        {
+                                            "exec": "mergedatasetarray",
+                                            "args": {
+                                                "dset": "DsFrmDetails1",
+                                                "data": {
+                                                    "PRQDET_DOCSRNO": "[DsFrmDetails1(listcount)(+)raw.1(numformat)raw.0]"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "style": {
+                                                "height": "100%",
+                                                "display": "flex",
+                                                "alignItems": "center"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "icon",
+                                                "props": {
+                                                    "className": "tableAddRowBtnIcon"
+                                                },
+                                                "chld": "add"
+                                            },
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "className": "tableAddRowBtnLbl",
+                                                    "text": "Add New Row"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "container": true,
+                    "style": {
+                        "display": "flex",
+                        "justifyContent": "end",
+                        "padding": "5px"
+                    },
+                    "xs": 12
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "style": {
+                                "display": "flex",
+                                "padding": 0,
+                                "alignItems": "start"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Total Qty",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "dxnumberbox",
+                                        "props": {
+                                            "dset": "DsFrmHeaderEntry",
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "resolveprops": true,
+                                            "resolvestyles": true,
+                                            "disabled": true,
+                                            "style": {
+                                                "width": "100px"
+                                            },
+                                            "inputProps": {
+                                                "style": {
+                                                    "fontWeight": "bold"
+                                                }
+                                            },
+                                            "className": "small-ctr",
+                                            "variant": "outlined",
+                                            "includerefdata": true,
+                                            "bind": "PRQ_TOTAL_QTY"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "style": {
+                        "padding": "5px"
+                    },
+                    "md": 12,
+                    "xs": 12
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Delivery At",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "rows": 2,
+                                            "multiline": true,
+                                            "className": "small-ctr",
+                                            "fullWidth": true,
+                                            "variant": "outlined",
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "PRQ_DELIVARY_AT"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "style": {
+                        "padding": "5px"
+                    },
+                    "md": 12,
+                    "xs": 12
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Remarks",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "rows": 3,
+                                            "multiline": true,
+                                            "className": "small-ctr",
+                                            "fullWidth": true,
+                                            "variant": "outlined",
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "PRQ_NARRATION"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

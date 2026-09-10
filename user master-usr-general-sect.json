@@ -1,0 +1,1242 @@
+{
+    "title": "Dashboard",
+    "newid": "$$DBNEWID$$",
+    "whenload": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.SelfCards",
+                "dset": "dsCardSelf"
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.LoadDashLayout",
+                "dsets": [
+                    {
+                        "name": "dsTblPODelayLayout",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsTblPODelayData",
+                        "table": "Table1"
+                    }
+                ],
+                "args": {
+                    "doctype": "DBLR",
+                    "docno": "213"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.empLeaveData",
+                "dset": "absentList"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.getReminder",
+                "row": 0,
+                "dset": "DsReminder2"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.GetAnnouncement",
+                "row": 0,
+                "dset": "DsAnnouncement"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.getDutyRoster",
+                "dset": "dsDutyRoster"
+            }
+        },
+        {
+            "exec": "mergedataset",
+            "args": {
+                "dset": "dsdayevent",
+                "data": "[dsFrmHeader]"
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.getTeamMembers",
+                "dset": "dsTeamMembers"
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "wfFilterButtonProps",
+                "data": {
+                    "btnRT": {
+                        "variant": "contained"
+                    },
+                    "APPR_STATUS": "RT"
+                }
+            }
+        }
+    ],
+    "wheninit": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.ChangePasswordOnLogin",
+                "row": 0,
+                "dset": "DsChangePassword"
+            }
+        },
+        {
+            "exec": "validatedataset",
+            "verify": {
+                "satisfy": "any",
+                "ref": {
+                    "[DsChangePassword.ChangePassword(eq)raw.1]": true
+                },
+                "whenmatch": [
+                    {
+                        "exec": "setdataset",
+                        "args": {
+                            "dset": "dspassword",
+                            "data": {}
+                        }
+                    },
+                    {
+                        "exec": "filldataset",
+                        "args": {
+                            "proc": "PWA.LoadLayout",
+                            "column": "layoutinfo",
+                            "dset": "popupinfo",
+                            "section": "changepassword",
+                            "args": {
+                                "doctype": "popup",
+                                "docno": "change-password"
+                            }
+                        }
+                    }
+                ]
+            }
+        }
+    ],
+    "appbar": {
+        "title": "Dashboard",
+        "chld": "[_pageparts.appbar-icons]"
+    },
+    "style": {
+        "backgroundColor": "whitesmoke"
+    },
+    "pageheader": [],
+    "pagefooter": {},
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true,
+                "className": "facts-wrapper"
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "className": "facts-db-card__bottom",
+                        "xs": 12,
+                        "md": 4
+                    },
+                    "chld": [
+                        {
+                            "type": "list",
+                            "props": {
+                                "className": "facts-hr-card facts-cursor facts-hr-card--right",
+                                "datasets": [
+                                    "dsCardSelf"
+                                ],
+                                "content": {
+                                    "template": "custom",
+                                    "props": {
+                                        "className": "facts-db-1",
+                                        "whenclick": "[this.CARD_EVENT]"
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "facts-db-card__approval"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "resolvestyles": true,
+                                                        "className": "facts-db-card__approval--icon",
+                                                        "style": {
+                                                            "color": "[this.CARD_COLOR]"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "icon",
+                                                            "props": {
+                                                                "className": "facts-db-4"
+                                                            },
+                                                            "chld": "[this.CARD_ICON]"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "resolvestyles": true,
+                                                        "className": "facts-hr-card__approvals-count"
+                                                    },
+                                                    "chld": "[this.CARD_VALUE]"
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "facts-hr-card__check--text-subtitle"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "span",
+                                                            "props": {
+                                                                "className": "facts-db-7"
+                                                            },
+                                                            "chld": "[this.CARD_TITLE]"
+                                                        },
+                                                        {
+                                                            "type": "span",
+                                                            "props": {
+                                                                "resolvestyles": true,
+                                                                "className": "facts-db-8"
+                                                            },
+                                                            "chld": "[this.CARD_SUBTITLE]"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "md": 4,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "className": "facts-hr-card facts-hr-card--right"
+                            },
+                            "chld": [
+                                {
+                                    "type": "div",
+                                    "props": {
+                                        "className": "facts-hr-db-13"
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "container": true
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "xs": 12,
+                                                        "className": "facts-hr-db-14"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "className": "facts-hr-db-15 facts-hr-db-remainders"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "span",
+                                                                    "props": {
+                                                                        "className": "facts-hr-db-16"
+                                                                    },
+                                                                    "chld": "Reminders"
+                                                                },
+                                                                {
+                                                                    "type": "icbtn",
+                                                                    "props": {
+                                                                        "size": "large",
+                                                                        "className": "facts-hr-db-17"
+                                                                    },
+                                                                    "chld": "notifications_active"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": "true",
+                                                        "xs": 12
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "0px 10px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "view",
+                                                                    "props": {
+                                                                        "includerefdata": true,
+                                                                        "style": {},
+                                                                        "contenttype": "html",
+                                                                        "binding": true,
+                                                                        "content": "[DsReminder.HTMLDATA(ifnull)raw.]"
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "md": 4,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "hide",
+                            "props": {
+                                "className": "facts-hr-card",
+                                "appendprops": {
+                                    "xsUp": true
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "div",
+                                    "props": {
+                                        "style": {
+                                            "textAlign": "center",
+                                            "padding": "10px",
+                                            "backgroundColor": "white",
+                                            "boxShadow": "1px 1px 2px silver",
+                                            "borderRadius": "10px",
+                                            "margin": "10px 10px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "container": true
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "md": 6,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "alignSelf": "center"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "imgr",
+                                                            "props": {
+                                                                "staticimage": true,
+                                                                "src": "[raw.data:image/png;base64,(joinstr)_userinfo.userimage]",
+                                                                "alt": "User Image",
+                                                                "style": {
+                                                                    "width": "120px",
+                                                                    "border": "1px solid gainsboro",
+                                                                    "borderRadius": "50%"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "md": 6,
+                                                        "xs": 12,
+                                                        "style": {
+                                                            "alignSelf": "center"
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "style": {
+                                                                    "paddingTop": "15px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "span",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "fontWeight": "bold",
+                                                                            "color": "#0c024a"
+                                                                        }
+                                                                    },
+                                                                    "chld": "[_userinfo.username]"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "style": {}
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "span",
+                                                                    "props": {
+                                                                        "style": {}
+                                                                    },
+                                                                    "chld": "[_userinfo.userdesig]"
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "div",
+                                                            "props": {
+                                                                "style": {}
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "span",
+                                                                    "props": {
+                                                                        "style": {
+                                                                            "textTransform": "uppercase"
+                                                                        }
+                                                                    },
+                                                                    "chld": "[_userinfo.userdept]"
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "click",
+                            "props": {
+                                "xs": 12,
+                                "includerefdata": true,
+                                "resolveprops": true,
+                                "resolvestyles": true,
+                                "className": "facts-hr-card facts-cursor",
+                                "style": {},
+                                "whenclick": [
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "dset": "pageinfo",
+                                            "column": "layoutinfo",
+                                            "args": {
+                                                "doctype": "page",
+                                                "docno": "staff-checkinout-entry"
+                                            }
+                                        }
+                                    }
+                                ]
+                            },
+                            "chld": [
+                                {
+                                    "type": "div",
+                                    "props": {},
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "resolvestyles": true,
+                                                "className": "facts-hr-card__check"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "icon",
+                                                    "props": {
+                                                        "className": "facts-hr-card__check--icon"
+                                                    },
+                                                    "chld": "fingerprint"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "style": {
+                                                    "className": "facts-hr-card__check--text"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "span",
+                                                    "props": {
+                                                        "className": "facts-hr-card__check--text-main"
+                                                    },
+                                                    "chld": "Check-In/Out"
+                                                },
+                                                {
+                                                    "type": "span",
+                                                    "props": {
+                                                        "resolvestyles": true,
+                                                        "className": "facts-hr-card__check--text-subtitle"
+                                                    },
+                                                    "chld": "Click here to check-in/out"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "md": 6,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "className": "facts-hr-card--right"
+                            },
+                            "chld": [
+                                {
+                                    "type": "expanel",
+                                    "props": {
+                                        "title": "My Team",
+                                        "expanded": true,
+                                        "className": "facts-hr-card facts-hr-card--accordian"
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "container": true,
+                                                "xs": 12,
+                                                "style": {
+                                                    "padding": "0px 10px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12,
+                                                        "style": {}
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "btngroup",
+                                                            "props": {
+                                                                "style": {
+                                                                    "display": "grid !important"
+                                                                },
+                                                                "fullWidth": true,
+                                                                "color": "primary"
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 6
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "btn",
+                                                                            "props": {
+                                                                                "fullWidth": true,
+                                                                                "appendprops": "[wfFilterButtonProps.btnRT]",
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "wfFilterButtonProps",
+                                                                                            "data": {
+                                                                                                "btnRT": {
+                                                                                                    "variant": "contained"
+                                                                                                },
+                                                                                                "APPR_STATUS": "RT"
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "chld": "Reporting To"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "xs": 6
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "btn",
+                                                                            "props": {
+                                                                                "fullWidth": true,
+                                                                                "appendprops": "[wfFilterButtonProps.btnMT]",
+                                                                                "whenclick": [
+                                                                                    {
+                                                                                        "exec": "setdataset",
+                                                                                        "args": {
+                                                                                            "dset": "wfFilterButtonProps",
+                                                                                            "data": {
+                                                                                                "btnMT": {
+                                                                                                    "variant": "contained"
+                                                                                                },
+                                                                                                "APPR_STATUS": ""
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                ]
+                                                                            },
+                                                                            "chld": "My team"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "height": "270px",
+                                                                    "overflow": "overlay"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "list",
+                                                                    "props": {
+                                                                        "filtermode": "contains",
+                                                                        "filterignorecase": true,
+                                                                        "satisfy": "every",
+                                                                        "watch": [
+                                                                            "dsTeamMembers",
+                                                                            "wfFilterButtonProps"
+                                                                        ],
+                                                                        "filterto": {
+                                                                            "[this.Group_Head(ifnull)raw.]": "[wfFilterButtonProps.APPR_STATUS(ifnull)raw.]"
+                                                                        },
+                                                                        "datasets": [
+                                                                            "dsTeamMembers"
+                                                                        ],
+                                                                        "content": {
+                                                                            "template": "custom",
+                                                                            "props": {
+                                                                                "style": {
+                                                                                    "border": "1px solid gainsboro",
+                                                                                    "padding": "10px"
+                                                                                }
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "container": true
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "container": true,
+                                                                                                "style": {
+                                                                                                    "padding": "5px",
+                                                                                                    "display": "flex",
+                                                                                                    "justifyContent": "center"
+                                                                                                },
+                                                                                                "xs": 2
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "resolvestyles": true,
+                                                                                                        "style": {
+                                                                                                            "marginTop": "5px",
+                                                                                                            "alignItems": "center",
+                                                                                                            "display": "flex",
+                                                                                                            "border": "[this.Group_Head(eq)raw.Reporting To (iftrue)raw.2px solid #0c024a]",
+                                                                                                            "borderRadius": "50%"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "favatar",
+                                                                                                            "props": {
+                                                                                                                "includerefdata": true,
+                                                                                                                "image": "[this.PHOTO]",
+                                                                                                                "style": {
+                                                                                                                    "backgroundColor": "#c0d6e4",
+                                                                                                                    "width": "40px",
+                                                                                                                    "height": "40px"
+                                                                                                                }
+                                                                                                            }
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "container": true,
+                                                                                                "style": {
+                                                                                                    "paddingLeft": "10px"
+                                                                                                },
+                                                                                                "xs": 10
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "style": {
+                                                                                                            "display": "flex"
+                                                                                                        },
+                                                                                                        "xs": 10
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "style": {
+                                                                                                                    "color": "#0c024a",
+                                                                                                                    "textAlign": "left",
+                                                                                                                    "display": "flex",
+                                                                                                                    "alignItems": "center",
+                                                                                                                    "width": "100%"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "lbl",
+                                                                                                                    "props": {
+                                                                                                                        "resolveprops": true,
+                                                                                                                        "style": {
+                                                                                                                            "paddingRight": "10px",
+                                                                                                                            "fontWeight": "bold",
+                                                                                                                            "fontSize": "medium"
+                                                                                                                        },
+                                                                                                                        "text": "[this.NAMES]"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "md": 6,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true
+                            },
+                            "chld": [
+                                {
+                                    "type": "div",
+                                    "props": {
+                                        "className": ""
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {},
+                                            "chld": [
+                                                {
+                                                    "type": "expanel",
+                                                    "props": {
+                                                        "title": "Announcements",
+                                                        "expanded": true,
+                                                        "className": "facts-hr-card facts-hr-card--accordian"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "view",
+                                                            "props": {
+                                                                "includerefdata": true,
+                                                                "style": {
+                                                                    "height": "305px"
+                                                                },
+                                                                "contenttype": "html",
+                                                                "binding": true,
+                                                                "content": "[DsAnnouncement.HTMLDATA(ifnull)raw.]"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "expanel",
+                            "props": {
+                                "title": "PO Delayed to GRN",
+                                "expanded": false,
+                                "className": "facts-hr-card facts-hr-card--accordian"
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "xs": 12,
+                                        "className": "facts-db-hr-card__table",
+                                        "style": {
+                                            "height": "400px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "ftbl",
+                                            "props": {
+                                                "includerefdata": true,
+                                                "layout": "[dsTblPODelayLayout]",
+                                                "data": "[dsTblPODelayData]",
+                                                "tableStyle": {
+                                                    "minWidth": "600px"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "includerefdata": true,
+                        "item": true,
+                        "xs": 12,
+                        "md": 12,
+                        "className": "facts-db-card__bottom"
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "xs": 12,
+                                "item": true,
+                                "className": ""
+                            },
+                            "chld": [
+                                {
+                                    "type": "expanel",
+                                    "props": {
+                                        "title": "Employee(s) on Leave today/ upcoming day",
+                                        "expanded": false,
+                                        "className": "facts-hr-card facts-hr-card--accordian"
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "sect",
+                                            "props": {
+                                                "item": true,
+                                                "xs": 12,
+                                                "style": {
+                                                    "height": "400px",
+                                                    "overflow": "overlay"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "list",
+                                                    "props": {
+                                                        "datasets": [
+                                                            "absentList"
+                                                        ],
+                                                        "content": {
+                                                            "template": "custom",
+                                                            "props": {
+                                                                "style": {
+                                                                    "border": "1px solid gainsboro",
+                                                                    "padding": "10px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "container": true
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "container": true,
+                                                                                "item": true,
+                                                                                "xs": 2,
+                                                                                "style": {
+                                                                                    "padding": "5px",
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "center"
+                                                                                }
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {
+                                                                                            "marginTop": "5px",
+                                                                                            "alignItems": "center",
+                                                                                            "display": "flex"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "favatar",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "image": "[this.photourl]",
+                                                                                                "style": {
+                                                                                                    "backgroundColor": "#c0d6e4",
+                                                                                                    "width": "40px",
+                                                                                                    "height": "40px"
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "container": true,
+                                                                                "item": true,
+                                                                                "style": {
+                                                                                    "paddingLeft": "10px"
+                                                                                },
+                                                                                "xs": 10
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {
+                                                                                            "display": "flex"
+                                                                                        },
+                                                                                        "xs": 12
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "div",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "color": "#3E72C7",
+                                                                                                    "textAlign": "left",
+                                                                                                    "width": "100%"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "color": "#3E72C7",
+                                                                                                            "paddingRight": "10px",
+                                                                                                            "fontWeight": "bold",
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.emp_name]"
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "div",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "fontSize": "x-small"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "color": "#008000"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.leave_days(joinstr)raw. day(s)]"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "xs": 12
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "div",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "textAlign": "left"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "paddingRight": "5px",
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[raw.Resuming back in :]"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "color": "#008000"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.resumein]"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": " Days"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "paddingLeft": "5px",
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[raw.((joinstr)this.leave_to(joinstr)raw.)]"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "xs": 12
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "div",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "textAlign": "left"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "paddingRight": "10px",
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "Leave Reason :"
+                                                                                                },
+                                                                                                {
+                                                                                                    "type": "span",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "fontSize": "small"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": "[this.leave_reason]"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "xs": 12
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "paddingRight": "10px",
+                                                                                                    "fontSize": "small"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "Leave Days: "
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "fontSize": "small"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "[this.leave_from]"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "fontSize": "small",
+                                                                                                    "paddingLeft": "5px",
+                                                                                                    "paddingRight": "5px"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "to"
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "span",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "fontSize": "small"
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": "[this.leave_to]"
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

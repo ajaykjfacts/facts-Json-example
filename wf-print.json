@@ -1,0 +1,495 @@
+{
+  "title": "First In / Last Out Report",
+  "wheninit": [
+    {
+      "exec": "setdataset",
+      "args": {
+        "dset": "dsListSignType",
+        "data": [
+          {
+            "description": "Staff",
+            "code": "EMP"
+          },
+          {
+            "description": "Student",
+            "code": "STUD"
+          }
+        ]
+      }
+    },
+    {
+      "exec": "setdataset",
+      "args": {
+        "dset": "DsFrmHeaderEntry",
+        "data": {
+          "ATTENDANCE_TO_DATE": "[func.today(dtformatntz)raw.yyyy-MM-dd HH:mm:ss]",
+          "ATTENDANCE_TYPE": "EMP",
+          "ATTENDANCE_FROM_DATE": "[func.today(dtformatntz)raw.yyyy-MM-dd HH:mm:ss]"
+        }
+      }
+    },
+    {
+      "exec": "fillmultidataset",
+      "args": {
+        "proc": "PWA.Swipe_Data_Pivot",
+        "dsets": [
+          {
+            "name": "DsSwipwData",
+            "table": "Table"
+          }
+        ],
+        "args": {}
+      }
+    }
+  ],
+  "whenload": [
+    {
+      "exec": "filldataset",
+      "args": {
+        "proc": "PWA.GetSessionId",
+        "row": 0,
+        "dset": "DsSessionId"
+      }
+    }
+  ],
+  "style": {
+    "background": "#f3f6fa",
+    "minHeight": "100%"
+  },
+  "globalsearchfield": {},
+  "appbar": {
+    "titlepart": "[_titleparts.title-desc]",
+    "props": {
+      "className": "factsAppBarTitle factsReportAppBar",
+      "style": {
+        "width": "100%",
+        "fontWeight": "600",
+        "letterSpacing": "0.1px"
+      }
+    },
+    "chld": "[_pageparts.appbar-icons]"
+  },
+  "layout": [
+    {
+      "type": "sect",
+      "props": {
+        "container": true,
+        "item": true,
+        "className": "facts-pivot-dashboard__page facts-pivot-dashboard__sect facts-attendace-pivot",
+        "resolvestyles": true,
+        "md": 12,
+        "xs": 12,
+        "style": {
+          "padding": "8px 10px",
+          "background": "#f4f6f8",
+          "minHeight": "100%"
+        }
+      },
+      "chld": [
+        {
+          "type": "sect",
+          "props": {
+            "container": true,
+            "xs": 12,
+            "style": {
+              "background": "#ffffff",
+              "border": "1px solid #d8e0e8",
+              "borderRadius": "8px",
+              "boxShadow": "0 2px 8px rgba(31,45,61,0.06)",
+              "padding": "7px 8px",
+              "marginBottom": "7px",
+              "alignItems": "center"
+            },
+            "className": "facts-pivot-dashboard__filter-toolbar facts-pivot-dashboard__sect"
+          },
+          "chld": [
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "md": 3,
+                "xs": 12,
+                "style": {
+                  "padding": "3px 6px",
+                  "alignItems": "center"
+                },
+                "className": "facts-pivot-dashboard__sect"
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "facts-pivot-dashboard__div entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "facts-pivot-dashboard__div entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "From Date",
+                            "className": "facts-pivot-dashboard__lbl facts-pivot-dashboard__from-date entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "facts-pivot-dashboard__div entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "dxdtpick",
+                          "props": {
+                            "dset": "DsFrmHeaderEntry",
+                            "bind": "ATTENDANCE_FROM_DATE",
+                            "className": "facts-pivot-dashboard__dxdtpick facts-pivot-dashboard__attendance-from-date small-ctr",
+                            "type": "date",
+                            "labelMode": "floating",
+                            "includerefdata": true,
+                            "closeOnSelect": true,
+                            "showClearButton": false,
+                            "label": "",
+                            "required": true,
+                            "inputProps": {},
+                            "whenchange": []
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "md": 3,
+                "xs": 12,
+                "style": {
+                  "padding": "3px 6px",
+                  "alignItems": "center"
+                },
+                "className": "facts-pivot-dashboard__sect"
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "className": "facts-pivot-dashboard__div entryLabelOuterDiv"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "facts-pivot-dashboard__div entryLabelDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "text": "To Date",
+                            "className": "facts-pivot-dashboard__lbl facts-pivot-dashboard__to-date entryLabel"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "type": "div",
+                      "props": {
+                        "className": "facts-pivot-dashboard__div entryValueDiv"
+                      },
+                      "chld": [
+                        {
+                          "type": "dxdtpick",
+                          "props": {
+                            "dset": "DsFrmHeaderEntry",
+                            "bind": "ATTENDANCE_TO_DATE",
+                            "className": "facts-pivot-dashboard__dxdtpick facts-pivot-dashboard__attendance-to-date small-ctr",
+                            "type": "date",
+                            "labelMode": "floating",
+                            "includerefdata": true,
+                            "closeOnSelect": true,
+                            "showClearButton": false,
+                            "label": "",
+                            "required": true,
+                            "inputProps": {},
+                            "whenchange": []
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "container": true,
+                "md": 4,
+                "xs": 12,
+                "style": {
+                  "padding": "3px 6px",
+                  "alignItems": "center"
+                },
+                "className": "facts-pivot-dashboard__sect"
+              },
+              "chld": [
+                {
+                  "type": "sect",
+                  "props": {
+                    "item": true,
+                    "md": 12,
+                    "xs": 12,
+                    "style": {
+                      "padding": "5px"
+                    },
+                    "className": "facts-pivot-dashboard__sect"
+                  },
+                  "chld": [
+                    {
+                      "type": "radio",
+                      "props": {
+                        "row": "column",
+                        "className": "facts-pivot-dashboard__radio facts-pivot-dashboard__attendance-type small-ctr",
+                        "style": {
+                          "justifyContent": "left"
+                        },
+                        "whenchange": [],
+                        "inputProps": {
+                          "style": {}
+                        },
+                        "variant": "outlined",
+                        "dset": "DsFrmHeaderEntry",
+                        "bind": "ATTENDANCE_TYPE",
+                        "listdset": "dsListSignType",
+                        "valuefield": "code",
+                        "textfield": "description",
+                        "label": "",
+                        "fullWidth": true
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": {
+                "item": true,
+                "md": 2,
+                "xs": 12,
+                "style": {
+                  "padding": "3px 6px",
+                  "alignItems": "center"
+                },
+                "className": "facts-pivot-dashboard__sect"
+              },
+              "chld": [
+                {
+                  "type": "btn",
+                  "props": {
+                    "color": "primary",
+                    "size": "small",
+                    "className": "facts-pivot-dashboard__refresh-button facts-pivot-dashboard__btn facts-pivot-dashboard__refresh",
+                    "whenclick": [
+                      {
+                        "exec": "fillmultidataset",
+                        "args": {
+                          "proc": "PWA.Swipe_Data_Pivot",
+                          "dsets": [
+                            {
+                              "name": "DsSwipwData",
+                              "table": "Table"
+                            }
+                          ],
+                          "args": {
+                            "doctype": "[pagemenuinfo.doctype]",
+                            "strXmlheader": "[DsFrmHeaderEntry]"
+                          }
+                        }
+                      }
+                    ],
+                    "style": {
+                      "minHeight": "38px",
+                      "borderRadius": "7px",
+                      "boxShadow": "0 2px 7px rgba(24,74,125,0.14)"
+                    },
+                    "title": "Refresh Report"
+                  },
+                  "chld": [
+                    {
+                      "type": "div",
+                      "props": {
+                        "style": {
+                          "height": "100%",
+                          "display": "flex",
+                          "alignItems": "center"
+                        },
+                        "className": "facts-pivot-dashboard__div"
+                      },
+                      "chld": [
+                        {
+                          "type": "icon",
+                          "props": {
+                            "className": "facts-pivot-dashboard__icon"
+                          },
+                          "chld": "sync"
+                        },
+                        {
+                          "type": "lbl",
+                          "props": {
+                            "className": "facts-pivot-dashboard__lbl facts-pivot-dashboard__refresh",
+                            "text": "Refresh"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "sect",
+          "props": {
+            "container": true,
+            "resolvestyles": true,
+            "md": 12,
+            "xs": 12,
+            "style": {
+              "overflowX": "auto",
+              "overflowY": "hidden",
+              "width": "100%",
+              "background": "#ffffff",
+              "border": "1px solid #d7dee7",
+              "borderRadius": "8px",
+              "boxShadow": "0 2px 12px rgba(30,45,65,0.07)",
+              "padding": "0",
+              "minWidth": "100%"
+            },
+            "className": "facts-pivot-dashboard__sect"
+          },
+          "chld": [
+            {
+              "type": "div",
+              "props": {
+                "style": {
+                  "position": "relative",
+                  "display": "flex",
+                  "width": "100%",
+                  "minWidth": "100%"
+                },
+                "className": "facts-pivot-dashboard__div"
+              },
+              "chld": [
+                {
+                  "type": "div",
+                  "props": {
+                    "style": {
+                      "position": "relative",
+                      "width": "100%",
+                      "minWidth": "100%"
+                    },
+                    "className": "facts-pivot-dashboard__div"
+                  },
+                  "chld": [
+                    {
+                      "type": "dxpivotgrid",
+                      "props": {
+                        "listdset": "DsSwipwData",
+                        "resolveprops": true,
+                        "height": "calc(100vh - 155px)",
+                        "width": "100%",
+                        "fieldChooser": {
+                          "enabled": false
+                        },
+                        "fieldPanel": {
+                          "visible": false
+                        },
+                        "scrolling": {
+                          "mode": "virtual",
+                          "useNative": true
+                        },
+                        "export": {
+                          "enabled": true,
+                          "fileName": "Staff_First_In_Last_Out_Report"
+                        },
+                        "showBorders": true,
+                        "showColumnHeaders": true,
+                        "showRowHeaders": true,
+                        "showColumnTotals": true,
+                        "showRowTotals": true,
+                        "showRowGrandTotals": true,
+                        "showColumnGrandTotals": true,
+                        "allowSortingBySummary": true,
+                        "allowFiltering": true,
+                        "allowExpandAll": true,
+                        "hideEmptySummaryCells": true,
+                        "fields": [
+                          {
+                            "caption": "Person Name",
+                            "dataField": "Person_Name_Id",
+                            "area": "row",
+                            "width": 220,
+                            "allowExpandAll": true,
+                            "expanded": true,
+                            "sortOrder": "asc",
+                            "sortBy": "value",
+                            "wordWrap": false
+                          },
+                          {
+                            "caption": "Days",
+                            "dataField": "sd_dd_ddd",
+                            "area": "column",
+                            "width": 88,
+                            "sortOrder": "asc",
+                            "sortBy": "none",
+                            "wordWrap": false
+                          },
+                          {
+                            "caption": "Working Hours",
+                            "dataField": "WorkingHours",
+                            "area": "data",
+                            "dataType": "number",
+                            "summaryType": "sum",
+                            "format": {
+                              "type": "fixedPoint",
+                              "precision": 2
+                            },
+                            "width": 112,
+                            "wordWrap": false
+                          }
+                        ],
+                        "loadPanel": {
+                          "enabled": true,
+                          "showIndicator": true,
+                          "showPane": true,
+                          "shading": true
+                        },
+                        "className": "facts-pivot-dashboard__report-grid facts-pivot-dashboard__dxpivotgrid facts-pivot-dashboard__report-grid facts-first-last-out-pivot facts-pivot-enterprise facts-pivot-mobile-sticky",
+                        "wordWrapEnabled": false,
+                        "elementAttr": {
+                          "class": "facts-pivot-dashboard__report-grid-element"
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

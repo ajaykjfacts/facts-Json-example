@@ -1,0 +1,984 @@
+{
+    "name": "DevExpress Grid",
+    "type": "dxgrid",
+    "props": {
+        "height": "calc( 100vh - 160px)",
+        "showGMO": {
+            "visible": true,
+            "showExport": false,
+            "showFilter": true,
+            "showGridSettings": false
+        },
+        "searchPanel": {
+            "placeholder": "Search...",
+            "visible": true,
+            "width": 160
+        },
+        "datasets": [
+            "DsFrmDetails2"
+        ],
+        "keyExpr": "propkey",
+        "watch": [],
+        "autoNavigateToFocusedRow": true,
+        "focusedRowEnabled": true,
+        "selection": {
+            "allowSelectAll": false,
+            "deferred": false,
+            "mode": "multiple",
+            "selectAllMode": "allPages",
+            "showCheckBoxesMode": "always"
+        },
+        "filterRow": {
+            "applyFilter": "auto",
+            "applyFilterText": "Apply filter",
+            "betweenEndText": "End",
+            "betweenStartText": "Start",
+            "resetOperationText": "Reset",
+            "showAllText": "",
+            "showOperationChooser": true,
+            "visible": false
+        },
+        "filterPanel": {
+            "customizeText": null,
+            "filterEnabled": true,
+            "texts": {
+                "clearFilter": "Clear",
+                "createFilter": "Create Filter",
+                "filterEnabledHint": "Enable the filter"
+            },
+            "visible": false
+        },
+        "columnChooser": {
+            "allowSearch": false,
+            "emptyPanelText": "Drag a column here to hide it",
+            "enabled": false,
+            "height": "260",
+            "mode": "dragAndDrop",
+            "searchTimeout": "500",
+            "sortOrder": "undefined",
+            "title": "Column Chooser",
+            "width": "250"
+        },
+        "headerFilter": {
+            "allowSearch": false,
+            "height": "325px",
+            "searchTimeout": "500px",
+            "texts": {
+                "exportAll": null,
+                "exportSelectedRows": null,
+                "exportTo": null
+            },
+            "visible": false,
+            "width": "252px"
+        },
+        "grouping": {
+            "allowCollapsing": true,
+            "autoExpandAll": true,
+            "contextMenuEnabled": false,
+            "expandMode": "buttonClick"
+        },
+        "groupPanel": {
+            "allowColumnDragging": true,
+            "emptyPanelText": "Drag a column header here to group by that column",
+            "visible": false
+        },
+        "export": {
+            "allowExportSelectedData": true,
+            "enabled": true,
+            "formats": "xlsx",
+            "fileName": "ExportData",
+            "texts": {
+                "exportAll": "Export all data to {0}",
+                "exportSelectedRows": "Export selected rows to {0}",
+                "exportTo": "Export"
+            }
+        },
+        "pager": {
+            "allowedPageSizes": "auto",
+            "displayMode": "compact",
+            "infoText": "Page {0} of {1} ({2} items)",
+            "showInfo": true,
+            "label": "Page Navigation",
+            "showNavigationButtons": true,
+            "showPageSizeSelector": true,
+            "visible": "auto"
+        },
+        "stateStoring": {
+            "enabled": false,
+            "type": "localStorage",
+            "storageKey": "",
+            "savingTimeout": 100
+        },
+        "width": "100%",
+        "allowColumnReordering": true,
+        "allowColumnResizing": true,
+        "columnResizingMode": "nextColumn",
+        "showColumnLines": true,
+        "showRowLines": true,
+        "showBorders": true,
+        "focusedRowIndex": null,
+        "allowSorting": true,
+        "events": {
+            "onRowClick": null,
+            "onRowDblClick": null
+        },
+        "editable": {
+            "canupdate": true,
+            "candelete": false,
+            "canadd": false
+        },
+        "columnHidingEnabled": true,
+        "summary": {
+            "calculateCustomSummary": null,
+            "groupItems": [],
+            "recalculateWhileEditing": false,
+            "skipEmptyValues": true,
+            "texts": {
+                "avg": "Avg={0}",
+                "avgOtherColumn": "Avg of {1} is {0}",
+                "count": "Count={0}",
+                "max": "Max={0}",
+                "maxOtherColumn": "Max of {1} is {0}",
+                "min": "Min={0}",
+                "minOtherColumn": "Min of {1} is {0}",
+                "sum": "Sum={0}",
+                "sumOtherColumn": "Sum of {1} is {0}"
+            },
+            "totalItems": []
+        },
+        "headerStyles": null,
+        "columnspecs": [
+            {
+                "visibleIndex": "1",
+                "format": "",
+                "dataType": "string",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "DocType",
+                "Data": "DOCTYPE",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 0,
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "2",
+                "format": "",
+                "dataType": "date",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Doc Date",
+                "Data": "DOCDATE",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "shortTime",
+                    "type": "time"
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 1,
+                "selected": "false"
+            },
+            {
+                "propkey": 2,
+                "proptype": "object",
+                "visibleIndex": "5",
+                "format": "",
+                "dataType": "date",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Doc No",
+                "Data": "DOCNO",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "4",
+                "format": "",
+                "dataType": "string",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Narration",
+                "Data": "NARRATION",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 3,
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "5",
+                "format": "",
+                "dataType": "string",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Reference",
+                "Data": "REF_NO",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 4,
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "6",
+                "format": "",
+                "dataType": "string",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Currency",
+                "Data": "CURR_DOCNO",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 5,
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "7",
+                "format": "",
+                "dataType": "string",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "Division",
+                "Data": "DIVN_DOCNO",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 6,
+                "selected": "false"
+            },
+            {
+                "visibleIndex": "8",
+                "format": "",
+                "dataType": "number",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "LCY Amount",
+                "Data": "AMOUNT",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 7,
+                "selected": "false",
+                "proptype": "object"
+            },
+            {
+                "visibleIndex": "9",
+                "format": "",
+                "dataType": "number",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "FCY Amount",
+                "Data": "FCAMOUNT",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 8,
+                "selected": "false",
+                "proptype": "object"
+            },
+            {
+                "visibleIndex": "10",
+                "format": "",
+                "dataType": "number",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "LCY Bal Amount",
+                "Data": "SHOW_BAL_AMOUNT",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 9,
+                "selected": "false",
+                "proptype": "object"
+            },
+            {
+                "visibleIndex": "11",
+                "format": "",
+                "dataType": "number",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "FCY Bal Amount",
+                "Data": "SHOW_BAL_FCAMOUNT",
+                "Width": "100px",
+                "columnEdit": null,
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": false,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": false,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 10,
+                "selected": "false",
+                "proptype": "object"
+            },
+            {
+                "visibleIndex": "12",
+                "format": "",
+                "dataType": "object",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "LCY Alloc.Am",
+                "Data": "ALLOCATION_AMOUNT",
+                "Width": "100px",
+                "columnEdit": {
+                    "type": "div",
+                    "props": {
+                        "className": "entryValueDiv"
+                    },
+                    "chld": [
+                        {
+                            "type": "dxnumberbox",
+                            "props": {
+                                "dset": "DsFrmDetails2",
+                                "className": "small-ctr",
+                                "fullWidth": true,
+                                "format": "##,###.00",
+                                "variant": "outlined",
+                                "includerefdata": true,
+                                "rowindex": "[this.data.propkey]",
+                                "bind": "ALLOCATION_AMOUNT",
+                                "onChange": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test2": "onChange"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "onFocusOut": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "whenchange": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test": "whenchange"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "whenitemclick": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test": "whenitemclick"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "whenblur": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test": "whenblur"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "whenkeyup": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test": "whenkeyup"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "whenclick": [
+                                    {
+                                        "exec": "setdataset",
+                                        "args": {
+                                            "dset": "DsSelectedDocumentsInput",
+                                            "data": "checking working"
+                                        }
+                                    },
+                                    {
+                                        "exec": "filldataset",
+                                        "args": {
+                                            "proc": "",
+                                            "args": {
+                                                "test1": "[DsFrmDetails2]",
+                                                "test": "whenkeyup"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                },
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": true,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": true,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 11,
+                "selected": "false",
+                "proptype": "object"
+            },
+            {
+                "visibleIndex": "13",
+                "format": "",
+                "dataType": "object",
+                "alignment": "Left",
+                "visible": 1,
+                "Caption": "FCY Alloc.Amt",
+                "Data": "ALLOCATION_FCAMOUNT",
+                "Width": "100px",
+                "columnEdit": {
+                    "type": "dxnumberbox",
+                    "props": {
+                        "dset": "DsFrmHeaderEntry",
+                        "className": "small-ctr",
+                        "fullWidth": true,
+                        "format": "##,###.00",
+                        "variant": "outlined",
+                        "includerefdata": true,
+                        "rowindex": "[this.propkey]",
+                        "bind": "credit",
+                        "whenchange": [
+                            {
+                                "exec": "mergedataset",
+                                "args": {
+                                    "dset": "DsFrmHeaderEntry",
+                                    "data": {
+                                        "JRV_NET_CRAMT": "[DsFrmDetails1(listsum)raw.credit]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                "editorOptions": {
+                    "displayFormat": "",
+                    "type": ""
+                },
+                "allowEditing": true,
+                "allowExporting": true,
+                "allowFiltering": true,
+                "allowFixing": true,
+                "allowGrouping": true,
+                "allowHeaderFiltering": true,
+                "allowHiding": true,
+                "allowReordering": true,
+                "allowResizing": true,
+                "allowSearch": true,
+                "allowSorting": true,
+                "autoExpandGroup": true,
+                "groupIndex": null,
+                "cssClass": "",
+                "fixed": false,
+                "fixedPosition": "",
+                "showWhenGrouped": false,
+                "showInColumnChooser": true,
+                "showEditorAlways": true,
+                "events": {
+                    "onCellClick": null,
+                    "onCellDblClick": null
+                },
+                "appearance": {
+                    "color": "",
+                    "backgroundColor": "",
+                    "fontFamily": "",
+                    "fontSize": "",
+                    "fontWeight": ""
+                },
+                "propkey": 12,
+                "selected": "false",
+                "proptype": "object"
+            }
+        ],
+        "columninfo": {
+            "captionfield": "Caption",
+            "datafield": "Data",
+            "widthfield": "Width",
+            "editprops": {
+                "chldfield": null
+            }
+        },
+        "conditionalFormat": [],
+        "rowDragging": {
+            "allowDropInsideItem": false,
+            "allowReordering": false,
+            "autoScroll": true,
+            "boundary": null,
+            "container": null,
+            "cursorOffset": {
+                "x": 0,
+                "y": 0
+            },
+            "data": "Edit",
+            "dragComponent": null,
+            "dragDirection": "both",
+            "dragRender": null,
+            "dragTemplate": null,
+            "dropFeedbackMode": "indicate",
+            "group": null,
+            "handle": "",
+            "onAdd": null,
+            "onDragChange": null,
+            "onDragEnd": null,
+            "onDragMove": null,
+            "onDragStart": null,
+            "onRemove": null,
+            "onReorder": null,
+            "scrollSensitivity": 60,
+            "scrollSpeed": 30,
+            "showDragIcons": true
+        }
+    }
+}

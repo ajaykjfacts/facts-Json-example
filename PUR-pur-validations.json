@@ -1,0 +1,277 @@
+[
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "PUR_BILL_COUNTRY": "[dsAddress.country_name]",
+                "PUR_BILL_STREET": "[dsAddress.street]",
+                "PUR_BILL_CITY": "[dsAddress.city]",
+                "PUR_BILL_STATE": "[dsAddress.emiratedesc]",
+                "PUR_BILL_ZIPCODE": "[dsAddress.postaldesc]",
+                "PUR_BILL_ADDRESS": "[raw.[dsAddress.street],[dsAddress.city],[dsAddress.emiratedesc],dsAddress.country_name,[dsAddress.postaldesc]]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_AC_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the GL Code"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the supplier"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_DIVN_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the Division"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_LOCATION_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the Location"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_CURR_DOCNO(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select the Currency"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+
+
+
+
+
+
+
+
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "row_error": "",
+                "row_error_message": ""
+            }
+        }
+    },
+    {
+        "exec": "forLoop",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "perform": [
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.PURDET_STOCK_DOCNO(eq)raw.1]": true,
+                            "[this.PURDET_STOCK_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "Please select the Stock Code;"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.PURDET_QTY(ifnull)raw.]": "",
+                            "[this.PURDET_QTY(eq)raw.1]": 0
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Quantity cannot be zero;]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "errorRowCount": "[DsFrmDetails1(listfilter)raw.row_error=>error(listcount)]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.errorRowCount(>)raw.0]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please fill in all required fields"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.PUR_BILL_TEL1(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please enter the Telephone No"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

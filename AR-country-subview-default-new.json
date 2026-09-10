@@ -1,0 +1,244 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Makani/Street",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "className": "small-ctr",
+                                            "label": "",
+                                            "multiline": true,
+                                            "rows": 3,
+                                            "fullWidth": true,
+                                            "id": "$$DBNEWID$$",
+                                            "inputProps": {},
+                                            "inputVariant": "outlined",
+                                            "dset": "$$dataset$$",
+                                            "bind": "street"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "City *",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "className": "small-ctr",
+                                            "label": "",
+                                            "required": true,
+                                            "validation": {
+                                                                                            "for": "text",
+                                                                                            "msg": "Please enter City",
+                                                                                            "validationParams": {
+                                                                                                "minLength": 1
+                                                                                            }
+                                                                                        },
+                                            "fullWidth": true,
+                                            "id": "$$DBNEWID$$",
+                                            "inputProps": {},
+                                            "inputVariant": "outlined",
+                                            "dset": "$$dataset$$",
+                                            "bind": "city"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Emirate/State",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "className": "small-ctr",
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "id": "$$DBNEWID$$",
+                                            "inputProps": {},
+                                            "inputVariant": "outlined",
+                                            "dset": "$$dataset$$",
+                                            "bind": "emiratedesc"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "5px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "PO Box/Postal Code",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "className": "small-ctr",
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "id": "$$DBNEWID$$",
+                                            "inputProps": {},
+                                            "inputVariant": "outlined",
+                                            "dset": "$$dataset$$",
+                                            "bind": "postaldesc"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

@@ -1,0 +1,2924 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+                    "padding": "5px",
+                    "display": "block"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 4,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Doc#",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "className": "small-ctr",
+                                            "inputVariant": "outlined",
+                                            "inputProps": {
+                                                "maxLength": 20,
+                                                "style": {}
+                                            },
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "RJM_DOCNO"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 6,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Description",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "className": "small-ctr",
+                                            "inputVariant": "outlined",
+                                            "inputProps": {
+                                                "style": {}
+                                            },
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "RJM_DESC"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "container": true,
+                    "style": {
+                        "display": "flex",
+                        "padding": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "container": true,
+                            "className": "boxCard",
+                            "md": 5.9,
+                            "style": {
+                                "display": "block"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "xs": 12,
+                                    "item": true,
+                                    "resolvestyles": true,
+                                    "className": "subHeadingLbl",
+                                    "style": {}
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {
+                                            "style": {}
+                                        },
+                                        "chld": "Lumpsum Transaction Details (Balance Sheet Account: Eg. Prepaid Rent)"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "GL",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PREPAID_AC_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PREPAID_AC_DESC": "",
+                                                                                    "RJM_PREPAID_AC_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PREPAID_SUBLEDGER_DESC": "",
+                                                                                        "RJM_PREPAID_SUBLEDGER_DOCNO": ""
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsHeaderDetails",
+                                                                                    "data": {
+                                                                                        "DOCTYPE": "[DsFrmHeaderEntry.RJM_DOCTYPE]",
+                                                                                        "DOCNO": "[DsFrmHeaderEntry.RJM_DOCNO]",
+                                                                                        "DOCDATE": "[DsFrmHeaderEntry.RJM_DOCDATE]",
+                                                                                        "AC_DOCNO": "[DsFrmHeaderEntry.RJM_PREPAID_AC_DOCNO]",
+                                                                                        "DIVISION": "[DsFrmHeaderEntry.RJM_PREPAID_DIVN_DOCNO]",
+                                                                                        "DEPARTMENT": "[DsFrmHeaderEntry.RJM_PREPAID_DEPT_DOCNO]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetAccountDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetAccountDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsHeaderDetails]",
+                                                                                        "mode": "GL"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PREPAID_DIVN_DOCNO": "[dsGetAccountDetails.RJM_DIVN_DOCNO]",
+                                                                                        "RJM_PREPAID_DIVN_DESC": "[dsGetAccountDetails.RJM_DIVN_DESC]",
+                                                                                        "RJM_PREPAID_DEPT_DOCNO": "[dsGetAccountDetails.RJM_DEPT_DOCNO]",
+                                                                                        "RJM_PREPAID_DEPT_DESC": "[dsGetAccountDetails.RJM_DEPT_DESC]",
+                                                                                        "RJM_PREPAID_CURR_DOCNO": "[dsGetAccountDetails.RJM_CURR_DOCNO]",
+                                                                                        "RJM_PREPAID_CURR_DESC": "[dsGetAccountDetails.RJM_CURR_DESC]",
+                                                                                        "RJM_PREPAID_CURR_RATE": "[dsGetAccountDetails.RJM_CURR_RATE]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVGL",
+                                                                            "commontype": "manual",
+                                                                            "title": "GL",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PREPAID_AC_DOCTYPE",
+                                                                            "codefield": "RJM_PREPAID_AC_DOCNO",
+                                                                            "descfield": "RJM_PREPAID_AC_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "SL",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PREPAID_SUBLEDGER_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PREPAID_SUBLEDGER_DOCNO": "",
+                                                                                    "RJM_PREPAID_SUBLEDGER_DESC": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsHeaderDetails",
+                                                                                    "data": {
+                                                                                        "DOCTYPE": "[DsFrmHeaderEntry.RJM_DOCTYPE]",
+                                                                                        "DOCNO": "[DsFrmHeaderEntry.RJM_DOCNO]",
+                                                                                        "DOCDATE": "[DsFrmHeaderEntry.RJM_DOCDATE]",
+                                                                                        "AC_DOCNO": "[DsFrmHeaderEntry.RJM_PREPAID_AC_DOCNO]",
+                                                                                        "DIVISION": "[DsFrmHeaderEntry.RJM_PREPAID_DIVN_DOCNO]",
+                                                                                        "DEPARTMENT": "[DsFrmHeaderEntry.RJM_PREPAID_DEPT_DOCNO]",
+                                                                                        "SUBLEDGER_DOCNO": "[DsFrmHeaderEntry.RJM_PREPAID_SUBLEDGER_DOCNO]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetAccountDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetAccountDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsHeaderDetails]",
+                                                                                        "mode": "SL"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PREPAID_DIVN_DOCNO": "[dsGetAccountDetails.RJM_DIVN_DOCNO]",
+                                                                                        "RJM_PREPAID_DIVN_DESC": "[dsGetAccountDetails.RJM_DIVN_DESC]",
+                                                                                        "RJM_PREPAID_DEPT_DOCNO": "[dsGetAccountDetails.RJM_DEPT_DOCNO]",
+                                                                                        "RJM_PREPAID_DEPT_DESC": "[dsGetAccountDetails.RJM_DEPT_DESC]",
+                                                                                        "RJM_PREPAID_CURR_DOCNO": "[dsGetAccountDetails.RJM_CURR_DOCNO]",
+                                                                                        "RJM_PREPAID_CURR_DESC": "[dsGetAccountDetails.RJM_CURR_DESC]",
+                                                                                        "RJM_PREPAID_CURR_RATE": "[dsGetAccountDetails.RJM_CURR_RATE]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVSLCODE",
+                                                                            "commontype": "manual",
+                                                                            "title": "SL",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PREPAID_SUBLEDGER_DOCTYPE",
+                                                                            "codefield": "RJM_PREPAID_SUBLEDGER_DOCNO",
+                                                                            "descfield": "RJM_PREPAID_SUBLEDGER_DESC",
+                                                                            "filtercondition": {
+                                                                                "RJM_PREPAID_AC_DOCNO": "[DsFrmHeaderEntry.RJM_PREPAID_AC_DOCNO]"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Dr/Cr",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv",
+                                                    "style": {
+                                                        "display": "block",
+                                                        "margin-top": "10px"
+                                                    }
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "ddl",
+                                                        "props": {
+                                                            "className": "small-ctr",
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "RJM_DRCR_SIGN",
+                                                            "listdset": "CRDRType",
+                                                            "valuefield": "value",
+                                                            "textfield": "text",
+                                                            "variant": "outlined",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "InputLabelProps": {
+                                                                "shrink": true
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "style": {
+                                                                "width": "max-content"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "className": "entryLabel",
+                                                                    "style": {
+                                                                        "fontSize": "0.7rem"
+                                                                    }
+                                                                },
+                                                                "chld": "(Treatment Required)"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Division",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PREPAID_DIVN_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PREPAID_DIVN_DESC": "",
+                                                                                    "RJM_PREPAID_DIVN_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVDIV",
+                                                                            "commontype": "manual",
+                                                                            "title": "Division",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PREPAID_DIVN_DOCTYPE",
+                                                                            "codefield": "RJM_PREPAID_DIVN_DOCNO",
+                                                                            "descfield": "RJM_PREPAID_DIVN_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Department",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PREPAID_DEPT_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PREPAID_DEPT_DOCNO": "",
+                                                                                    "RJM_PREPAID_DEPT_DESC": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVDEPT",
+                                                                            "commontype": "manual",
+                                                                            "title": "Department",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PREPAID_DEPT_DOCTYPE",
+                                                                            "codefield": "RJM_PREPAID_DEPT_DOCNO",
+                                                                            "descfield": "RJM_PREPAID_DEPT_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 6,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Currency",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PREPAID_CURR_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PREPAID_CURR_DESC": "",
+                                                                                    "RJM_PREPAID_CURR_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsCurrency",
+                                                                                    "data": {
+                                                                                        "CURR_DOCNO": "[DsFrmHeaderEntry.RJM_PREPAID_CURR_DOCNO]",
+                                                                                        "DOCDATE": "[func.today]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetCurrencyRate",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetCurrencyDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsCurrency]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PREPAID_CURR_RATE": "[dsGetCurrencyDetails.currrate]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVCUR",
+                                                                            "commontype": "manual",
+                                                                            "title": "Currency",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PREPAID_CURR_DOCTYPE",
+                                                                            "codefield": "RJM_PREPAID_CURR_DOCNO",
+                                                                            "descfield": "RJM_PREPAID_CURR_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 6,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Exchange Rate",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "dxnumberbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "className": "small-ctr",
+                                                            "fullWidth": true,
+                                                            "disabled": true,
+                                                            "format": "##,###.00",
+                                                            "variant": "outlined",
+                                                            "includerefdata": true,
+                                                            "bind": "RJM_PREPAID_CURR_RATE",
+                                                            "whenchange": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "RJM_FCAMOUNT": "[DsFrmHeaderEntry.RJM_AMOUNT(*)raw.[DsFrmHeaderEntry.RJM_PREPAID_CURR_RATE]]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "FCy Amount",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "dxnumberbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "className": "small-ctr",
+                                                            "fullWidth": true,
+                                                            "format": "##,###.00",
+                                                            "variant": "outlined",
+                                                            "includerefdata": true,
+                                                            "bind": "RJM_FCAMOUNT",
+                                                            "whenchange": []
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 6,
+                                    "className": "factsFullWidth",
+                                    "style": {
+                                        "padding": "5px"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "LCy Amount",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "dxnumberbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "className": "small-ctr",
+                                                            "fullWidth": true,
+                                                            "format": "##,###.00",
+                                                            "variant": "outlined",
+                                                            "includerefdata": true,
+                                                            "bind": "RJM_AMOUNT",
+                                                            "onFocusOut": [
+                                                                {
+                                                                    "exec": "mergedataset",
+                                                                    "args": {
+                                                                        "dset": "DsFrmHeaderEntry",
+                                                                        "data": {
+                                                                            "RJM_FCAMOUNT": "[DsFrmHeaderEntry.RJM_AMOUNT(*)raw.[DsFrmHeaderEntry.RJM_PREPAID_CURR_RATE]]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "resolvestyles": true,
+                            "item": true,
+                            "container": true,
+                            "md": 0.2,
+                            "xs": 12,
+                            "style": {}
+                        },
+                        "chld": []
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "container": true,
+                            "className": "boxCard",
+                            "md": 5.9,
+                            "style": {
+                                "display": "block"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "xs": 12,
+                                    "item": true,
+                                    "resolvestyles": true,
+                                    "className": "subHeadingLbl",
+                                    "style": {}
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {
+                                            "style": {}
+                                        },
+                                        "chld": "Distribution Account Details ( P&L Account: Eg. Rent Expense)"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "GL",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PL_AC_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PL_AC_DOCNO": "",
+                                                                                    "RJM_PL_AC_DESC": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PL_SUBLEDGER_DESC": "",
+                                                                                        "RJM_PL_SUBLEDGER_DOCNO": ""
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsHeaderDetails",
+                                                                                    "data": {
+                                                                                        "DOCTYPE": "[DsFrmHeaderEntry.RJM_DOCTYPE]",
+                                                                                        "DOCNO": "[DsFrmHeaderEntry.RJM_DOCNO]",
+                                                                                        "DOCDATE": "[DsFrmHeaderEntry.RJM_DOCDATE]",
+                                                                                        "AC_DOCNO": "[DsFrmHeaderEntry.RJM_PL_AC_DOCNO]",
+                                                                                        "DIVISION": "[DsFrmHeaderEntry.RJM_PL_DIVN_DOCNO]",
+                                                                                        "DEPARTMENT": "[DsFrmHeaderEntry.RJM_PL_DEPT_DOCNO]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetAccountDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetAccountDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsHeaderDetails]",
+                                                                                        "mode": "GL"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PL_DIVN_DOCNO": "[dsGetAccountDetails.RJM_DIVN_DOCNO]",
+                                                                                        "RJM_PL_DIVN_DESC": "[dsGetAccountDetails.RJM_DIVN_DESC]",
+                                                                                        "RJM_PL_DEPT_DOCNO": "[dsGetAccountDetails.RJM_DEPT_DOCNO]",
+                                                                                        "RJM_PL_DEPT_DESC": "[dsGetAccountDetails.RJM_DEPT_DESC]",
+                                                                                        "RJM_PL_CURR_DOCNO": "[dsGetAccountDetails.RJM_CURR_DOCNO]",
+                                                                                        "RJM_PL_CURR_DESC": "[dsGetAccountDetails.RJM_CURR_DESC]",
+                                                                                        "RJM_PL_CURR_RATE": "[dsGetAccountDetails.RJM_CURR_RATE]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVGL2",
+                                                                            "commontype": "manual",
+                                                                            "title": "GL",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PL_AC_DOCTYPE",
+                                                                            "codefield": "RJM_PL_AC_DOCNO",
+                                                                            "descfield": "RJM_PL_AC_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "SL",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PL_SUBLEDGER_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PL_SUBLEDGER_DESC": "",
+                                                                                    "RJM_PL_SUBLEDGER_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsHeaderDetails",
+                                                                                    "data": {
+                                                                                        "DOCTYPE": "[DsFrmHeaderEntry.RJM_DOCTYPE]",
+                                                                                        "DOCNO": "[DsFrmHeaderEntry.RJM_DOCNO]",
+                                                                                        "DOCDATE": "[DsFrmHeaderEntry.RJM_DOCDATE]",
+                                                                                        "AC_DOCNO": "[DsFrmHeaderEntry.RJM_PL_AC_DOCNO]",
+                                                                                        "DIVISION": "[DsFrmHeaderEntry.RJM_PL_DIVN_DOCNO]",
+                                                                                        "DEPARTMENT": "[DsFrmHeaderEntry.RJM_PL_DEPT_DOCNO]",
+                                                                                        "SUBLEDGER_DOCNO": "[DsFrmHeaderEntry.RJM_PL_SUBLEDGER_DOCNO]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetAccountDetails",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetAccountDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsHeaderDetails]",
+                                                                                        "mode": "SL"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PL_DIVN_DOCNO": "[dsGetAccountDetails.RJM_DIVN_DOCNO]",
+                                                                                        "RJM_PL_DIVN_DESC": "[dsGetAccountDetails.RJM_DIVN_DESC]",
+                                                                                        "RJM_PL_DEPT_DOCNO": "[dsGetAccountDetails.RJM_DEPT_DOCNO]",
+                                                                                        "RJM_PL_DEPT_DESC": "[dsGetAccountDetails.RJM_DEPT_DESC]",
+                                                                                        "RJM_PL_CURR_DOCNO": "[dsGetAccountDetails.RJM_CURR_DOCNO]",
+                                                                                        "RJM_PL_CURR_DESC": "[dsGetAccountDetails.RJM_CURR_DESC]",
+                                                                                        "RJM_PL_CURR_RATE": "[dsGetAccountDetails.RJM_CURR_RATE]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVSLCODE2",
+                                                                            "commontype": "manual",
+                                                                            "title": "SL",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PL_SUBLEDGER_DOCTYPE",
+                                                                            "codefield": "RJM_PL_SUBLEDGER_DOCNO",
+                                                                            "descfield": "RJM_PL_SUBLEDGER_DESC",
+                                                                            "filtercondition": {
+                                                                                "RJM_PL_AC_DOCNO": "[DsFrmHeaderEntry.RJM_PL_AC_DOCNO]"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Division",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PL_DIVN_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PL_DIVN_DESC": "",
+                                                                                    "RJM_PL_DIVN_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVDIV2",
+                                                                            "commontype": "manual",
+                                                                            "title": "Division",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PL_DIVN_DOCTYPE",
+                                                                            "codefield": "RJM_PL_DIVN_DOCNO",
+                                                                            "descfield": "RJM_PL_DIVN_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Department",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PL_DEPT_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PL_DEPT_DOCNO": "",
+                                                                                    "RJM_PL_DEPT_DESC": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVDEPT2",
+                                                                            "commontype": "manual",
+                                                                            "title": "Department",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PL_DEPT_DOCTYPE",
+                                                                            "codefield": "RJM_PL_DEPT_DOCNO",
+                                                                            "descfield": "RJM_PL_DEPT_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 6,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Currency",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lkup",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "required": true,
+                                                            "bind": "RJM_PL_CURR_DESC",
+                                                            "variant": "outlined",
+                                                            "className": "small-ctr",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "icon": "search",
+                                                            "icons": {
+                                                                "notempty": {
+                                                                    "icon": "close",
+                                                                    "whenclick": [
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_PL_CURR_DESC": "",
+                                                                                    "RJM_PL_CURR_DOCNO": ""
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "whenclick": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "nodeepprocess": true,
+                                                                        "dset": "customevents",
+                                                                        "data": [
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "dsCurrency",
+                                                                                    "data": {
+                                                                                        "CURR_DOCNO": "[DsFrmHeaderEntry.RJM_PL_CURR_DOCNO]",
+                                                                                        "DOCDATE": "[func.today]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "fillmultidataset",
+                                                                                "args": {
+                                                                                    "proc": "PWA.GetCurrencyRate",
+                                                                                    "dsets": [
+                                                                                        {
+                                                                                            "name": "dsGetCurrencyDetails",
+                                                                                            "row": 0,
+                                                                                            "table": "Table"
+                                                                                        }
+                                                                                    ],
+                                                                                    "args": {
+                                                                                        "strXmlHeader": "[dsCurrency]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmHeaderEntry",
+                                                                                    "data": {
+                                                                                        "RJM_PL_CURR_RATE": "[dsGetCurrencyDetails.currrate]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "setdataset",
+                                                                                "args": {
+                                                                                    "dset": "customevents",
+                                                                                    "data": null
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "dslist",
+                                                                        "data": {
+                                                                            "listtype": "PTVCURR2",
+                                                                            "commontype": "manual",
+                                                                            "title": "Currency",
+                                                                            "dataset": "DsFrmHeaderEntry",
+                                                                            "section": "Alltype",
+                                                                            "doctypefield": "RJM_PL_CURR_DOCTYPE",
+                                                                            "codefield": "RJM_PL_CURR_DOCNO",
+                                                                            "descfield": "RJM_PL_CURR_DESC"
+                                                                        }
+                                                                    }
+                                                                },
+                                                                {
+                                                                    "exec": "filldataset",
+                                                                    "args": {
+                                                                        "proc": "PWA.LoadLayout",
+                                                                        "column": "layoutinfo",
+                                                                        "dset": "popupinfo",
+                                                                        "section": "Alltype",
+                                                                        "args": {
+                                                                            "doctype": "popup",
+                                                                            "docno": "lookup"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 6,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Exchange Rate",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "dxnumberbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "className": "small-ctr",
+                                                            "fullWidth": true,
+                                                            "disabled": true,
+                                                            "format": "##,###.00",
+                                                            "variant": "outlined",
+                                                            "includerefdata": true,
+                                                            "bind": "RJM_PL_CURR_RATE",
+                                                            "whenchange": []
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "container": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "container": true,
+                            "className": "boxCard",
+                            "xs": 12,
+                            "style": {}
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "xs": 12,
+                                    "item": true,
+                                    "resolvestyles": true,
+                                    "className": "subHeadingLbl",
+                                    "style": {}
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {
+                                            "style": {}
+                                        },
+                                        "chld": "Distribution Period"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "container": true,
+                                    "xs": 12,
+                                    "style": {
+                                        "display": "flex",
+                                        "justifyContent": "space-evenly"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "style": {
+                                                "padding": "5px"
+                                            },
+                                            "md": 4,
+                                            "xs": 12
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelOuterDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryLabelDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "lbl",
+                                                                "props": {
+                                                                    "text": "From Date",
+                                                                    "className": "entryLabel"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryValueDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxdtpick",
+                                                                "props": {
+                                                                    "dset": "DsFrmHeaderEntry",
+                                                                    "bind": "RJM_DISTRIBUTION_FM_DATE",
+                                                                    "type": "date",
+                                                                    "labelMode": "floating",
+                                                                    "includerefdata": true,
+                                                                    "closeOnSelect": true,
+                                                                    "showClearButton": false,
+                                                                    "label": "",
+                                                                    "inputProps": {},
+                                                                    "whenchange": [
+                                                                        {
+                                                                            "exec": "filldataset",
+                                                                            "args": {
+                                                                                "dset": "dsDate_noOfMonths",
+                                                                                "row": 0,
+                                                                                "proc": "PWA.getMonthDate_NoOfMonths",
+                                                                                "args": {
+                                                                                    "fromdate": "[DsFrmHeaderEntry.RJM_DISTRIBUTION_FM_DATE]",
+                                                                                    "noOfMonths": "[DsFrmHeaderEntry.RJM_NO_PARTPAYMENT]"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_DISTRIBUTION_TO_DATE": "[dsDate_noOfMonths.todate]"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "style": {
+                                                "padding": "5px"
+                                            },
+                                            "md": 3,
+                                            "xs": 12
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelOuterDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryLabelDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "lbl",
+                                                                "props": {
+                                                                    "text": "Distribution period (in Months)",
+                                                                    "className": "entryLabel"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryValueDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxnumberbox",
+                                                                "props": {
+                                                                    "dset": "DsFrmHeaderEntry",
+                                                                    "className": "small-ctr",
+                                                                    "format": "##,###.00",
+                                                                    "variant": "outlined",
+                                                                    "includerefdata": true,
+                                                                    "bind": "RJM_NO_PARTPAYMENT",
+                                                                    "whenchange": [
+                                                                        {
+                                                                            "exec": "filldataset",
+                                                                            "args": {
+                                                                                "dset": "dsDate_noOfMonths",
+                                                                                "row": 0,
+                                                                                "proc": "PWA.getMonthDate_NoOfMonths",
+                                                                                "args": {
+                                                                                    "fromdate": "[DsFrmHeaderEntry.RJM_DISTRIBUTION_FM_DATE]",
+                                                                                    "noOfMonths": "[DsFrmHeaderEntry.RJM_NO_PARTPAYMENT]"
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "exec": "mergedataset",
+                                                                            "args": {
+                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                "data": {
+                                                                                    "RJM_DISTRIBUTION_TO_DATE": "[dsDate_noOfMonths.todate]"
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "style": {
+                                                "padding": "5px"
+                                            },
+                                            "md": 4,
+                                            "xs": 12
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelOuterDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryLabelDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "lbl",
+                                                                "props": {
+                                                                    "text": "To Date",
+                                                                    "className": "entryLabel"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "div",
+                                                        "props": {
+                                                            "className": "entryValueDiv"
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxdtpick",
+                                                                "props": {
+                                                                    "dset": "DsFrmHeaderEntry",
+                                                                    "bind": "RJM_DISTRIBUTION_TO_DATE",
+                                                                    "type": "date",
+                                                                    "labelMode": "floating",
+                                                                    "includerefdata": true,
+                                                                    "closeOnSelect": true,
+                                                                    "showClearButton": false,
+                                                                    "label": "",
+                                                                    "inputProps": {},
+                                                                    "whenchange": []
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "container": true,
+                    "xs": 12,
+                    "style": {
+                        "padding": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "container": true,
+                            "className": "boxCard",
+                            "xs": 12,
+                            "style": {
+                                "display": "flex",
+                                "justifyContent": "space-evenly"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "xs": 12,
+                                    "item": true,
+                                    "resolvestyles": true,
+                                    "className": "subHeadingLbl",
+                                    "style": {}
+                                },
+                                "chld": [
+                                    {
+                                        "type": "span",
+                                        "props": {
+                                            "style": {}
+                                        },
+                                        "chld": "Distribution Pattern"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 4,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Distribution Mode",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "ddl",
+                                                        "props": {
+                                                            "className": "small-ctr",
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "RJM_DISTRIBUTION_METHODE",
+                                                            "listdset": "dsMethodType",
+                                                            "valuefield": "value",
+                                                            "textfield": "text",
+                                                            "variant": "outlined",
+                                                            "label": "",
+                                                            "fullWidth": true,
+                                                            "InputLabelProps": {
+                                                                "shrink": true
+                                                            }
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 3,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv entryLabelOuterDivAlign",
+                                            "style": {
+                                                "alignItems": "center"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Treatment on Period End Date",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "chbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "RJM_TREATMENT_END_DATE",
+                                                            "color": "primary"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "style": {
+                                        "padding": "5px"
+                                    },
+                                    "md": 4,
+                                    "xs": 12
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelOuterDiv entryLabelOuterDivAlign",
+                                            "style": {
+                                                "alignItems": "center"
+                                            }
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryLabelDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "lbl",
+                                                        "props": {
+                                                            "text": "Daily apportionment",
+                                                            "className": "entryLabel"
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "type": "div",
+                                                "props": {
+                                                    "className": "entryValueDiv"
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "chbox",
+                                                        "props": {
+                                                            "dset": "DsFrmHeaderEntry",
+                                                            "bind": "RJM_DAILY_APPORTIONMENT",
+                                                            "color": "primary"
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 4,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Ref#",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "className": "small-ctr",
+                                            "inputVariant": "outlined",
+                                            "inputProps": {
+                                                "maxLength": 20,
+                                                "style": {}
+                                            },
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "RJM_REF1"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 6,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "className": "entryLabelOuterDiv"
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "lbl",
+                                        "props": {
+                                            "text": "Remarks",
+                                            "className": "entryLabel"
+                                        }
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "entry",
+                                        "props": {
+                                            "label": "",
+                                            "fullWidth": true,
+                                            "className": "small-ctr",
+                                            "inputVariant": "outlined",
+                                            "inputProps": {
+                                                "maxLength": 20,
+                                                "style": {}
+                                            },
+                                            "dset": "DsFrmHeaderEntry",
+                                            "bind": "RJM_REMARKS"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 6,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "btn",
+                        "props": {
+                            "size": "small",
+                            "fullWidth": true,
+                            "color": "primary",
+                            "variant": "contained",
+                            "whenclick": [
+                                {
+                                    "exec": "filldataset",
+                                    "args": {
+                                        "dset": "DsFrmDetails1",
+                                        "proc": "PWA.fillSchedule",
+                                        "args": {
+                                            "header": "[DsFrmHeaderEntry]"
+                                        }
+                                    }
+                                }
+                            ]
+                        },
+                        "chld": "Fill Deduction Schedule"
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "md": 6,
+                    "xs": 12,
+                    "className": "factsFullWidth",
+                    "style": {
+                        "padding": "5px",
+                        "paddingLeft": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "div",
+                        "props": {
+                            "style": {
+                                "width": "max-content"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "span",
+                                "props": {
+                                    "className": "entryLabel",
+                                    "style": {
+                                        "fontSize": "0.7rem"
+                                    }
+                                },
+                                "chld": "(Note: Integrity can be maintained by running option, Repaat JV Scheduler List/ Procedures/ Synchronize with Financials. Later please edit it and feed-in missing info.)"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "type": "sect",
+                "props": {
+                    "item": true,
+                    "xs": 12,
+                    "className": "TableParentSect factsFullWidth",
+                    "style": {
+                        "display": "block",
+                        "pointer-events": "all",
+                        "padding": "10px"
+                    }
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "resolvestyles": true,
+                            "container": true,
+                            "className": "TableHeaderSect",
+                            "style": {}
+                        },
+                        "chld": [
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 1,
+                                    "className": "TableHeaderChildSect",
+                                    "style": {}
+                                },
+                                "chld": "Sl No"
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "className": "TableHeaderChildSect",
+                                    "xs": 2,
+                                    "style": {}
+                                },
+                                "chld": "From Date"
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 2,
+                                    "className": "TableHeaderChildSect",
+                                    "style": {}
+                                },
+                                "chld": "To Date (PTV Date)"
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 4,
+                                    "className": "TableHeaderChildSect",
+                                    "style": {}
+                                },
+                                "chld": "Narration"
+                            },
+                            {
+                                "type": "hide",
+                                "props": {
+                                    "appendprops": {
+                                        "xsUp": "[pagemenuinfo.module(eq)raw.ESS]"
+                                    }
+                                },
+                                "chld": [
+                                    {
+                                        "type": "sect",
+                                        "props": {
+                                            "item": true,
+                                            "className": "TableHeaderChildSect tableHeaderNumLbl",
+                                            "xs": 1.5,
+                                            "style": {}
+                                        },
+                                        "chld": "Amount"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "sect",
+                                "props": {
+                                    "item": true,
+                                    "xs": 1.5,
+                                    "className": "TableHeaderLastChildSect tableHeaderNumLbl",
+                                    "style": {}
+                                },
+                                "chld": "FCy Amount"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "resolvestyles": true,
+                            "xs": 12,
+                            "style": {
+                                "pointer-events": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "list",
+                                "props": {
+                                    "datasets": [
+                                        "DsFrmDetails1"
+                                    ],
+                                    "style": {},
+                                    "className": "TableListSect facts-input-list",
+                                    "content": {
+                                        "template": "custom",
+                                        "props": {
+                                            "style": {}
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "sect",
+                                                "props": {
+                                                    "container": true
+                                                },
+                                                "chld": [
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "xs": 1,
+                                                            "className": "TableContentChildSect",
+                                                            "style": {}
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.RJMDET_DOCSRNO]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "xs": 2,
+                                                            "className": "TableContentChildSect",
+                                                            "style": {
+                                                                "textAlign": "left"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.RJMDET_FMDATE(dtformat)raw.dd-MMMM-yyyy]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "xs": 2,
+                                                            "className": "TableContentChildSect",
+                                                            "style": {
+                                                                "textAlign": "left"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.RJMDET_TODATE(dtformat)raw.dd-MMMM-yyyy]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "xs": 4,
+                                                            "className": "TableContentChildSect",
+                                                            "style": {
+                                                                "textAlign": "left"
+                                                            }
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "span",
+                                                                "props": {
+                                                                    "style": {}
+                                                                },
+                                                                "chld": "[this.RJMDET_NARRATION]"
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentChildSect",
+                                                            "xs": 1.5,
+                                                            "style": {}
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxnumlbl",
+                                                                "props": {
+                                                                    "dset": "DsFrmDetails1",
+                                                                    "rowindex": "[this.propkey]",
+                                                                    "fullWidth": true,
+                                                                    "includerefdata": true,
+                                                                    "bind": "RJMDET_AMOUNT"
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "type": "sect",
+                                                        "props": {
+                                                            "item": true,
+                                                            "className": "TableContentLastChildSect",
+                                                            "xs": 1.5,
+                                                            "style": {}
+                                                        },
+                                                        "chld": [
+                                                            {
+                                                                "type": "dxnumlbl",
+                                                                "props": {
+                                                                    "dset": "DsFrmDetails1",
+                                                                    "rowindex": "[this.propkey]",
+                                                                    "fullWidth": true,
+                                                                    "includerefdata": true,
+                                                                    "bind": "RJMDET_FCAMOUNT"
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

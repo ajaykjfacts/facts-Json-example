@@ -1,0 +1,12 @@
+[
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "SAL_DIV_DOCNO": "[dsDocumentMaster.DM_DIVN_DOCNO]",
+                "SAL_DEPT_DOCNO": "[dsDocumentMaster.DM_DEPT_DOCNO]"
+            }
+        }
+    }
+]

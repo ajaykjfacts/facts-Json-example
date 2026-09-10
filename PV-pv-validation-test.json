@@ -1,0 +1,167 @@
+[
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "row_error": "",
+                "row_error_message": ""
+            }
+        }
+    },
+    {
+        "exec": "forLoop",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "perform": [
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.RPDET_AC_DOCNO(eq)raw.1]": true,
+                            "[this.RPDET_AC_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "Please select GL Code."
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "all",
+                        "ref": {
+                            "[this.RPDET_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                            "[this.RPDET_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "Please select SL Code."
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.RPDET_DRCR_SIGN(ifnull)raw.]": "",
+                            "[this.RPDET_DRCR_SIGN(eq)raw.1]": 0
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] \n Please select Sign.]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.RPDET_CURR_DOCNO(ifnull)raw.]": "",
+                            "[this.RPDET_CURR_DOCNO(eq)raw.1]": 0
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Please select Currency.]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.RPDET_AMOUNT(>)raw.0]": true
+                        },
+                        "whenunmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Please enter Amount.]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "errorRowCount": "[DsFrmDetails1(listfilter)raw.row_error=>error(listcount)]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.errorRowCount(>)raw.0]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please fill in all required fields"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

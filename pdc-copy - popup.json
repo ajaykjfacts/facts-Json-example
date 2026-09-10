@@ -1,0 +1,650 @@
+{
+    "title": "Posting",
+    "fullscreen": false,
+    "whenload": [],
+    "wheninit": [
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.PDC_GET_AcToAcTransfer_GenearateDocument_wrapper",
+                "dset": "dsDocumentDetails",
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]",
+                    "getDocnNoMethod": "[dsDocumentMaster.disableDocno(neq)raw.1]"
+                }
+            }
+        },
+        filldataset
+    ],
+    "paperstyle": {},
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "container": true,
+                "xs": 12,
+                "style": {
+                    "width": "100%"
+                }
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "xs": 12,
+                        "className": "factsPopupTitleSect",
+                        "style": {
+                            "display": "flex",
+                            "justifyContent": "space-between"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "lbl",
+                            "props": {
+                                "resolveprops": true,
+                                "style": {},
+                                "text": "Posting"
+                            }
+                        },
+                        {
+                            "type": "icbtn",
+                            "props": {
+                                "includerefdata": true,
+                                "size": "small",
+                                "color": "primary",
+                                "whenclick": [
+                                    {
+                                        "exec": "setdatasetfield",
+                                        "args": {
+                                            "dset": "popupinfo",
+                                            "fieldname": "allowance",
+                                            "data": null
+                                        }
+                                    }
+                                ]
+                            },
+                            "chld": "close"
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "container": true,
+                        "xs": 12,
+                        "style": {
+                            "padding": "15px",
+                            "height": "calc(100vh - 191px)",
+                            "overflow": "auto"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "xs": 12,
+                                "style": {
+                                    "padding": "5px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "xs": 12,
+                                        "style": {
+                                            "padding": "5px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "entryLabelOuterDiv"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryLabelDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lbl",
+                                                            "props": {
+                                                                "text": "Doc Type",
+                                                                "className": "entryLabel"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryValueDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lkup",
+                                                            "props": {
+                                                                "dset": "DsFrmDetailsEntryPopUp",
+                                                                "bind": "ACOPNDET_DOC_DOCTYPE",
+                                                                "variant": "outlined",
+                                                                "className": "small-ctr",
+                                                                "resolveprops": true,
+                                                                "label": "",
+                                                                "disabled": "[dsDocumentMaster.disableDocno(neq)raw.1]",
+                                                                "fullWidth": true,
+                                                                "icon": "search",
+                                                                "includerefdata": true,
+                                                                "icons": {
+                                                                    "notempty": {
+                                                                        "icon": "close",
+                                                                        "whenclick": [
+                                                                            {
+                                                                                "exec": "mergedataset",
+                                                                                "args": {
+                                                                                    "dset": "DsFrmDetailsEntryPopUp",
+                                                                                    "data": {
+                                                                                        "ACOPNDET_DOC_DOCTYPE": "",
+                                                                                        "ACOPNDET_DOC_DESC": ""
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    }
+                                                                },
+                                                                "whenclick": [
+                                                                    {
+                                                                        "exec": "setdataset",
+                                                                        "args": {
+                                                                            "dset": "dslist",
+                                                                            "data": {
+                                                                                "listtype": "AOODM",
+                                                                                "commontype": "manual",
+                                                                                "title": "Doc Type",
+                                                                                "dataset": "DsFrmDetailsEntryPopUp",
+                                                                                "section": "Alltype",
+                                                                                "doctypefield": "ACOPNDET_AC_DOCTYPE",
+                                                                                "codefield": "ACOPNDET_DOC_DOCTYPE",
+                                                                                "descfield": "ACOPNDET_DOC_DESC"
+                                                                            }
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "exec": "filldataset",
+                                                                        "args": {
+                                                                            "proc": "PWA.LoadLayout",
+                                                                            "column": "layoutinfo",
+                                                                            "dset": "popupinfo",
+                                                                            "section": "Alltype",
+                                                                            "args": {
+                                                                                "doctype": "popup",
+                                                                                "docno": "lookup"
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                ]
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "style": {
+                                            "padding": "5px"
+                                        },
+                                        "xs": 12
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "entryLabelOuterDiv"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryLabelDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lbl",
+                                                            "props": {
+                                                                "text": "Document No",
+                                                                "className": "entryLabel"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryValueDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "entry",
+                                                            "props": {
+                                                                "label": "",
+                                                                "className": "small-ctr",
+                                                                "fullWidth": true,
+                                                                "inputProps": {
+                                                                    "maxLength": 100,
+                                                                    "style": {}
+                                                                },
+                                                                "dset": "DsFrmDetailsEntryPopUp",
+                                                                "bind": "ACOPNDET_DOC_DOCNO"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "xs": 12,
+                                        "style": {
+                                            "padding": "5px"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "entryLabelOuterDiv"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryLabelDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lbl",
+                                                            "props": {
+                                                                "text": "Document Date",
+                                                                "className": "entryLabel"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryValueDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "dxdtpick",
+                                                            "props": {
+                                                                "dset": "DsFrmDetailsEntryPopUp",
+                                                                "bind": "ACOPNDET_DOC_DOCDATE",
+                                                                "className": "small-ctr",
+                                                                "type": "date",
+                                                                "labelMode": "floating",
+                                                                "includerefdata": true,
+                                                                "closeOnSelect": true,
+                                                                "showClearButton": false,
+                                                                "label": "",
+                                                                "required": true,
+                                                                "inputProps": {},
+                                                                "whenchange": []
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "xs": 12,
+                                        "className": "factsFullWidth"
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "div",
+                                            "props": {
+                                                "className": "entryLabelOuterDiv"
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryLabelDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "lbl",
+                                                            "props": {
+                                                                "text": "Remarks",
+                                                                "className": "entryLabel"
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "div",
+                                                    "props": {
+                                                        "className": "entryValueDiv"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "entry",
+                                                            "props": {
+                                                                "label": "",
+                                                                "multiline": true,
+                                                                "className": "small-ctr",
+                                                                "rows": 3,
+                                                                "inputProps": {
+                                                                    "style": {
+                                                                        "padding": "5px"
+                                                                    }
+                                                                },
+                                                                "fullWidth": true,
+                                                                "inputVariant": "outlined",
+                                                                "dset": "DsFrmDetailsEntryPopUp",
+                                                                "bind": "ACOPNDET_NARRATION"
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "sect",
+                    "props": {
+                        "item": true,
+                        "container": true,
+                        "xs": 12,
+                        "style": {
+                            "padding": "15px"
+                        }
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "style": {
+                                    "padding": "5px",
+                                    "display": "flex",
+                                    "justifyContent": "flex-end"
+                                },
+                                "xs": 12
+                            },
+                            "chld": [
+                                {
+                                    "type": "hide",
+                                    "props": {
+                                        "appendprops": {
+                                            "xsUp": "[DsFrmDetailsEntryPopUp.pagemode(eq)raw.view]"
+                                        }
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "btn",
+                                            "props": {
+                                                "variant": "contained",
+                                                "color": "primary",
+                                                "whenclick": [
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCTYPE(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Document Type"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_FYCODE(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Financial year"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCNO(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Document No"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCSRNO(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Doc Sr#"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCDATE(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Document Date"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_DRCR_SIGN(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add Debit/Creidt"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "match",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_VALDATE(ifnull)raw.]": ""
+                                                            },
+                                                            "whenmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "Please add validate Date"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "validatedataset",
+                                                        "verify": {
+                                                            "satisfy": "any",
+                                                            "halton": "unmatch",
+                                                            "ref": {
+                                                                "[DsFrmDetailsEntryPopUp.ACOPNDET_AMOUNT(>)raw.0]": true
+                                                            },
+                                                            "whenunmatch": [
+                                                                {
+                                                                    "exec": "setdataset",
+                                                                    "args": {
+                                                                        "dset": "snackinfo",
+                                                                        "data": {
+                                                                            "open": true,
+                                                                            "type": "error",
+                                                                            "message": "[raw.Please add [dsCompanyParameters.CURRENCY] Amount]"
+                                                                        }
+                                                                    }
+                                                                }
+                                                            ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "mergedatasetarray",
+                                                        "args": {
+                                                            "dset": "DsFrmDetails1",
+                                                            "index": "[DsFrmDetailsEntryPopUp.rowIndex]",
+                                                            "data": {
+                                                                "ACOPNDET_DOC_FYCODE": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_FYCODE]",
+                                                                "ACOPNDET_DOC_DOCTYPE": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCTYPE]",
+                                                                "ACOPNDET_DOC_DOCNO": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCNO]",
+                                                                "ACOPNDET_DOC_DOCSRNO": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCSRNO]",
+                                                                "ACOPNDET_DOCSRNO": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCSRNO]",
+                                                                "ACOPNDET_DOC_DOCDATE": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_DOCDATE]",
+                                                                "ACOPNDET_CR_DAYS": "[DsFrmDetailsEntryPopUp.ACOPNDET_CR_DAYS]",
+                                                                "ACOPNDET_VALDATE": "[DsFrmDetailsEntryPopUp.ACOPNDET_VALDATE]",
+                                                                "ACOPNDET_DRCR_SIGN": "[DsFrmDetailsEntryPopUp.ACOPNDET_DRCR_SIGN]",
+                                                                "ACOPNDET_CURR_DOCNO": "[DsFrmDetailsEntryPopUp.ACOPNDET_CURR_DOCNO]",
+                                                                "ACOPNDET_CURR_DESC": "[DsFrmDetailsEntryPopUp.ACOPNDET_CURR_DESC]",
+                                                                "ACOPNDET_CURR_RATE": "[DsFrmDetailsEntryPopUp.ACOPNDET_CURR_RATE]",
+                                                                "ACOPNDET_AMOUNT": "[DsFrmDetailsEntryPopUp.ACOPNDET_AMOUNT]",
+                                                                "ACOPNDET_REFNO": "[DsFrmDetailsEntryPopUp.ACOPNDET_REFNO]",
+                                                                "ACOPNDET_REFDATE": "[DsFrmDetailsEntryPopUp.ACOPNDET_REFDATE]",
+                                                                "ACOPNDET_NARRATION": "[DsFrmDetailsEntryPopUp.ACOPNDET_NARRATION]",
+                                                                "ACOPNDET_FCAMOUNT": "[DsFrmDetailsEntryPopUp.ACOPNDET_FCAMOUNT]",
+                                                                "ACOPNDET_AC_FYCODE": "[DsFrmDetailsEntryPopUp.ACOPNDET_DOC_FYCODE]"
+                                                            }
+                                                        }
+                                                    },
+                                                    {
+                                                        "exec": "setdatasetfield",
+                                                        "args": {
+                                                            "dset": "popupinfo",
+                                                            "fieldname": "allowance",
+                                                            "data": null
+                                                        }
+                                                    }
+                                                ]
+                                            },
+                                            "chld": "SAVE"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

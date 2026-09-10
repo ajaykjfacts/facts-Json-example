@@ -1,0 +1,141 @@
+[
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "row_error": "",
+                "row_error_message": ""
+            }
+        }
+    },
+    {
+        "exec": "forLoop",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "perform": [
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.INCDEFDET_BRANCH_DOCNO(ifnull)raw.(eq)raw.]": true
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "Please select branch(outlet);"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.INCDEFDET_INC_AMOUNT(ifnull)raw.0(eq)raw.0]": true
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Incentive Amount cannot be zero;]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.INCDEFDET_KPI1(ifnull)raw.0(eq)raw.0]": true
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Please enter KPI-1%;]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.INCDEFDET_KPI2(ifnull)raw.0(eq)raw.0]": true
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[raw. [DsFrmDetails1.[this.propkey].row_error_message] Please enter KPI-2%;]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "errorRowCount": "[DsFrmDetails1(listfilter)raw.row_error=>error(listcount)]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.errorRowCount(>)raw.0]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please fill in all required fields"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

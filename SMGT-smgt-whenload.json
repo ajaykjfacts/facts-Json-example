@@ -1,0 +1,60 @@
+[
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsBlockOptions",
+            "data": [
+                {
+                    "code": 1,
+                    "description": "The block is in effect for a specific period"
+                },
+                {
+                    "code": 2,
+                    "description": "The block is effect according to the schedule"
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "EmpTabFilterOptions",
+            "data": {
+                "CurrentForm": "GENERAL",
+                "btnGeneral": {
+                    "className": "btnGrpContained"
+                },
+                "btnDetails": {
+                    "className": "btnGrpInherit"
+                },
+                "btnArabic": {
+                    "className": "btnGrpInherit"
+                },
+                "btnPriceStructure": {
+                    "className": "btnGrpInherit"
+                },
+                "btnDiscountStructure": {
+                    "className": "btnGrpInherit"
+                },
+                "btnSpecial": {
+                    "className": "btnGrpInherit"
+                },
+                "btnOptions": {
+                    "className": "btnGrpInherit"
+                },
+                "btnLocations": {
+                    "className": "btnGrpInherit"
+                },
+                "btnUnit": {
+                    "className": "btnGrpInherit"
+                },
+                "btnAlias": {
+                    "className": "btnGrpInherit"
+                },
+                "btnPhoto": {
+                    "className": "btnGrpInherit"
+                }
+            }
+        }
+    }
+]

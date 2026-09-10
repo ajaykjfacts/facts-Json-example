@@ -1,0 +1,1669 @@
+[
+  {
+    "type": "sect",
+    "props": {
+      "container": true,
+      "resolvestyles": true,
+      "appendprops": {
+        "style": {
+          "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+          "padding": "5px"
+        }
+      }
+    },
+    "chld": [
+      {
+        "type": "sect",
+        "props": {
+          "xs": 12,
+          "container": true,
+          "style": {
+            "padding": "5px"
+          }
+        },
+        "chld": [
+          {
+            "type": "sect",
+            "props": {
+              "xs": 12,
+              "md": 12,
+              "container": true,
+              "style": {
+                "display": "flex"
+              }
+            },
+            "chld": [
+              {
+                "type": "sect",
+                "props": {
+                  "container": true,
+                  "xs": 12,
+                  "md": 6,
+                  "lg": 5,
+                  "style": {
+                    "display": "flex"
+                  }
+                },
+                "chld": [
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": "[dsDocumentMaster.showDocno(neq)raw.1]"
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 4,
+                          "md": 3,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "Doc#",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "entry",
+                                    "props": {
+                                      "label": "",
+                                      "className": "small-ctr",
+                                      "required": true,
+                                      "diabled": true,
+                                      "inputProps": {
+                                        "maxLength": 20,
+                                        "style": {
+                                          "width": "200px"
+                                        }
+                                      },
+                                      "dset": "DsFrmHeaderEntry",
+                                      "bind": "ACOPN_DOCNO"
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": true
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 12,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "Document Date",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "dtpick",
+                                    "props": {
+                                      "label": "",
+                                      "fullWidth": true,
+                                      "inputProps": {
+                                        "style": {
+                                          "paddingTop": "7px",
+                                          "paddingBottom": "7px",
+                                          "fontSize": "0.8rem"
+                                        }
+                                      },
+                                      "dset": "DsFrmHeaderEntry",
+                                      "bind": "ACOPN_DOCDATE",
+                                      "whenchange": []
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": "[pagemenuinfo.module(eq)raw.ESS]"
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 12,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "GL Code",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lkup",
+                                    "props": {
+                                      "dset": "DsFrmHeaderEntry",
+                                      "required": true,
+                                      "bind": "ACOPN_AC_DESC",
+                                      "variant": "outlined",
+                                      "className": "small-ctr",
+                                      "label": "",
+                                      "fullWidth": true,
+                                      "icon": "search",
+                                      "icons": {
+                                        "notempty": {
+                                          "icon": "close",
+                                          "whenclick": [
+                                            {
+                                              "exec": "mergedataset",
+                                              "args": {
+                                                "dset": "DsFrmHeaderEntry",
+                                                "data": {
+                                                  "ACOPN_AC_DOCNO": "",
+                                                  "ACOPN_AC_DESC": ""
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "whenclick": [
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "nodeepprocess": true,
+                                            "dset": "customevents",
+                                            "data": [
+                                              {
+                                                "exec": "mergedataset",
+                                                "args": {
+                                                  "dset": "DsFrmHeaderEntry",
+                                                  "data": {
+                                                    "ACOPN_SUBLEDGER_DOCNO": "",
+                                                    "ACOPN_SUBLEDGER_DESC": ""
+                                                  }
+                                                }
+                                              },
+                                              {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                  "dset": "customevents",
+                                                  "data": null
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "dset": "dslist",
+                                            "data": {
+                                              "listtype": "AOOGL",
+                                              "commontype": "manual",
+                                              "title": "GL Code",
+                                              "dataset": "DsFrmHeaderEntry",
+                                              "section": "Alltype",
+                                              "doctypefield": "ACOPN_AC_DOCTYPE",
+                                              "codefield": "ACOPN_AC_DOCNO",
+                                              "descfield": "ACOPN_AC_DESC"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "exec": "filldataset",
+                                          "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "column": "layoutinfo",
+                                            "dset": "popupinfo",
+                                            "section": "Alltype",
+                                            "args": {
+                                              "doctype": "popup",
+                                              "docno": "lookup"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": "[pagemenuinfo.module(eq)raw.ESS]"
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 12,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "Sl Code",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lkup",
+                                    "props": {
+                                      "dset": "DsFrmHeaderEntry",
+                                      "required": true,
+                                      "bind": "ACOPN_SUBLEDGER_DESC",
+                                      "variant": "outlined",
+                                      "className": "small-ctr",
+                                      "label": "",
+                                      "fullWidth": true,
+                                      "icon": "search",
+                                      "icons": {
+                                        "notempty": {
+                                          "icon": "close",
+                                          "whenclick": [
+                                            {
+                                              "exec": "mergedataset",
+                                              "args": {
+                                                "dset": "DsFrmHeaderEntry",
+                                                "data": {
+                                                  "ACOPN_SUBLEDGER_DOCNO": "",
+                                                  "ACOPN_SUBLEDGER_DESC": ""
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "whenclick": [
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "nodeepprocess": true,
+                                            "dset": "customevents",
+                                            "data": [
+                                              {
+                                                "exec": "setdataset",
+                                                "args": {
+                                                  "dset": "customevents",
+                                                  "data": null
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "dset": "dslist",
+                                            "data": {
+                                              "listtype": "AOOAP1",
+                                              "commontype": "manual",
+                                              "title": "Supplier",
+                                              "dataset": "DsFrmHeaderEntry",
+                                              "section": "Alltype",
+                                              "doctypefield": "ACOPN_SUBLEDGER_DOCTYPE",
+                                              "codefield": "ACOPN_SUBLEDGER_DOCNO",
+                                              "descfield": "ACOPN_SUBLEDGER_DESC",
+                                              "filtercondition": {
+                                                "ACOPN_AC_DOCNO": "[DsFrmHeaderEntry.ACOPN_AC_DOCNO]"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "exec": "filldataset",
+                                          "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "column": "layoutinfo",
+                                            "dset": "popupinfo",
+                                            "section": "Alltype",
+                                            "args": {
+                                              "doctype": "popup",
+                                              "docno": "lookup"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": "[pagemenuinfo.module(eq)raw.ESS]"
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 12,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "Division",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lkup",
+                                    "props": {
+                                      "dset": "DsFrmHeaderEntry",
+                                      "required": true,
+                                      "bind": "ACOPN_DIVN_DESC",
+                                      "variant": "outlined",
+                                      "className": "small-ctr",
+                                      "label": "",
+                                      "fullWidth": true,
+                                      "icon": "search",
+                                      "icons": {
+                                        "notempty": {
+                                          "icon": "close",
+                                          "whenclick": [
+                                            {
+                                              "exec": "mergedataset",
+                                              "args": {
+                                                "dset": "DsFrmHeaderEntry",
+                                                "data": {
+                                                  "ACOPN_DIVN_DOCNO": "",
+                                                  "ACOPN_DIVN_DESC": ""
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "whenclick": [
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "nodeepprocess": true,
+                                            "dset": "customevents",
+                                            "data": []
+                                          }
+                                        },
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "dset": "dslist",
+                                            "data": {
+                                              "listtype": "AOODIV",
+                                              "commontype": "manual",
+                                              "title": "Employee",
+                                              "dataset": "DsFrmHeaderEntry",
+                                              "section": "Alltype",
+                                              "doctypefield": "ACOPN_DIVN_DOCTYPE",
+                                              "codefield": "ACOPN_DIVN_DOCNO",
+                                              "descfield": "ACOPN_DIVN_DESC"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "exec": "filldataset",
+                                          "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "column": "layoutinfo",
+                                            "dset": "popupinfo",
+                                            "section": "Alltype",
+                                            "args": {
+                                              "doctype": "popup",
+                                              "docno": "lookup"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "hide",
+                    "props": {
+                      "appendprops": {
+                        "xsUp": true
+                      }
+                    },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "xs": 12,
+                          "style": {
+                            "padding": "5px"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "div",
+                            "props": {
+                              "className": "entryLabelOuterDiv"
+                            },
+                            "chld": [
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryLabelDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lbl",
+                                    "props": {
+                                      "text": "Department",
+                                      "className": "entryLabel"
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "type": "div",
+                                "props": {
+                                  "className": "entryValueDiv"
+                                },
+                                "chld": [
+                                  {
+                                    "type": "lkup",
+                                    "props": {
+                                      "dset": "DsFrmHeaderEntry",
+                                      "required": true,
+                                      "bind": "EMP_NAME",
+                                      "variant": "outlined",
+                                      "className": "small-ctr",
+                                      "label": "",
+                                      "fullWidth": true,
+                                      "icon": "search",
+                                      "icons": {
+                                        "notempty": {
+                                          "icon": "close",
+                                          "whenclick": [
+                                            {
+                                              "exec": "mergedataset",
+                                              "args": {
+                                                "dset": "DsFrmHeaderEntry",
+                                                "data": {
+                                                  "LH_EMP_DOCNO": "",
+                                                  "EMP_NAME": ""
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      },
+                                      "whenclick": [
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "nodeepprocess": true,
+                                            "dset": "customevents",
+                                            "data": [
+                                              {
+                                                "exec": "mergedataset",
+                                                "args": {
+                                                  "dset": "DsFrmHeaderEntry",
+                                                  "data": "[DSLeaveDetails]"
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "exec": "setdataset",
+                                          "args": {
+                                            "dset": "dslist",
+                                            "data": {
+                                              "listtype": "ALPEMPM",
+                                              "commontype": "manual",
+                                              "title": "Employee",
+                                              "dataset": "DsFrmHeaderEntry",
+                                              "section": "Alltype",
+                                              "doctypefield": "LH_EMP_DOCTYPE",
+                                              "codefield": "LH_EMP_DOCNO",
+                                              "descfield": "EMP_NAME"
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "exec": "filldataset",
+                                          "args": {
+                                            "proc": "PWA.LoadLayout",
+                                            "column": "layoutinfo",
+                                            "dset": "popupinfo",
+                                            "section": "Alltype",
+                                            "args": {
+                                              "doctype": "popup",
+                                              "docno": "lookup"
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "div",
+            "props": {
+              "className": "subHeadingLbl",
+              "style": {
+                "width": "100%"
+              }
+            },
+            "chld": [
+              {
+                "type": "lbl",
+                "props": {
+                  "text": "Account Details"
+                }
+              }
+            ]
+          },
+          {
+            "type": "sect",
+            "props": {
+              "container": true,
+              "style": {
+                "display": "block",
+                "padding": "5px"
+              },
+              "xs": 12,
+              "className": "TableParentSect"
+            },
+            "chld": [
+              {
+                "type": "sect",
+                "props": {
+                  "item": true,
+                  "container": true,
+                  "className": "TableHeaderSect",
+                  "style": {
+                    "display": "flex"
+                  },
+                  "xs": 12
+                },
+                "chld": [
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 2,
+                      "className": "TableHeaderChildSect",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "Type"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "DOC #"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "Date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "Value Date"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "Remarks"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "."
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "className": "TableHeaderChildSect",
+                      "xs": 1
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "props": {},
+                        "chld": "Currency"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "className": "TableHeaderChildSect",
+                      "xs": 1
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "props": {},
+                        "chld": "Exchange Rate"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "Fcy Amount"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "xs": 1,
+                      "className": "TableHeaderChildSect ",
+                      "style": {}
+                    },
+                    "chld": [
+                      {
+                        "type": "span",
+                        "chld": "AED Amount"
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": {
+                      "item": true,
+                      "className": "TableHeaderLastChildSect",
+                      "xs": 1,
+                      "style": {
+                        "display": "flex"
+                      }
+                    },
+                    "chld": []
+                  }
+                ]
+              },
+              {
+                "type": "list",
+                "props": {
+                  "datasets": [
+                    "DsFrmDetails1"
+                  ],
+                  "style": {
+                    "width": "100%"
+                  },
+                  "className": "TableListSect facts-input-list",
+                  "content": {
+                    "template": "custom",
+                    "props": {},
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": {
+                          "item": true,
+                          "container": true,
+                          "style": {
+                            "display": "flex"
+                          },
+                          "xs": 12
+                        },
+                        "chld": [
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 2,
+                              "className": "TableContentChildSect",
+                              "style": {
+                                "padding": "5px"
+                              }
+                            },
+                            "chld": [
+                              {
+
+                                "type": "span",
+                                                      "props": {
+                                                        "style": {}
+                                                      },
+                                                      "chld": "[this.ACOPNDET_DOC_DOCTYPE]"
+                                // "type": "lkup",
+                                // "props": {
+                                //   "dset": "DsFrmDetails1",
+                                //   "bind": "ACOPNDET_DOC_DOCTYPE",
+                                //   "variant": "outlined",
+                                //   "className": "small-ctr",
+                                //   "resolveprops": true,
+                                //   "label": "",
+                                //   "fullWidth": true,
+                                //   "rowindex": "[this.propkey]",
+                                //   "icon": "search",
+                                //   "includerefdata": true,
+                                //   "icons": {
+                                //     "notempty": {
+                                //       "icon": "close",
+                                //       "whenclick": [
+                                //         {
+                                //           "exec": "mergedatasetarray",
+                                //           "args": {
+                                //             "dset": "DsFrmDetails1",
+                                //             "index": "[this.propkey]",
+                                //             "data": {
+                                //               "ACOPNDET_DOC_DOCTYPE": "",
+                                //               "ACOPNDET_DOC_DESC": ""
+                                //             }
+                                //           }
+                                //         }
+                                //       ]
+                                //     }
+                                //   },
+                                //   "whenclick": [
+                                //     {
+                                //       "exec": "setdataset",
+                                //       "args": {
+                                //         "dset": "dslist",
+                                //         "data": {
+                                //           "listtype": "PVGL",
+                                //           "commontype": "manual",
+                                //           "title": "GL Code",
+                                //           "rowindex": "[this.propkey]",
+                                //           "calledFrom": "list",
+                                //           "dataset": "DsFrmDetails1",
+                                //           "section": "Alltype",
+                                //           "doctypefield": "RPDET_AC_DOCTYPE",
+                                //           "codefield": "ACOPNDET_DOC_DOCTYPE",
+                                //           "descfield": "ACOPNDET_DOC_DESC"
+                                //         }
+                                //       }
+                                //     },
+                                //     {
+                                //       "exec": "filldataset",
+                                //       "args": {
+                                //         "proc": "PWA.LoadLayout",
+                                //         "column": "layoutinfo",
+                                //         "dset": "popupinfo",
+                                //         "section": "Alltype",
+                                //         "args": {
+                                //           "doctype": "popup",
+                                //           "docno": "lookup"
+                                //         }
+                                //       }
+                                //     }
+                                //   ]
+                                // }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "className": "TableContentChildSect",
+                              "xs": 1
+                            },
+                            "chld": [
+                              {
+                                "type": "entry",
+                                "props": {
+                                  "label": "",
+                                  "className": "small-ctr",
+                                  "fullWidth": true,
+                                  "variant": "outlined",
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "ACOPNDET_DOC_DOCNO"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "resolvestyles": true,
+                              "includerefdata": true,
+                              "appendprops": {
+                                "style": {
+                                  "padding": "5px",
+                                  "display": "flex"
+                                }
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "dxdtpick",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "ACOPNDET_DOC_DOCDATE",
+                                  "className": "small-ctr",
+                                  "type": "date",
+                                  "labelMode": "floating",
+                                  "closeOnSelect": true,
+                                  "disabled": false,
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "inputVariant": "outlined",
+                                  "label": "",
+                                  "inputProps": {
+                                    "style": {
+                                      "padding": "5px"
+                                    }
+                                  },
+                                  "whenchange": []
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "resolvestyles": true,
+                              "includerefdata": true,
+                              "appendprops": {
+                                "style": {
+                                  "padding": "5px",
+                                  "display": "flex"
+                                }
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "dxdtpick",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "ACOPNDET_VALDATE",
+                                  "className": "small-ctr",
+                                  "type": "date",
+                                  "labelMode": "floating",
+                                  "closeOnSelect": true,
+                                  "disabled": false,
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "inputVariant": "outlined",
+                                  "label": "",
+                                  "inputProps": {
+                                    "style": {
+                                      "padding": "5px"
+                                    }
+                                  },
+                                  "whenchange": []
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "resolvestyles": true,
+                              "includerefdata": true,
+                              "appendprops": {
+                                "style": {
+                                  "padding": "5px",
+                                  "display": "flex"
+                                }
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "entry",
+                                "props": {
+                                  "label": "",
+                                  "className": "small-ctr",
+                                  "fullWidth": true,
+                                  "variant": "outlined",
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "ACOPNDET_NARRATION"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "resolvestyles": true,
+                              "includerefdata": true,
+                              "appendprops": {
+                                "style": {
+                                  "padding": "5px",
+                                  "display": "flex"
+                                }
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "ddl",
+                                "props": {
+                                  "variant": "outlined",
+                                  "className": "small-ctr",
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "RPDET_DRCR_SIGN",
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "InputLabelProps": {
+                                    "shrink": true
+                                  },
+                                  "listdset": "dsDrCrType",
+                                  "valuefield": "code",
+                                  "textfield": "description",
+                                  "fullWidth": true
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "style": {
+                                "padding": "5px"
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "lkup",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "bind": "ACOPNDET_DOC_DOCTYPE",
+                                  "variant": "outlined",
+                                  "className": "small-ctr",
+                                  "resolveprops": true,
+                                  "label": "",
+                                  "fullWidth": true,
+                                  "rowindex": "[this.propkey]",
+                                  "icon": "search",
+                                  "includerefdata": true,
+                                  "icons": {
+                                    "notempty": {
+                                      "icon": "close",
+                                      "whenclick": [
+                                        {
+                                          "exec": "mergedatasetarray",
+                                          "args": {
+                                            "dset": "DsFrmDetails1",
+                                            "index": "[this.propkey]",
+                                            "data": {
+                                              "ACOPNDET_DOC_DOCTYPE": "",
+                                              "ACOPNDET_DOC_DESC": ""
+                                            }
+                                          }
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "whenclick": [
+                                    {
+                                      "exec": "setdataset",
+                                      "args": {
+                                        "dset": "dslist",
+                                        "data": {
+                                          "listtype": "AOOCURR1",
+                                          "commontype": "manual",
+                                          "title": "Currency Master",
+                                          "rowindex": "[this.propkey]",
+                                          "calledFrom": "list",
+                                          "dataset": "DsFrmDetails1",
+                                          "section": "Alltype",
+                                          "doctypefield": "ACOPNDET_CURR_DOCTYPE",
+                                          "codefield": "ACOPNDET_CURR_DOCNO",
+                                          "descfield": "ACOPNDET_CURR_DESC",
+                                          "filtercondition": {
+                                            "ACOPN_SUBLEDGER_DOCNO": "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_DOCNO]",
+                                            "ACOPN_SUBLEDGER_DOCTYPE": "[DsFrmHeaderEntry.ACOPN_SUBLEDGER_DOCTYPE]"
+                                          }
+                                        }
+                                      }
+                                    },
+                                    {
+                                      "exec": "filldataset",
+                                      "args": {
+                                        "proc": "PWA.LoadLayout",
+                                        "column": "layoutinfo",
+                                        "dset": "popupinfo",
+                                        "section": "Alltype",
+                                        "args": {
+                                          "doctype": "popup",
+                                          "docno": "lookup"
+                                        }
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "style": {
+                                "textAlign": "right",
+                                "padding": "10px",
+                                "justifyContent": "end"
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "dxnumlbl",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "rowindex": "[this.propkey]",
+                                  "fullWidth": true,
+                                  "includerefdata": true,
+                                  "bind": "ACOPNDET_EXC"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "style": {
+                                "textAlign": "right",
+                                "padding": "10px",
+                                "justifyContent": "end"
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "dxnumlbl",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "rowindex": "[this.propkey]",
+                                  "fullWidth": true,
+                                  "includerefdata": true,
+                                  "bind": "ACOPNDET_FCAMOUNT"
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentChildSect",
+                              "resolvestyles": true,
+                              "includerefdata": true,
+                              "appendprops": {
+                                "style": {
+                                  "padding": "5px",
+                                  "display": "flex"
+                                }
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "dxnumberbox",
+                                "props": {
+                                  "dset": "DsFrmDetails1",
+                                  "className": "small-ctr",
+                                  "fullWidth": true,
+                                  "format": "##,###.00",
+                                  "min": 1,
+                                  "inputProps": {
+                                    "maxLength": 20,
+                                    "style": {
+                                      "fontWeight": "bold",
+                                      "textAlign": "right",
+                                      "height": "11px"
+                                    }
+                                  },
+                                  "variant": "outlined",
+                                  "includerefdata": true,
+                                  "rowindex": "[this.propkey]",
+                                  "bind": "ACOPNDET_AMOUNT",
+                                  "onFocusOut": [],
+                                  "onChange": []
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "type": "hide",
+                            "props": {
+                              "appendprops": {
+                                "xsUp": true
+                              }
+                            },
+                            "chld": [
+                              {
+                                "type": "sect",
+                                "props": {
+                                  "item": true,
+                                  "xs": 1,
+                                  "className": "TableContentChildSect",
+                                  "style": {
+                                    "textAlign": "right",
+                                    "padding": "10px",
+                                    "justifyContent": "end"
+                                  }
+                                },
+                                "chld": [
+                                  {
+                                    "type": "span",
+                                    "props": {
+                                      "style": {
+                                        "fontSize": "0.9rem",
+                                        "color": "[dsAppTheme.primary_color]",
+                                        "fontWeight": "600"
+                                      }
+                                    },
+                                    "chld": "[this.LDET_TOTALBALACE_DAYS(numformat)raw.N2]"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "type": "sect",
+                            "props": {
+                              "item": true,
+                              "xs": 1,
+                              "className": "TableContentLastChildSect",
+                              "style": {}
+                            },
+                            "chld": [
+                              {
+                                "type": "icbtn",
+                                "props": {
+                                  "color": "primary",
+                                  "includerefdata": true,
+                                  "variant": "contained",
+                                  "resolvestyles": true,
+                                  "fullWidth": true,
+                                  "className": "facts-icon-color--delete",
+                                  "style": {
+                                    "fontSize": "1.3rem"
+                                  },
+                                  "whenclick": [
+                                    {
+                                      "exec": "showloader"
+                                    },
+                                    {
+                                      "exec": "setdataset",
+                                      "args": {
+                                        "dset": "dialoginfo",
+                                        "data": {
+                                          "open": true,
+                                          "title": "Delete",
+                                          "description": "Are you sure you want to delete this Item?",
+                                          "btn1": {
+                                            "chld": "YES",
+                                            "props": {
+                                              "whenclick": [
+                                                {
+                                                  "exec": "mergedatasetarray",
+                                                  "args": {
+                                                    "dset": "DsFrmDetails1",
+                                                    "index": "[this.propkey]",
+                                                    "data": null
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "btn2": {
+                                            "chld": "NO",
+                                            "props": {
+                                              "whenclick": []
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  ]
+                                },
+                                "chld": "delete"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "sect",
+            "props": {
+              "xs": 12,
+              "item": true,
+              "container": true,
+              "style": {
+                "padding": "5px 7px",
+                "display": "flex",
+                "justifyContent": "flex-end"
+              }
+            },
+            "chld": [
+              {
+                "type": "hide",
+                "props": {
+                  "appendprops": {
+                    "xsUp": "[dsPagemode.pagemode(eq)raw.view]"
+                  }
+                },
+                "chld": [
+                  {
+                    "type": "btn",
+                    "props": {
+                      "color": "primary",
+                      "size": "small",
+                      "className": "tableAddRowBtn",
+                      "whenclick": [
+                        {
+                          "exec": "validatedataset",
+                          "verify": {
+                            "satisfy": "any",
+                            "halton": "match",
+                            "ref": {
+                              "[DsFrmHeaderEntry.ACOPN_AC_DESC(<)raw.1]": true,
+                              "[DsFrmHeaderEntry.ACOPN_AC_DESC(ifnull)raw.]": ""
+                            },
+                            "whenmatch": [
+                              {
+                                "exec": "setdataset",
+                                "args": {
+                                  "dset": "snackinfo",
+                                  "data": {
+                                    "open": true,
+                                    "type": "error",
+                                    "message": "Please enter GL code"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "exec": "setdataset",
+                          "args": {
+                            "dset": "DsFrmDetailsEntry",
+                            "data": {
+                               "ACOPNDET_DOC_FYDOCTYPE": "",
+                                "ACOPNDET_DOC_DOCTYPE": "",
+                                "ACOPNDET_DOC_DOCNO": "",
+                                "ACOPNDET_DOC_DOCSRNO": "",
+                                "ACOPNDET_DOC_DOCDATE": "",
+                                "ACOPNDET_CR_DAYS": "",
+                                "ACOPNDET_VALDATE": "",
+                                "RPDET_DRCR_SIGN": "",
+                                "ACOPNDET_CURR_DOCNO": "",
+                                "SLDET_ALLOWDED_AMOUNT": "",
+                                "ACOPNDET_AMOUNT": "",
+                                "ACOPNDET_REFNO": "",
+                                "ACOPNDET_REFDATE": ""
+                            }
+                          }
+                        },
+                        {
+                          "exec": "filldataset",
+                          "args": {
+                            "proc": "PWA.LoadLayout",
+                            "column": "layoutinfo",
+                            "dset": "popupinfo",
+                            "section": "allowance",
+                            "args": {
+                              "doctype": "popup",
+                              "docno": "aoo-add-new-pop"
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    "chld": [
+                      {
+                        "type": "div",
+                        "props": {
+                          "style": {
+                            "height": "100%",
+                            "display": "flex",
+                            "alignItems": "center"
+                          }
+                        },
+                        "chld": [
+                          {
+                            "type": "icon",
+                            "props": {
+                              "className": "tableAddRowBtnIcon"
+                            },
+                            "chld": "add"
+                          },
+                          {
+                            "type": "lbl",
+                            "props": {
+                              "className": "tableAddRowBtnLbl",
+                              "text": "Add New Row"
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "type": "sect",
+            "props": {
+              "item": true,
+              "xs": 12,
+              "md": 12,
+              "style": {
+                "padding": "10px 5px"
+              }
+            },
+            "chld": [
+              {
+                "type": "div",
+                "props": {
+                  "className": "entryLabelOuterDiv"
+                },
+                "chld": [
+                  {
+                    "type": "div",
+                    "props": {
+                      "className": "entryLabelDiv"
+                    },
+                    "chld": [
+                      {
+                        "type": "lbl",
+                        "props": {
+                          "text": "[pagemenuinfo.module(eq)raw.ESS(iftrue)raw.Purpose(iffalse)raw.Remarks]",
+                          "className": "entryLabel"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "div",
+                    "props": {
+                      "className": "entryValueDiv"
+                    },
+                    "chld": [
+                      {
+                        "type": "entry",
+                        "props": {
+                          "label": "",
+                          "multiline": true,
+                          "fullWidth": true,
+                          "rows": 3,
+                          "inputProps": {
+                            "maxLength": 500
+                          },
+                          "className": "small-ctr",
+                          "dset": "DsFrmHeaderEntry",
+                          "bind": "LH_REMARKS"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

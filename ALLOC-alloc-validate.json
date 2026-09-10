@@ -1,0 +1,26 @@
+[
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmDetails1.[dsALLOCSelected.index].ALLOCATION_FCAMOUNT(<)raw.1]": true,
+                "[DsFrmDetails1.[dsALLOCSelected.index].ALLOCATION_FCAMOUNT(ifnull)raw.]": ""
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please select at least one allocation record before submitting."
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

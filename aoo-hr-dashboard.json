@@ -1,0 +1,655 @@
+{
+    "title": "User Dashboard",
+    "newid": "483ABAF7-3ABB-4DE3-AFE4-260FB9208032",
+    "wheninit": [
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsEmptyLayoutJsons",
+                "data": []
+            }
+        },
+        {
+            "exec": "fillmultidataset",
+            "args": {
+                "proc": "PWA.DBLR_list",
+                "dsets": [
+                    {
+                        "name": "dsWhenloadEvents",
+                        "column": "whenloadevents",
+                        "table": "Table"
+                    },
+                    {
+                        "name": "dsWhenTimerEvents",
+                        "column": "whenTimerEvents",
+                        "table": "Table1"
+                    },
+                    {
+                        "name": "dsDBLRList",
+                        "table": "Table2"
+                    },
+                    {
+                        "name": "dsblankLayout",
+                        "table": "Table3"
+                    }
+                ],
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]"
+                }
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsTimer",
+                "data": {
+                    "timer": 0
+                }
+            }
+        }
+    ],
+    "whenload": [
+        "[dsWhenloadEvents]"
+    ],
+    "whentimer": [
+        {
+            "interval": 1,
+            "tasks": [
+                {
+                    "exec": "mergedataset",
+                    "args": {
+                        "dset": "dsTimer",
+                        "data": {
+                            "timer": "[dsTimer.timer(+)raw.1]"
+                        }
+                    }
+                },
+                "[dsWhenTimerEvents]"
+            ]
+        }
+    ],
+    "globalsearchfield": {},
+    "appbar": {
+        "titlepart": "[_titleparts.title-desc]",
+        "props": {
+            "className": "factsAppBarTitle",
+            "style": {
+                "width": "100%"
+            }
+        },
+        "chld": "[_pageparts.appbar-icons]"
+    },
+    "layout": [
+        {
+            "type": "sect",
+            "props": {
+                "className": "HRDB-OuterDiv",
+                "container": true
+            },
+            "chld": [
+                {
+                    "type": "sect",
+                    "props": {
+                        "className": "DBParentDiv",
+                        "container": true
+                    },
+                    "chld": [
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "xs": 12,
+                                "className": "WelcomeMessage",
+                                "style": {
+                                    "padding": "10px"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "sect",
+                                    "props": {
+                                        "item": true,
+                                        "container": true,
+                                        "xs": 12,
+                                        "style": {}
+                                    },
+                                    "chld": [
+                                        {
+                                            "type": "lbl",
+                                            "props": {
+                                                "className": "WelcomeMessageLabel",
+                                                "style": {
+                                                    "fontSize": "1.2rem",
+                                                    "fontWeight": "bold",
+                                                    "padding-left": "15px"
+                                                },
+                                                "text": "[raw.Hi, Welcome back, [_userinfo.username]! 👋]"
+                                            }
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "sect",
+                            "props": {
+                                "item": true,
+                                "container": true,
+                                "xs": 12,
+                                "style": {
+                                    "padding": "10px",
+                                    "border": "none"
+                                }
+                            },
+                            "chld": [
+                                {
+                                    "type": "list",
+                                    "props": {
+                                        "datasets": [
+                                            "dsDBLRList"
+                                        ],
+                                        "className": "MuiGrid-root MuiGrid-container",
+                                        "style": {
+                                            "display": "flex",
+                                            "justifyContent": "space-between",
+                                            "alignItems": "start",
+                                            "flexWrap": "wrap"
+                                        },
+                                        "content": {
+                                            "template": "custom",
+                                            "props": {
+                                                "resolveprops": true,
+                                                "includerefdata": true,
+                                                "className": "[raw.MuiGrid-root MuiGrid-container MuiGrid-item [this.RE_CLASSNAME]]",
+                                                "style": {
+                                                    "padding": "5px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "item": true,
+                                                        "includerefdata": true,
+                                                        "resolveprops": true,
+                                                        "className": "[this.showHeader(eq)raw.1(iftrue)raw.HRDB-card(iffalse)raw.]"
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "hide",
+                                                            "props": {
+                                                                "includerefdata": true,
+                                                                "appendprops": {
+                                                                    "xsUp": "[this.showHeader(neq)raw.1]",
+                                                                    "style": {
+                                                                        "width": "100%"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "click",
+                                                                    "props": {
+                                                                        "container": true,
+                                                                        "item": true,
+                                                                        "className": "HRDB-card-header",
+                                                                        "style": {
+                                                                            "width": "100%"
+                                                                        },
+                                                                        "includerefdata": true,
+                                                                        "fullWidth": true,
+                                                                        "whenclick": [
+                                                                            {
+                                                                                "exec": "mergedatasetarray",
+                                                                                "args": {
+                                                                                    "dset": "dsDBLRList",
+                                                                                    "index": "[this.propkey]",
+                                                                                    "data": {
+                                                                                        "panelflag": "[this.panelflag(ifnull)raw.0(eq)raw.0(iftrue)raw.1(iffalse)raw.0]"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            {
+                                                                                "exec": "validatedataset",
+                                                                                "verify": {
+                                                                                    "satisfy": "any",
+                                                                                    "ref": {
+                                                                                        "[this.dataLoaded(ifnull)raw.]": 0
+                                                                                    },
+                                                                                    "whenmatch": [
+                                                                                        "[this.RE_EVENT(jsonparse)]",
+                                                                                        {
+                                                                                            "exec": "mergedatasetarray",
+                                                                                            "args": {
+                                                                                                "dset": "dsDBLRList",
+                                                                                                "index": "[this.propkey]",
+                                                                                                "data": {
+                                                                                                    "dataLoaded": 1
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            }
+                                                                        ]
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "item": true,
+                                                                                "container": true,
+                                                                                "xs": 12,
+                                                                                "className": "",
+                                                                                "style": {
+                                                                                    "display": "flex",
+                                                                                    "justifyContent": "space-between",
+                                                                                    "alignItems": "center"
+                                                                                }
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "style": {
+                                                                                            "display": "flex",
+                                                                                            "justifyContent": "flex-start",
+                                                                                            "alignItems": "center"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "lbl",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "className": "HRDB-card-title",
+                                                                                                "style": {
+                                                                                                    "marginLeft": "15px"
+                                                                                                },
+                                                                                                "text": "[this.title]"
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "div",
+                                                                                    "props": {
+                                                                                        "style": {
+                                                                                            "display": "flex",
+                                                                                            "justifyContent": "end",
+                                                                                            "width": "25px"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "hide",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "appendprops": {
+                                                                                                    "xsUp": "[this.panelflag(neq)raw.0]",
+                                                                                                    "style": {
+                                                                                                        "width": "100%"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "icbtn",
+                                                                                                    "props": {
+                                                                                                        "includerefdata": true,
+                                                                                                        "rowindex": "[this.propkey]",
+                                                                                                        "style": {
+                                                                                                            "color": "#635757",
+                                                                                                            "padding": "0px"
+                                                                                                        },
+                                                                                                        "whenclick": [
+                                                                                                            {
+                                                                                                                "exec": "validatedataset",
+                                                                                                                "verify": {
+                                                                                                                    "satisfy": "any",
+                                                                                                                    "ref": {
+                                                                                                                        "[this.dataLoaded(ifnull)raw.]": 0
+                                                                                                                    },
+                                                                                                                    "whenmatch": [
+                                                                                                                        "[this.RE_EVENT(jsonparse)]",
+                                                                                                                        {
+                                                                                                                            "exec": "mergedatasetarray",
+                                                                                                                            "args": {
+                                                                                                                                "dset": "dsDBLRList",
+                                                                                                                                "index": "[this.propkey]",
+                                                                                                                                "data": {
+                                                                                                                                    "dataLoaded": 1
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    },
+                                                                                                    "chld": "arrow_drop_down"
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "hide",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "appendprops": {
+                                                                                                    "xsUp": "[this.panelflag(neq)raw.1]",
+                                                                                                    "style": {
+                                                                                                        "width": "100%"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "icbtn",
+                                                                                                    "props": {
+                                                                                                        "rowindex": "[this.propkey]",
+                                                                                                        "includerefdata": true,
+                                                                                                        "style": {
+                                                                                                            "color": "#635757",
+                                                                                                            "padding": "0px"
+                                                                                                        },
+                                                                                                        "whenclick": []
+                                                                                                    },
+                                                                                                    "chld": "arrow_drop_up"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "hide",
+                                                            "props": {
+                                                                "includerefdata": true,
+                                                                "appendprops": {
+                                                                    "xsUp": "[this.panelflag(neq)raw.1]",
+                                                                    "style": {
+                                                                        "width": "100%"
+                                                                    }
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "container": true,
+                                                                        "xs": 12,
+                                                                        "resolveprops": true,
+                                                                        "includerefdata": true,
+                                                                        "style": {
+                                                                            "height": "fit-content"
+                                                                        }
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "view",
+                                                                            "props": {
+                                                                                "includerefdata": true,
+                                                                                "contenttype": "json",
+                                                                                "rowindex": "[this.propkey]",
+                                                                                "binding": true,
+                                                                                "content": "[this.layoutJson]",
+                                                                                "style": {}
+                                                                            }
+                                                                        },
+                                                                        {
+                                                                            "type": "hide",
+                                                                            "props": {
+                                                                                "includerefdata": true,
+                                                                                "appendprops": {
+                                                                                    "xsUp": "[this.showFooter(neq)raw.1]",
+                                                                                    "style": {
+                                                                                        "width": "100%"
+                                                                                    }
+                                                                                }
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "container": true,
+                                                                                        "xs": 12,
+                                                                                        "md": 12,
+                                                                                        "className": "cmlOptionsBtnSect",
+                                                                                        "style": {
+                                                                                            "justifyContent": "flex-end"
+                                                                                        }
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {}
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "icbtn",
+                                                                                                    "props": {
+                                                                                                        "title": "Refresh",
+                                                                                                        "variant": "contained",
+                                                                                                        "color": "primary",
+                                                                                                        "size": "small",
+                                                                                                        "rowindex": "[this.propkey]",
+                                                                                                        "className": "cmlOptionBtns",
+                                                                                                        "includerefdata": true,
+                                                                                                        "whenclick": "[this.RE_EVENT]"
+                                                                                                    },
+                                                                                                    "chld": "refresh"
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "hide",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "appendprops": {
+                                                                                                    "xsUp": "[this.RE_SHOW_FILTER(neq)raw.1]",
+                                                                                                    "style": {
+                                                                                                        "width": "100%"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "style": {}
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "icbtn",
+                                                                                                            "props": {
+                                                                                                                "title": "Filter",
+                                                                                                                "variant": "contained",
+                                                                                                                "color": "primary",
+                                                                                                                "rowindex": "[this.propkey]",
+                                                                                                                "size": "small",
+                                                                                                                "className": "cmlOptionBtns",
+                                                                                                                "includerefdata": true,
+                                                                                                                "whenclick": [
+                                                                                                                    {
+                                                                                                                        "exec": "filldataset",
+                                                                                                                        "args": {
+                                                                                                                            "proc": "PWA.GetReportEntry",
+                                                                                                                            "row": 0,
+                                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                                            "args": {
+                                                                                                                                "doctype": "[this.RE_DOCTYPE]",
+                                                                                                                                "docno": "[this.RE_DOCNO]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "setdataset",
+                                                                                                                        "args": {
+                                                                                                                            "dset": "DocReportMaster",
+                                                                                                                            "data": {
+                                                                                                                                "reportdesc": "[this.RE_DESC]",
+                                                                                                                                "reportdoctype": "[this.RE_DOCTYPE]",
+                                                                                                                                "reportdocno": "[this.RE_DOCNO]",
+                                                                                                                                "reportwidth": "[this.RE_MIN_WIDTH]",
+                                                                                                                                "reportproc": "[this.RE_PROCEDURE_NAME]",
+                                                                                                                                "reportEvent": "[this.RE_EVENT]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "filldataset",
+                                                                                                                        "args": {
+                                                                                                                            "proc": "PWA.LoadLayout",
+                                                                                                                            "column": "layoutinfo",
+                                                                                                                            "dset": "popupinfo",
+                                                                                                                            "section": "filtersect",
+                                                                                                                            "args": {
+                                                                                                                                "doctype": "popup",
+                                                                                                                                "docno": "dblr-filter-parameters",
+                                                                                                                                "docdoctype": "[this.RE_DOCTYPE]",
+                                                                                                                                "docdocno": "[this.RE_DOCNO]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            "chld": "filter_alt"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "hide",
+                                                                                            "props": {
+                                                                                                "includerefdata": true,
+                                                                                                "appendprops": {
+                                                                                                    "xsUp": "[this.RE_SHOW_FULL_PAGE_VIEW(neq)raw.1]",
+                                                                                                    "style": {
+                                                                                                        "width": "100%"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "sect",
+                                                                                                    "props": {
+                                                                                                        "item": true,
+                                                                                                        "style": {}
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "icbtn",
+                                                                                                            "props": {
+                                                                                                                "title": "Full page view",
+                                                                                                                "variant": "contained",
+                                                                                                                "color": "primary",
+                                                                                                                "rowindex": "[this.propkey]",
+                                                                                                                "size": "small",
+                                                                                                                "className": "cmlOptionBtns",
+                                                                                                                "includerefdata": true,
+                                                                                                                "whenclick": [
+                                                                                                                    {
+                                                                                                                        "exec": "filldataset",
+                                                                                                                        "args": {
+                                                                                                                            "proc": "PWA.GetReportEntry",
+                                                                                                                            "row": 0,
+                                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                                            "args": {
+                                                                                                                                "doctype": "[this.RE_DOCTYPE]",
+                                                                                                                                "docno": "[this.RE_DOCNO]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "setdataset",
+                                                                                                                        "args": {
+                                                                                                                            "dset": "DocReportMaster",
+                                                                                                                            "data": {
+                                                                                                                                "reportdesc": "[this.RE_DESC]",
+                                                                                                                                "reportdoctype": "[this.RE_DOCTYPE]",
+                                                                                                                                "reportdocno": "[this.RE_DOCNO]",
+                                                                                                                                "reportwidth": "[this.RE_MIN_WIDTH]",
+                                                                                                                                "reportproc": "[this.RE_PROCEDURE_NAME]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "filldataset",
+                                                                                                                        "args": {
+                                                                                                                            "proc": "PWA.GetUserMenuDocument",
+                                                                                                                            "dset": "dsSettingsNavigate",
+                                                                                                                            "row": 0,
+                                                                                                                            "args": {
+                                                                                                                                "doctype": "[pagemenuinfo.doctype]"
+                                                                                                                            }
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "setdatasetfield",
+                                                                                                                        "args": {
+                                                                                                                            "dset": "dsSettingsNavigate",
+                                                                                                                            "fieldname": "action",
+                                                                                                                            "data": [
+                                                                                                                                {
+                                                                                                                                    "exec": "filldataset",
+                                                                                                                                    "args": {
+                                                                                                                                        "proc": "PWA.LoadLayout",
+                                                                                                                                        "column": "layoutinfo",
+                                                                                                                                        "dset": "pageinfo",
+                                                                                                                                        "args": {
+                                                                                                                                            "doctype": "page",
+                                                                                                                                            "docno": "ReportEngineEntry",
+                                                                                                                                            "docdoctype": "[this.RE_DOCTYPE]",
+                                                                                                                                            "docdocno": "[this.RE_DOCNO]",
+                                                                                                                                            "title": "Documents Expiry Details"
+                                                                                                                                        }
+                                                                                                                                    }
+                                                                                                                                }
+                                                                                                                            ]
+                                                                                                                        }
+                                                                                                                    },
+                                                                                                                    {
+                                                                                                                        "exec": "navigate",
+                                                                                                                        "args": "[dsSettingsNavigate]"
+                                                                                                                    }
+                                                                                                                ]
+                                                                                                            },
+                                                                                                            "chld": "open_in_new"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

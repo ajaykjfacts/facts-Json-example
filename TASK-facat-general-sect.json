@@ -1,0 +1,1452 @@
+[
+    {
+        "type": "sect",
+        "props": {
+            "container": true,
+            "resolvestyles": true,
+            "appendprops": {
+                "style": {
+                    "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                }
+            }
+        },
+        "chld": [
+            {
+                "type": "sect",
+                "props": {
+                    "xs": 12,
+                    "className": "factsFullWidth"
+                },
+                "chld": [
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 3,
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Asset Category Code *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv",
+                                            "style": {}
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "inputProps": {
+                                                        "maxLength": 20,
+                                                        "style": {}
+                                                    },
+                                                    "required": true,
+                                                    "validation": {
+                                              "for": "text",
+                                              "msg": "Please enter the Asset Category Code",
+                                              "validationParams": {
+                                                "minLength": 1
+                                              }
+                                            },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "FACAT_DOCNO"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "md": 5,
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Description *",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "entry",
+                                                "props": {
+                                                    "label": "",
+                                                    "fullWidth": true,
+                                                    "className": "small-ctr",
+                                                    "inputVariant": "outlined",
+                                                    "required": true,
+                                                    "validation": {
+                                              "for": "text",
+                                              "msg": "Please enter the Description",
+                                              "validationParams": {
+                                                "minLength": 1
+                                              }
+                                            },
+                                                    "inputProps": {
+                                                        "maxLength": 100,
+                                                        "style": {}
+                                                    },
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "FACAT_DESC"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "style": {
+                                "textAlignLast": "left",
+                                "padding": "5px"
+                            },
+                            "md": 5,
+                            "xs": 12
+                        },
+                        "chld": [
+                            {
+                                "type": "div",
+                                "props": {
+                                    "className": "entryLabelOuterDiv"
+                                },
+                                "chld": [
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryLabelDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "lbl",
+                                                "props": {
+                                                    "text": "Cost Method",
+                                                    "className": "entryLabel"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "type": "div",
+                                        "props": {
+                                            "className": "entryValueDiv"
+                                        },
+                                        "chld": [
+                                            {
+                                                "type": "ddl",
+                                                "props": {
+                                                    "variant": "outlined",
+                                                    "className": "small-ctr",
+                                                    "dset": "DsFrmHeaderEntry",
+                                                    "bind": "FACAT_DEP_METHOD",
+                                                    "InputLabelProps": {
+                                                        "shrink": true
+                                                    },
+                                                    "listdset": "dsCostMethod",
+                                                    "valuefield": "value",
+                                                    "textfield": "text",
+                                                    "label": "",
+                                                    "fullWidth": true
+                                                }
+                                            }
+                                        ]
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "type": "sect",
+                        "props": {
+                            "item": true,
+                            "xs": 12,
+                            "className": "outerbox",
+                            "style": {
+                                "padding-left": "0px",
+                                "pointerEvents": "all"
+                            }
+                        },
+                        "chld": [
+                            {
+                                "type": "tab",
+                                "style": {
+                                    "padding": "1px"
+                                },
+                                "props": {
+                                    "whenchange": [
+                                        {
+                                            "exec": "validatedataset",
+                                            "verify": {
+                                                "satisfy": "any",
+                                                "ref": {
+                                                    "[this.value(neq)func.null]": true
+                                                },
+                                                "whenmatch": [
+                                                    "[dsTab[this.value]Events]"
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "data": [
+                                        {
+                                            "buttonProps": {
+                                                "label": "General",
+                                                "style": {
+                                                    "minHeight": "20px",
+                                                    "padding": "15px 10px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "container": true,
+                                                        "xs": 12,
+                                                        "resolvestyles": true,
+                                                        "appendprops": {
+                                                            "style": {
+                                                                "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                            }
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "container": true,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                },
+                                                                "xs": 12
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "container": true,
+                                                                        "className": "boxCard",
+                                                                        "xs": 12
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "xs": 12,
+                                                                                "item": true,
+                                                                                "resolvestyles": true,
+                                                                                "className": "subHeadingLbl",
+                                                                                "style": {}
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "span",
+                                                                                    "props": {
+                                                                                        "style": {}
+                                                                                    },
+                                                                                    "chld": "Calculation Basis"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "item": true,
+                                                                                "container": true,
+                                                                                "style": {},
+                                                                                "xs": 12
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {},
+                                                                                        "xs": 2
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "radio",
+                                                                                            "props": {
+                                                                                                "row": "row",
+                                                                                                "style": {
+                                                                                                    "justifyContent": "left"
+                                                                                                },
+                                                                                                "whenchange": [],
+                                                                                                "inputProps": {
+                                                                                                    "style": {
+                                                                                                        "marginLeft": "10px"
+                                                                                                    }
+                                                                                                },
+                                                                                                "variant": "outlined",
+                                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                                "bind": "FACAT_METHOD_OF_CALCULATION",
+                                                                                                "listdset": "dsCalculationMethod",
+                                                                                                "valuefield": "value",
+                                                                                                "textfield": "text",
+                                                                                                "label": "",
+                                                                                                "fullWidth": true
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {
+                                                                                            "padding": "2px",
+                                                                                            "display": "block"
+                                                                                        },
+                                                                                        "xs": 2
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingBottom": "5px",
+                                                                                                    "display": "flex"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "dxnumberbox",
+                                                                                                    "props": {
+                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                        "className": "small-ctr",
+                                                                                                        "fullWidth": true,
+                                                                                                        "format": "##,###.00",
+                                                                                                        "appendprops": {
+                                                                                                            "disabled": "[DsFrmHeaderEntry.FACAT_METHOD_OF_CALCULATION(neq)raw.0]"
+                                                                                                        },
+                                                                                                        "variant": "outlined",
+                                                                                                        "includerefdata": true,
+                                                                                                        "bind": "FACAT_DEP_PERCENTAGE"
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingBottom": "5px",
+                                                                                                    "display": "flex"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "dxnumberbox",
+                                                                                                    "props": {
+                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                        "className": "small-ctr",
+                                                                                                        "fullWidth": true,
+                                                                                                        "format": "##,###.00",
+                                                                                                        "appendprops": {
+                                                                                                            "disabled": "[DsFrmHeaderEntry.FAMST_METHOD_OF_CALCULATION(neq)raw.1]"
+                                                                                                        },
+                                                                                                        "variant": "outlined",
+                                                                                                        "includerefdata": true,
+                                                                                                        "bind": "FACAT_CM_LIFE_MONTH"
+                                                                                                    }
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {
+                                                                                            "padding": "2px",
+                                                                                            "display": "block"
+                                                                                        },
+                                                                                        "xs": 8
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingTop": "5px",
+                                                                                                    "display": "flex"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "width": "max-content"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "className": "helperText",
+                                                                                                                "style": {
+                                                                                                                    "fontSize": "0.8rem"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "(Depreciation Percentage per year)"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingTop": "22px",
+                                                                                                    "display": "flex"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 12
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "style": {
+                                                                                                            "width": "max-content"
+                                                                                                        }
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "span",
+                                                                                                            "props": {
+                                                                                                                "className": "helperText",
+                                                                                                                "style": {
+                                                                                                                    "fontSize": "0.8rem"
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "chld": "(in months)"
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "container": true,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "sect",
+                                                                    "props": {
+                                                                        "item": true,
+                                                                        "container": true,
+                                                                        "className": "boxCard",
+                                                                        "xs": 12
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "xs": 12,
+                                                                                "item": true,
+                                                                                "resolvestyles": true,
+                                                                                "className": "subHeadingLbl",
+                                                                                "style": {}
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "span",
+                                                                                    "props": {
+                                                                                        "style": {}
+                                                                                    },
+                                                                                    "chld": "Assert Numbering"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "sect",
+                                                                            "props": {
+                                                                                "item": true,
+                                                                                "container": true,
+                                                                                "style": {},
+                                                                                "xs": 12
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "item": true,
+                                                                                        "style": {},
+                                                                                        "xs": 2
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "radio",
+                                                                                            "props": {
+                                                                                                "style": {
+                                                                                                    "justifyContent": "left"
+                                                                                                },
+                                                                                                "whenchange": [],
+                                                                                                "inputProps": {
+                                                                                                    "style": {
+                                                                                                        "marginLeft": "10px"
+                                                                                                    }
+                                                                                                },
+                                                                                                "variant": "outlined",
+                                                                                                "dset": "DsFrmHeaderEntry",
+                                                                                                "bind": "FACAT_DOCNO_MANUAL",
+                                                                                                "listdset": "dsNumberingMethod",
+                                                                                                "valuefield": "value",
+                                                                                                "textfield": "text",
+                                                                                                "label": "",
+                                                                                                "fullWidth": true
+                                                                                            }
+                                                                                        }
+                                                                                    ]
+                                                                                },
+                                                                                {
+                                                                                    "type": "sect",
+                                                                                    "props": {
+                                                                                        "container": true,
+                                                                                        "style": {
+                                                                                            "padding": "2px",
+                                                                                            "display": "block"
+                                                                                        },
+                                                                                        "xs": 8
+                                                                                    },
+                                                                                    "chld": [
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingBottom": "5px"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 4
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "className": "entryLabelOuterDiv"
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryLabelDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "lbl",
+                                                                                                                    "props": {
+                                                                                                                        "text": "Prefix",
+                                                                                                                        "className": "entryLabel"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryValueDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "entry",
+                                                                                                                    "props": {
+                                                                                                                        "label": "",
+                                                                                                                        "fullWidth": true,
+                                                                                                                        "className": "small-ctr",
+                                                                                                                        "inputVariant": "outlined",
+                                                                                                                        "inputProps": {
+                                                                                                                            "maxLength": 20,
+                                                                                                                            "style": {}
+                                                                                                                        },
+                                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                                        "bind": "FACAT_DOCNO_PREFIX"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingBottom": "5px"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 4
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "className": "entryLabelOuterDiv"
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryLabelDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "lbl",
+                                                                                                                    "props": {
+                                                                                                                        "text": "Suffix",
+                                                                                                                        "className": "entryLabel"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryValueDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "entry",
+                                                                                                                    "props": {
+                                                                                                                        "label": "",
+                                                                                                                        "fullWidth": true,
+                                                                                                                        "className": "small-ctr",
+                                                                                                                        "inputVariant": "outlined",
+                                                                                                                        "inputProps": {
+                                                                                                                            "maxLength": 20,
+                                                                                                                            "style": {}
+                                                                                                                        },
+                                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                                        "bind": "FACAT_DOCNO_SUFFIX"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        },
+                                                                                        {
+                                                                                            "type": "sect",
+                                                                                            "props": {
+                                                                                                "item": true,
+                                                                                                "style": {
+                                                                                                    "paddingBottom": "5px"
+                                                                                                },
+                                                                                                "xs": 12,
+                                                                                                "md": 4
+                                                                                            },
+                                                                                            "chld": [
+                                                                                                {
+                                                                                                    "type": "div",
+                                                                                                    "props": {
+                                                                                                        "className": "entryLabelOuterDiv"
+                                                                                                    },
+                                                                                                    "chld": [
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryLabelDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "lbl",
+                                                                                                                    "props": {
+                                                                                                                        "text": "Numeric Segment Width",
+                                                                                                                        "className": "entryLabel"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        },
+                                                                                                        {
+                                                                                                            "type": "div",
+                                                                                                            "props": {
+                                                                                                                "className": "entryValueDiv"
+                                                                                                            },
+                                                                                                            "chld": [
+                                                                                                                {
+                                                                                                                    "type": "dxnumberbox",
+                                                                                                                    "props": {
+                                                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                                                        "className": "small-ctr",
+                                                                                                                        "fullWidth": true,
+                                                                                                                        "format": "##,##0",
+                                                                                                                        "variant": "outlined",
+                                                                                                                        "includerefdata": true,
+                                                                                                                        "bind": "FACAT_DOCNO_LENGTH"
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            ]
+                                                                                                        }
+                                                                                                    ]
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    ]
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "Vat % Category",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "FACAT_VAT_CATEGORY_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_VAT_CATEGORY_DOCNO": "",
+                                                                                                                "FACAT_VAT_CATEGORY_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "FACATTAX",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "Tax Master",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_VAT_CATEGORY_DOCTYPE",
+                                                                                                        "codefield": "FACAT_VAT_CATEGORY_DOCNO",
+                                                                                                        "descfield": "FACAT_VAT_CATEGORY_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "buttonProps": {
+                                                "label": "Accounts Integration",
+                                                "style": {
+                                                    "minHeight": "20px",
+                                                    "padding": "15px 10px"
+                                                }
+                                            },
+                                            "chld": [
+                                                {
+                                                    "type": "sect",
+                                                    "props": {
+                                                        "item": true,
+                                                        "container": true,
+                                                        "xs": 12,
+                                                        "resolvestyles": true,
+                                                        "appendprops": {
+                                                            "style": {
+                                                                "display": "block",
+                                                                "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]"
+                                                            }
+                                                        }
+                                                    },
+                                                    "chld": [
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "1. Fixed Assets Cost (Balance Sheet Account)",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "COST_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_GL_COST_DOCNO": "",
+                                                                                                                "COST_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "SMGTGL",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "Fixed Assets Cost",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_GL_COST_DOCTYPE",
+                                                                                                        "codefield": "FACAT_GL_COST_DOCNO",
+                                                                                                        "descfield": "COST_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "2. Accumulated Depreciation (Balance Sheet Account)",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "ACC_ACMST_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_GL_ACCUMULATED_DEP_DOCNO": "",
+                                                                                                                "ACC_ACMST_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "FACATGL",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "Accumulated Depreciation",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_GL_ACCUMULATED_DEP_DOCTYPE",
+                                                                                                        "codefield": "FACAT_GL_ACCUMULATED_DEP_DOCNO",
+                                                                                                        "descfield": "ACC_ACMST_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv  entryLabelOuterDivAlign"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "3. Depreciation Expense (P&&L Account)",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "DEP_ACMST_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_GL_DEP_DOCNO": "",
+                                                                                                                "DEP_ACMST_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "FACATGL1",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "Depreciation Expense",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_GL_DEP_DOCTYPE",
+                                                                                                        "codefield": "FACAT_GL_DEP_DOCNO",
+                                                                                                        "descfield": "DEP_ACMST_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv  entryLabelOuterDivAlign"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "4. Profit on Sale of Assets  (P&&L Account)",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "POSFA_ACMST_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_GL_POSFA_DOCNO": "",
+                                                                                                                "POSFA_ACMST_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "FACATGL2",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "GL Code",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_GL_POSFA_DOCTYPE",
+                                                                                                        "codefield": "FACAT_GL_POSFA_DOCNO",
+                                                                                                        "descfield": "POSFA_ACMST_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        },
+                                                        {
+                                                            "type": "sect",
+                                                            "props": {
+                                                                "item": true,
+                                                                "md": 5,
+                                                                "xs": 12,
+                                                                "style": {
+                                                                    "padding": "5px"
+                                                                }
+                                                            },
+                                                            "chld": [
+                                                                {
+                                                                    "type": "div",
+                                                                    "props": {
+                                                                        "className": "entryLabelOuterDiv entryLabelOuterDivAlign"
+                                                                    },
+                                                                    "chld": [
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryLabelDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lbl",
+                                                                                    "props": {
+                                                                                        "text": "5. Loss on Sale of Assets  (P&&L Account)",
+                                                                                        "className": "entryLabel"
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "type": "div",
+                                                                            "props": {
+                                                                                "className": "entryValueDiv"
+                                                                            },
+                                                                            "chld": [
+                                                                                {
+                                                                                    "type": "lkup",
+                                                                                    "props": {
+                                                                                        "dset": "DsFrmHeaderEntry",
+                                                                                        "bind": "LOSFA_ACMST_DESC",
+                                                                                        "variant": "outlined",
+                                                                                        "className": "small-ctr",
+                                                                                        "label": "",
+                                                                                        "fullWidth": true,
+                                                                                        "icon": "search",
+                                                                                        "icons": {
+                                                                                            "notempty": {
+                                                                                                "icon": "close",
+                                                                                                "whenclick": [
+                                                                                                    {
+                                                                                                        "exec": "mergedataset",
+                                                                                                        "args": {
+                                                                                                            "dset": "DsFrmHeaderEntry",
+                                                                                                            "data": {
+                                                                                                                "FACAT_GL_LOSFA_DOCNO": "",
+                                                                                                                "LOSFA_ACMST_DESC": ""
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                ]
+                                                                                            }
+                                                                                        },
+                                                                                        "whenclick": [
+                                                                                            {
+                                                                                                "exec": "setdataset",
+                                                                                                "args": {
+                                                                                                    "dset": "dslist",
+                                                                                                    "data": {
+                                                                                                        "listtype": "FACATGL3",
+                                                                                                        "commontype": "manual",
+                                                                                                        "title": "Loss on Sale of Assets",
+                                                                                                        "dataset": "DsFrmHeaderEntry",
+                                                                                                        "section": "Alltype",
+                                                                                                        "doctypefield": "FACAT_GL_LOSFA_DOCTYPE",
+                                                                                                        "codefield": "FACAT_GL_LOSFA_DOCNO",
+                                                                                                        "descfield": "LOSFA_ACMST_DESC"
+                                                                                                    }
+                                                                                                }
+                                                                                            },
+                                                                                            {
+                                                                                                "exec": "filldataset",
+                                                                                                "args": {
+                                                                                                    "proc": "PWA.LoadLayout",
+                                                                                                    "column": "layoutinfo",
+                                                                                                    "dset": "popupinfo",
+                                                                                                    "section": "Alltype",
+                                                                                                    "args": {
+                                                                                                        "doctype": "popup",
+                                                                                                        "docno": "lookup"
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

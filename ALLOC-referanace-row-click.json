@@ -1,0 +1,65 @@
+{
+    "whenrowclick": [
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "dsALLOCSelected",
+                "data": {
+                    "params": {
+                        "ALLOC_AC_DOCNO": "[this.AC_DOCNO]",
+                        "ALLOC_SUBLEDGER_DOCNO": "[this.SUBLEDGER_DOCNO]",
+                        "ALLOC_CURR_DOCNO": "[this.CURR_DOCNO]",
+                        "ALLOC_DR_CR": "[this.AmountSign]"
+                    },
+                    "intDefaBalance": 1
+                }
+            }
+        },
+        {
+            "exec": "setdataset",
+            "args": {
+                "dset": "DsALLOCListGridListTwoFilter",
+                "data": {
+                    "PROCKEY": "usp_ALLOC_PopulateGrid"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.dsLoadlistview",
+                "dset": "DsALLOCListGridListTwo",
+                "row": 0,
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]",
+                    "filterCondition": "[DsALLOCListGridListTwoFilter]",
+                    "listype": "fixTo"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "PWA.ALLOC_GET_LIST",
+                "dset": "DsFrmDetails2",
+                "args": {
+                    "doctype": "[pagemenuinfo.doctype]",
+                    "filterCondition": "[DsALLOCListGridListTwoFilter]",
+                    "params": "[dsALLOCSelected.params]",
+                    "intDefaBalance": "[dsALLOCSelected.intDefaBalance]",
+                    "listype": "fixTo"
+                }
+            }
+        },
+        {
+            "exec": "filldataset",
+            "args": {
+                "proc": "",
+                "args": {
+                    "dset": "[dsALLOCSelected]"
+                }
+            }
+        }
+    ]
+}
+

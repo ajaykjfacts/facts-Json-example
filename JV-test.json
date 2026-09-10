@@ -1,0 +1,123 @@
+[
+    {
+        "exec": "mergedatasetarray",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "mode": "updatecol",
+            "data": {
+                "row_error": "",
+                "row_error_message": ""
+            }
+        }
+    },
+    {
+        "exec": "forLoop",
+        "args": {
+            "dset": "DsFrmDetails1",
+            "perform": [
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.JRVDET_AC_DOCNO(eq)raw.1]": true,
+                            "[this.JRVDET_AC_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "* Please select  GL Code"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "all",
+                        "ref": {
+                            "[this.JV_SUBLEDGER_REQUIRED(eq)raw.1]": true,
+                            "[this.JRVDET_SUBLEDGER_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "* Please select  SL Code"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "exec": "validatedataset",
+                    "verify": {
+                        "satisfy": "any",
+                        "ref": {
+                            "[this.JRVDET_CURR_DOCNO(eq)raw.1]": true,
+                            "[this.JRVDET_CURR_DOCNO(ifnull)raw.]": ""
+                        },
+                        "whenmatch": [
+                            
+                            {
+                                "exec": "mergedatasetarray",
+                                "args": {
+                                    "dset": "DsFrmDetails1",
+                                    "index": "[this.propkey]",
+                                    "data": {
+                                        "row_error": "error",
+                                        "row_error_message": "[this.row_error_message(ifnull)raw.(eq)raw.(iftrue) [DsFrmDetails1.[this.propkey].row_error_message] (joinstr), Currency (iffalse)raw.* Please select Currency.]"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "errorRowCount": "[DsFrmDetails1(listfilter)raw.row_error=>error(listcount)]"
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[DsFrmHeaderEntry.errorRowCount(>)raw.0]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "snackinfo",
+                        "data": {
+                            "open": true,
+                            "type": "error",
+                            "message": "Please fill in all required fields"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]

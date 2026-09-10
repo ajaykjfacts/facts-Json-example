@@ -1,0 +1,378 @@
+[
+    {
+        "exec": "filldataset",
+        "args": {
+            "proc": "PWA.GetSessionId",
+            "row": 0,
+            "dset": "dsSectionID",
+            "args": {
+                "strXmlHeader": "[DsFrmHeaderEntry]"
+            }
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": "[dsSectionID]"
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "EmpTabFilterOptions",
+            "data": {
+                "CurrentForm": "GENERAL",
+                "btnGeneral": {
+                    "className": "btnGrpContained"
+                },
+                "btnAddress": {
+                    "className": "btnGrpInherit"
+                },
+                "btnEducation": {
+                    "className": "btnGrpInherit"
+                },
+                "btnExperience": {
+                    "className": "btnGrpInherit"
+                },
+                "btnDocuments": {
+                    "className": "btnGrpInherit"
+                },
+                "btnFamily": {
+                    "className": "btnGrpInherit"
+                },
+                "btnCompensation": {
+                    "className": "btnGrpInherit"
+                },
+                "btnProvision": {
+                    "className": "btnGrpInherit"
+                },
+                "btnLeave": {
+                    "className": "btnGrpInherit"
+                },
+                "btnPrivileged": {
+                    "className": "btnGrpInherit"
+                },
+                "btnReport": {
+                    "className": "btnGrpInherit"
+                }
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "EMPFilterBasicTraining",
+            "data": {
+                "CurrentForm": "BASIC",
+                "btnBasic": {
+                    "variant": "contained"
+                },
+                "showFilterPanel": {
+                    "xlDown": false
+                },
+                "DISABLE_LEFT": false,
+                "DISABLE_RIGHT": false
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "EMPDetailsFilter",
+            "data": {
+                "CurrentForm": "LOCAL",
+                "btnLocal": {
+                    "variant": "contained"
+                },
+                "showFilterPanel": {
+                    "xlDown": false
+                },
+                "DISABLE_LEFT": false,
+                "DISABLE_RIGHT": false
+            }
+        }
+    },
+    {
+        "exec": "fillmultidataset",
+        "args": {
+            "proc": "PWA.Emp_Master_ddldetails",
+            "dsets": [
+                {
+                    "name": "dsGender",
+                    "table": "Table"
+                },
+                {
+                    "name": "dsMarital",
+                    "table": "Table1"
+                },
+                {
+                    "name": "dsBloodGroup",
+                    "table": "Table2"
+                }
+            ],
+            "args": {
+                "doctype": "dblr",
+                "docno": "LR16"
+            }
+        }
+    },
+    {
+        "exec": "setdatasetfield",
+        "args": {
+            "dset": "DsFrmPhoto",
+            "fieldname": "filecontent",
+            "data": "[DsFrmHeaderEntry.photo]"
+        }
+    },
+    {
+        "exec": "mergedataset",
+        "args": {
+            "dset": "DsFrmHeaderEntry",
+            "data": {
+                "timeattendance": 0,
+                "EMPMST_NORMAL_OT_PERCENTAGE": 0,
+                "overtimepercentage": 1,
+                "otheroption": 1
+            }
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsEducationList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsExperienceList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsGeneralDetails",
+            "data": null
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsDocumentlanguageList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsDocumentList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsProvisionList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsFamilyList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DsLeaveList",
+            "data": []
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DisableLookup",
+            "data": null
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "DisableLookup",
+            "data": {
+                "disableStatus": false
+            }
+        }
+    },
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "ref": {
+                "[dsPagemode.pagemode(neq)raw.New]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DisableLookup",
+                        "data": {
+                            "disableStatus": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsTab2Events",
+            "nodeepprocess": true,
+            "data": [
+                {
+                    "exec": "fillmultidataset",
+                    "args": {
+                        "proc": "PWA.EMP_AdditionalInfo_Load",
+                        "dsets": [
+                            {
+                                "name": "DsExperienceListtemp",
+                                "table": "Table"
+                            },
+                            {
+                                "name": "DsDocumentlanguageListtemp",
+                                "table": "Table1"
+                            }
+                        ],
+                        "args": {
+                            "section": "experience",
+                            "doctype": "[pagemenuinfo.doctype]",
+                            "docno": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                        }
+                    }
+                },
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DsDocumentlanguageList",
+                        "data": "[DsDocumentlanguageListtemp]"
+                    }
+                },
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DsExperienceList",
+                        "data": "[DsExperienceListtemp]"
+                    }
+                },
+                {
+                    "exec": "setdatasetfield",
+                    "args": {
+                        "dset": "dsEmpDocno",
+                        "fieldname": "docno",
+                        "data": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsTab3Events",
+            "nodeepprocess": true,
+            "data": [
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "proc": "PWA.EMP_AdditionalInfo_Load",
+                        "dset": "DsFamilyListtemp",
+                        "args": {
+                            "section": "family",
+                            "doctype": "[pagemenuinfo.doctype]",
+                            "docno": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                        }
+                    }
+                },
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DsFamilyList",
+                        "data": "[DsFamilyListtemp]"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsTab5Events",
+            "nodeepprocess": true,
+            "data": [
+                {
+                    "exec": "fillmultidataset",
+                    "args": {
+                        "proc": "PWA.EMP_AdditionalInfo_Load",
+                        "dsets": [
+                            {
+                                "name": "DsFrmDetailsEntrytemp",
+                                "row": 0,
+                                "table": "Table"
+                            },
+                            {
+                                "name": "DsProvisionListtemp",
+                                "table": "Table1"
+                            }
+                        ],
+                        "args": {
+                            "section": "provision",
+                            "doctype": "[pagemenuinfo.doctype]",
+                            "docno": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                        }
+                    }
+                },
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DsProvisionList",
+                        "data": "[DsProvisionListtemp]"
+                    }
+                }
+            ]
+        }
+    },
+    {
+        "exec": "setdataset",
+        "args": {
+            "dset": "dsTab6Events",
+            "nodeepprocess": true,
+            "data": [
+                {
+                    "exec": "filldataset",
+                    "args": {
+                        "proc": "PWA.EMP_AdditionalInfo_Load",
+                        "dset": "DsLeaveListtemp",
+                        "args": {
+                            "section": "leave",
+                            "doctype": "[pagemenuinfo.doctype]",
+                            "docno": "[DsFrmHeaderEntry.EMPMST_DOCNO]"
+                        }
+                    }
+                },
+                {
+                    "exec": "setdataset",
+                    "args": {
+                        "dset": "DsLeaveList",
+                        "data": "[DsLeaveListtemp]"
+                    }
+                }
+            ]
+        }
+    }
+]

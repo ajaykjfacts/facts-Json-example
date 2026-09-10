@@ -1,0 +1,25 @@
+[
+    {
+        "exec": "validatedataset",
+        "verify": {
+            "satisfy": "any",
+            "halton": "match",
+            "ref": {
+                "[dsPagemode.pagemode(eq)raw.New]": true
+            },
+            "whenmatch": [
+                {
+                    "exec": "mergedatasetarray",
+                    "args": {
+                        "dset": "DsFrmDetails1",
+                        "data": {
+                            "TDET_DOCSRNO": "[DsFrmDetails1(listcount)(+)raw.1(numformat)raw.0]",
+                            "TDET_LIT_DOCNO": "[dsDocumentMaster.lineItemType]",
+                            "TDET_LIT_DESC": "[dsDocumentMaster.lineItemType]"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+]
