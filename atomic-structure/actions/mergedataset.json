@@ -1,0 +1,22 @@
+{
+  "id": "action.mergedataset",
+  "level": "action",
+  "exec": "mergedataset",
+  "name": "Merge Dataset",
+  "description": "Shallow-merges fields into an existing (single-row/object-shaped) dataset, leaving other fields untouched. Used for: clearing related fields on lookup clear, copying a grid row into an edit dataset, recomputing dependent fields on change.",
+  "sourceRefs": [
+    "HOT-onchange.json:12-20",
+    "aoo-account-genral.json:1208-1223 (copy row fields via [this.FIELD])"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "data": { "type": "object", "required": true, "description": "Partial object of fields to merge. Values may be literals or binding expressions, e.g. \"[this.ACOPNDET_DOC_FYCODE]\" to copy from the current row context." }
+  },
+  "template": {
+    "exec": "mergedataset",
+    "args": {
+      "dset": "{{DATASET_NAME}}",
+      "data": {}
+    }
+  }
+}

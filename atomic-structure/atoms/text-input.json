@@ -1,0 +1,31 @@
+{
+  "id": "atom.text-input",
+  "level": "atom",
+  "componentType": "entry",
+  "name": "Text Input",
+  "description": "Single-line bound text input. The only plain text-input component type in this codebase — no dxtextbox/textbox type exists, do not invent one. A multiline variant is the same type with multiline:true (see atoms/text-input-multiline.json).",
+  "sourceRefs": [
+    "ALLOC-alloc-general-sect.json:91-99",
+    "GPC-gpc-general-sect.json:38-79 (inside entryValueDiv)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true, "description": "Dataset name the value binds to, e.g. \"DsFrmHeaderEntry\" for header fields or \"DsFrmDetails1\" for a grid row." },
+    "bind": { "type": "string", "required": true, "description": "Field name in the dataset, conventionally \"<MODULE_PREFIX>_<COLUMN>\", e.g. \"ALLOC_DOCNO\"." },
+    "label": { "type": "string", "required": false, "description": "Usually empty string \"\" when a separate lbl atom is used in the field wrapper." },
+    "className": { "type": "string", "required": false, "description": "Usually \"small-ctr\"." },
+    "fullWidth": { "type": "boolean", "required": false, "description": "Usually true." },
+    "variant": { "type": "string", "required": false, "description": "\"outlined\" (some examples use inputVariant instead of variant — check sibling controls in the same file for which prop name is used)." },
+    "inputProps": { "type": "object", "required": false, "description": "e.g. { \"maxLength\": 20, \"style\": { \"width\": \"200px\" } }." }
+  },
+  "template": {
+    "type": "entry",
+    "props": {
+      "label": "",
+      "className": "small-ctr",
+      "fullWidth": true,
+      "variant": "outlined",
+      "dset": "{{DATASET_NAME}}",
+      "bind": "{{FIELD_NAME}}"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "atom.text-button",
+  "level": "atom",
+  "componentType": "btn",
+  "name": "Text Button / Link",
+  "description": "Text-labeled button, commonly styled as an underlined link, used for opening popups or navigation actions.",
+  "sourceRefs": [
+    "ppr-ppr-general-sect.json (\"Report Grouping & Filtering\" link, opens a popup via filldataset)"
+  ],
+  "params": {
+    "style": { "type": "object", "required": false, "description": "e.g. { textDecoration: 'underline', textTransform: 'capitalize', color: 'blue' }." },
+    "whenclick": { "type": "array", "required": true, "description": "Action array (see actions/)." },
+    "chld": { "type": "string", "required": true, "description": "Visible button text." }
+  },
+  "template": {
+    "type": "btn",
+    "props": {
+      "style": {
+        "textDecoration": "underline",
+        "textTransform": "capitalize",
+        "color": "blue",
+        "marginRight": "5px"
+      },
+      "whenclick": []
+    },
+    "chld": "{{BUTTON_TEXT}}"
+  }
+}

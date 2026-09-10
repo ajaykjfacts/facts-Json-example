@@ -1,0 +1,72 @@
+{
+  "id": "molecule.validation-grid-rows",
+  "level": "molecule",
+  "name": "Per-Row Grid Validation",
+  "description": "Validates every row of a detail dataset, stamping row_error/row_error_message onto failing rows (consumed by molecule.grid-row-template's className expression for row highlighting), then raises a single snackinfo error if any row failed.",
+  "composedOf": ["action.forloop", "action.validatedataset", "action.mergedatasetarray", "action.mergedataset", "action.setdataset"],
+  "sourceRefs": ["GPC-gpc-validate.json:13-51"],
+  "params": {
+    "detailDataset": { "type": "string", "required": true, "description": "e.g. \"DsFrmDetails1\"." },
+    "requiredField": { "type": "string", "required": true },
+    "rowMessage": { "type": "string", "required": true, "description": "Per-row error message stamped into row_error_message." },
+    "summaryMessage": { "type": "string", "required": true, "description": "Message shown once if any row is invalid." }
+  },
+  "template": [
+    {
+      "exec": "forLoop",
+      "args": {
+        "dset": "{{DETAIL_DATASET_NAME}}",
+        "perform": [
+          {
+            "exec": "validatedataset",
+            "verify": {
+              "satisfy": "any",
+              "halton": "match",
+              "ref": {
+                "[this.{{REQUIRED_FIELD_NAME}}(ifnull)raw.]": ""
+              },
+              "whenmatch": [
+                {
+                  "exec": "mergedatasetarray",
+                  "args": {
+                    "dset": "{{DETAIL_DATASET_NAME}}",
+                    "index": "[this.propkey]",
+                    "data": { "row_error": "error", "row_error_message": "{{ROW_ERROR_MESSAGE}}" }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "exec": "mergedataset",
+      "args": {
+        "dset": "{{DETAIL_DATASET_NAME}}View",
+        "data": {
+          "errorRowCount": "[{{DETAIL_DATASET_NAME}}(listfilter)raw.row_error=>error(listcount)]"
+        }
+      }
+    },
+    {
+      "exec": "validatedataset",
+      "verify": {
+        "satisfy": "any",
+        "halton": "match",
+        "ref": {
+          "[{{DETAIL_DATASET_NAME}}View.errorRowCount(>)raw.0]": true
+        },
+        "whenmatch": [
+          {
+            "exec": "setdataset",
+            "args": {
+              "dset": "snackinfo",
+              "data": { "open": true, "type": "error", "message": "{{SUMMARY_ERROR_MESSAGE}}" }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "id": "atom.layout-row",
+  "level": "atom",
+  "componentType": "sect",
+  "name": "Layout Row (Container)",
+  "description": "Maps to a MUI Grid container. Groups layout-cell atoms into a responsive row.",
+  "sourceRefs": [
+    "GPC-gpc-general-sect.json:15-24",
+    "PUR-PUR-general-sect.json:3-11 (with resolvestyles + appendprops.style)"
+  ],
+  "params": {
+    "container": { "type": "boolean", "required": true, "description": "Always true for a row." },
+    "style": { "type": "object", "required": false, "description": "e.g. { \"padding\": \"5px\" }." },
+    "resolvestyles": { "type": "boolean", "required": false, "description": "true when style must be dynamically resolved via appendprops.style (see molecules/dynamic-style-by-pagemode.json)." },
+    "resolveprops": { "type": "boolean", "required": false, "description": "true when props (not just style) must be dynamically resolved, e.g. inside a list row template using this.* context." }
+  },
+  "template": {
+    "type": "sect",
+    "props": {
+      "container": true,
+      "style": { "padding": "5px" }
+    },
+    "chld": []
+  }
+}

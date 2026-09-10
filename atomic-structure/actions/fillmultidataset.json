@@ -1,0 +1,25 @@
+{
+  "id": "action.fillmultidataset",
+  "level": "action",
+  "exec": "fillmultidataset",
+  "name": "Fill Multiple Datasets (Procedure Call)",
+  "description": "Like filldataset, but one procedure call populates several named datasets/tables at once (e.g. a report procedure returning multiple result sets).",
+  "sourceRefs": [
+    "wf-print.json:31-42"
+  ],
+  "params": {
+    "proc": { "type": "string", "required": true },
+    "dsets": { "type": "array", "required": true, "description": "Array of { name, table } pairs mapping a procedure result table to a dataset name." },
+    "args": { "type": "object", "required": false }
+  },
+  "template": {
+    "exec": "fillmultidataset",
+    "args": {
+      "proc": "{{PROCEDURE_NAME}}",
+      "dsets": [
+        { "name": "{{DATASET_NAME}}", "table": "{{RESULT_TABLE_NAME}}" }
+      ],
+      "args": {}
+    }
+  }
+}

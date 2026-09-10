@@ -1,0 +1,55 @@
+{
+  "id": "molecule.grid-row-template",
+  "level": "molecule",
+  "name": "Grid Row Template (Line-Item Table)",
+  "description": "This codebase has NO DevExpress data-grid widget for line-item editing (confirmed: zero dxDataGrid/dataField/columns usage anywhere except one unrelated dxpivotgrid report). Every editable 'grid' is actually a type:'list' repeating a row template of sect/div/control atoms per dataset row. Always build new line-item tables this way, never introduce a dxDataGrid.",
+  "composedOf": ["atom.layout-row (per row, resolveprops)", "atom.layout-cell (per column)", "any control atom bound with rowindex"],
+  "sourceRefs": ["GPC-gpc-general-sect.json:336-404"],
+  "params": {
+    "detailDataset": { "type": "string", "required": true, "description": "e.g. \"DsFrmDetails1\"." },
+    "columns": { "type": "array", "required": true, "description": "List of { xs, control } — control is a control-atom template with rowindex:'[this.propkey]' set." }
+  },
+  "template": {
+    "type": "list",
+    "props": {
+      "datasets": ["{{DETAIL_DATASET_NAME}}"],
+      "className": "TableListSect facts-input-list",
+      "content": {
+        "template": "custom",
+        "props": { "style": {} },
+        "chld": [
+          {
+            "type": "sect",
+            "props": {
+              "container": true,
+              "resolveprops": true,
+              "includerefdata": true,
+              "className": "[raw.facts-row-[this.row_error]]"
+            },
+            "chld": [
+              {
+                "type": "sect",
+                "props": { "item": true, "className": "TableContentChildSect", "xs": 3 },
+                "chld": [
+                  {
+                    "type": "{{CONTROL_TYPE}}",
+                    "props": {
+                      "dset": "{{DETAIL_DATASET_NAME}}",
+                      "bind": "{{FIELD_NAME}}",
+                      "rowindex": "[this.propkey]",
+                      "resolveprops": true,
+                      "includerefdata": true,
+                      "className": "small-ctr",
+                      "fullWidth": true
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "note": "Add one more 'sect item' cell per column, adjusting xs to fit the 12-column row. The row's className expression '[raw.facts-row-[this.row_error]]' wires row-level validation state (see molecules/validation-grid-rows.json) directly into row highlighting — keep this className on every new grid row template even if validation isn't implemented yet, since it's harmless when row_error is unset."
+}

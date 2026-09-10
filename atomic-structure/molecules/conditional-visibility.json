@@ -1,0 +1,21 @@
+{
+  "id": "molecule.conditional-visibility",
+  "level": "molecule",
+  "name": "Page-Mode Conditional Section",
+  "description": "Wraps a section so it only renders in specific page modes (New/Edit/View/Approval), the most common use of atom.hide-conditional.",
+  "composedOf": ["atom.hide-conditional"],
+  "sourceRefs": ["ALLOC-alloc-general-sect.json:763-767"],
+  "params": {
+    "hideWhenMode": { "type": "string", "required": true, "description": "e.g. \"view\" to hide edit-only controls while viewing." },
+    "chld": { "type": "array", "required": true }
+  },
+  "template": {
+    "type": "hide",
+    "props": {
+      "appendprops": {
+        "xsUp": "[dsPagemode.pagemode(eq)raw.{{PAGE_MODE}}]"
+      }
+    },
+    "chld": []
+  }
+}

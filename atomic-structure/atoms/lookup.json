@@ -1,0 +1,55 @@
+{
+  "id": "atom.lookup",
+  "level": "atom",
+  "componentType": "lkup",
+  "name": "Lookup",
+  "description": "Bound lookup/picker input with a search icon (opens a picker via whenclick) and an optional clear icon (icons.notempty, clears the bound field plus related fields via mergedataset). Inside a grid row it adds resolveprops/rowindex/includerefdata.",
+  "sourceRefs": [
+    "ALLOC-alloc-general-sect.json:217-242",
+    "GPC-gpc-general-sect.json:374-404 (grid-row variant)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true, "description": "Field holding the displayed description, e.g. \"ALLOC_AC_DESC\"." },
+    "icon": { "type": "string", "required": false, "description": "Usually \"search\", opens the lookup popup via whenclick (add a whenclick action array to actually open it, e.g. filldataset into a popupinfo dataset)." },
+    "icons.notempty.icon": { "type": "string", "required": false, "description": "Usually \"close\"." },
+    "icons.notempty.whenclick": { "type": "array", "required": false, "description": "Action array (mergedataset) that clears the bound field AND any related fields (e.g. the _DOCNO key field alongside the _DESC display field)." },
+    "rowindex": { "type": "string", "required": false, "description": "Grid-row variant only: \"[this.propkey]\"." },
+    "resolveprops": { "type": "boolean", "required": false, "description": "Grid-row variant only: true." }
+  },
+  "template": {
+    "type": "lkup",
+    "props": {
+      "dset": "{{DATASET_NAME}}",
+      "required": false,
+      "bind": "{{DESC_FIELD_NAME}}",
+      "variant": "outlined",
+      "className": "small-ctr",
+      "label": "",
+      "fullWidth": true,
+      "icon": "search",
+      "icons": {
+        "notempty": {
+          "icon": "close",
+          "whenclick": [
+            {
+              "exec": "mergedataset",
+              "args": {
+                "dset": "{{DATASET_NAME}}",
+                "data": {
+                  "{{KEY_FIELD_NAME}}": "",
+                  "{{DESC_FIELD_NAME}}": ""
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "gridRowVariantAdditionalProps": {
+    "resolveprops": true,
+    "includerefdata": true,
+    "rowindex": "[this.propkey]"
+  }
+}

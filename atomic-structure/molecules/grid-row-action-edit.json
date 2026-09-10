@@ -1,0 +1,33 @@
+{
+  "id": "molecule.grid-row-action-edit",
+  "level": "molecule",
+  "name": "Grid Row Edit Action",
+  "description": "Icon button inside a grid row template that copies the current row's fields (via [this.FIELD] context references) into a separate edit-mode dataset to populate an edit form/popup.",
+  "composedOf": ["atom.icon-button", "action.mergedataset"],
+  "sourceRefs": ["aoo-account-genral.json:1208-1223"],
+  "params": {
+    "editDataset": { "type": "string", "required": true, "description": "e.g. \"DsFrmDetailsEntry\", the dataset the edit form binds to." },
+    "copiedFields": { "type": "array", "required": true, "description": "List of field names copied from the row, e.g. [\"ACOPNDET_DOC_FYCODE\", \"ACOPNDET_DOC_DOCTYPE\"]." }
+  },
+  "template": {
+    "type": "icbtn",
+    "props": {
+      "includerefdata": true,
+      "resolvestyles": true,
+      "color": "primary",
+      "style": { "fontSize": "1.3rem" },
+      "whenclick": [
+        {
+          "exec": "mergedataset",
+          "args": {
+            "dset": "{{EDIT_DATASET_NAME}}",
+            "data": {
+              "{{FIELD_NAME}}": "[this.{{FIELD_NAME}}]"
+            }
+          }
+        }
+      ]
+    },
+    "chld": "edit"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "molecule.field-text",
+  "level": "molecule",
+  "name": "Text Field",
+  "description": "Complete labeled text field: entryLabelOuterDiv > [entryLabelDiv > lbl] + [entryValueDiv > entry]. This exact composition is the most repeated pattern in the entire codebase (~1700 occurrences) — always reuse this shape for a new plain text field, never invent a different wrapper.",
+  "composedOf": ["atom.field-label-wrapper", "atom.field-value-wrapper", "atom.text-input"],
+  "sourceRefs": ["GPC-gpc-general-sect.json:38-79"],
+  "params": {
+    "labelText": { "type": "string", "required": true },
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "maxLength": { "type": "number", "required": false }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } }
+        ]
+      },
+      {
+        "type": "div",
+        "props": { "className": "entryValueDiv" },
+        "chld": [
+          {
+            "type": "entry",
+            "props": {
+              "label": "",
+              "fullWidth": true,
+              "className": "small-ctr",
+              "inputVariant": "outlined",
+              "inputProps": { "maxLength": 20 },
+              "dset": "{{DATASET_NAME}}",
+              "bind": "{{FIELD_NAME}}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

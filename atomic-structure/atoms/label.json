@@ -1,0 +1,35 @@
+{
+  "id": "atom.label",
+  "level": "atom",
+  "componentType": "lbl",
+  "name": "Label",
+  "description": "Static or bound text label. Used standalone for headings and, most commonly, inside the field label wrapper (see atoms/field-label-wrapper.json).",
+  "sourceRefs": [
+    "ALLOC-alloc-general-sect.json:76-80",
+    "ppr-ppr-general-sect.json (search: type\":\"lbl\",\"props\":{\"text\":\"[raw. Grouped:)"
+  ],
+  "params": {
+    "text": {
+      "type": "string",
+      "required": true,
+      "description": "Literal text, or a binding expression (see expressions/binding-expression-dsl.md) for dynamic labels, e.g. counts/summaries."
+    },
+    "className": {
+      "type": "string",
+      "required": false,
+      "description": "Almost always \"entryLabel\" when used inside a field wrapper. Free-form for standalone headings/captions."
+    },
+    "style": {
+      "type": "object",
+      "required": false,
+      "description": "Inline style override, e.g. { \"fontSize\": \"0.9rem\" }."
+    }
+  },
+  "template": {
+    "type": "lbl",
+    "props": {
+      "text": "{{LABEL_TEXT}}",
+      "className": "{{CLASS_NAME}}"
+    }
+  }
+}

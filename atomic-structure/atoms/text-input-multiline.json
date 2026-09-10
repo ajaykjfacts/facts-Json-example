@@ -1,0 +1,30 @@
+{
+  "id": "atom.text-input-multiline",
+  "level": "atom",
+  "componentType": "entry",
+  "name": "Multiline Text Input (Textarea)",
+  "description": "Same 'entry' component as atoms/text-input.json with multiline:true and rows set. Used for remarks/narration fields.",
+  "sourceRefs": [
+    "wf-print.json (Remarks field, bind: JRV_NARRATION)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "label": { "type": "string", "required": false, "description": "Unlike the single-line atom, multiline fields often carry their own visible label here instead of a separate lbl atom, e.g. \"Remarks\"." },
+    "rows": { "type": "number", "required": false, "description": "e.g. 2" }
+  },
+  "template": {
+    "type": "entry",
+    "props": {
+      "label": "{{LABEL_TEXT}}",
+      "multiline": true,
+      "fullWidth": true,
+      "className": "small-ctr",
+      "rows": 2,
+      "inputProps": {},
+      "inputVariant": "outlined",
+      "dset": "{{DATASET_NAME}}",
+      "bind": "{{FIELD_NAME}}"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "id": "action.filldataset",
+  "level": "action",
+  "exec": "filldataset",
+  "name": "Fill Dataset (Procedure Call)",
+  "description": "Calls a server-side procedure and loads the result into a dataset. This is the primary way this codebase invokes backend APIs — never invent a fetch/axios/REST payload shape, always use this action.",
+  "sourceRefs": [
+    "ALLOC-init.json:11-22"
+  ],
+  "params": {
+    "proc": { "type": "string", "required": true, "description": "Procedure name, e.g. \"PWA.dsloadlistview\", \"PWA.GetSessionId\", \"PWA.LoadLayout\"." },
+    "dset": { "type": "string", "required": true, "description": "Dataset to receive the result." },
+    "row": { "type": "number", "required": false, "description": "Row index to fill when the target dataset is row-oriented, e.g. 0." },
+    "section": { "type": "string", "required": false },
+    "column": { "type": "string", "required": false },
+    "args": { "type": "object", "required": false, "description": "Parameters passed to the procedure, often including other dataset values as filters, e.g. \"filterCondition\": \"[DsPDCListQuickFilter]\"." }
+  },
+  "template": {
+    "exec": "filldataset",
+    "args": {
+      "proc": "{{PROCEDURE_NAME}}",
+      "dset": "{{DATASET_NAME}}",
+      "args": {}
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "atom.number-input",
+  "level": "atom",
+  "componentType": "dxnumberbox",
+  "name": "Number Input",
+  "description": "Bound numeric input. Supports onChange/onFocusOut action arrays when used inside a grid row (rowindex context).",
+  "sourceRefs": [
+    "ALLOC-test.json:42-54",
+    "ALLOC-alloc-lcy-amount-input.json:9-48 (grid-row variant with rowindex + onChange/onFocusOut)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "format": { "type": "string", "required": false, "description": "Number display format, e.g. \"###,##0\" or \"##,###.00\"." },
+    "includerefdata": { "type": "boolean", "required": false, "description": "Seen true on most number inputs." },
+    "rowindex": { "type": "string", "required": false, "description": "Only inside a list row-template: \"[this.propkey]\" to bind this input to the current row." },
+    "onChange": { "type": "array", "required": false, "description": "Array of action objects (see actions/), only needed when the change must trigger side effects beyond the plain dataset write." },
+    "onFocusOut": { "type": "array", "required": false, "description": "Array of action objects, fired when the field loses focus." }
+  },
+  "template": {
+    "type": "dxnumberbox",
+    "props": {
+      "dset": "{{DATASET_NAME}}",
+      "label": "",
+      "fullWidth": true,
+      "style": {},
+      "className": "small-ctr",
+      "variant": "outlined",
+      "includerefdata": true,
+      "format": "{{NUMBER_FORMAT}}",
+      "bind": "{{FIELD_NAME}}"
+    }
+  },
+  "gridRowVariantTemplate": {
+    "type": "dxnumberbox",
+    "props": {
+      "dset": "{{DETAIL_DATASET_NAME}}",
+      "className": "small-ctr",
+      "fullWidth": true,
+      "format": "{{NUMBER_FORMAT}}",
+      "variant": "outlined",
+      "includerefdata": true,
+      "rowindex": "[this.propkey]",
+      "bind": "{{FIELD_NAME}}",
+      "onChange": [],
+      "onFocusOut": []
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "page.skeleton",
+  "level": "page",
+  "name": "Page Skeleton (Both Root Shapes)",
+  "description": "Two real page-root shapes exist in the codebase. Use bareLayoutArrayVariant for a plain form/detail page (most *-general-sect.json files). Use fullPageObjectVariant when the page needs wheninit/whenload seeding, a custom appbar, or a report/dashboard shape (wf-print.json, ppr-ppr-general-sect.json, dashboards).",
+  "sourceRefs": [
+    "ALLOC-alloc-general-sect.json:1-16 (bare layout array)",
+    "wf-print.json:1-20 (full page object)"
+  ],
+  "bareLayoutArrayVariant": {
+    "description": "Root is a JSON array containing one top-level 'sect' container. Do not recreate the sidebar/header/nav shell — the PWA shell already provides it; this array is only the page content area.",
+    "template": [
+      {
+        "type": "sect",
+        "props": {
+          "container": true,
+          "resolvestyles": true,
+          "appendprops": {
+            "style": {
+              "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+              "padding": "5px"
+            }
+          }
+        },
+        "chld": []
+      }
+    ]
+  },
+  "fullPageObjectVariant": {
+    "description": "Root is a JSON object with title/wheninit/whenload/style/appbar/layout keys. wheninit seeds default/lookup datasets before render; whenload runs procedure calls needing a live session (e.g. GetSessionId). layout holds the same 'sect' array as the bare variant.",
+    "template": {
+      "title": "{{PAGE_TITLE}}",
+      "wheninit": [
+        {
+          "exec": "setdataset",
+          "args": { "dset": "{{DATASET_NAME}}", "data": {} }
+        }
+      ],
+      "whenload": [
+        { "exec": "filldataset", "args": { "proc": "PWA.GetSessionId", "row": 0, "dset": "DsSessionId" } }
+      ],
+      "style": { "background": "#f3f6fa", "minHeight": "100%" },
+      "globalsearchfield": {},
+      "layout": [
+        {
+          "type": "sect",
+          "props": { "container": true, "style": { "padding": "5px" } },
+          "chld": []
+        }
+      ]
+    }
+  }
+}

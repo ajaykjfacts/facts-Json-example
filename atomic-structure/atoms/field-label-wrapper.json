@@ -1,0 +1,27 @@
+{
+  "id": "atom.field-label-wrapper",
+  "level": "atom",
+  "componentType": "div",
+  "name": "Field Label Wrapper",
+  "description": "The label half of the field wrapper pattern: entryLabelOuterDiv > entryLabelDiv > lbl. Always paired with atom.field-value-wrapper as siblings inside the same parent. This exact pair is the most repeated structure in the codebase (~1700 occurrences) — do not build a different field-labeling structure.",
+  "sourceRefs": [
+    "GPC-gpc-general-sect.json:38-79"
+  ],
+  "params": {
+    "labelText": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } }
+        ]
+      }
+    ]
+  },
+  "note": "In real files, entryLabelOuterDiv is the PARENT of both entryLabelDiv and entryValueDiv (see molecules/field-text.json for the complete composed wrapper). This atom file shows the label half only, in isolation, for documentation; do not use it standalone without the value half."
+}

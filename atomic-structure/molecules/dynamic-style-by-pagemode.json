@@ -1,0 +1,25 @@
+{
+  "id": "molecule.dynamic-style-by-pagemode",
+  "level": "molecule",
+  "name": "Read-Only-By-Pagemode Style",
+  "description": "Disables interaction (pointerEvents:none) on a whole section when the page is in view mode, without hiding it — an alternative to molecule.conditional-visibility when the content should stay visible but non-interactive.",
+  "composedOf": ["atom.layout-row (with resolvestyles + appendprops.style)"],
+  "sourceRefs": ["PUR-PUR-general-sect.json:3-11"],
+  "params": {
+    "chld": { "type": "array", "required": true }
+  },
+  "template": {
+    "type": "sect",
+    "props": {
+      "container": true,
+      "resolvestyles": true,
+      "appendprops": {
+        "style": {
+          "pointerEvents": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+          "padding": "5px"
+        }
+      }
+    },
+    "chld": []
+  }
+}

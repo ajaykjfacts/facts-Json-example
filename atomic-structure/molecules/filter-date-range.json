@@ -1,0 +1,51 @@
+{
+  "id": "molecule.filter-date-range",
+  "level": "molecule",
+  "name": "Date Range Filter",
+  "description": "From Date + To Date pair, the standard shape for report/list filter bars (matches the project's own example requirement: 'staff attendance report with From Date, To Date, Staff selection and Refresh'). Compose with molecule.field-lookup (for a selection dropdown) and a refresh atom.text-button inside sections/filter-bar-section.json.",
+  "composedOf": ["molecule.field-date", "molecule.field-date"],
+  "sourceRefs": ["wf-print.json (ATTENDANCE_FROM_DATE / ATTENDANCE_TO_DATE defaulted to func.today in wheninit)"],
+  "params": {
+    "dset": { "type": "string", "required": true, "description": "Usually the header/filter dataset, e.g. \"DsFrmHeaderEntry\"." },
+    "fromBind": { "type": "string", "required": true },
+    "toBind": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "sect",
+    "props": { "container": true, "style": { "padding": "5px" } },
+    "chld": [
+      {
+        "type": "sect",
+        "props": { "item": true, "className": "factsFullWidth", "xs": 12, "md": 4, "lg": 4 },
+        "chld": [
+          {
+            "type": "div",
+            "props": { "className": "entryLabelOuterDiv" },
+            "chld": [
+              { "type": "div", "props": { "className": "entryLabelDiv" }, "chld": [ { "type": "lbl", "props": { "text": "From Date", "className": "entryLabel" } } ] },
+              { "type": "div", "props": { "className": "entryValueDiv" }, "chld": [
+                { "type": "dxdtpick", "props": { "dset": "{{DATASET_NAME}}", "bind": "{{FROM_FIELD_NAME}}", "type": "date", "labelMode": "floating", "includerefdata": true, "closeOnSelect": true, "showClearButton": false, "label": "", "inputProps": {}, "whenchange": [] } }
+              ] }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "sect",
+        "props": { "item": true, "className": "factsFullWidth", "xs": 12, "md": 4, "lg": 4 },
+        "chld": [
+          {
+            "type": "div",
+            "props": { "className": "entryLabelOuterDiv" },
+            "chld": [
+              { "type": "div", "props": { "className": "entryLabelDiv" }, "chld": [ { "type": "lbl", "props": { "text": "To Date", "className": "entryLabel" } } ] },
+              { "type": "div", "props": { "className": "entryValueDiv" }, "chld": [
+                { "type": "dxdtpick", "props": { "dset": "{{DATASET_NAME}}", "bind": "{{TO_FIELD_NAME}}", "type": "date", "labelMode": "floating", "includerefdata": true, "closeOnSelect": true, "showClearButton": false, "label": "", "inputProps": {}, "whenchange": [] } }
+              ] }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

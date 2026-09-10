@@ -1,0 +1,39 @@
+{
+  "id": "action.misc-actions",
+  "level": "action",
+  "name": "Miscellaneous Single-Purpose Actions",
+  "description": "Smaller action types that don't need their own file. Each is a complete, self-contained exec with the args shape observed in the codebase.",
+  "entries": [
+    {
+      "exec": "showloader",
+      "description": "Shows the global loading spinner. Takes no args. Typically the first action in a whenclick chain before a slow operation (confirm dialog, procedure call).",
+      "sourceRefs": ["aoo-account-genral table method.json:1437"],
+      "template": { "exec": "showloader" }
+    },
+    {
+      "exec": "eval",
+      "description": "Runs a raw JS expression/statement via the 'js' key (not 'args'). Used sparingly — only for things with no dedicated action, e.g. browser history navigation.",
+      "sourceRefs": ["AR-test.json:165-166"],
+      "template": { "exec": "eval", "js": "{{JS_EXPRESSION}}" }
+    },
+    {
+      "exec": "navigate",
+      "description": "Client-side page navigation. args is a binding expression resolving to the target, not a literal path string.",
+      "sourceRefs": ["aoo-hr-dashboard.json:623-624"],
+      "template": { "exec": "navigate", "args": "{{NAVIGATION_TARGET_EXPRESSION}}" }
+    },
+    {
+      "exec": "invalidate",
+      "description": "Forces re-fetch/refresh of the listed datasets, e.g. after a save so toolbar-state datasets (New/Edit/Delete/Print button enablement) recompute.",
+      "sourceRefs": ["pdc-facts-entryform-ess.json:17-24"],
+      "template": { "exec": "invalidate", "args": { "datasets": ["{{DATASET_NAME}}"] } }
+    },
+    {
+      "exec": "syncevents",
+      "description": "Runs a set of deferred/queued events, typically after-save hooks stored in a dataset field.",
+      "sourceRefs": ["pdc-facts-entryform-ess.json:320-323"],
+      "template": { "exec": "syncevents", "args": { "data": "[dsFrmSaveAfterActions.afterSaveEvents]" } }
+    }
+  ],
+  "note": "No 'showsnackbar' exec exists in this codebase — use action.setdataset targeting the 'snackinfo' dataset instead. No REST/fetch/axios action exists — all server calls go through filldataset/fillmultidataset."
+}

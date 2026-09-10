@@ -1,0 +1,35 @@
+{
+  "id": "action.validatedataset",
+  "level": "action",
+  "exec": "validatedataset",
+  "name": "Validate Dataset (Field-Level)",
+  "description": "The project's validation primitive — there is no declarative required/datatype/length schema anywhere in the codebase. Evaluates verify.ref (a binding-expression condition, see expressions/binding-expression-dsl.md) and runs whenmatch actions (typically a setdataset into 'snackinfo') when it matches.",
+  "sourceRefs": [
+    "PR-pr-validation.json:1-24"
+  ],
+  "params": {
+    "verify.satisfy": { "type": "string", "required": true, "description": "e.g. \"any\"." },
+    "verify.halton": { "type": "string", "required": true, "description": "e.g. \"match\" — stop validation chain on match." },
+    "verify.ref": { "type": "object", "required": true, "description": "One binding-expression -> expected-value pair, e.g. { \"[DsFrmHeaderEntry.FIELD(ifnull)raw.]\": \"\" } checks the field is null/empty." },
+    "verify.whenmatch": { "type": "array", "required": true, "description": "Action array run when the condition matches (i.e. validation failed) — typically raises a snackinfo error." }
+  },
+  "template": {
+    "exec": "validatedataset",
+    "verify": {
+      "satisfy": "any",
+      "halton": "match",
+      "ref": {
+        "[{{DATASET_NAME}}.{{FIELD_NAME}}(ifnull)raw.]": ""
+      },
+      "whenmatch": [
+        {
+          "exec": "setdataset",
+          "args": {
+            "dset": "snackinfo",
+            "data": { "open": true, "type": "error", "message": "{{VALIDATION_MESSAGE}}" }
+          }
+        }
+      ]
+    }
+  }
+}

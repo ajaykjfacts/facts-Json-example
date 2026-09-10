@@ -1,0 +1,47 @@
+{
+  "id": "molecule.field-number",
+  "level": "molecule",
+  "name": "Number Field",
+  "description": "Complete labeled number field, same wrapper as molecule.field-text but with a dxnumberbox control.",
+  "composedOf": ["atom.field-label-wrapper", "atom.field-value-wrapper", "atom.number-input"],
+  "sourceRefs": ["ALLOC-test.json:42-54"],
+  "params": {
+    "labelText": { "type": "string", "required": true },
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "format": { "type": "string", "required": false, "description": "e.g. \"###,##0\" or \"##,###.00\"." }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } }
+        ]
+      },
+      {
+        "type": "div",
+        "props": { "className": "entryValueDiv" },
+        "chld": [
+          {
+            "type": "dxnumberbox",
+            "props": {
+              "dset": "{{DATASET_NAME}}",
+              "label": "",
+              "fullWidth": true,
+              "style": {},
+              "className": "small-ctr",
+              "variant": "outlined",
+              "includerefdata": true,
+              "format": "{{NUMBER_FORMAT}}",
+              "bind": "{{FIELD_NAME}}"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

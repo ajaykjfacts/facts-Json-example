@@ -1,0 +1,31 @@
+{
+  "id": "action.mergedatasetarray",
+  "level": "action",
+  "exec": "mergedatasetarray",
+  "name": "Merge Dataset Array (Row Add/Update/Delete)",
+  "description": "Operates on one row of an array-shaped (grid/detail) dataset by index. data:null at a given index DELETES that row; a data object at that index UPDATES or (if index is past the end, e.g. current listcount) ADDS a row.",
+  "sourceRefs": [
+    "TASK-whenloadevent.json:11-21 (add row, index = current listcount)",
+    "aoo-account-genral table method.json:1424-1474 (delete row, data: null, index: [this.propkey])"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "index": { "type": "string", "required": false, "description": "Binding expression for the target row index, e.g. \"[this.propkey]\" for the current row, or \"[DsFrmDetails1(listcount)(+)raw.1(numformat)raw.0]\" to append." },
+    "data": { "type": "object | null", "required": true, "description": "null deletes the row at index. An object adds/updates the row." }
+  },
+  "deleteRowTemplate": {
+    "exec": "mergedatasetarray",
+    "args": {
+      "dset": "{{DETAIL_DATASET_NAME}}",
+      "index": "[this.propkey]",
+      "data": null
+    }
+  },
+  "addRowTemplate": {
+    "exec": "mergedatasetarray",
+    "args": {
+      "dset": "{{DETAIL_DATASET_NAME}}",
+      "data": {}
+    }
+  }
+}

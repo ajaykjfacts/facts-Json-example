@@ -1,0 +1,78 @@
+{
+  "id": "section.filter-bar",
+  "level": "section",
+  "name": "Filter Bar Section",
+  "description": "Standard report/list filter bar: date range + one or more lookup/selection fields + a refresh action that re-runs filldataset. Matches the project's own reference example: 'staff attendance report with From Date, To Date, Staff selection and Refresh'.",
+  "composedOf": ["molecule.filter-date-range", "molecule.field-lookup (selection)", "atom.text-button (refresh) + action.filldataset"],
+  "sourceRefs": ["wf-print.json (From/To date defaults + fillmultidataset pattern)"],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "fromBind": { "type": "string", "required": true },
+    "toBind": { "type": "string", "required": true },
+    "selectionBind": { "type": "string", "required": false },
+    "refreshProc": { "type": "string", "required": true, "description": "Procedure name called on Refresh click." },
+    "refreshTargetDataset": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "sect",
+    "props": { "container": true, "style": { "padding": "5px" } },
+    "chld": [
+      {
+        "type": "sect",
+        "props": { "item": true, "xs": 12, "md": 3, "lg": 3 },
+        "chld": [
+          {
+            "type": "div",
+            "props": { "className": "entryLabelOuterDiv" },
+            "chld": [
+              { "type": "div", "props": { "className": "entryLabelDiv" }, "chld": [ { "type": "lbl", "props": { "text": "From Date", "className": "entryLabel" } } ] },
+              { "type": "div", "props": { "className": "entryValueDiv" }, "chld": [
+                { "type": "dxdtpick", "props": { "dset": "{{DATASET_NAME}}", "bind": "{{FROM_FIELD_NAME}}", "type": "date", "labelMode": "floating", "includerefdata": true, "closeOnSelect": true, "showClearButton": false, "label": "", "inputProps": {}, "whenchange": [] } }
+              ] }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "sect",
+        "props": { "item": true, "xs": 12, "md": 3, "lg": 3 },
+        "chld": [
+          {
+            "type": "div",
+            "props": { "className": "entryLabelOuterDiv" },
+            "chld": [
+              { "type": "div", "props": { "className": "entryLabelDiv" }, "chld": [ { "type": "lbl", "props": { "text": "To Date", "className": "entryLabel" } } ] },
+              { "type": "div", "props": { "className": "entryValueDiv" }, "chld": [
+                { "type": "dxdtpick", "props": { "dset": "{{DATASET_NAME}}", "bind": "{{TO_FIELD_NAME}}", "type": "date", "labelMode": "floating", "includerefdata": true, "closeOnSelect": true, "showClearButton": false, "label": "", "inputProps": {}, "whenchange": [] } }
+              ] }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "sect",
+        "props": { "item": true, "xs": 12, "md": 3, "lg": 3 },
+        "chld": [
+          "{{SELECTION_FIELD_MOLECULE}}"
+        ]
+      },
+      {
+        "type": "sect",
+        "props": { "item": true, "xs": 12, "md": 3, "lg": 3, "style": { "display": "flex", "alignItems": "center" } },
+        "chld": [
+          {
+            "type": "btn",
+            "props": {
+              "style": { "textDecoration": "underline", "textTransform": "capitalize", "color": "blue" },
+              "whenclick": [
+                { "exec": "showloader" },
+                { "exec": "filldataset", "args": { "proc": "{{REFRESH_PROCEDURE_NAME}}", "dset": "{{REFRESH_TARGET_DATASET}}", "args": { "fromDate": "[{{DATASET_NAME}}.{{FROM_FIELD_NAME}}]", "toDate": "[{{DATASET_NAME}}.{{TO_FIELD_NAME}}]" } } }
+              ]
+            },
+            "chld": "Refresh"
+          }
+        ]
+      }
+    ]
+  }
+}

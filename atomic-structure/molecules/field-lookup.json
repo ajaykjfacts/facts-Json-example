@@ -1,0 +1,64 @@
+{
+  "id": "molecule.field-lookup",
+  "level": "molecule",
+  "name": "Lookup Field",
+  "description": "Complete labeled lookup field with clear-icon behavior that resets the description field plus its related key field.",
+  "composedOf": ["atom.field-label-wrapper", "atom.field-value-wrapper", "atom.lookup"],
+  "sourceRefs": ["ALLOC-alloc-general-sect.json:217-242"],
+  "params": {
+    "labelText": { "type": "string", "required": true },
+    "dset": { "type": "string", "required": true },
+    "descField": { "type": "string", "required": true, "description": "Field holding the displayed description, e.g. \"ALLOC_AC_DESC\"." },
+    "keyField": { "type": "string", "required": true, "description": "Related key/code field cleared alongside descField, e.g. \"ALLOC_AC_DOCNO\"." },
+    "required": { "type": "boolean", "required": false }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } }
+        ]
+      },
+      {
+        "type": "div",
+        "props": { "className": "entryValueDiv" },
+        "chld": [
+          {
+            "type": "lkup",
+            "props": {
+              "dset": "{{DATASET_NAME}}",
+              "required": false,
+              "bind": "{{DESC_FIELD_NAME}}",
+              "variant": "outlined",
+              "className": "small-ctr",
+              "label": "",
+              "fullWidth": true,
+              "icon": "search",
+              "icons": {
+                "notempty": {
+                  "icon": "close",
+                  "whenclick": [
+                    {
+                      "exec": "mergedataset",
+                      "args": {
+                        "dset": "{{DATASET_NAME}}",
+                        "data": {
+                          "{{KEY_FIELD_NAME}}": "",
+                          "{{DESC_FIELD_NAME}}": ""
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

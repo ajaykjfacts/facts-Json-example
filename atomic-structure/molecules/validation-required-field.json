@@ -1,0 +1,32 @@
+{
+  "id": "molecule.validation-required-field",
+  "level": "molecule",
+  "name": "Required Field Validation",
+  "description": "Single-field required check, used in a page's *-validate.json/*-validation.json file (run on save/submit). Raises a snackinfo error when the field is null/empty.",
+  "composedOf": ["action.validatedataset"],
+  "sourceRefs": ["PR-pr-validation.json:1-24"],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "field": { "type": "string", "required": true },
+    "message": { "type": "string", "required": true, "description": "e.g. \"Please select the Division\"." }
+  },
+  "template": {
+    "exec": "validatedataset",
+    "verify": {
+      "satisfy": "any",
+      "halton": "match",
+      "ref": {
+        "[{{DATASET_NAME}}.{{FIELD_NAME}}(ifnull)raw.]": ""
+      },
+      "whenmatch": [
+        {
+          "exec": "setdataset",
+          "args": {
+            "dset": "snackinfo",
+            "data": { "open": true, "type": "error", "message": "{{VALIDATION_MESSAGE}}" }
+          }
+        }
+      ]
+    }
+  }
+}

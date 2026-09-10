@@ -1,0 +1,21 @@
+{
+  "id": "action.forloop",
+  "level": "action",
+  "exec": "forLoop",
+  "name": "For Loop (Per-Row Validation/Processing)",
+  "description": "Iterates a dataset, running a nested action list (typically validatedataset) against each row. This is how grid/detail-line validation is implemented — see molecules/validation-grid-rows.json for the full composed pattern including row-level error flags and the errorRowCount summary check.",
+  "sourceRefs": [
+    "GPC-gpc-validate.json:14-41"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true, "description": "Dataset to iterate." },
+    "perform": { "type": "array", "required": true, "description": "Action list run once per row, with 'this' bound to the current row inside expressions." }
+  },
+  "template": {
+    "exec": "forLoop",
+    "args": {
+      "dset": "{{DETAIL_DATASET_NAME}}",
+      "perform": []
+    }
+  }
+}

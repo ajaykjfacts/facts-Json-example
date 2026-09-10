@@ -1,0 +1,29 @@
+{
+  "id": "atom.hide-conditional",
+  "level": "atom",
+  "componentType": "hide",
+  "name": "Conditional Visibility Wrapper",
+  "description": "Wraps chld content and suppresses it based on appendprops.xsUp, evaluated with the binding-expression DSL (see expressions/binding-expression-dsl.md). Used for page-mode-based visibility, feature flags, and empty-state handling.",
+  "sourceRefs": [
+    "ALLOC-alloc-general-sect.json:110-116",
+    "ALLOC-alloc-general-sect.json:763-767",
+    "ALLOC-workedalloc-general-sect.json:880"
+  ],
+  "params": {
+    "appendprops.xsUp": {
+      "type": "boolean | string (binding expression)",
+      "required": true,
+      "description": "true/false to hard-code, or a bracketed expression like \"[dsPagemode.pagemode(eq)raw.view]\". When the expression evaluates truthy, the wrapped chld is SUPPRESSED (xsUp historically meant 'suppress' in this engine's convention, confirmed by usage: dsPagemode.pagemode(eq)raw.view hides edit-only fields while viewing)."
+    },
+    "chld": { "type": "array", "required": true, "description": "Component tree to conditionally render." }
+  },
+  "template": {
+    "type": "hide",
+    "props": {
+      "appendprops": {
+        "xsUp": "{{CONDITION_EXPRESSION}}"
+      }
+    },
+    "chld": []
+  }
+}

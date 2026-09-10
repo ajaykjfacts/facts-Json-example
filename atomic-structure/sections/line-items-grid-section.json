@@ -1,0 +1,104 @@
+{
+  "id": "section.line-items-grid",
+  "level": "section",
+  "name": "Line Items Grid Section",
+  "description": "Full detail/line-item table area: a header row of TableHeaderChildSect labels, the repeating molecule.grid-row-template body, an 'Add Row' button, and per-row edit/delete actions. This is the section-level composition for what would be a 'data grid' in other frameworks — remember this codebase has no grid widget, it's all list+row-template.",
+  "composedOf": ["atom.layout-row", "molecule.grid-row-template", "molecule.grid-row-action-edit", "molecule.grid-row-action-delete", "action.mergedatasetarray (add row)"],
+  "sourceRefs": ["GPC-gpc-general-sect.json:336-404", "TASK-whenloadevent.json:11-21 (add-row action)"],
+  "params": {
+    "detailDataset": { "type": "string", "required": true },
+    "columns": { "type": "array", "required": true, "description": "List of { xs, headerText, control } for each grid column." }
+  },
+  "template": {
+    "type": "sect",
+    "props": { "container": true, "className": "TableHeaderSect" },
+    "chld": [
+      {
+        "type": "sect",
+        "props": { "item": true, "className": "TableHeaderChildSect", "xs": 3 },
+        "chld": [ { "type": "lbl", "props": { "text": "{{COLUMN_HEADER_TEXT}}" } } ]
+      },
+      {
+        "type": "list",
+        "props": {
+          "datasets": ["{{DETAIL_DATASET_NAME}}"],
+          "className": "TableListSect facts-input-list",
+          "content": {
+            "template": "custom",
+            "props": { "style": {} },
+            "chld": [
+              {
+                "type": "sect",
+                "props": {
+                  "container": true,
+                  "resolveprops": true,
+                  "includerefdata": true,
+                  "className": "[raw.facts-row-[this.row_error]]"
+                },
+                "chld": [
+                  {
+                    "type": "sect",
+                    "props": { "item": true, "className": "TableContentChildSect", "xs": 3 },
+                    "chld": [
+                      {
+                        "type": "{{CONTROL_TYPE}}",
+                        "props": {
+                          "dset": "{{DETAIL_DATASET_NAME}}",
+                          "bind": "{{FIELD_NAME}}",
+                          "rowindex": "[this.propkey]",
+                          "resolveprops": true,
+                          "includerefdata": true,
+                          "className": "small-ctr",
+                          "fullWidth": true
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "type": "sect",
+                    "props": { "item": true, "className": "TableContentLastChildSect", "xs": 1 },
+                    "chld": [
+                      {
+                        "type": "icbtn",
+                        "props": { "includerefdata": true, "resolvestyles": true, "color": "primary", "style": { "fontSize": "1.3rem" }, "whenclick": [] },
+                        "chld": "edit"
+                      },
+                      {
+                        "type": "icbtn",
+                        "props": {
+                          "color": "primary", "includerefdata": true, "variant": "contained", "resolvestyles": true, "fullWidth": true,
+                          "className": "facts-icon-color--delete", "style": { "fontSize": "1.3rem" },
+                          "whenclick": [
+                            { "exec": "showloader" },
+                            { "exec": "setdataset", "args": { "dset": "dialoginfo", "data": {
+                              "open": true, "title": "Delete", "description": "Are you sure you want to delete this Item?",
+                              "btn1": { "chld": "YES", "props": { "whenclick": [
+                                { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]", "data": null } }
+                              ] } },
+                              "btn2": { "chld": "NO", "props": { "whenclick": [] } }
+                            } } }
+                          ]
+                        },
+                        "chld": "delete"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      },
+      {
+        "type": "btn",
+        "props": {
+          "className": "tableAddRowBtn",
+          "whenclick": [
+            { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "data": {} } }
+          ]
+        },
+        "chld": "+ Add Row"
+      }
+    ]
+  }
+}

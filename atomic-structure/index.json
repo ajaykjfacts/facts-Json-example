@@ -1,0 +1,56 @@
+{
+  "libraryDescription": "Machine-readable catalog of the atomic-structure library. Every entry cites the real source file(s) in the project root it was extracted from. Search this file first before writing new page JSON.",
+  "entries": [
+    { "id": "atom.label", "level": "atom", "componentType": "lbl", "path": "atoms/label.json" },
+    { "id": "atom.text-input", "level": "atom", "componentType": "entry", "path": "atoms/text-input.json" },
+    { "id": "atom.text-input-multiline", "level": "atom", "componentType": "entry", "path": "atoms/text-input-multiline.json" },
+    { "id": "atom.number-input", "level": "atom", "componentType": "dxnumberbox", "path": "atoms/number-input.json" },
+    { "id": "atom.date-input", "level": "atom", "componentType": "dxdtpick", "path": "atoms/date-input.json" },
+    { "id": "atom.lookup", "level": "atom", "componentType": "lkup", "path": "atoms/lookup.json" },
+    { "id": "atom.icon-button", "level": "atom", "componentType": "icbtn", "path": "atoms/icon-button.json" },
+    { "id": "atom.text-button", "level": "atom", "componentType": "btn", "path": "atoms/text-button.json" },
+    { "id": "atom.hide-conditional", "level": "atom", "componentType": "hide", "path": "atoms/hide-conditional.json" },
+    { "id": "atom.layout-row", "level": "atom", "componentType": "sect", "path": "atoms/layout-row.json" },
+    { "id": "atom.layout-cell", "level": "atom", "componentType": "sect", "path": "atoms/layout-cell.json" },
+    { "id": "atom.field-label-wrapper", "level": "atom", "componentType": "div", "path": "atoms/field-label-wrapper.json" },
+    { "id": "atom.field-value-wrapper", "level": "atom", "componentType": "div", "path": "atoms/field-value-wrapper.json" },
+
+    { "id": "expression.binding-dsl", "level": "expression", "path": "expressions/binding-expression-dsl.md" },
+
+    { "id": "action.setdataset", "level": "action", "exec": "setdataset", "path": "actions/setdataset.json" },
+    { "id": "action.filldataset", "level": "action", "exec": "filldataset", "path": "actions/filldataset.json" },
+    { "id": "action.fillmultidataset", "level": "action", "exec": "fillmultidataset", "path": "actions/fillmultidataset.json" },
+    { "id": "action.mergedataset", "level": "action", "exec": "mergedataset", "path": "actions/mergedataset.json" },
+    { "id": "action.mergedatasetarray", "level": "action", "exec": "mergedatasetarray", "path": "actions/mergedatasetarray.json" },
+    { "id": "action.setdatasetfield", "level": "action", "exec": "setdatasetfield", "path": "actions/setdatasetfield.json" },
+    { "id": "action.validatedataset", "level": "action", "exec": "validatedataset", "path": "actions/validatedataset.json" },
+    { "id": "action.forloop", "level": "action", "exec": "forLoop", "path": "actions/forloop.json" },
+    { "id": "action.misc (showloader, eval, navigate, invalidate, syncevents)", "level": "action", "path": "actions/misc-actions.json" },
+
+    { "id": "molecule.field-text", "level": "molecule", "path": "molecules/field-text.json" },
+    { "id": "molecule.field-number", "level": "molecule", "path": "molecules/field-number.json" },
+    { "id": "molecule.field-date", "level": "molecule", "path": "molecules/field-date.json" },
+    { "id": "molecule.field-lookup", "level": "molecule", "path": "molecules/field-lookup.json" },
+    { "id": "molecule.filter-date-range", "level": "molecule", "path": "molecules/filter-date-range.json" },
+    { "id": "molecule.grid-row-template", "level": "molecule", "path": "molecules/grid-row-template.json" },
+    { "id": "molecule.grid-row-action-delete", "level": "molecule", "path": "molecules/grid-row-action-delete.json" },
+    { "id": "molecule.grid-row-action-edit", "level": "molecule", "path": "molecules/grid-row-action-edit.json" },
+    { "id": "molecule.validation-required-field", "level": "molecule", "path": "molecules/validation-required-field.json" },
+    { "id": "molecule.validation-grid-rows", "level": "molecule", "path": "molecules/validation-grid-rows.json" },
+    { "id": "molecule.conditional-visibility", "level": "molecule", "path": "molecules/conditional-visibility.json" },
+    { "id": "molecule.dynamic-style-by-pagemode", "level": "molecule", "path": "molecules/dynamic-style-by-pagemode.json" },
+
+    { "id": "section.form-header", "level": "section", "path": "sections/form-header-section.json" },
+    { "id": "section.line-items-grid", "level": "section", "path": "sections/line-items-grid-section.json" },
+    { "id": "section.filter-bar", "level": "section", "path": "sections/filter-bar-section.json" },
+
+    { "id": "page.skeleton", "level": "page", "path": "page/page-skeleton.json" }
+  ],
+  "confirmedNotToExistInThisCodebase": [
+    "DevExpress dxDataGrid / inline columns config for line-item editing (use molecule.grid-row-template instead)",
+    "dxtextbox / generic 'textbox' component type (use atom.text-input, type: entry)",
+    "dxbutton / generic 'button' component type (use atom.icon-button 'icbtn' or atom.text-button 'btn')",
+    "showsnackbar exec (use action.setdataset targeting the 'snackinfo' dataset)",
+    "Declarative required/datatype/length validation schema (validation is action-based, see action.validatedataset)"
+  ]
+}

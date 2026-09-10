@@ -1,0 +1,30 @@
+{
+  "id": "atom.layout-cell",
+  "level": "atom",
+  "componentType": "sect",
+  "name": "Layout Cell (Item)",
+  "description": "Maps to a MUI Grid item. A 12-column responsive breakpoint system (xs/md/lg). Holds a field molecule or other content.",
+  "sourceRefs": [
+    "ALLOC-test.json:2-12"
+  ],
+  "params": {
+    "item": { "type": "boolean", "required": true, "description": "Always true for a cell." },
+    "className": { "type": "string", "required": false, "description": "Usually \"factsFullWidth\"." },
+    "xs": { "type": "number", "required": true, "description": "Columns at smallest breakpoint, out of 12." },
+    "md": { "type": "number", "required": false },
+    "lg": { "type": "number", "required": false },
+    "style": { "type": "object", "required": false, "description": "e.g. { \"padding\": \"5px\" }." }
+  },
+  "template": {
+    "type": "sect",
+    "props": {
+      "item": true,
+      "className": "factsFullWidth",
+      "xs": 12,
+      "md": 4,
+      "lg": 4,
+      "style": { "padding": "5px" }
+    },
+    "chld": []
+  }
+}

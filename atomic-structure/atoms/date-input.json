@@ -1,0 +1,53 @@
+{
+  "id": "atom.date-input",
+  "level": "atom",
+  "componentType": "dxdtpick",
+  "name": "Date Input",
+  "description": "Bound date picker. A secondary component 'dtpick' (no dx prefix) exists for month/year-only pickers (see monthYearVariantTemplate) — do not confuse the two.",
+  "sourceRefs": [
+    "EMP-emp-general-sect.json:4267-4287",
+    "aoo-account-original.json:462-476",
+    "ppr-ppr-general-sect.json (dtpick month/year variant)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "type": { "type": "string", "required": false, "description": "\"date\" for a date-only picker." },
+    "labelMode": { "type": "string", "required": false, "description": "e.g. \"floating\"." },
+    "includerefdata": { "type": "boolean", "required": false },
+    "closeOnSelect": { "type": "boolean", "required": false },
+    "showClearButton": { "type": "boolean", "required": false },
+    "required": { "type": "boolean", "required": false },
+    "whenchange": { "type": "array", "required": false, "description": "Array of action objects (see actions/)." },
+    "validation": { "type": "object", "required": false, "description": "Inline validation object: { for, msg, validationParams }. See molecules/validation-required-field.json for the alternative action-based approach used elsewhere." }
+  },
+  "template": {
+    "type": "dxdtpick",
+    "props": {
+      "dset": "{{DATASET_NAME}}",
+      "bind": "{{FIELD_NAME}}",
+      "type": "date",
+      "labelMode": "floating",
+      "includerefdata": true,
+      "closeOnSelect": true,
+      "showClearButton": false,
+      "label": "",
+      "required": false,
+      "inputProps": {},
+      "whenchange": []
+    }
+  },
+  "monthYearVariantTemplate": {
+    "type": "dtpick",
+    "props": {
+      "format": "MMMM-yyyy",
+      "label": "",
+      "views": ["month", "year"],
+      "fullWidth": true,
+      "inputVariant": "outlined",
+      "inputProps": {},
+      "dset": "{{DATASET_NAME}}",
+      "bind": "{{FIELD_NAME}}"
+    }
+  }
+}

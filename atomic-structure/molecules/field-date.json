@@ -1,0 +1,49 @@
+{
+  "id": "molecule.field-date",
+  "level": "molecule",
+  "name": "Date Field",
+  "description": "Complete labeled date field, same wrapper as molecule.field-text but with a dxdtpick control. Set required:true + a validation object when the field is mandatory.",
+  "composedOf": ["atom.field-label-wrapper", "atom.field-value-wrapper", "atom.date-input"],
+  "sourceRefs": ["EMP-emp-general-sect.json:4267-4287"],
+  "params": {
+    "labelText": { "type": "string", "required": true },
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "required": { "type": "boolean", "required": false }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } }
+        ]
+      },
+      {
+        "type": "div",
+        "props": { "className": "entryValueDiv" },
+        "chld": [
+          {
+            "type": "dxdtpick",
+            "props": {
+              "dset": "{{DATASET_NAME}}",
+              "bind": "{{FIELD_NAME}}",
+              "type": "date",
+              "labelMode": "floating",
+              "includerefdata": true,
+              "closeOnSelect": true,
+              "showClearButton": false,
+              "label": "",
+              "required": false,
+              "inputProps": {},
+              "whenchange": []
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "id": "section.form-header",
+  "level": "section",
+  "name": "Form Header Section",
+  "description": "A responsive row of labeled fields (mix of text/number/date/lookup), the standard shape for a document header entry area. Wrap the whole section in molecule.dynamic-style-by-pagemode if it should become read-only in view mode, or individual fields in molecule.conditional-visibility if specific fields should be mode-dependent.",
+  "composedOf": ["atom.layout-row", "atom.layout-cell (one per field)", "molecule.field-text / field-number / field-date / field-lookup"],
+  "sourceRefs": ["ALLOC-alloc-general-sect.json (top-level container structure)", "GPC-gpc-general-sect.json:15-79"],
+  "params": {
+    "fields": {
+      "type": "array",
+      "required": true,
+      "description": "List of { xs, md, lg, fieldMolecule } — fieldMolecule is one of molecules/field-*.json with its params filled in."
+    }
+  },
+  "template": {
+    "type": "sect",
+    "props": {
+      "container": true,
+      "resolvestyles": true,
+      "appendprops": {
+        "style": { "padding": "5px" }
+      }
+    },
+    "chld": [
+      {
+        "type": "sect",
+        "props": { "item": true, "className": "factsFullWidth", "xs": 12, "md": 4, "lg": 4 },
+        "chld": [
+          "{{FIELD_MOLECULE_1}}"
+        ]
+      },
+      {
+        "type": "sect",
+        "props": { "item": true, "className": "factsFullWidth", "xs": 12, "md": 4, "lg": 4 },
+        "chld": [
+          "{{FIELD_MOLECULE_2}}"
+        ]
+      }
+    ]
+  }
+}

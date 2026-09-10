@@ -1,0 +1,31 @@
+{
+  "id": "atom.icon-button",
+  "level": "atom",
+  "componentType": "icbtn",
+  "name": "Icon Button",
+  "description": "Icon-only button. No dxbutton/generic 'button' type exists in this codebase — do not invent one. Almost always used for row-level delete/edit actions inside a grid row template (see molecules/grid-row-action-delete.json and grid-row-action-edit.json for the full composed patterns).",
+  "sourceRefs": [
+    "aoo-account-genral table method.json:1424-1474 (delete, with confirm dialog)",
+    "aoo-account-genral.json:1208-1223 (edit)"
+  ],
+  "params": {
+    "color": { "type": "string", "required": false, "description": "e.g. \"primary\"." },
+    "className": { "type": "string", "required": false, "description": "e.g. \"facts-icon-color--delete\" for the delete icon color." },
+    "style": { "type": "object", "required": false, "description": "e.g. { \"fontSize\": \"1.3rem\" }." },
+    "includerefdata": { "type": "boolean", "required": false },
+    "resolvestyles": { "type": "boolean", "required": false },
+    "whenclick": { "type": "array", "required": true, "description": "Action array (see actions/)." },
+    "chld": { "type": "string", "required": false, "description": "Icon name string, e.g. \"delete\"." }
+  },
+  "template": {
+    "type": "icbtn",
+    "props": {
+      "color": "primary",
+      "includerefdata": true,
+      "resolvestyles": true,
+      "style": { "fontSize": "1.3rem" },
+      "whenclick": []
+    },
+    "chld": "{{ICON_NAME}}"
+  }
+}

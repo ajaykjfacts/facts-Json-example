@@ -1,0 +1,20 @@
+{
+  "id": "atom.field-value-wrapper",
+  "level": "atom",
+  "componentType": "div",
+  "name": "Field Value Wrapper",
+  "description": "The value/control half of the field wrapper pattern: entryValueDiv > control (entry/lkup/dxdtpick/dxnumberbox/...). Always a sibling of atom.field-label-wrapper's entryLabelDiv, both children of the same entryLabelOuterDiv (see molecules/field-*.json for the fully composed pattern).",
+  "sourceRefs": [
+    "GPC-gpc-general-sect.json:38-79"
+  ],
+  "params": {
+    "control": { "type": "object", "required": true, "description": "Any control atom template: atoms/text-input.json, atoms/number-input.json, atoms/date-input.json, atoms/lookup.json." }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryValueDiv" },
+    "chld": [
+      "{{CONTROL_ATOM}}"
+    ]
+  }
+}

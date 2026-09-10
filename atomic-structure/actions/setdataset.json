@@ -1,0 +1,26 @@
+{
+  "id": "action.setdataset",
+  "level": "action",
+  "exec": "setdataset",
+  "name": "Set Dataset",
+  "description": "Replaces the entire value of a dataset. Used to seed dropdown option lists, push snackbar/dialog state (via the fixed dataset names 'snackinfo' and 'dialoginfo'), and set simple flags.",
+  "sourceRefs": [
+    "ALLOC-init.json:3-9",
+    "HOT-onchange.json (dialoginfo)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "data": { "type": "any", "required": true, "description": "Full replacement value: object, array, string, etc." }
+  },
+  "template": {
+    "exec": "setdataset",
+    "args": {
+      "dset": "{{DATASET_NAME}}",
+      "data": "{{DATA_VALUE}}"
+    }
+  },
+  "wellKnownDatasets": {
+    "snackinfo": "Triggers a snackbar. data shape: { open: true, type: 'error'|'success'|..., message: '...' }. There is no separate 'showsnackbar' exec — this is how snackbars are actually shown.",
+    "dialoginfo": "Triggers a confirm dialog. data shape: { open: true, title, description, btn1: { chld: 'YES', props: { whenclick: [...] } }, btn2: { chld: 'NO', props: { whenclick: [] } } }."
+  }
+}

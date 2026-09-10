@@ -1,0 +1,48 @@
+{
+  "id": "molecule.grid-row-action-delete",
+  "level": "molecule",
+  "name": "Grid Row Delete Action",
+  "description": "Icon button inside a grid row template that confirms via dialoginfo, then removes the row with mergedatasetarray (data:null at the row's propkey index).",
+  "composedOf": ["atom.icon-button", "action.setdataset (dialoginfo)", "action.mergedatasetarray"],
+  "sourceRefs": ["aoo-account-genral table method.json:1424-1474"],
+  "params": {
+    "detailDataset": { "type": "string", "required": true, "description": "e.g. \"DsFrmDetails1\"." },
+    "confirmMessage": { "type": "string", "required": false, "description": "Default: \"Are you sure you want to delete this Item?\"" }
+  },
+  "template": {
+    "type": "icbtn",
+    "props": {
+      "color": "primary",
+      "includerefdata": true,
+      "variant": "contained",
+      "resolvestyles": true,
+      "fullWidth": true,
+      "className": "facts-icon-color--delete",
+      "style": { "fontSize": "1.3rem" },
+      "whenclick": [
+        { "exec": "showloader" },
+        {
+          "exec": "setdataset",
+          "args": {
+            "dset": "dialoginfo",
+            "data": {
+              "open": true,
+              "title": "Delete",
+              "description": "{{CONFIRM_MESSAGE}}",
+              "btn1": {
+                "chld": "YES",
+                "props": {
+                  "whenclick": [
+                    { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]", "data": null } }
+                  ]
+                }
+              },
+              "btn2": { "chld": "NO", "props": { "whenclick": [] } }
+            }
+          }
+        }
+      ]
+    },
+    "chld": "delete"
+  }
+}

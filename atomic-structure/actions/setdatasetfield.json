@@ -1,0 +1,23 @@
+{
+  "id": "action.setdatasetfield",
+  "level": "action",
+  "exec": "setdatasetfield",
+  "name": "Set Dataset Field",
+  "description": "Sets a single named field on a dataset directly (narrower than mergedataset, which takes a data object).",
+  "sourceRefs": [
+    "aoo-account-original.json:47-52"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "fieldname": { "type": "string", "required": true },
+    "data": { "type": "any", "required": true }
+  },
+  "template": {
+    "exec": "setdatasetfield",
+    "args": {
+      "dset": "{{DATASET_NAME}}",
+      "fieldname": "{{FIELD_NAME}}",
+      "data": "{{VALUE}}"
+    }
+  }
+}
