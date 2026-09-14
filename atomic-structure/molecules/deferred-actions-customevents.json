@@ -1,0 +1,54 @@
+{
+  "id": "molecule.deferred-actions-customevents",
+  "level": "molecule",
+  "name": "Deferred Action Staging via customevents",
+  "description": "Stages an action list into the engine-owned `customevents` dataset so it runs AFTER a popup interaction completes, rather than immediately. This is how a lookup triggers dependent server calls (fetch account details, fetch currency rate, recalculate a row) that only make sense once the user has actually picked a value.",
+  "composedOf": ["action.setdataset (nodeepprocess:true)", "action.fillmultidataset", "action.mergedataset | action.mergedatasetarray"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 7.2 (GL code mode:GL, Supplier mode:SL, Currency), 3.6 (grid Stock Master)"
+  ],
+  "params": {
+    "actions": { "type": "array", "required": true, "description": "The deferred action list. MUST end by clearing customevents." }
+  },
+  "template": {
+    "exec": "setdataset",
+    "args": {
+      "nodeepprocess": true,
+      "dset": "customevents",
+      "data": [
+        "{{DEFERRED_ACTION_1}}",
+        "{{DEFERRED_ACTION_2}}",
+        { "exec": "setdataset", "args": { "dset": "customevents", "data": null } }
+      ]
+    }
+  },
+  "rules": [
+    "nodeepprocess:true is MANDATORY. Without it the engine resolves the nested expressions immediately (at staging time) instead of storing them raw for later execution.",
+    "The staged list MUST end with {\"exec\":\"setdataset\",\"args\":{\"dset\":\"customevents\",\"data\":null}} — otherwise it re-fires on the next popup interaction.",
+    "Inside staged actions, [this.propkey] is NOT available — the row context is gone by the time they run. Park the index in the dslist payload (rowindex:\"[this.propkey]\") and read it back as [dslist.rowindex]. Nested form: \"[DsFrmDetails1.[dslist.rowindex]]\" addresses that row.",
+    "Prefer mergedataset over setdataset when writing back into a shared payload dataset (e.g. dsVATHeaderDetails) — the real GL chain uses setdataset there and wipes the dataset down to two fields, which only works because Supplier runs afterwards and rebuilds it."
+  ],
+  "workedExample": {
+    "description": "GL code lookup — fetch account details and derive VAT treatment, deferred until the account is picked.",
+    "value": {
+      "exec": "setdataset",
+      "args": {
+        "nodeepprocess": true,
+        "dset": "customevents",
+        "data": [
+          { "exec": "setdataset", "args": { "dset": "dsVATHeaderDetails", "data": {
+              "DOCTYPE": "[DsFrmHeaderEntry.PUR_DOCTYPE]", "DOCNO": "[DsFrmHeaderEntry.PUR_DOCNO]",
+              "DOCDATE": "[DsFrmHeaderEntry.PUR_DOCDATE]", "AC_DOCNO": "[DsFrmHeaderEntry.PUR_AC_DOCNO]" } } },
+          { "exec": "fillmultidataset", "args": { "proc": "PWA.GetAccountDetails",
+              "dsets": [ { "name": "dsGetAccountDetails", "row": 0, "table": "Table" } ],
+              "args": { "strXmlHeader": "[dsVATHeaderDetails]", "mode": "GL" } } },
+          { "exec": "mergedataset", "args": { "dset": "DsFrmHeaderEntry", "data": "[dsGetAccountDetails]" } },
+          { "exec": "setdataset", "args": { "dset": "dsVATHeaderDetails", "data": {
+              "VAT_RATE_TYPE": "[DsFrmHeaderEntry.PUR_VAT_RATE_TYPE]",
+              "VAT_TREATMENT_DOCNO": "[DsFrmHeaderEntry.PUR_VAT_TREATMENT_DOCNO]" } } },
+          { "exec": "setdataset", "args": { "dset": "customevents", "data": null } }
+        ]
+      }
+    }
+  }
+}

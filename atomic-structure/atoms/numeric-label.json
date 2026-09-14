@@ -1,0 +1,36 @@
+{
+  "id": "atom.numeric-label",
+  "level": "atom",
+  "componentType": "dxnumlbl",
+  "name": "Numeric Label (Read-Only Computed Display)",
+  "description": "Read-only formatted numeric display, bound to a dataset field but never edited by the user — used for computed/summary values (totals, tax, net amount). An alternative to atom.number-input with disabled:true; both styles are used in the same real file, but dxnumlbl is preferred specifically for values that are ALWAYS computed (never directly enterable), while a disabled dxnumberbox is used for values that are sometimes editable depending on page mode/context.",
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (_fapo-general-sect: PUR_TOTAL_QTY, PUR_GROSS_AMOUNT, PUR_DISCOUNT_AMOUNT, PUR_OTHER_AMOUNT, PUR_VAT_AMOUNT, PUR_NET_AMOUNT, PURDET_AMOUNT, ADAMTDET_AMOUNT, ADAMTDET_VAT_AMOUNT)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true },
+    "bind": { "type": "string", "required": true },
+    "rowindex": { "type": "string", "required": false, "description": "Grid-row variant: \"[this.propkey]\"." },
+    "includerefdata": { "type": "boolean", "required": false, "description": "Seen true on every usage." },
+    "fullWidth": { "type": "boolean", "required": false }
+  },
+  "template": {
+    "type": "dxnumlbl",
+    "props": {
+      "dset": "{{DATASET_NAME}}",
+      "fullWidth": true,
+      "includerefdata": true,
+      "bind": "{{FIELD_NAME}}"
+    }
+  },
+  "gridRowVariantTemplate": {
+    "type": "dxnumlbl",
+    "props": {
+      "dset": "{{DETAIL_DATASET_NAME}}",
+      "rowindex": "[this.propkey]",
+      "fullWidth": true,
+      "includerefdata": true,
+      "bind": "{{FIELD_NAME}}"
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "atom.list-repeater",
+  "level": "atom",
+  "componentType": "list",
+  "name": "List Repeater (the only grid primitive)",
+  "description": "Repeats a custom row template once per row of a dataset. This is THE grid primitive in this engine — there is no data-grid widget. Documented here as an atom (the repeater itself and its full prop set) separately from molecules/grid-row-template.json, which documents the row template that goes inside it.",
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 3.4 (DsFrmDetails1, full prop set), PART 5.1 (DsFrmDetails2, minimal prop set)"
+  ],
+  "params": {
+    "datasets": { "type": "array", "required": true, "description": "Array of dataset names to iterate. Only ever one entry in observed usage, e.g. [\"DsFrmDetails1\"]." },
+    "watch": { "type": "array", "required": false, "description": "Datasets whose changes force a re-render. Include the HEADER dataset here, not just the row dataset, whenever a header value affects row display (e.g. VAT treatment). Omitting it is why rows go stale after header edits." },
+    "filtermode": { "type": "string", "required": false, "description": "Observed: \"contains\"." },
+    "filterignorecase": { "type": "boolean", "required": false },
+    "satisfy": { "type": "string", "required": false, "description": "Observed: \"any\" (OR across filter criteria)." },
+    "className": { "type": "string", "required": true, "description": "\"TableListSect\" always; add \" facts-input-list\" (space-separated) when rows contain editable inputs." },
+    "content.template": { "type": "string", "required": true, "description": "Always \"custom\" — no other value observed anywhere in the codebase." },
+    "content.props": { "type": "object", "required": false, "description": "Props applied to each rendered row wrapper. Set resolvestyles:true here to enable a per-row dynamic background." },
+    "content.chld": { "type": "array", "required": true, "description": "The row template — see molecules/grid-row-template.json." }
+  },
+  "variants": {
+    "editableRows": {
+      "description": "Full prop set, for grids whose rows contain inputs and whose appearance depends on header state or per-row status.",
+      "template": {
+        "type": "list",
+        "props": {
+          "datasets": ["{{DETAIL_DATASET_NAME}}"],
+          "watch": ["{{HEADER_DATASET_NAME}}", "{{DETAIL_DATASET_NAME}}"],
+          "filtermode": "contains",
+          "filterignorecase": true,
+          "satisfy": "any",
+          "className": "TableListSect facts-input-list",
+          "content": {
+            "template": "custom",
+            "props": { "resolvestyles": true, "style": { "backgroundColor": "[this.bgColor]" } },
+            "chld": []
+          }
+        }
+      }
+    },
+    "readOnlyRows": {
+      "description": "Minimal prop set, for display-only grids (no watch/filter props observed on these).",
+      "template": {
+        "type": "list",
+        "props": {
+          "datasets": ["{{DETAIL_DATASET_NAME}}"],
+          "className": "TableListSect facts-input-list",
+          "content": { "template": "custom", "props": { "style": {} }, "chld": [] }
+        }
+      }
+    }
+  },
+  "rowBackgroundNote": "Two mutually exclusive conventions exist for row-level status colouring. (a) inline style: content.props.style.backgroundColor = \"[this.bgColor]\" with resolvestyles:true — driven by a bgColor field on the row. (b) className: row sect className = \"[raw.facts-row-[this.row_error]]\" with resolveprops:true — driven by a row_error field. Pick one per grid; do not mix them in the same row template.",
+  "scrollContainerNote": "The list is normally wrapped in a sect that owns the scrollbar: {\"item\":true,\"xs\":12,\"style\":{\"minHeight\":\"6vh\",\"maxHeight\":\"50vh\",\"overflow\":\"scroll\"}}. Put the scroll on this wrapper, never on the page root."
+}

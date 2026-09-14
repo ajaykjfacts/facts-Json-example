@@ -1,0 +1,25 @@
+{
+  "id": "molecule.reusable-event-fragment",
+  "level": "molecule",
+  "name": "Server-Stored Reusable Event Fragment (\"part\" doctype)",
+  "description": "A named, server-stored action list (not a dataset of records, and not a full page) fetched via action.filldataset with proc:\"PWA.LoadLayout\", args.doctype:\"part\", args.docno:\"<fragment-key>\" into a dataset named after the event (e.g. fapoEvent1). The fetched action list is then spliced into other action arrays the same way molecule.stored-action-formula is: as a bare \"[datasetName]\" string element (commonly inside a grid row control's onFocusOut). Use this when an action sequence needs to be shared across multiple pages/doctypes server-side, rather than molecule.stored-action-formula which is page-local and defined in whenload.",
+  "composedOf": ["action.filldataset (fetch, doctype:\"part\")", "bare \"[datasetName]\" reference (invoke)"],
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (_fapi-whenload-events: fetches docno:\"fapo-event-1\" into dset \"fapoEvent1\"; _fapo-event-1: the fetched fragment itself, referenced as \"[fapoEvent1]\" inside PURDET_QTY/PURDET_RATE onFocusOut arrays)"
+  ],
+  "params": {
+    "docno": { "type": "string", "required": true, "description": "The fragment's key in the server-side layout store, e.g. \"fapo-event-1\"." },
+    "dset": { "type": "string", "required": true, "description": "Local dataset name to hold the fetched action list, e.g. \"fapoEvent1\"." }
+  },
+  "fetchTemplate": {
+    "exec": "filldataset",
+    "args": {
+      "proc": "PWA.LoadLayout",
+      "column": "layoutinfo",
+      "dset": "{{FRAGMENT_DSET_NAME}}",
+      "args": { "doctype": "part", "docno": "{{FRAGMENT_DOCNO}}" }
+    }
+  },
+  "invokeTemplate": "[{{FRAGMENT_DSET_NAME}}]",
+  "usageNote": "Fetch once in whenload alongside any molecule.stored-action-formula definitions (order matters if the fragment itself ends by invoking a stored formula, as _fapo-event-1 does with \"[calcformula]\"). The fragment's own body may recompute per-row tax/amount fields via fillmultidataset + mergedatasetarray before delegating to the page-local formula for header-level totals."
+}

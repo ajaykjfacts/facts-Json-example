@@ -1,0 +1,58 @@
+{
+  "id": "molecule.address-block-country-master",
+  "level": "molecule",
+  "name": "Country-Aware Address Block (server-composed)",
+  "description": "The standard address entry block. Its fields, labels and cascading lookups are NOT authored in the page — the whole sub-layout is fetched from the server as JSON and rendered by the `view` atom. This is how country-specific address shapes (emirate vs state vs province, postcode formats) stay centralised. Never hand-build an address form; wire this instead.",
+  "composedOf": ["atom.view-sublayout", "action.filldataset ×2", "action.mergedataset (field-name translation)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 4.1 (Delivery Information, dsCountryMasterDeliverTo.settingsView)",
+    "examples/fapo-fapi-full-breakdown.md 7 (_fapi-whenload-events: the two filldataset calls and the dsAddress seed)"
+  ],
+  "params": {
+    "viewDataset": { "type": "string", "required": true, "description": "Holds the fetched layout, e.g. \"dsCountryMasterDeliverTo\". Name it per address role (DeliverTo / BillTo) if a page has more than one." },
+    "subViewDataset": { "type": "string", "required": true, "description": "e.g. \"dsAddressSubview\"." },
+    "dataDataset": { "type": "string", "required": true, "description": "Holds the address VALUES the sub-layout binds to, e.g. \"dsAddress\"." },
+    "fieldMap": { "type": "object", "required": true, "description": "Translation from this page's field names to the address component's generic names." }
+  },
+  "whenloadTemplate": [
+    { "exec": "filldataset", "args": { "proc": "PWA.CountryMasterView_V2", "dset": "{{VIEW_DATASET}}", "row": 0,
+        "args": { "layout_docno": "country-master-view-new", "doctype": "[pagemenuinfo.doctype]",
+                  "subViewDset": "{{SUBVIEW_DATASET}}", "dataset": "{{DATA_DATASET}}" } } },
+    { "exec": "filldataset", "args": { "proc": "PWA.countrySubView_V2", "dset": "{{SUBVIEW_DATASET}}", "row": 0,
+        "args": { "layout_docno": "country-subview-default-new", "dataset": "{{DATA_DATASET}}" } } },
+    { "exec": "mergedataset", "args": { "dset": "{{DATA_DATASET}}", "data": {
+        "country_name": "[{{HEADER_DATASET}}.{{COUNTRY_FIELD}}]",
+        "street": "[{{HEADER_DATASET}}.{{STREET_FIELD}}]",
+        "city": "[{{HEADER_DATASET}}.{{CITY_FIELD}}]",
+        "emiratedesc": "[{{HEADER_DATASET}}.{{STATE_FIELD}}]",
+        "postaldesc": "[{{HEADER_DATASET}}.{{ZIP_FIELD}}]" } } }
+  ],
+  "layoutTemplate": {
+    "type": "sect",
+    "props": { "item": true, "xs": 6, "style": { "padding": "5px", "paddingLeft": "20px" } },
+    "chld": [
+      { "type": "view", "props": { "includerefdata": true, "contenttype": "json", "binding": true,
+                                    "content": "[{{VIEW_DATASET}}.settingsView]", "style": {} } }
+    ]
+  },
+  "genericAddressFieldNames": {
+    "country_name": "Country",
+    "street": "Street / address line",
+    "city": "City",
+    "emiratedesc": "State / emirate / province description",
+    "postaldesc": "Postal code description"
+  },
+  "observedFieldMap": {
+    "country_name": "PUR_BILL_COUNTRY",
+    "street": "PUR_BILL_STREET",
+    "city": "PUR_BILL_CITY",
+    "emiratedesc": "PUR_BILL_STATE",
+    "postaldesc": "PUR_BILL_ZIPCODE"
+  },
+  "rules": [
+    "All three whenload actions are required and ordered: fetch the view layout, fetch the sub-view layout, then seed the data dataset.",
+    "The layout arrives in the `settingsView` FIELD of the fetched dataset — the view atom binds [<viewDataset>.settingsView], not the dataset itself.",
+    "The page's own field names never reach the component; the mergedataset step translates them to the generic names above. Keep that mapping in one place.",
+    "layout_docno values observed: \"country-master-view-new\" and \"country-subview-default-new\". Treat them as the current defaults rather than hard requirements."
+  ]
+}

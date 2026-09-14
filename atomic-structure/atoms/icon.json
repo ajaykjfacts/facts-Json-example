@@ -1,0 +1,20 @@
+{
+  "id": "atom.icon",
+  "level": "atom",
+  "componentType": "icon",
+  "name": "Standalone Icon",
+  "description": "Bare icon glyph, distinct from atom.icon-button (icbtn) which is clickable on its own. Used inside a btn's chld array alongside a lbl to build an icon+text button (e.g. \"Add New Row\"), not as a standalone interactive element.",
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (_fapi-general-sect: tableAddRowBtnIcon inside the line-items and additional-amount 'Add New Row' buttons)"
+  ],
+  "params": {
+    "className": { "type": "string", "required": false },
+    "chld": { "type": "string", "required": true, "description": "Icon name string, e.g. \"add\"." }
+  },
+  "template": {
+    "type": "icon",
+    "props": { "className": "{{ICON_CLASSNAME}}" },
+    "chld": "{{ICON_NAME}}"
+  },
+  "usageNote": "Pair with atom.label inside a btn's chld array, e.g. btn.chld = [icon, lbl], both wrapped in a flex div, to build an icon+text button. See sections referencing 'tableAddRowBtn' in examples/purchase-order-fapo-fapi.md."
+}

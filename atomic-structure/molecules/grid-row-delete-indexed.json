@@ -1,0 +1,56 @@
+{
+  "id": "molecule.grid-row-delete-indexed",
+  "level": "molecule",
+  "name": "Grid Row Delete — Parked-Index Variant (preferred)",
+  "description": "Row delete with a confirm dialog, where the target row index is parked in a scratch dataset BEFORE the dialog opens and read back from there when YES is clicked. Prefer this over molecule.grid-row-action-delete: that version reads [this.propkey] inside the dialog's own whenclick, which only works while the row context happens to survive. This version is context-independent and also recalculates totals after the delete.",
+  "composedOf": ["atom.icon-button", "atom.hide-conditional", "action.setdataset (dscurListIndex, dialoginfo)", "action.mergedatasetarray", "molecule.stored-action-formula (invoked)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 3.9 (line-items grid — parked index + calcformula), PART 5.2 (additional-amount grid — direct [this.propkey], no recalc)"
+  ],
+  "params": {
+    "detailDataset": { "type": "string", "required": true },
+    "indexDataset": { "type": "string", "required": false, "description": "Scratch dataset holding the row index. Observed: \"dscurListIndex\"." },
+    "confirmMessage": { "type": "string", "required": false, "description": "Observed: \"Delete this Item?\"" },
+    "trailingFormula": { "type": "string", "required": false, "description": "e.g. \"[calcformula]\" — ALWAYS include this when the grid feeds a total." }
+  },
+  "template": {
+    "type": "hide",
+    "props": { "appendprops": { "xsUp": "[dsPagemode.pagemode(eq)raw.view]" } },
+    "chld": [
+      {
+        "type": "icbtn",
+        "props": {
+          "color": "primary",
+          "className": "facts-icon-color--delete",
+          "includerefdata": true,
+          "style": { "fontSize": "1.3rem" },
+          "whenclick": [
+            { "exec": "showloader" },
+            { "exec": "setdataset", "args": { "dset": "{{INDEX_DATASET}}", "data": "[this.propkey]" } },
+            { "exec": "setdataset", "args": {
+                "dset": "dialoginfo",
+                "nodeepprocess": true,
+                "data": {
+                  "open": true,
+                  "title": "Delete",
+                  "description": "{{CONFIRM_MESSAGE}}",
+                  "btn1": { "chld": "YES", "props": { "whenclick": [
+                      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[{{INDEX_DATASET}}]", "data": null } },
+                      "{{TRAILING_FORMULA}}"
+                  ] } },
+                  "btn2": { "chld": "NO" }
+                } } }
+          ]
+        },
+        "chld": "delete"
+      }
+    ]
+  },
+  "rules": [
+    "nodeepprocess:true on the dialoginfo setdataset is MANDATORY — it stores the YES button's action list raw instead of resolving it while the dialog is being built. Without it, [dscurListIndex] and [calcformula] resolve too early.",
+    "Because the nested list resolves at click time, [this.propkey] CANNOT be used inside it — there is no row context then. Hence the parked index.",
+    "btn2 needs no props at all: {\"chld\":\"NO\"} is sufficient; the dialog just closes.",
+    "data:null at an index is how mergedatasetarray deletes a row.",
+    "ALWAYS append the trailing formula. The additional-amount grid in the source omits it and leaves the Summary stale after a delete — a real bug, recorded in examples/fapo-fapi-full-breakdown.md PART 11."
+  ]
+}

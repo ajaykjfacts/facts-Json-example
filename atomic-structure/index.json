@@ -14,6 +14,12 @@
     { "id": "atom.layout-cell", "level": "atom", "componentType": "sect", "path": "atoms/layout-cell.json" },
     { "id": "atom.field-label-wrapper", "level": "atom", "componentType": "div", "path": "atoms/field-label-wrapper.json" },
     { "id": "atom.field-value-wrapper", "level": "atom", "componentType": "div", "path": "atoms/field-value-wrapper.json" },
+    { "id": "atom.numeric-label", "level": "atom", "componentType": "dxnumlbl", "path": "atoms/numeric-label.json" },
+    { "id": "atom.icon", "level": "atom", "componentType": "icon", "path": "atoms/icon.json" },
+    { "id": "atom.view-sublayout", "level": "atom", "componentType": "view", "path": "atoms/view-sublayout.json" },
+    { "id": "atom.span-text", "level": "atom", "componentType": "span", "path": "atoms/span-text.json" },
+    { "id": "atom.section-heading", "level": "atom", "componentType": "sect", "path": "atoms/section-heading.json" },
+    { "id": "atom.list-repeater", "level": "atom", "componentType": "list", "path": "atoms/list-repeater.json" },
 
     { "id": "expression.binding-dsl", "level": "expression", "path": "expressions/binding-expression-dsl.md" },
 
@@ -39,18 +45,53 @@
     { "id": "molecule.validation-grid-rows", "level": "molecule", "path": "molecules/validation-grid-rows.json" },
     { "id": "molecule.conditional-visibility", "level": "molecule", "path": "molecules/conditional-visibility.json" },
     { "id": "molecule.dynamic-style-by-pagemode", "level": "molecule", "path": "molecules/dynamic-style-by-pagemode.json" },
+    { "id": "molecule.list-row-static", "level": "molecule", "path": "molecules/list-row-static.json" },
+    { "id": "molecule.stored-action-formula", "level": "molecule", "path": "molecules/stored-action-formula.json" },
+    { "id": "molecule.reusable-event-fragment", "level": "molecule", "path": "molecules/reusable-event-fragment.json" },
+    { "id": "molecule.lookup-popup-open", "level": "molecule", "path": "molecules/lookup-popup-open.json" },
+    { "id": "molecule.deferred-actions-customevents", "level": "molecule", "path": "molecules/deferred-actions-customevents.json" },
+    { "id": "molecule.dependent-field-pair", "level": "molecule", "path": "molecules/dependent-field-pair.json" },
+    { "id": "molecule.server-calc-roundtrip", "level": "molecule", "path": "molecules/server-calc-roundtrip.json" },
+    { "id": "molecule.grid-add-row-button", "level": "molecule", "path": "molecules/grid-add-row-button.json" },
+    { "id": "molecule.grid-row-delete-indexed", "level": "molecule", "path": "molecules/grid-row-delete-indexed.json" },
+    { "id": "molecule.popup-form-open", "level": "molecule", "path": "molecules/popup-form-open.json" },
+    { "id": "molecule.clickable-label-popup", "level": "molecule", "path": "molecules/clickable-label-popup.json" },
+    { "id": "molecule.address-block-country-master", "level": "molecule", "path": "molecules/address-block-country-master.json" },
+    { "id": "molecule.field-lock-mechanisms", "level": "molecule", "path": "molecules/field-lock-mechanisms.json" },
 
     { "id": "section.form-header", "level": "section", "path": "sections/form-header-section.json" },
     { "id": "section.line-items-grid", "level": "section", "path": "sections/line-items-grid-section.json" },
     { "id": "section.filter-bar", "level": "section", "path": "sections/filter-bar-section.json" },
+    { "id": "section.summary-totals", "level": "section", "path": "sections/summary-totals-section.json" },
+    { "id": "section.readonly-grid", "level": "section", "path": "sections/readonly-grid-section.json" },
 
-    { "id": "page.skeleton", "level": "page", "path": "page/page-skeleton.json" }
+    { "id": "page.skeleton", "level": "page", "path": "page/page-skeleton.json" },
+
+    { "id": "example.fapo-fapi-full-breakdown", "level": "example", "path": "examples/fapo-fapi-full-breakdown.md",
+      "description": "EXHAUSTIVE element-by-element decomposition of a real purchase-order page: every component type and prop (PART 8), every dataset / stored proc / listtype / className (PART 9), the event & calculation architecture (PART 7), 12 rules for new pages (PART 10), and 10 defects recorded in the source (PART 11). Read this before building any entry page." },
+    { "id": "example.purchase-order-fapo-fapi", "level": "example", "path": "examples/purchase-order-fapo-fapi.md",
+      "description": "Verbatim capture notes for the same paste, documenting the keyed layout store (doctype/docno/section) the layouts are fetched from." }
   ],
   "confirmedNotToExistInThisCodebase": [
     "DevExpress dxDataGrid / inline columns config for line-item editing (use molecule.grid-row-template instead)",
     "dxtextbox / generic 'textbox' component type (use atom.text-input, type: entry)",
     "dxbutton / generic 'button' component type (use atom.icon-button 'icbtn' or atom.text-button 'btn')",
     "showsnackbar exec (use action.setdataset targeting the 'snackinfo' dataset)",
-    "Declarative required/datatype/length validation schema (validation is action-based, see action.validatedataset)"
+    "Declarative required/datatype/length validation schema (validation is action-based, see action.validatedataset)",
+    "startIcon/endIcon props on btn (compose btn.chld as an array: flex div wrapping atom.icon + atom.label)",
+    "Parenthesis grouping in binding expressions (operators chain left-to-right with no precedence; split into sequenced actions instead)",
+    "content.template values other than 'custom' on a list node",
+    "A format prop on dxnumlbl (formatting is implicit; dxnumberbox uses format:'##,###.00')"
+  ],
+  "criticalRules": [
+    "Expressions inside ONE mergedataset/mergedatasetarray data object all evaluate against PRE-MERGE state. Derive B from A in a SEPARATE, later action — otherwise B silently reads a stale A. Single most common cause of wrong totals.",
+    "nodeepprocess:true is mandatory on any setdataset whose data is itself an action list (stored formulas, customevents, dialoginfo button handlers).",
+    "Inside a deferred/nodeepprocess payload there is no row context: [this.propkey] is unavailable. Park the index in a scratch dataset (dscurListIndex) or in dslist.rowindex and read it back.",
+    "resolvestyles:true is required wherever a bracket expression appears in style/appendprops.style; resolveprops:true for expressions in other props. Without them the expression renders as a literal string and the control silently misbehaves.",
+    "Static props go in `props`; anything containing an expression goes in `appendprops`.",
+    "onFocusOut for anything that reaches the server; whenchange only for purely local maths.",
+    "Every lookup's whenclick must either stage a new customevents list or clear it (data:null) — never leave it untouched.",
+    "Invoke the totals formula ('[calcformula]') from EVERY mutation path, including row deletes.",
+    "required:true on a control enforces nothing. Validation is action-based (action.validatedataset)."
   ]
 }

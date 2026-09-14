@@ -1,0 +1,59 @@
+{
+  "id": "molecule.field-lock-mechanisms",
+  "level": "molecule",
+  "name": "Field Lock & Hide Mechanisms (four distinct forms)",
+  "description": "Four different ways a field is made non-editable or invisible, all present on one page. They are not interchangeable — each sits at a different level of the tree and has different semantics. Choosing the wrong one is a common source of fields that look locked but still accept input, or that vanish when they should merely grey out.",
+  "composedOf": ["atom.hide-conditional", "molecule.dynamic-style-by-pagemode", "expression.binding-dsl"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 1.1 (page-wide), 2.3 (the comparison table), 2.2, 6.2"
+  ],
+  "mechanisms": {
+    "1_pageWideReadOnly": {
+      "level": "page root sect",
+      "prop": "appendprops.style.pointerEvents",
+      "expression": "[dsPagemode.pagemode(eq)raw.view(iftrue)raw.none(iffalse)raw.all]",
+      "requires": "resolvestyles:true on the same node",
+      "effect": "Entire page becomes non-interactive in view mode.",
+      "rule": "Declare this ONCE at the page root. Do not re-check page mode on individual controls — the only exception is hiding action buttons (add/delete), which use mechanism 4 so they disappear rather than merely freeze."
+    },
+    "2_hardcodedDisabled": {
+      "level": "control",
+      "prop": "disabled",
+      "expression": "true (literal)",
+      "effect": "Never editable, in any mode. Observed on Doc# and Exchange Rate, and on every computed numeric cell in the line-items grid.",
+      "rule": "Use for values the user may never type. For values that are ALWAYS computed and never contextually editable, prefer atom.numeric-label (dxnumlbl) over a disabled dxnumberbox."
+    },
+    "3_conditionalLock": {
+      "level": "field wrapper sect, OR the inner entryValueDiv",
+      "prop": "style.pointerEvents (with resolveprops+resolvestyles) or appendprops.style.pointerEvents",
+      "expressions": {
+        "normalPolarity": "[dsDocumentMaster.DM_FIXED_LOCATION(eq)raw.1(iftrue)raw.none(iffalse)raw.all]",
+        "invertedPolarity": "[DsFrmHeaderEntry.ACMST_SUBLEDGER_EXISTS(eq)raw.1(iftrue)raw.all(iffalse)raw.none]"
+      },
+      "effect": "Field stays visible but frozen, based on configuration or on another field's value.",
+      "rule": "Placing it on the wrapper sect freezes label and value together; placing it on entryValueDiv leaves the label selectable. Watch the polarity — the Supplier field INVERTS iftrue/iffalse because it enables rather than disables."
+    },
+    "4_conditionalHide": {
+      "level": "hide wrapper around any subtree",
+      "prop": "appendprops.xsUp",
+      "expression": "[dsDocumentMaster.HIDE_CURRENCY(eq)raw.1]",
+      "effect": "Subtree removed entirely. Works at whole-section, single-field-pair, and single-button granularity.",
+      "rule": "Children render when xsUp is FALSY. To show a block only when a value IS configured, use the coalesce-then-compare idiom: [dsDocumentMaster.DM_PREVIOUS_DOCTYPE(ifnull)raw.(eq)raw.] — i.e. hide when it equals empty."
+    }
+  },
+  "observedFlags": {
+    "dsDocumentMaster.DM_FIXED_LOCATION": "lock Location",
+    "dsDocumentMaster.DM_FIXED_GL_DOCNO": "lock GL code",
+    "dsDocumentMaster.DM_PREVIOUS_DOCTYPE": "show the fetch-previous-document bar when set",
+    "dsDocumentMaster.HIDE_CURRENCY": "hide Currency",
+    "dsDocumentMaster.HIDE_EXCHANGE_RATE": "hide Exchange Rate",
+    "dsDocumentMaster.HIDE_VAT": "hide the VAT Amount summary row",
+    "DsFrmHeaderEntry.ACMST_SUBLEDGER_EXISTS": "enable Supplier only when the chosen GL account has sub-ledgers",
+    "dsPagemode.pagemode": "\"view\" = read-only"
+  },
+  "rules": [
+    "resolvestyles:true is mandatory wherever a bracket expression appears inside style/appendprops.style — without it the expression renders as a literal string and the field silently stays editable.",
+    "Static props go in `props`; anything with an expression goes in `appendprops`.",
+    "`required:true` is NOT a lock and NOT enforcement — validation in this engine is action-based (action.validatedataset). A control can carry required:true and still save empty."
+  ]
+}

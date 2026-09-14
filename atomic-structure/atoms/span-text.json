@@ -1,0 +1,30 @@
+{
+  "id": "atom.span-text",
+  "level": "atom",
+  "componentType": "span",
+  "name": "Inline Text / Read-Only Bound Value",
+  "description": "Inline text node. Used for three distinct jobs in this codebase: section heading text, grid header cell captions, and read-only bound values inside grid rows. Critically different from atom.label (lbl): a span carries its text in `chld`, while lbl carries it in `props.text`. Both exist; they are not interchangeable, and the choice is positional — headings and grid cells use span, field labels use lbl.",
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 1.3 (section headings), 3.2 (grid header cells), 3.5 (PURDET_DOCSRNO, PURDET_STOCK_DESC, PURDET_UNIT_DOCNO), PART 5.1 (ADAMTDET_MST_DOCNO, ADAMTDET_MST_DESC)",
+    "examples/purchase-order-fapo-fapi.md (##LISTLAYOUT1COLS##, ##LISTLAYOUT2COLS##)"
+  ],
+  "params": {
+    "style": { "type": "object", "required": false, "description": "Frequently an empty object {} even when nothing is styled — carried for consistency, harmless." },
+    "chld": { "type": "string", "required": true, "description": "Either a literal string or a bracket expression. In a list row template use the row context: \"[this.FIELD_NAME]\"." }
+  },
+  "variants": {
+    "literal": {
+      "description": "Static caption — section headings and grid column headers.",
+      "template": { "type": "span", "props": { "style": {} }, "chld": "{{TEXT}}" }
+    },
+    "gridHeaderCell": {
+      "description": "Grid header cells omit props entirely.",
+      "template": { "type": "span", "props": {}, "chld": "{{HEADER_TEXT}}" }
+    },
+    "boundRowValue": {
+      "description": "Read-only value inside a list row template. Preferred over a disabled input for non-numeric display-only columns; for numbers use atom.numeric-label (dxnumlbl) instead.",
+      "template": { "type": "span", "props": { "style": {} }, "chld": "[this.{{FIELD_NAME}}]" }
+    }
+  },
+  "usageNote": "A span bound to [this.FIELD] is the cheapest read-only grid cell — no control instance, no dset/bind/rowindex props needed, because the list row context already supplies the value. Reach for it before reaching for a disabled control."
+}

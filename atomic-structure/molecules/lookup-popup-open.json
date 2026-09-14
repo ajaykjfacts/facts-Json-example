@@ -1,0 +1,59 @@
+{
+  "id": "molecule.lookup-popup-open",
+  "level": "molecule",
+  "name": "Lookup Popup Open Sequence",
+  "description": "The fixed action sequence every lkup control runs in whenclick to open the shared picker popup. There is ONE popup layout in the whole engine (doctype:\"popup\", docno:\"lookup\"); the dslist dataset is how you configure it for a particular entity. Two forms exist: a 2-action simple form, and a 3-action chained form where follow-up work is staged into customevents first.",
+  "composedOf": ["action.setdataset (customevents)", "action.setdataset (dslist)", "action.filldataset (popupinfo)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 2.6 (simple form: Division, Location, Contact, Staff, Payment Mode), 3.6 (grid-row form: Stock Master), 7.2 (chained form: GL code, Supplier, Currency)"
+  ],
+  "params": {
+    "listtype": { "type": "string", "required": true, "description": "Server-side list id, e.g. \"FAPOGL\". See the listtype table in examples/fapo-fapi-full-breakdown.md PART 9.3." },
+    "title": { "type": "string", "required": true, "description": "Popup window title, e.g. \"GL Code\"." },
+    "dataset": { "type": "string", "required": true, "description": "Dataset the picked row writes back into." },
+    "doctypefield": { "type": "string", "required": true },
+    "codefield": { "type": "string", "required": true },
+    "descfield": { "type": "string", "required": true },
+    "filtercondition": { "type": "object", "required": false, "description": "Restricts the picker's rows, e.g. {\"PUR_AC_DOCNO\":\"[DsFrmHeaderEntry.PUR_AC_DOCNO]\"} limits suppliers to the chosen GL account." },
+    "rowindex": { "type": "string", "required": false, "description": "Grid-row lookups only: \"[this.propkey]\"." },
+    "calledFrom": { "type": "string", "required": false, "description": "Grid-row lookups only: \"list\"." }
+  },
+  "simpleFormTemplate": [
+    { "exec": "setdataset", "args": { "dset": "customevents", "data": null } },
+    { "exec": "setdataset", "args": { "dset": "dslist", "data": {
+        "listtype": "{{LISTTYPE}}",
+        "commontype": "manual",
+        "title": "{{POPUP_TITLE}}",
+        "dataset": "{{TARGET_DATASET}}",
+        "section": "Alltype",
+        "doctypefield": "{{DOCTYPE_FIELD}}",
+        "codefield": "{{CODE_FIELD}}",
+        "descfield": "{{DESC_FIELD}}"
+    } } },
+    { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+        "section": "Alltype", "args": { "doctype": "popup", "docno": "lookup" } } }
+  ],
+  "gridRowFormTemplate": [
+    { "exec": "setdataset", "args": { "dset": "customevents", "data": null } },
+    { "exec": "setdataset", "args": { "dset": "dslist", "data": {
+        "listtype": "{{LISTTYPE}}",
+        "commontype": "manual",
+        "title": "{{POPUP_TITLE}}",
+        "rowindex": "[this.propkey]",
+        "calledFrom": "list",
+        "dataset": "{{DETAIL_DATASET_NAME}}",
+        "section": "Alltype",
+        "doctypefield": "{{DOCTYPE_FIELD}}",
+        "codefield": "{{CODE_FIELD}}",
+        "descfield": "{{DESC_FIELD}}"
+    } } },
+    { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+        "section": "Alltype", "args": { "doctype": "popup", "docno": "lookup" } } }
+  ],
+  "rules": [
+    "EVERY lookup must either stage a customevents list or clear it (data:null) as its first action. Leaving customevents untouched means a previous lookup's staged follow-up fires against the wrong field.",
+    "bind the lkup to the _DESC field; the popup writes _DOCTYPE/_DOCNO/_DESC itself via the three *field props.",
+    "The third action is byte-identical everywhere — do not parameterise it.",
+    "For grid-row lookups, rowindex:\"[this.propkey]\" goes in the dslist payload, and any staged customevents actions must then read the index back as [dslist.rowindex] (the row context is gone once the popup closes). See molecule.deferred-actions-customevents."
+  ]
+}

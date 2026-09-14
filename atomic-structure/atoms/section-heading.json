@@ -1,0 +1,27 @@
+{
+  "id": "atom.section-heading",
+  "level": "atom",
+  "componentType": "sect",
+  "name": "Section Heading Bar",
+  "description": "The full-width heading that opens every section of an entry page. A sect carrying className 'subHeadingLbl' wrapping a bare span. Observed 6 times on a single page with byte-identical props — treat it as a fixed atom, not a thing to restyle per section.",
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 1.3 (Document Details, Party Details, Other Details, Delivery Information, Additional Amount, Summary)"
+  ],
+  "params": {
+    "headingText": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "sect",
+    "props": {
+      "xs": 12,
+      "item": true,
+      "resolvestyles": true,
+      "className": "subHeadingLbl",
+      "style": {}
+    },
+    "chld": [
+      { "type": "span", "props": { "style": {} }, "chld": "{{HEADING_TEXT}}" }
+    ]
+  },
+  "usageNote": "resolvestyles:true and the empty style:{} are carried on every real instance even though nothing dynamic is bound — keep them for consistency with existing pages. The heading is always the FIRST child of its section's sect container, at xs:12 regardless of the section's own width."
+}

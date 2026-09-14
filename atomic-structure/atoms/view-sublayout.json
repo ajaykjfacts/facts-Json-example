@@ -1,0 +1,26 @@
+{
+  "id": "atom.view-sublayout",
+  "level": "atom",
+  "componentType": "view",
+  "name": "Dataset-Supplied Sub-Layout Renderer",
+  "description": "Renders a JSON layout that a dataset field itself contains, rather than a layout written statically in this file. The field's content is produced server-side by a filldataset call earlier in the page (e.g. wheninit/whenload) — typically a *_V2-suffixed proc that returns a ready-to-render layout fragment (its own settingsView field) alongside the data it describes. Distinct from atom.hide-conditional / composition-by-JSON-authoring: this is composition by server-returned JSON at runtime.",
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (_fapi-general-sect: dsCountryMasterDeliverTo.settingsView, populated by PWA.CountryMasterView_V2 in _fapi-whenload-events)"
+  ],
+  "params": {
+    "includerefdata": { "type": "boolean", "required": false, "description": "Seen true on the only usage found." },
+    "contenttype": { "type": "string", "required": true, "description": "Seen \"json\" — tells the engine to parse the bound field as a layout tree rather than render it as text." },
+    "binding": { "type": "boolean", "required": true, "description": "Seen true — marks content as a live dataset binding expression rather than a literal layout." },
+    "content": { "type": "string", "required": true, "description": "Binding expression pointing at the dataset field holding the sub-layout JSON, e.g. \"[dsCountryMasterDeliverTo.settingsView]\"." }
+  },
+  "template": {
+    "type": "view",
+    "props": {
+      "includerefdata": true,
+      "contenttype": "json",
+      "binding": true,
+      "content": "[{{DATASET_NAME}}.{{SUBLAYOUT_FIELD_NAME}}]"
+    }
+  },
+  "usageNote": "The producing filldataset call's dset/args (layout_docno, doctype, subViewDset, dataset) determine what shape the returned sub-layout takes; treat the pair (filldataset call + view atom) as one unit when reusing this pattern, not the view atom alone."
+}

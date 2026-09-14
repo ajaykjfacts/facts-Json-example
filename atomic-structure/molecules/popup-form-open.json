@@ -1,0 +1,31 @@
+{
+  "id": "molecule.popup-form-open",
+  "level": "molecule",
+  "name": "Open a Popup Form (seed-then-load)",
+  "description": "Opens a non-lookup popup form: seed the popup's input dataset with whatever context it needs, then fetch its layout into `popupinfo`. Same filldataset/popupinfo mechanism as molecule.lookup-popup-open, but with a page-specific docno/section instead of the shared doctype:\"popup\"/docno:\"lookup\" picker.",
+  "composedOf": ["action.setdataset (seed)", "action.filldataset (popupinfo)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md PART 5.2 (Additional Amount: seeds DsAdditionalAmount.GrossAmount, loads docno:\"additional-amount\" / section:\"additionalAmountSect\")",
+    "examples/fapo-fapi-full-breakdown.md 6.2 (VAT Treatment: no seed, loads docno:\"vat-treatment\" / section:\"taxTreatmentSect\")"
+  ],
+  "params": {
+    "seedDataset": { "type": "string", "required": false, "description": "Dataset the popup reads its context from, e.g. \"DsAdditionalAmount\"." },
+    "seedData": { "type": "object", "required": false, "description": "Context values, e.g. {\"GrossAmount\":\"[DsFrmHeaderEntry.PUR_GROSS_AMOUNT]\"} so the popup can compute percentage-based charges." },
+    "docno": { "type": "string", "required": true, "description": "The popup layout's key, e.g. \"additional-amount\", \"vat-treatment\"." },
+    "section": { "type": "string", "required": true, "description": "Section key within the popup layout, e.g. \"additionalAmountSect\", \"taxTreatmentSect\". Lookups use \"Alltype\"." }
+  },
+  "template": [
+    { "exec": "setdataset", "args": { "dset": "{{SEED_DATASET}}", "data": { "{{SEED_FIELD}}": "[{{SOURCE_DATASET}}.{{SOURCE_FIELD}}]" } } },
+    { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+        "section": "{{POPUP_SECTION}}", "args": { "doctype": "popup", "docno": "{{POPUP_DOCNO}}" } } }
+  ],
+  "noSeedTemplate": [
+    { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+        "section": "{{POPUP_SECTION}}", "args": { "doctype": "popup", "docno": "{{POPUP_DOCNO}}" } } }
+  ],
+  "rules": [
+    "Seed BEFORE loading — the popup layout reads its seed dataset as it renders.",
+    "Rows produced by such a popup are appended to the target detail dataset by the popup itself, which is why the parent grid's 'Add New Row' button does no mergedatasetarray of its own. Grids fed this way therefore have read-only row cells (span / dxnumlbl), not inputs.",
+    "doctype is always \"popup\"; docno identifies the form; section selects the block within it. All three differ from the lookup picker, which is the single shared docno:\"lookup\" / section:\"Alltype\" layout."
+  ]
+}

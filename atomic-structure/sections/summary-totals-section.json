@@ -1,0 +1,63 @@
+{
+  "id": "section.summary-totals",
+  "level": "section",
+  "name": "Summary / Totals Section",
+  "description": "The right-aligned totals block that closes a document entry page. An empty xs:8 spacer pushes an xs:4 column to the right edge; every row is a standard field wrapper holding a dxnumlbl. Values come from a single stored formula (molecule.stored-action-formula) invoked from every mutation path, NOT from per-control bindings.",
+  "composedOf": ["atom.section-heading", "atom.numeric-label", "molecule.stored-action-formula", "molecule.clickable-label-popup", "atom.hide-conditional"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md PART 6 (Total Quantity, Gross Amount, Discount(%), Additional Amount, VAT Amount, Net Amount)"
+  ],
+  "params": {
+    "headerDataset": { "type": "string", "required": true },
+    "rows": { "type": "array", "required": true, "description": "List of { labelText, field } — one dxnumlbl row each." }
+  },
+  "template": {
+    "type": "sect",
+    "props": { "style": {}, "xs": 12, "container": true },
+    "chld": [
+      { "type": "sect", "props": { "xs": 12, "item": true, "resolvestyles": true, "className": "subHeadingLbl", "style": {} },
+        "chld": [ { "type": "span", "props": { "style": {} }, "chld": "Summary" } ] },
+      { "type": "sect", "props": { "style": {}, "xs": 8, "container": true }, "chld": [] },
+      { "type": "sect", "props": { "style": {}, "xs": 4, "container": true },
+        "chld": [
+          {
+            "type": "sect",
+            "props": { "item": true, "xs": 12, "className": "factsFullWidth", "style": { "padding": "5px", "paddingLeft": "20px" } },
+            "chld": [
+              { "type": "div", "props": { "className": "entryLabelOuterDiv" },
+                "chld": [
+                  { "type": "div", "props": { "className": "entryLabelDiv" },
+                    "chld": [ { "type": "lbl", "props": { "text": "{{LABEL_TEXT}}", "className": "entryLabel" } } ] },
+                  { "type": "div", "props": { "className": "entryValueDiv" },
+                    "chld": [ { "type": "dxnumlbl", "props": { "dset": "{{HEADER_DATASET}}", "fullWidth": true,
+                                                                "includerefdata": true, "bind": "{{FIELD_NAME}}" } } ] }
+                ] }
+            ]
+          }
+        ] }
+    ]
+  },
+  "editablePercentRowTemplate": {
+    "description": "A totals row where the user enters a percentage and the resulting amount displays beside it — two controls in one entryValueDiv via display:flex. whenchange (not onFocusOut) because the maths is purely local.",
+    "value": {
+      "type": "div",
+      "props": { "className": "entryValueDiv", "style": { "display": "flex" } },
+      "chld": [
+        { "type": "dxnumberbox", "props": { "dset": "{{HEADER_DATASET}}", "className": "small-ctr", "fullWidth": true,
+            "format": "##,###.00", "variant": "outlined", "includerefdata": true, "bind": "{{PERCENT_FIELD}}", "label": "%",
+            "whenchange": [
+              { "exec": "mergedataset", "args": { "dset": "{{HEADER_DATASET}}", "data": {
+                  "{{AMOUNT_FIELD}}": "[{{HEADER_DATASET}}.{{PERCENT_FIELD}}(*){{HEADER_DATASET}}.{{BASE_FIELD}}(/)raw.100]" } } },
+              "[calcformula]"
+            ] } },
+        { "type": "dxnumlbl", "props": { "dset": "{{HEADER_DATASET}}", "fullWidth": true, "includerefdata": true, "bind": "{{AMOUNT_FIELD}}" } }
+      ]
+    }
+  },
+  "rules": [
+    "Every value here is a dxnumlbl, never a disabled dxnumberbox — these are always-computed values (see atoms/numeric-label.json for the distinction).",
+    "Rows that can be switched off by doctype configuration go inside a hide wrapper at field-pair granularity, e.g. HIDE_VAT around the VAT Amount row.",
+    "Totals are produced by ONE stored formula defined in whenload and invoked as \"[calcformula]\" from every mutation path — row edits, row deletes, header discount changes. Never bind a total to an inline aggregate expression on the control itself.",
+    "The formula must be split into sequenced merges when later values depend on earlier ones (raw aggregates first, then derived totals). See molecule.stored-action-formula."
+  ]
+}

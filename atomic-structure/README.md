@@ -31,9 +31,16 @@ Use this library BEFORE writing any new page JSON. Follow the reuse order:
   line-items grid section, a filter bar section.
 - `page/` — the two real page-root shapes found in the codebase (bare layout
   array vs. full page object with `title`/`wheninit`/`whenload`/`appbar`).
+- `examples/` — real, complete layouts decomposed in full. **Start here**:
+  `examples/fapo-fapi-full-breakdown.md` is the exhaustive element-by-element
+  decomposition of a live purchase-order page (every component type and prop,
+  every dataset/proc/listtype/className, the event & calculation architecture,
+  12 rules for new pages, and 10 defects found in the source).
 - `index.json` — machine-readable catalog of every entry above (id, level,
   componentType, description, file path, source references) so a new task
   can search "does this already exist?" without re-scanning all 128 files.
+  Its `criticalRules` array lists the engine behaviours that silently produce
+  wrong results if violated — read those before writing any action list.
 
 ## Key findings that shape this library
 
@@ -61,6 +68,20 @@ Use this library BEFORE writing any new page JSON. Follow the reuse order:
    files) and a full page object with `title`/`wheninit`/`whenload`/`appbar`/
    `layout` (dashboards, `wf-print.json`, `ppr-ppr-general-sect.json`). Both
    are captured in `page/`.
+6. **Action lists are a first-class, composable language.** A bare `"[name]"`
+   string used as an *array element* splices in a stored action list — either
+   page-local (`molecules/stored-action-formula.json`) or fetched from the
+   server by key (`molecules/reusable-event-fragment.json`, `doctype:"part"`).
+   Splices nest, and `this` binds at the splice site, not the definition site.
+7. **Sequencing is load-bearing.** Expressions inside one `mergedataset` all
+   evaluate against pre-merge state, so derived values must be computed in a
+   separate, later action. Likewise `nodeepprocess:true` stores an action list
+   raw for later execution instead of resolving it now. Most "wrong totals" and
+   "wrong row deleted" bugs in this engine trace back to one of these two.
+8. **Read-only display has two forms and they are not interchangeable** —
+   `dxnumlbl` for always-computed values, `dxnumberbox`+`disabled` for values
+   that are contextually editable, and a plain bound `span` for non-numeric
+   grid cells (cheapest of the three).
 
 ## Template placeholder convention
 

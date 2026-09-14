@@ -1,0 +1,58 @@
+{
+  "id": "molecule.clickable-label-popup",
+  "level": "molecule",
+  "name": "Clickable Field Label (link-styled button as label)",
+  "description": "A field whose LABEL half is a link-styled btn that opens a popup, instead of a plain lbl. Used where the caption names a setting the user may want to change — the caption itself becomes the affordance. atoms/text-button.json documented buttons on the value side of a field; this is the label side.",
+  "composedOf": ["atom.field-label-wrapper", "atom.text-button", "atom.field-value-wrapper", "atom.numeric-label", "molecule.popup-form-open"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 6.2 (Summary → 'VAT Amount' caption opens the VAT-treatment popup)"
+  ],
+  "params": {
+    "labelText": { "type": "string", "required": true, "description": "e.g. \"VAT Amount\"." },
+    "tooltip": { "type": "string", "required": false, "description": "Native browser tooltip via props.title, e.g. \"Click to update VAT Treatment of Party\"." },
+    "popupDocno": { "type": "string", "required": true },
+    "popupSection": { "type": "string", "required": true },
+    "valueDataset": { "type": "string", "required": true },
+    "valueField": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "div",
+    "props": { "className": "entryLabelOuterDiv" },
+    "chld": [
+      {
+        "type": "div",
+        "props": { "className": "entryLabelDiv" },
+        "chld": [
+          {
+            "type": "btn",
+            "props": {
+              "title": "{{TOOLTIP_TEXT}}",
+              "includerefdata": true,
+              "color": "inherit",
+              "resolveprops": true,
+              "resolvestyles": true,
+              "style": { "color": "blue", "textDecoration": "underline", "textTransform": "capitalize", "padding": "0px" },
+              "whenclick": [
+                { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+                    "section": "{{POPUP_SECTION}}", "args": { "doctype": "popup", "docno": "{{POPUP_DOCNO}}" } } }
+              ]
+            },
+            "chld": "{{LABEL_TEXT}}"
+          }
+        ]
+      },
+      {
+        "type": "div",
+        "props": { "className": "entryValueDiv" },
+        "chld": [
+          { "type": "dxnumlbl", "props": { "dset": "{{DATASET_NAME}}", "fullWidth": true, "includerefdata": true, "bind": "{{FIELD_NAME}}" } }
+        ]
+      }
+    ]
+  },
+  "sourceQuirks": [
+    "In the real source `resolveprops:true` sits at NODE level (outside props) on this button, while every other control on the page puts it inside props. Both forms are accepted by the engine; this template uses the inside-props form.",
+    "The real source also carries appendprops:{\"disabled\":\"\"} — an empty string where a page-mode expression was presumably intended. It is falsy and harmless, but it is dead weight; omitted from this template. Add a real expression if you need conditional disabling.",
+    "props.title is the only native tooltip anywhere in the captured page."
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "id": "molecule.list-row-static",
+  "level": "molecule",
+  "name": "Generic Static List Row (Server-Templated)",
+  "description": "The server-side layout generator's own generic row templates for dynamic/ad-hoc list layouts, keyed as ##LISTLAYOUT1COLS## and ##LISTLAYOUT2COLS## in the layout-loading store. These use the engine's OWN runtime placeholder tokens ($$FIELDCAPTION$$, $$FIELDVALUE$$, $$style$$) — a different, live substitution syntax from this library's own {{PARAM}} documentation placeholders. Do not confuse the two, and do not strip the $$...$$ tokens when reusing these templates verbatim.",
+  "composedOf": ["atom.layout-row", "atom.layout-cell", "div > span value display"],
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (##LISTLAYOUT1COLS##, ##LISTLAYOUT2COLS##)"
+  ],
+  "variants": {
+    "oneColumn": {
+      "description": "Single value cell, no caption — used where the row's label is implicit (e.g. a plain list of descriptions).",
+      "template": {
+        "type": "sect",
+        "props": { "md": 12, "xs": 12, "item": true },
+        "chld": [
+          {
+            "type": "div",
+            "chld": [
+              {
+                "type": "span",
+                "props": { "style": { "fontWeight": "normal", "$$style$$": "" } },
+                "chld": "[this.$$FIELDVALUE$$]"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "twoColumnCaptionValue": {
+      "description": "Caption/value pair — used for key-details display panels (e.g. a details/summary view of a record).",
+      "template": [
+        {
+          "type": "sect",
+          "props": { "container": true, "className": "cmlDetailsChildSect", "xs": 12 },
+          "chld": [
+            {
+              "type": "sect",
+              "props": { "item": true, "md": 2, "className": "cmlDetailsCaptionSect", "xs": 5 },
+              "chld": [
+                { "type": "div", "chld": [ { "type": "span", "props": { "style": {} }, "chld": "$$FIELDCAPTION$$" } ] }
+              ]
+            },
+            {
+              "type": "sect",
+              "props": { "item": true, "md": 10, "xs": 7, "className": "cmlDetailsValueSect" },
+              "chld": [
+                { "type": "div", "chld": [ { "type": "span", "props": { "style": { "fontWeight": "bold" } }, "chld": "[this.$$FIELDVALUE$$]" } ] }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "usageNote": "Fetched at runtime through PWA.LoadLayout by key (e.g. \"##LISTLAYOUT2COLS##\"), not authored inline in a page file — confirms these are generic, engine-provided building blocks rather than per-doctype content. See molecule.stored-action-formula and page/ notes on the keyed layout store."
+}

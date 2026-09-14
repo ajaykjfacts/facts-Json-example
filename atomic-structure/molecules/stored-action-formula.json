@@ -1,0 +1,24 @@
+{
+  "id": "molecule.stored-action-formula",
+  "level": "molecule",
+  "name": "Stored Action List As Named Subroutine",
+  "description": "A reusable 'subroutine' implemented purely through datasets: an action array is saved (never executed) into a dataset via setdataset with nodeepprocess:true, then referenced elsewhere as a bare \"[datasetName]\" string element inside another action array. The engine expands that bracket reference into whatever action list the dataset currently holds. Distinct from action.filldataset loading a 'part' doctype/docno fragment by key from the server (see molecule.reusable-event-fragment) — this variant is purely local/in-page and defined once in whenload.",
+  "composedOf": ["action.setdataset (define, nodeepprocess:true)", "bare \"[datasetName]\" reference (invoke)"],
+  "sourceRefs": [
+    "examples/purchase-order-fapo-fapi.md (_fapi-whenload-events: calcformula defined; referenced as \"[calcformula]\" inside field whenchange arrays and inside _fapo-event-1)"
+  ],
+  "params": {
+    "dset": { "type": "string", "required": true, "description": "Name the subroutine will be invoked by, e.g. \"calcformula\"." },
+    "actions": { "type": "array", "required": true, "description": "The action list to store — typically mergedataset calls recomputing derived/summary fields." }
+  },
+  "defineTemplate": {
+    "exec": "setdataset",
+    "args": {
+      "dset": "{{FORMULA_NAME}}",
+      "nodeepprocess": true,
+      "data": ["{{ACTION_1}}", "{{ACTION_2}}"]
+    }
+  },
+  "invokeTemplate": "[{{FORMULA_NAME}}]",
+  "usageNote": "Always define once in whenload/wheninit before any control references it. Invocation is a bare string, not an exec object — it can appear as the last element of any action array, including inside another stored formula (recursive splicing), e.g. _fapo-event-1 ends with \"[calcformula]\" after its own mergedatasetarray call. Keep the defining setdataset first in the whenload action list so nothing races the reference."
+}

@@ -1,0 +1,43 @@
+{
+  "id": "molecule.dependent-field-pair",
+  "level": "molecule",
+  "name": "Bidirectional Dependent Field Pair (Percent ⇄ Amount)",
+  "description": "Two editable fields where either one recomputes the other, plus a third derived field. Implemented with sequenced mergedataset/mergedatasetarray actions on onFocusOut — no server call. The canonical case is Discount% ⇄ Discount Amount over a Gross Amount base.",
+  "composedOf": ["atom.number-input", "action.mergedatasetarray | action.mergedataset", "molecule.stored-action-formula (invoked at the end)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 3.8 (row level: PURDET_DISCOUNT_PERCENT ⇄ PURDET_DISCOUNT_AMOUNT), 6.1 (header level: PUR_DISCOUNT_PERCENT → PUR_DISCOUNT_AMOUNT, one-directional)"
+  ],
+  "params": {
+    "dataset": { "type": "string", "required": true },
+    "percentField": { "type": "string", "required": true },
+    "amountField": { "type": "string", "required": true },
+    "baseField": { "type": "string", "required": true, "description": "The amount the percentage applies to, e.g. PURDET_GROSS_AMOUNT." },
+    "netField": { "type": "string", "required": true, "description": "Derived as base − amount." },
+    "trailingFormula": { "type": "string", "required": false, "description": "Action-list splice to run afterwards, e.g. \"[fapoEvent1]\" or \"[calcformula]\"." }
+  },
+  "percentEditedTemplate": {
+    "onFocusOut": [
+      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]",
+          "data": { "{{AMOUNT_FIELD}}": "[this.{{PERCENT_FIELD}}(*)this.{{BASE_FIELD}}(/)raw.100]" } } },
+      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]",
+          "data": { "{{NET_FIELD}}": "[this.{{BASE_FIELD}}(-)this.{{AMOUNT_FIELD}}]" } } },
+      "{{TRAILING_FORMULA}}"
+    ]
+  },
+  "amountEditedTemplate": {
+    "onFocusOut": [
+      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]",
+          "data": { "{{PERCENT_FIELD}}": "[this.{{AMOUNT_FIELD}}(/)this.{{BASE_FIELD}}(*)raw.100]" } } },
+      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]",
+          "data": { "{{NET_FIELD}}": "[this.{{BASE_FIELD}}(-)this.{{AMOUNT_FIELD}}]" } } },
+      "{{TRAILING_FORMULA}}"
+    ]
+  },
+  "rules": [
+    "THE TWO MERGES MUST BE SEPARATE ACTIONS. The second reads the field the first writes; expressions inside a single `data` object all evaluate against pre-merge state, so combining them silently uses stale values. This is the single most common way to get wrong totals in this engine.",
+    "Operators chain left-to-right with NO precedence: A(*)B(/)raw.100 means (A*B)/100. To group differently, split into more sequenced actions.",
+    "onFocusOut (not whenchange) at row level — whenchange would recompute on every keystroke and, where a server proc is involved, issue a request per character. The header-level percent in 6.1 does use whenchange because its maths is purely local.",
+    "No divide-by-zero guard exists in the source when the base field is 0. Add one deliberately if you need it.",
+    "Always end with the trailing formula splice so header totals follow row edits."
+  ]
+}

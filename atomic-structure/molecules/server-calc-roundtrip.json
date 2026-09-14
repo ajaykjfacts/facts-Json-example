@@ -1,0 +1,38 @@
+{
+  "id": "molecule.server-calc-roundtrip",
+  "level": "molecule",
+  "name": "Server Calculation Round-Trip (send row → merge back → recalc)",
+  "description": "The three-step shape used whenever a field edit requires server-side business logic (pricing, tax, unit conversion): send the current row/header to a stored proc, merge the returned row back into the same index, then splice in the shared recalculation fragment. Used by every editable non-derived field in the line-items grid.",
+  "composedOf": ["action.fillmultidataset", "action.mergedatasetarray", "molecule.reusable-event-fragment (invoked)"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 3.7 (PURDET_QTY, PURDET_RATE → FAMST.FAPO_Onchange), 7.3 (fapoEvent1 → FAMST.FAPO_TaxCalculateItemWise)"
+  ],
+  "params": {
+    "proc": { "type": "string", "required": true, "description": "e.g. \"FAMST.FAPO_Onchange\". Module logic goes under FAMST.*, generic platform services under PWA.*." },
+    "returnDataset": { "type": "string", "required": true, "description": "e.g. \"dsFAPOOnchange\"." },
+    "detailDataset": { "type": "string", "required": true },
+    "mode": { "type": "string", "required": false, "description": "Proc-specific discriminator, e.g. \"details\", \"GL\", \"SL\"." },
+    "trailingFormula": { "type": "string", "required": false, "description": "e.g. \"[fapoEvent1]\"." }
+  },
+  "template": {
+    "onFocusOut": [
+      { "exec": "fillmultidataset", "args": {
+          "proc": "{{PROC_NAME}}",
+          "dsets": [ { "name": "{{RETURN_DATASET}}", "row": 0, "table": "Table" } ],
+          "args": { "strXmlDetails": "[this]", "mode": "{{MODE}}" } } },
+      { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[this.propkey]", "data": "[{{RETURN_DATASET}}]" } },
+      "{{TRAILING_FORMULA}}"
+    ]
+  },
+  "argumentConventions": {
+    "strXmlDetails": "The row payload. \"[this]\" inside a row control serialises the whole current row. \"[DsFrmDetails1.[this.propkey]]\" is the equivalent explicit form (used inside fragments and deferred actions, where `this` may not bind as expected).",
+    "strXmlHeader": "The header payload. Either a purpose-built dataset (\"[dsVATHeaderDetails]\") or the whole header (\"[DsFrmHeaderEntry]\"). Purpose-built is preferable — it makes the proc's contract explicit.",
+    "dsets": "Always [{name, row:0, table:\"Table\"}]. row:0 takes the first row; \"Table\" is the default result-table name.",
+    "mode": "Single proc serving several call sites, discriminated by mode — FAPO_Onchange takes \"details\"; GetAccountDetails takes \"GL\" or \"SL\"."
+  },
+  "rules": [
+    "The merge target index must match the row that was sent. Inside a row control use [this.propkey]; inside deferred/customevents actions use [dslist.rowindex].",
+    "Merging the WHOLE return dataset (\"data\": \"[dsFAPOOnchange]\") rather than naming fields is the convention — the proc decides which fields it owns. This means a proc can add an output field without any layout change.",
+    "Use onFocusOut, never whenchange, for anything that reaches the server."
+  ]
+}

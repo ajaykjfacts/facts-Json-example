@@ -1,0 +1,123 @@
+{
+  "id": "section.readonly-grid",
+  "level": "section",
+  "name": "Read-Only Grid Section (popup-fed)",
+  "description": "The second grid pattern: rows are display-only (span / dxnumlbl, no inputs) and new rows are created by a popup form rather than by appending an inline-editable row. Use this whenever the row's values are derived server-side from a small form rather than typed cell by cell. Contrast with section.line-items-grid, the inline-editable pattern.",
+  "composedOf": ["atom.section-heading", "atom.list-repeater (readOnlyRows variant)", "atom.span-text", "atom.numeric-label", "molecule.grid-row-delete-indexed", "molecule.popup-form-open"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md PART 5 (Additional Amount grid, DsFrmDetails2)"
+  ],
+  "params": {
+    "detailDataset": { "type": "string", "required": true },
+    "headingText": { "type": "string", "required": true },
+    "columns": { "type": "array", "required": true, "description": "List of { xs, headerText, field, control } where control is span or dxnumlbl. xs values must sum to 12 including the options column." },
+    "popupDocno": { "type": "string", "required": true },
+    "popupSection": { "type": "string", "required": true }
+  },
+  "template": {
+    "type": "sect",
+    "props": { "style": {}, "xs": 12, "container": true },
+    "chld": [
+      { "type": "sect", "props": { "xs": 12, "item": true, "resolvestyles": true, "className": "subHeadingLbl", "style": {} },
+        "chld": [ { "type": "span", "props": { "style": {} }, "chld": "{{HEADING_TEXT}}" } ] },
+      {
+        "type": "sect",
+        "props": { "container": true, "className": "TableParentSect", "style": { "minWidth": "900px" } },
+        "chld": [
+          {
+            "type": "sect",
+            "props": { "className": "TableHeaderSect", "item": true, "container": true, "xs": 12 },
+            "chld": [
+              { "type": "sect", "props": { "item": true, "className": "TableHeaderChildSect", "xs": 2 },
+                "chld": [ { "type": "span", "chld": "{{COLUMN_HEADER_TEXT}}" } ] },
+              { "type": "sect", "props": { "xs": 1, "className": "TableHeaderLastChildSect", "item": true, "style": {} },
+                "chld": [ { "type": "span", "chld": "Options" } ] }
+            ]
+          },
+          {
+            "type": "sect",
+            "props": { "item": true, "xs": 12, "style": {} },
+            "chld": [
+              {
+                "type": "list",
+                "props": {
+                  "datasets": ["{{DETAIL_DATASET_NAME}}"],
+                  "className": "TableListSect facts-input-list",
+                  "content": {
+                    "template": "custom",
+                    "props": { "style": {} },
+                    "chld": [
+                      {
+                        "type": "sect",
+                        "props": { "container": true },
+                        "chld": [
+                          { "type": "sect", "props": { "item": true, "className": "TableContentChildSect", "xs": 2 },
+                            "chld": [ { "type": "span", "chld": "[this.{{TEXT_FIELD}}]" } ] },
+                          { "type": "sect", "props": { "item": true, "className": "TableContentChildSect", "xs": 2 },
+                            "chld": [ { "type": "dxnumlbl", "props": { "dset": "{{DETAIL_DATASET_NAME}}", "rowindex": "[this.propkey]",
+                                                                        "fullWidth": true, "includerefdata": true, "bind": "{{NUMERIC_FIELD}}" } } ] },
+                          { "type": "sect", "props": { "item": true, "className": "TableContentLastChildSect", "xs": 1,
+                              "style": { "display": "flex", "justifyContent": "space-around" } },
+                            "chld": [
+                              { "type": "hide", "props": { "appendprops": { "xsUp": "[dsPagemode.pagemode(eq)raw.view]" } },
+                                "chld": [
+                                  { "type": "icbtn", "props": { "color": "primary", "includerefdata": true,
+                                      "className": "facts-icon-color--delete", "style": { "fontSize": "1.3rem" },
+                                      "whenclick": [
+                                        { "exec": "showloader" },
+                                        { "exec": "setdataset", "args": { "dset": "dscurListIndex", "data": "[this.propkey]" } },
+                                        { "exec": "setdataset", "args": { "dset": "dialoginfo", "nodeepprocess": true, "data": {
+                                            "open": true, "title": "Delete", "description": "Delete this Item?",
+                                            "btn1": { "chld": "YES", "props": { "whenclick": [
+                                                { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "index": "[dscurListIndex]", "data": null } },
+                                                "[calcformula]"
+                                            ] } },
+                                            "btn2": { "chld": "NO" } } } }
+                                      ] }, "chld": "delete" }
+                                ] }
+                            ] }
+                        ]
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "type": "hide",
+            "props": { "appendprops": { "xsUp": "[dsPagemode.pagemode(eq)raw.view]" } },
+            "chld": [
+              { "type": "sect", "props": { "xs": 12 },
+                "chld": [
+                  { "type": "btn", "props": {
+                      "variant": "inherit", "color": "primary", "size": "small",
+                      "className": "tableAddRowBtn", "style": { "float": "right" },
+                      "whenclick": [
+                        { "exec": "setdataset", "args": { "dset": "{{SEED_DATASET}}", "data": { "{{SEED_FIELD}}": "[{{HEADER_DATASET}}.{{SOURCE_FIELD}}]" } } },
+                        { "exec": "filldataset", "args": { "proc": "PWA.LoadLayout", "column": "layoutinfo", "dset": "popupinfo",
+                            "section": "{{POPUP_SECTION}}", "args": { "doctype": "popup", "docno": "{{POPUP_DOCNO}}" } } }
+                      ] },
+                    "chld": [
+                      { "type": "div", "props": { "style": { "height": "100%", "display": "flex", "alignItems": "center" } },
+                        "chld": [
+                          { "type": "icon", "props": { "className": "tableAddRowBtnIcon" }, "chld": "add" },
+                          { "type": "lbl", "props": { "className": "tableAddRowBtnLbl", "text": "Add New Row" } }
+                        ] }
+                    ] }
+                ] }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "differencesFromLineItemsGrid": {
+    "rowCells": "span / dxnumlbl here; lkup / dxnumberbox in the editable grid.",
+    "listProps": "datasets + className only here; the editable grid adds watch, filtermode, filterignorecase, satisfy and a per-row bgColor.",
+    "addRow": "Opens a popup form here; appends an inline row there.",
+    "container": "minWidth:900px here (forces horizontal scroll); padding + a maxHeight/overflow scroll wrapper there.",
+    "headerLastCell": "Has the text 'Options' here; left empty there."
+  },
+  "correctedDefect": "The real source omits \"[calcformula]\" from this grid's delete action, leaving the Summary stale after a row is removed. This template ADDS it — see examples/fapo-fapi-full-breakdown.md PART 11 #1."
+}

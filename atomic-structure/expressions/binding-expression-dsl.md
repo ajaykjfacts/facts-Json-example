@@ -39,6 +39,107 @@ exist in this codebase.
 | `numformat` | number formatting | `[dsForm.total(numformat)raw.N2]` / `raw.N0` |
 | `dtformatntz` | date formatting (no timezone) | `[func.today(dtformatntz)raw.yyyy-MM-dd HH:mm:ss]` |
 | `get` | property access on an object value | see PWA Functions Reference |
+| `*` | multiply | `[this.PURDET_DISCOUNT_PERCENT(*)this.PURDET_GROSS_AMOUNT(/)raw.100]` |
+| `/` | divide | `[this.PURDET_DISCOUNT_AMOUNT(/)this.PURDET_GROSS_AMOUNT(*)raw.100]` |
+| `+` | add | `[DsFrmHeaderEntry.PUR_ITEM_VAT_AMOUNT(+)DsFrmHeaderEntry.ADDITIONAL_VAT_AMOUNT]` |
+| `-` | subtract | `[this.PURDET_GROSS_AMOUNT(-)this.PURDET_DISCOUNT_AMOUNT]` |
+
+## Arithmetic — the four rules
+
+Confirmed from `examples/fapo-fapi-full-breakdown.md` (sections 3.8, 6.1, 7.1):
+
+1. **Operators chain left-to-right with NO precedence.** `A(*)B(/)raw.100`
+   evaluates as `(A*B)/100`. There is no parenthesis syntax — to group
+   differently, split the calculation across sequenced actions.
+2. **Both operands may be field references.** A `raw.` literal is not required
+   on either side: `[DsA.FIELD1(+)DsA.FIELD2]` is valid.
+3. **Long chains are legal.** The net-amount formula chains five terms:
+   `[DsFrmDetails1(listsum)raw.PURDET_AMOUNT(+)DsFrmHeaderEntry.PUR_OTHER_AMOUNT(+)DsFrmHeaderEntry.PUR_ITEM_VAT_AMOUNT(+)DsFrmHeaderEntry.ADDITIONAL_VAT_AMOUNT(-)DsFrmHeaderEntry.PUR_DISCOUNT_AMOUNT]`
+4. **No division guard.** Nothing protects `(/)` against a zero denominator;
+   add guards deliberately where needed.
+
+⚠️ **Sequencing rule (the most common source of wrong totals):** expressions
+inside a single `mergedataset`/`mergedatasetarray` `data` object all evaluate
+against the **pre-merge** state. If field B is derived from field A that the
+same action writes, B reads the *old* A. Split into two sequenced actions.
+
+## Whole-dataset and whole-row references
+
+A bracket expression naming a source with **no field** resolves to the entire
+dataset/row object, not a scalar:
+
+| Form | Resolves to | Typical use |
+|---|---|---|
+| `"[DsFrmHeaderEntry]"` | the whole header record | stored-proc `strXmlHeader` argument |
+| `"[dsGetAccountDetails]"` | the whole returned record | `mergedataset` `data` payload |
+| `"[this]"` | the current row, inside a row control | stored-proc `strXmlDetails` argument |
+| `"[dsVATHeaderDetails]"` | a purpose-built payload record | stored-proc argument |
+
+This is what allows a stored proc to add an output field without any layout
+change — the merge payload is the whole returned record.
+
+## Nested bracket expressions
+
+An expression may contain another expression, resolved innermost-first:
+
+```
+"[DsFrmDetails1.[dslist.rowindex]]"        → row N of DsFrmDetails1
+"[raw.facts-row-[this.row_error]]"          → className string built from a row field
+```
+
+## Empty-string literals and the "is blank" idiom
+
+`raw.` with nothing after it is a valid **empty-string literal**. Combined with
+`ifnull` it forms the standard emptiness test used in validation:
+
+```
+"[DsFrmHeaderEntry.PUR_AC_DOCNO(ifnull)raw.]": ""
+```
+reads as *"coalesce the field to empty string, then compare against empty"*.
+
+Operators can chain past it too —
+`[dsDocumentMaster.DM_PREVIOUS_DOCTYPE(ifnull)raw.(eq)raw.]` coalesces, then
+compares, yielding a boolean for a `hide`.
+
+## Bare `[name]` as an ARRAY ELEMENT — action splicing
+
+A bracket expression used as a **string element inside an action array** (rather
+than as a property *value*) is not a value substitution — it splices in a stored
+action list:
+
+```json
+"onFocusOut": [
+  { "exec": "fillmultidataset", "args": { ... } },
+  { "exec": "mergedatasetarray", "args": { ... } },
+  "[fapoEvent1]"
+]
+```
+
+The referenced dataset holds an action array (put there by
+`setdataset ... nodeepprocess:true`, or fetched via `PWA.LoadLayout` with
+`doctype:"part"`). Splices may nest — `fapoEvent1` itself ends with
+`"[calcformula]"`. See `molecules/stored-action-formula.json` and
+`molecules/reusable-event-fragment.json`.
+
+🔑 **Binding site, not definition site.** A spliced fragment containing
+`[this.propkey]` binds `this` where it is spliced in, which is what lets one
+server-stored fragment serve every row of every page.
+
+## `nodeepprocess` — store raw instead of resolving now
+
+`{"exec":"setdataset","args":{"dset":"X","nodeepprocess":true,"data":[...]}}`
+stores the payload **without resolving any expressions inside it**. Required
+whenever the payload is itself an action list to be run later:
+
+- stored formulas (`calcformula`, `dsFetchBeforeEvents`)
+- deferred actions (`customevents`)
+- dialog button handlers (`dialoginfo`) — without it, `[dscurListIndex]` and
+  `[calcformula]` would resolve while the dialog is being *built* rather than
+  when YES is clicked
+
+Corollary: inside such a deferred payload the row context is gone, so
+`[this.propkey]` is unavailable. Park the index in a scratch dataset first
+(`dscurListIndex`) or in the `dslist` payload (`rowindex`), and read it back.
 
 ## Usage patterns confirmed in this codebase
 

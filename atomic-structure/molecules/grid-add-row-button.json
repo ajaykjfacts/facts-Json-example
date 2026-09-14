@@ -1,0 +1,65 @@
+{
+  "id": "molecule.grid-add-row-button",
+  "level": "molecule",
+  "name": "Add-Row Button (guarded append, icon + text)",
+  "description": "The 'Add New Row' button beneath a line-items grid. Combines four patterns: a guard that aborts the append when header prerequisites are missing, an index-less mergedatasetarray append, a computed serial number, and an icon+label compound button body. Wrapped in a hide so it disappears in view mode.",
+  "composedOf": ["atom.text-button", "atom.icon", "atom.label", "atom.hide-conditional", "action.validatedataset", "action.mergedatasetarray"],
+  "sourceRefs": [
+    "examples/fapo-fapi-full-breakdown.md 3.10 (line-items grid, guarded on PUR_AC_DOCNO + PUR_SUBLEDGER_DOCNO)"
+  ],
+  "params": {
+    "detailDataset": { "type": "string", "required": true },
+    "serialField": { "type": "string", "required": true, "description": "e.g. \"PURDET_DOCSRNO\"." },
+    "guardFields": { "type": "array", "required": false, "description": "Header fields that must be non-empty before a row may be added." },
+    "guardMessage": { "type": "string", "required": false }
+  },
+  "template": {
+    "type": "hide",
+    "props": { "appendprops": { "xsUp": "[dsPagemode.pagemode(eq)raw.view]" } },
+    "chld": [
+      {
+        "type": "sect",
+        "props": { "style": {}, "xs": 12 },
+        "chld": [
+          {
+            "type": "btn",
+            "props": {
+              "variant": "inherit",
+              "color": "primary",
+              "size": "small",
+              "className": "tableAddRowBtn",
+              "style": { "float": "right" },
+              "whenclick": [
+                { "exec": "validatedataset", "verify": {
+                    "satisfy": "any",
+                    "halton": "match",
+                    "ref": { "[{{HEADER_DATASET}}.{{GUARD_FIELD_1}}(ifnull)raw.]": "",
+                             "[{{HEADER_DATASET}}.{{GUARD_FIELD_2}}(ifnull)raw.]": "" },
+                    "whenmatch": [
+                      { "exec": "setdataset", "args": { "dset": "snackinfo", "data": {
+                          "open": true, "type": "error", "message": "{{GUARD_MESSAGE}}" } } }
+                    ] } },
+                { "exec": "mergedatasetarray", "args": { "dset": "{{DETAIL_DATASET_NAME}}", "data": {
+                    "{{SERIAL_FIELD}}": "[{{DETAIL_DATASET_NAME}}(listcount)(+)raw.1(numformat)raw.0]" } } }
+              ]
+            },
+            "chld": [
+              { "type": "div", "props": { "style": { "height": "100%", "display": "flex", "alignItems": "center" } },
+                "chld": [
+                  { "type": "icon", "props": { "className": "tableAddRowBtnIcon" }, "chld": "add" },
+                  { "type": "lbl", "props": { "className": "tableAddRowBtnLbl", "text": "Add New Row" } }
+                ] }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "patternNotes": {
+    "guardBeforeAppend": "validatedataset with halton:\"match\" ABORTS the remaining actions in the array when the condition matches, so the append never runs. satisfy:\"any\" fires if ANY listed field is blank; use \"all\" to require every one to be blank.",
+    "isEmptyIdiom": "\"[X(ifnull)raw.]\": \"\" reads as 'coalesce X to empty string, compare to empty string'. Note raw. with nothing after it is a legal empty-string literal.",
+    "appendSemantics": "mergedatasetarray with NO index appends a new row. With an index it updates that row; with an index and data:null it deletes that row.",
+    "computedSerial": "[DS(listcount)(+)raw.1(numformat)raw.0] = current row count + 1, zero decimal places.",
+    "compoundButtonBody": "btn.chld is an ARRAY holding a flex div that wraps an icon and a lbl — this is how icon+text buttons are built (there is no startIcon prop)."
+  }
+}
